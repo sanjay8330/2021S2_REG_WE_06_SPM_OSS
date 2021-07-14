@@ -11,7 +11,7 @@ a,
 [type="submit"] {transition: all .25s ease-in;}
 .signup__container {
   position: absolute;
-  top: 50%;
+  top: 60%;
   right: 0;
   left: 0;
   margin-right: auto;
@@ -22,7 +22,7 @@ a,
   align-items: center;
   justify-content: center;
   width: remy(800px);
-  height: remy(480px);
+  height: remy(520px);
   border-radius: remy(3px);
   box-shadow: 0px remy(3px) remy(7px) rgba(0,0,0,.25);
 }
