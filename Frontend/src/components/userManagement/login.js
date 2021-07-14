@@ -63,7 +63,7 @@ export default class Login extends Component {
                         </div>
                         <div class="thumbnail__content text-center">
                             <h1 class="heading--primary">Welcome to Fashionz Club</h1><br />
-                            <h2 class="heading--secondary">CREATE YOUR ACCOUNT IN HERE</h2>
+                            <h2 class="heading--secondary">LOGIN TO ACCOUNT IN HERE</h2>
                         </div>
                         <div class="thumbnail__links">
                             <ul class="list-inline m-b-0 text-center">
