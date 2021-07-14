@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
 import Footer from './components/footer/footer';
 import Register from './components/userManagement/register';
+import Login from './components/userManagement/login';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/register" component={Register} />
+            <Route path="/login" component={ Login } />
           </Switch>
         </section>
       </Router>
