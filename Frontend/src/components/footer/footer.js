@@ -13,10 +13,10 @@ export default class footer extends Component {
                                 <p class="about">Lorem Ipsum is simply dummy text of the printing and typesetting. <br />Lorem Ipsum is simply dummy text of the printing and typesetting.<br /> Lorem Ipsum is simply dummy text of the printing and typesetting. <br />Lorem Ipsum is simply dummy text of the printing and typesetting. </p>
                                 <br/>
                                 <div class="copyright">
-                                    &copy; Copyright <strong>CMT - 2021</strong>. All Rights Reserved
+                                    &copy; Copyright <strong>SPM SLIIT PROJECT - 2021</strong>. All Rights Reserved
                                 </div>
                                 <div class="credits">
-                                    Designed by: <a href="/">Group - TEAM S3K_UX</a>
+                                    Designed by: <a href="/">Group - TEAM S3K</a>
                                 </div>
 
                             </div>

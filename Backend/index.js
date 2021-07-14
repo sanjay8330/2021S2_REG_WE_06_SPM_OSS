@@ -20,9 +20,11 @@ app.get('/', async(req,res) => {
 
 //Importing the routes
 const UserRoutes = require('./routes/User');
+const ProductRoutes = require('./routes/Product');
 
 //Using the routes
 app.use("/user", UserRoutes);
+app.use("/product", ProductRoutes);
 
 const PORT = process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;

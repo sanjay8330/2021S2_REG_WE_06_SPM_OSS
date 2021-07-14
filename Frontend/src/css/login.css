@@ -40,7 +40,7 @@
   }
   .login__thumbnail {
     position: relative;
-    padding: 4rem;
+    padding: 5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -80,7 +80,7 @@
     color: rgb(219, 120, 120);
   }
   .login__form {
-    padding: 2.5rem;
+    padding: 6rem;
     background: #6c248d;
   }
   label {
