@@ -18,6 +18,12 @@ app.get('/', async(req,res) => {
     res.send('Welcome to the Online Shopping Platform!!');
 })
 
+//Importing the routes
+const UserRoutes = require('./routes/User');
+
+//Using the routes
+app.use("/user", UserRoutes);
+
 const PORT = process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;
 
