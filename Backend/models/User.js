@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    resetAnswer: {
+        type: Number,
+        required: true
+    },
 });
 
 const User = mongoose.model("Users", UserSchema);

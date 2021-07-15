@@ -6,7 +6,8 @@ import Axios from 'axios';
 const initialState = {
     "email": '',
     "contact": '',
-    "users": []
+    "users": [],
+    "resetAnswer": ''
 }
 
 export default class ForgotPassword extends Component {
@@ -34,7 +35,7 @@ export default class ForgotPassword extends Component {
                     alert('Email Address Invalid!!');
                 } else {
                     this.state.users.length > 0 && this.state.users.map((item, key) => {
-                        if (item.userContact === this.state.contact) {
+                        if (item.userContact === this.state.contact && item.resetAnswer == this.state.resetAnswer) {
                             window.location = `/resetPassword/${item._id}`
                         } else {
                             alert('Email or Contact Invalid!!!');
@@ -92,6 +93,17 @@ export default class ForgotPassword extends Component {
                                     pattern="[0-9]{10}"
                                     id="contact"
                                     value={this.state.contact}
+                                    onChange={this.onChange}
+                                    required />
+                            </div><br />
+                            <div class="form-group">
+                                <label for="contact">Enter last 4 digits of your NIC card</label>
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    name="resetAnswer"
+                                    id="resetAnswer"
+                                    value={this.state.resetAnswer}
                                     onChange={this.onChange}
                                     required />
                             </div><br />

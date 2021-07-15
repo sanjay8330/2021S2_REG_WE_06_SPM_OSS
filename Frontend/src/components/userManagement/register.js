@@ -9,7 +9,8 @@ const initialStates = {
     "password": '',
     "confirmPassword": '',
     "contactNo": '',
-    "category": 'General User'
+    "category": 'General User',
+    "resetAnswer": ''
 }
 export default class register extends Component {
     constructor(props) {
@@ -34,7 +35,8 @@ export default class register extends Component {
                 "userEmail": this.state.email,
                 "userPassword": this.state.password,
                 "userContact": this.state.contactNo,
-                "userCategory": this.state.category
+                "userCategory": this.state.category,
+                "resetAnswer": this.state.resetAnswer
             }
             Axios.post('http://localhost:3001/user/addUser', user)
             .then(response => {
@@ -124,6 +126,18 @@ export default class register extends Component {
                                     name="contactNo"
                                     id="contactNo"
                                     value={this.state.contactNo}
+                                    onChange={this.onChange}
+                                    required />
+                            </div><br />
+                            <div class="form-group">
+                                <label for="contact">Enter last 4 digits of your NIC card</label>
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    pattern="[0-9]{4}"
+                                    name="resetAnswer"
+                                    id="resetAnswer"
+                                    value={this.state.resetAnswer}
                                     onChange={this.onChange}
                                     required />
                             </div><br />
