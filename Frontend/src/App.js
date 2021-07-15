@@ -2,6 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
 import Footer from './components/footer/footer';
+
+//User Management - Routes
 import Register from './components/userManagement/register';
 import Login from './components/userManagement/login';
 import ForgotPassword from './components/userManagement/forgotPassword';
