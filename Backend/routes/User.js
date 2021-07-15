@@ -72,4 +72,25 @@ router.route('/validateUser/:emailID').get(async (req, res) => {
     }
 })
 
+//Reset the password - GENERAL USER TASK
+router.route("/resetPassword/:id").put(async (req, res) => {
+    const newPassword = req.body.newPassword;
+    //Research paper or workshop ID
+    const Id = req.params.id;
+
+    try{
+        await UserModel.findById(Id, (err, updatedUserObject) => {
+            updatedUserObject.userPassword = newPassword;
+            updatedUserObject.save()
+            .then(data => {
+                res.status(200).send({data: data});
+            }).catch(error => {
+                res.status(500).send({error: error});
+            })
+        });
+    }catch(err){
+        console.log(err);
+    }
+});
+
 module.exports = router;
