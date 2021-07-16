@@ -40,7 +40,7 @@ export default class Login extends Component {
                             alert('General User logged in!!');
                         }
                         if (item.userCategory === 'Administrator') {
-                            alert('Administrator logged in!!');
+                            window.location = "/adminDashboard"
                         }
                     } else {
                         alert('Password or Username is Invalid!!');
