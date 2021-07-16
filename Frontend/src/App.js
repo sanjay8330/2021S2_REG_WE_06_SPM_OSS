@@ -8,6 +8,7 @@ import Register from './components/userManagement/register';
 import Login from './components/userManagement/login';
 import ForgotPassword from './components/userManagement/forgotPassword';
 import ResetPassword from './components/userManagement/resetPassword';
+import AdminAddUser from './components/Administrator/registerUsers';
 
 import adminDashboard from '../src/adminDashboard';
 import createProduct from './components/productManagement/createProduct';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/login" component={ Login } />
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
+            <Route path="/adminUserRegister" component={ AdminAddUser } />
 
             <Route path="/adminDashboard" component={ adminDashboard } />
             <Route path="/createProduct" component={ createProduct } />

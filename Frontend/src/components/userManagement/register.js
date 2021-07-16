@@ -9,7 +9,7 @@ const initialStates = {
     "password": '',
     "confirmPassword": '',
     "contactNo": '',
-    "category": 'General User',
+    "category": 'Customer',
     "resetAnswer": ''
 }
 export default class register extends Component {
