@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 
+
+
 export default class viewProducts extends Component {
     render() {
         return (
