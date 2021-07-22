@@ -33,6 +33,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI || '&w=majority' , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
 }, (error) => {
     if(error) {
         console.log('Error in connection');

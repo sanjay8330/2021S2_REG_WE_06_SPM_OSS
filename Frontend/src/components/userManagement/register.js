@@ -10,7 +10,8 @@ const initialStates = {
     "confirmPassword": '',
     "contactNo": '',
     "category": 'Customer',
-    "resetAnswer": ''
+    "resetAnswer": '',
+    "existingUser": []
 }
 export default class register extends Component {
     constructor(props) {
@@ -27,7 +28,18 @@ export default class register extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        if (this.state.password !== this.state.confirmPassword) {
+        Axios.get(`http://localhost:3001/user/getUserByEmailID/${this.state.email}`)
+        .then(response => {
+            this.setState({ existingUser: response.data.data });
+            console.log('LENGTH', this.state.existingUser.length);
+        }).catch(error => {
+            alert(error.message);
+        })
+
+        if(this.state.existingUser.length === 1){
+            alert('User already exists');
+            window.location = '/login';
+        } else if (this.state.password !== this.state.confirmPassword) {
             alert('Password Mismatch!!');
         } else {
             let user = {
