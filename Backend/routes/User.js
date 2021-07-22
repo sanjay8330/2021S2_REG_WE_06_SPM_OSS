@@ -4,6 +4,11 @@ const UserModel = require('../models/User');
 //Add a user - GENEREAL USER TASK & ADMIN TASK
 router.route('/addUser').post(async (req, res) => {
     if(req.body){
+
+        const existingUser = UserModel.find({ userEmail: req.body.userEmail });
+        if(existingUser){
+            return res.status(400).send({ error: 'Email address already exists!!' });
+        }
         const User = new UserModel(req.body);
         await User.save()
         .then(data => {
