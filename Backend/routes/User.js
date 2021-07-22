@@ -4,6 +4,7 @@ const UserModel = require('../models/User');
 //Add a user - GENEREAL USER TASK & ADMIN TASK
 router.route('/addUser').post(async (req, res) => {
     if(req.body){
+        
         const User = new UserModel(req.body);
         await User.save()
         .then(data => {
@@ -35,7 +36,7 @@ router.route('/getUserById/:id').get(async (req, res) => {
         })
     }
 });
-
+ 
 //Get the user by email address - General User Task
 router.route('/getUserByEmailID/:id').get(async (req, res) => {
     if(req.params && req.params.id){
