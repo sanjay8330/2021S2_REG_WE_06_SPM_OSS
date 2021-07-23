@@ -29,34 +29,37 @@ export default class register extends Component {
         e.preventDefault();
 
         Axios.get(`http://localhost:3001/user/getUserByEmailID/${this.state.email}`)
-        .then(response => {
-            this.setState({ existingUser: response.data.data });
-            console.log('LENGTH', this.state.existingUser.length);
-        }).catch(error => {
-            alert(error.message);
-        })
-
-        if(this.state.existingUser.length === 1){
-            alert('User already exists');
-            window.location = '/login';
-        } else if (this.state.password !== this.state.confirmPassword) {
-            alert('Password Mismatch!!');
-        } else {
-            let user = {
-                "userFullName": this.state.fullName,
-                "userEmail": this.state.email,
-                "userPassword": this.state.password,
-                "userContact": this.state.contactNo,
-                "userCategory": this.state.category,
-                "resetAnswer": this.state.resetAnswer
-            }
-            Axios.post('http://localhost:3001/user/addUser', user)
             .then(response => {
-                alert('User Registration Successfull!!');
+                this.setState({ existingUser: response.data.data });
+                console.log('LENGTH', this.state.existingUser.length);
+
+                if (this.state.existingUser.length === 1) {
+                    this.state.checkUser = false;
+                    alert('User already exists');
+                    window.location = '/login';
+
+                } else if (this.state.password !== this.state.confirmPassword) {
+                    alert('Password Mismatch!!');
+                } else {
+                    let user = {
+                        "userFullName": this.state.fullName,
+                        "userEmail": this.state.email,
+                        "userPassword": this.state.password,
+                        "userContact": this.state.contactNo,
+                        "userCategory": this.state.category,
+                        "resetAnswer": this.state.resetAnswer
+                    }
+                    Axios.post('http://localhost:3001/user/addUser', user)
+                        .then(response => {
+                            alert('User Registration Successfull!!');
+                        }).catch(error => {
+                            alert(error.message);
+                        })
+                }
             }).catch(error => {
                 alert(error.message);
             })
-        }
+
     }
 
     render() {
@@ -116,6 +119,8 @@ export default class register extends Component {
                                     id="password"
                                     value={this.state.password}
                                     onChange={this.onChange}
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     required />
                             </div><br />
                             <div class="form-group">

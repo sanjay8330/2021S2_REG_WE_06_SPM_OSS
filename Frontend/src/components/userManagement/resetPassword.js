@@ -75,6 +75,8 @@ export default class ResetPassword extends Component {
                                     id="password"
                                     value={this.state.password}
                                     onChange={this.onChange}
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     required />
                             </div><br />
                             <div class="form-group">

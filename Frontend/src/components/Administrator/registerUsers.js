@@ -11,7 +11,8 @@ const initialState = {
     "contactNo": '',
     "category": '',
     "resetAnswer": '',
-    "options": []
+    "options": [],
+    "existingUser": []
 }
 
 export default class AdminAddUser extends Component {
@@ -48,24 +49,38 @@ export default class AdminAddUser extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.password !== this.state.confirmPassword) {
-            alert('Password Mismatch!!');
-        } else {
-            let user = {
-                "userFullName": this.state.fullName,
-                "userEmail": this.state.email,
-                "userPassword": this.state.password,
-                "userContact": this.state.contactNo,
-                "userCategory": this.state.category,
-                "resetAnswer": this.state.resetAnswer
-            }
-            Axios.post('http://localhost:3001/user/addUser', user)
-                .then(response => {
-                    alert('User Registration Successfull!!');
-                }).catch(error => {
-                    alert(error.message);
-                })
-        }
+
+        Axios.get(`http://localhost:3001/user/getUserByEmailID/${this.state.email}`)
+            .then(response => {
+                this.setState({ existingUser: response.data.data });
+                console.log('LENGTH', this.state.existingUser.length);
+
+                if (this.state.existingUser.length === 1) {
+                    this.state.checkUser = false;
+                    alert('User already exists');
+                    window.location = '/adminDashboard';
+
+                } else if (this.state.password !== this.state.confirmPassword) {
+                    alert('Password Mismatch!!');
+                } else {
+                    let user = {
+                        "userFullName": this.state.fullName,
+                        "userEmail": this.state.email,
+                        "userPassword": this.state.password,
+                        "userContact": this.state.contactNo,
+                        "userCategory": this.state.category,
+                        "resetAnswer": this.state.resetAnswer
+                    }
+                    Axios.post('http://localhost:3001/user/addUser', user)
+                        .then(response => {
+                            alert('User Registration Successfull!!');
+                        }).catch(error => {
+                            alert(error.message);
+                        })
+                }
+            }).catch(error => {
+                alert(error.message);
+            })
     }
 
     render() {
@@ -110,7 +125,9 @@ export default class AdminAddUser extends Component {
                             id="password"
                             value={this.state.password}
                             onChange={this.onChange}
-                            required /><br />
+                            required
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" /><br />
 
                         <span style={{ color: "black" }}>Confirm Password</span>
                         <input
@@ -142,7 +159,8 @@ export default class AdminAddUser extends Component {
                             id="resetAnswer"
                             value={this.state.resetAnswer}
                             onChange={this.onChange}
-                            required /><br />
+                            required
+                            title="Enter only the last 4 digits of you NIC card" /><br />
 
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
