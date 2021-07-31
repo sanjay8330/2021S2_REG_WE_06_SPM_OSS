@@ -5,7 +5,10 @@ import Axios from 'axios';
 
 const initialStates = {
     "password": '',
-    "confirmpassword": ''
+    "confirmpassword": '',
+    "user": [],
+    "email": '',
+    "currentDateTime": Date().toLocaleString()
 }
 export default class ResetPassword extends Component {
     constructor(props) {
@@ -19,6 +22,16 @@ export default class ResetPassword extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    componentDidMount(){
+        Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
+        .then(response => {
+            this.setState({ user: response.data.data });
+            this.setState({ email: this.state.user.userEmail });
+        }).catch(error => {
+            alert(error.message);
+        })
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -30,8 +43,22 @@ export default class ResetPassword extends Component {
             }
             Axios.put(`http://localhost:3001/user/resetPassword/${this.props.match.params.id}`, updUser)
                 .then(response => {
-                    alert('Password Reset Successful!!');
-                    window.location = "/login";
+
+                    let userReport = {
+                        "userEmail": this.state.email,
+                        "userCategory": 'Customer',
+                        "description": 'Password reset of User',
+                        "action": 'RESET PASSWORD',
+                        "datetime": this.state.currentDateTime 
+                    }
+                    Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
+                    .then(response => {
+                        alert('Password Reset Successful!!');
+                        window.location = "/login";
+                    }).catch(error => {
+                        alert(error.message);
+                    })  
+
                 }).catch(error => {
                     alert(error.message);
                 })

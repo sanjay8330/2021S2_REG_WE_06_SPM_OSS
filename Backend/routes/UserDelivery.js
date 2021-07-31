@@ -55,3 +55,5 @@ router.route("/updateDeliveryDetails/:id").put(async (req, res) => {
     }
 });
 
+module.exports = router;
+

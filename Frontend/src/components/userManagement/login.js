@@ -6,7 +6,8 @@ import Axios from 'axios';
 const initialState = {
     "email": '',
     "password": '',
-    "users": []
+    "users": [],
+    "currentDateTime": Date().toLocaleString()
 }
 
 export default class Login extends Component {
@@ -37,7 +38,21 @@ export default class Login extends Component {
                 this.state.users.length > 0 && this.state.users.map((item, key) => {
                     if (item.userPassword === this.state.password) {
                         if (item.userCategory === 'Customer') {
-                            alert('General User logged in!!');
+                            
+                            let userReport = {
+                                "userEmail": item.userEmail,
+                                "userCategory": 'Customer',
+                                "description": 'Log In of User',
+                                "action": 'LOGIN',
+                                "datetime": this.state.currentDateTime 
+                            }
+                            Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
+                            .then(response => {
+                                alert('General User logged in!!');
+                            }).catch(error => {
+                                alert(error.message);
+                            })  
+                            
                         }
                         if (item.userCategory === 'Administrator') {
                             window.location = "/adminDashboard"
