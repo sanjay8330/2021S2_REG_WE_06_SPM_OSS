@@ -12,7 +12,8 @@ const initialState = {
     "category": '',
     "resetAnswer": '',
     "options": [],
-    "existingUser": []
+    "existingUser": [],
+    "currentDateTime": Date().toLocaleString()
 }
 
 export default class AdminAddUser extends Component {
@@ -73,7 +74,20 @@ export default class AdminAddUser extends Component {
                     }
                     Axios.post('http://localhost:3001/user/addUser', user)
                         .then(response => {
-                            alert('User Registration Successfull!!');
+
+                            let userReport = {
+                                "userEmail": this.state.email,
+                                "userCategory": 'Administrator',
+                                "description": 'Registration of User',
+                                "action": 'INSERT',
+                                "datetime": this.state.currentDateTime 
+                            }
+                            Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
+                            .then(response => {
+                                alert('User Registration Successfull!!');
+                            }).catch(error => {
+                                alert(error.message);
+                            })  
                         }).catch(error => {
                             alert(error.message);
                         })
