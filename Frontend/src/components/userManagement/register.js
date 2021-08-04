@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Axios from 'axios';
 import '../../css/register.css';
 import Header from '../header/header';
+import PasswordChecklist from "react-password-checklist";
 
 const initialStates = {
     "fullName": '',
@@ -58,14 +59,14 @@ export default class register extends Component {
                                 "userCategory": 'Customer',
                                 "description": 'Registration of User',
                                 "action": 'INSERT',
-                                "datetime": this.state.currentDateTime 
+                                "datetime": this.state.currentDateTime
                             }
                             Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
-                            .then(response => {
-                                alert('User Registration Successfull!!');
-                            }).catch(error => {
-                                alert(error.message);
-                            })  
+                                .then(response => {
+                                    alert('User Registration Successfull!!');
+                                }).catch(error => {
+                                    alert(error.message);
+                                })
                         }).catch(error => {
                             alert(error.message);
                         })
@@ -137,6 +138,7 @@ export default class register extends Component {
                                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     required />
                             </div><br />
+
                             <div class="form-group">
                                 <label for="passwordRepeat">Confirm Password</label>
                                 <input
@@ -148,6 +150,16 @@ export default class register extends Component {
                                     onChange={this.onChange}
                                     required />
                             </div><br />
+
+                            <PasswordChecklist
+                                rules={["minLength", "specialChar", "number", "capital", "match"]}
+                                minLength={5}
+                                value={this.state.password}
+                                valueAgain={this.state.confirmpassword}
+                                onChange={(isValid) => { }}
+                                className="passwordCheck"
+                            /><br />
+                            
                             <div class="form-group">
                                 <label for="contact">Contact</label>
                                 <input
@@ -186,7 +198,7 @@ export default class register extends Component {
                     </div>
                 </div>
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>
         )
     }

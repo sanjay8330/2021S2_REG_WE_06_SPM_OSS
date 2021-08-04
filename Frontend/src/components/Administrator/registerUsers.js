@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Select from 'react-select';
 import Header from '../../components/header/header';
+import PasswordChecklist from "react-password-checklist";
 
 const initialState = {
     "fullName": '',
@@ -80,14 +81,14 @@ export default class AdminAddUser extends Component {
                                 "userCategory": 'Administrator',
                                 "description": 'Registration of User',
                                 "action": 'INSERT',
-                                "datetime": this.state.currentDateTime 
+                                "datetime": this.state.currentDateTime
                             }
                             Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
-                            .then(response => {
-                                alert('User Registration Successfull!!');
-                            }).catch(error => {
-                                alert(error.message);
-                            })  
+                                .then(response => {
+                                    alert('User Registration Successfull!!');
+                                }).catch(error => {
+                                    alert(error.message);
+                                })
                         }).catch(error => {
                             alert(error.message);
                         })
@@ -142,6 +143,13 @@ export default class AdminAddUser extends Component {
                             required
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                             title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" /><br />
+
+                        <PasswordChecklist
+                            rules={["minLength", "specialChar", "number", "capital"]}
+                            minLength={5}
+                            value={this.state.password}
+                            onChange={(isValid) => { }}
+                        /><br />
 
                         <span style={{ color: "black" }}>Confirm Password</span>
                         <input
