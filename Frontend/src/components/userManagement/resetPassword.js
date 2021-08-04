@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../header/header';
 import '../../css/resetPassword.css';
 import Axios from 'axios';
+import PasswordChecklist from "react-password-checklist";
 
 const initialStates = {
     "password": '',
@@ -106,6 +107,7 @@ export default class ResetPassword extends Component {
                                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     required />
                             </div><br />
+
                             <div class="form-group">
                                 <label for="password">Confirm New Password</label>
                                 <input
@@ -117,6 +119,15 @@ export default class ResetPassword extends Component {
                                     onChange={this.onChange}
                                     required />
                             </div><br />
+
+                           <PasswordChecklist
+                                rules={["minLength", "specialChar", "number", "capital", "match"]}
+                                minLength={5}
+                                value={this.state.password}
+                                valueAgain={this.state.confirmpassword}
+                                onChange={(isValid) => { }}
+                                className="passwordCheck"
+                            /><br />
 
                             <div class="m-t-lg">
                                 <ul class="list-inline">
@@ -132,7 +143,7 @@ export default class ResetPassword extends Component {
                     </div>
                 </div>
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>
         )
     }
