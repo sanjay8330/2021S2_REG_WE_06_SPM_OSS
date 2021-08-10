@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import '../../css/admin.css';
 
-export default class adminDashboard extends Component {
+export default class AddProductOffer extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
@@ -10,16 +15,14 @@ export default class adminDashboard extends Component {
                             &nbsp; &nbsp;  &nbsp; ADMIN PANEL
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
-                            <li><a href="/adminDashboard" class="active">Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }}>Add Product</a></li>
+                            <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
+                            <li><a href="/createProduct" style={{ color: "white" }} class="active">Add Product</a></li>
                             <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }}>Manage Product Offers</a></li>
-                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
                     <main>
-                        <h1>ADMIN DASHBOARD</h1>
+                        <h1>Create Product Offer</h1>
                     </main>
                 </div>
             </div>
