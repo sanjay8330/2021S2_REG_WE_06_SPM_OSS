@@ -155,7 +155,7 @@ export default class register extends Component {
                                 rules={["minLength", "specialChar", "number", "capital", "match"]}
                                 minLength={5}
                                 value={this.state.password}
-                                valueAgain={this.state.confirmpassword}
+                                valueAgain={this.state.confirmPassword}
                                 onChange={(isValid) => { }}
                                 className="passwordCheck"
                             /><br />
