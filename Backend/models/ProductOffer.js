@@ -9,6 +9,14 @@ const ProductOfferSchema = new mongoose.Schema({
     offerPrice: {
         type: Number,
         required: true
+    },
+    offerDiscount: {
+        type: Number,
+        required: true
+    },
+    offerDescription: {
+        type: String,
+        required: true
     }
 });
 
