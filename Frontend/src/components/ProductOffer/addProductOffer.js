@@ -30,8 +30,12 @@ export default class AddProductOffer extends Component {
     onPriceChange(e) {
         this.setState({ offerAmount: e.target.value });
 
-        let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
-        this.setState({ offerDiscount: discount });
+        if(this.state.offerAmount >= this.state.productInfo.productPrice) {
+            this.setState({ offerDiscount: 'Invalid Offer Amount' });
+        }else{
+            let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
+            this.setState({ offerDiscount: discount });
+        }
     }
     onSelectedOption(e) {
         this.setState({ selectedProduct: e.value });
