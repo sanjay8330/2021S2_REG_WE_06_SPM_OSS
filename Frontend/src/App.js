@@ -12,6 +12,7 @@ import AdminAddUser from './components/Administrator/registerUsers';
 
 //Product Offer Management - Routes
 import AddProductOffer from './components/ProductOffer/addProductOffer';
+import ViewProductOffer from './components/ProductOffer/viewProductOffer';
 
 import adminDashboard from '../src/adminDashboard';
 import createProduct from './components/productManagement/createProduct';
@@ -31,6 +32,7 @@ function App() {
             <Route path="/adminUserRegister" component={ AdminAddUser } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
+            <Route path="/viewProductOffers" component={ ViewProductOffer } />
 
             <Route path="/adminDashboard" component={ adminDashboard } />
             <Route path="/createProduct" component={ createProduct } />

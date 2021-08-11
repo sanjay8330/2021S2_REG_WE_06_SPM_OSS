@@ -13,7 +13,7 @@ export default class adminDashboard extends Component {
                             <li><a href="/adminDashboard" class="active">Dashboard</a></li>
                             <li><a href="/createProduct" style={{ color: "white" }}>Add Product</a></li>
                             <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }}>Manage Product Offers</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }}>Manage Product Offers</a></li>
                             <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>

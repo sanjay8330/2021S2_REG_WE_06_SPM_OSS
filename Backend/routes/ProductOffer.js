@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { response } = require('express');
 const ProductOfferModel = require('../models/ProductOffer');
 
 //Create a new offer for a product - ADMINISTRATOR/SUPPLIER
