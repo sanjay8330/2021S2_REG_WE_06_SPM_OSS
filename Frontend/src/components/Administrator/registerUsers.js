@@ -14,8 +14,7 @@ const initialState = {
     "resetAnswer": '',
     "options": [],
     "existingUser": [],
-    "currentDateTime": Date().toLocaleString(),
-    "check": ''
+    "currentDateTime": Date().toLocaleString()
 }
 
 export default class AdminAddUser extends Component {
@@ -48,8 +47,6 @@ export default class AdminAddUser extends Component {
 
     onSelectedOption(e) {
         this.setState({ category: e.value });
-
-        this.setState({ check: 'Hello'})
     }
 
     onSubmit(e) {
@@ -114,14 +111,6 @@ export default class AdminAddUser extends Component {
                             options={this.state.options}
                             onChange={this.onSelectedOption}
                         /><br />
-
-                        <span style={{ color: "black" }}>Check ME</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            name="check"
-                            id="check"
-                            value={this.state.check}/><br />
 
                         <span style={{ color: "black" }}>Full Name</span>
                         <input
