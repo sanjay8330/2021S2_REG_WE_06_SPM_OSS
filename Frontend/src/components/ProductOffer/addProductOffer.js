@@ -20,6 +20,7 @@ export default class AddProductOffer extends Component {
         this.onChange = this.onChange.bind(this);
         this.onPriceChange = this.onPriceChange.bind(this);
         this.onSelectedOption = this.onSelectedOption.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.state = initialStates;
     }
 
@@ -30,9 +31,9 @@ export default class AddProductOffer extends Component {
     onPriceChange(e) {
         this.setState({ offerAmount: e.target.value });
 
-        if(this.state.offerAmount >= this.state.productInfo.productPrice) {
+        if (this.state.offerAmount >= this.state.productInfo.productPrice) {
             this.setState({ offerDiscount: 'Invalid Offer Amount' });
-        }else{
+        } else {
             let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
             this.setState({ offerDiscount: discount });
         }
@@ -66,6 +67,26 @@ export default class AddProductOffer extends Component {
             })
     }
 
+    onSubmit(e){
+        e.preventDefault();
+        let productOffer = {
+            "productName": this.state.productInfo.productName,
+            "productPrice": this.state.productInfo.productPrice,
+            "productDiscount": this.state.productInfo.productDiscount,
+            "categoryType": this.state.productInfo.categoryType,
+            "productDescription": this.state.productInfo.productDescription,
+            "offerPrice": this.state.offerAmount,
+            "offerDiscount": this.state.offerDiscount,
+            "offerDescription": this.state.offerDiscount
+        }
+        Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
+        .then(response => {
+            alert('Product Offer Details Added Successfully');
+        }).catch(error => {
+            alert(error.message);
+        })
+    }
+
     render() {
         return (
             <div>
@@ -84,57 +105,70 @@ export default class AddProductOffer extends Component {
                     <main>
                         <h1>Create Product Offer</h1>
 
-                        <h3>Product Information</h3>
-                        <span style={{ color: "black" }}>Product</span>
+                        <form onSubmit={this.onSubmit}>
+                            <h3>Product Information</h3>
+                            <span style={{ color: "black" }}>Product</span>
 
-                        <Select
-                            options={this.state.options}
-                            onChange={this.onSelectedOption}
-                        /><br />
+                            <Select
+                                options={this.state.options}
+                                onChange={this.onSelectedOption}
+                            /><br />
 
-                        <span style={{ color: "black" }}>Product Price</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            value={this.state.productInfo.productPrice}
-                            disabled /><br />
+                            <span style={{ color: "black" }}>Product Price</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                value={this.state.productInfo.productPrice}
+                                disabled /><br />
 
-                        <span style={{ color: "black" }}>Current Product Discount %</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            value={this.state.productInfo.productDiscount}
-                            disabled /><br />
+                            <span style={{ color: "black" }}>Current Product Discount %</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                value={this.state.productInfo.productDiscount}
+                                disabled /><br />
 
-                        <span style={{ color: "black" }}>Product Category</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            value={this.state.productInfo.categoryType}
-                            disabled /><br />
+                            <span style={{ color: "black" }}>Product Category</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                value={this.state.productInfo.categoryType}
+                                disabled /><br />
 
-                        <h3>Add Product Offer Information</h3>
+                            <h3>Add Product Offer Information</h3>
 
-                        <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="offerAmount"
-                            name="offerAmount"
-                            value={this.state.offerAmount}
-                            onChange={this.onPriceChange}
-                            max={this.state.productInfo.productPrice}
-                            title="Product offer price should be less than the original price"
-                            required
-                        /><br />
+                            <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="offerAmount"
+                                name="offerAmount"
+                                value={this.state.offerAmount}
+                                onChange={this.onPriceChange}
+                                max={this.state.productInfo.productPrice}
+                                title="Product offer price should be less than the original price"
+                                required
+                            /><br />
 
-                        <span style={{ color: "black" }}>New Product Offer Discount %</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            value={this.state.offerDiscount}
-                            disabled /><br />
+                            <span style={{ color: "black" }}>New Product Offer Discount %</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                value={this.state.offerDiscount}
+                                disabled /><br />
 
+                            <span style={{ color: "black" }}>Offer Description</span>
+                            <textarea
+                                className="form-control"
+                                rows="2"
+                                name="offerDescription"
+                                value={this.state.offerDescription}
+                                onChange={this.onChange}
+                                required>
+                            </textarea><br />
+
+                            <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
+                        </form>
                     </main>
                 </div>
             </div>
