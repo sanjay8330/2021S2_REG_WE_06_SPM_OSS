@@ -4,14 +4,20 @@ import Axios from 'axios';
 
 const initialStates = {
     "productOffers": [],
-    "productInfo": []
+    "productInfo": [],
+    "searchProduct": ''
 }
 
 export default class ViewProductOffer extends Component {
     constructor(props) {
         super(props);
         this.navigateAddProductOffer = this.navigateAddProductOffer.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.state = initialStates;
+    }
+
+    onChange(e) {
+        this.setState({ searchProduct: e.target.value });
     }
 
     navigateAddProductOffer(e) {
@@ -43,11 +49,23 @@ export default class ViewProductOffer extends Component {
                         </ul>
                     </nav>
                     <main>
+
                         <h1>View Product Offer</h1>
 
                         <div>
                             <a href="#" onClick={this.navigateAddProductOffer}>Add Product Offers</a>
                         </div>
+
+                        <div>
+                            <span style={{ color: "black" }}>Search :</span>
+                            <input
+                                type="text"
+                                placeholder="Search by product name.."
+                                name="searchProduct"
+                                id="searchProduct"
+                                onChange={this.onChange} /><br />
+                        </div>
+
 
                         <table class="table border shadow">
                             <thead class="thead-dark">
@@ -58,17 +76,34 @@ export default class ViewProductOffer extends Component {
                                     <th scope="col">OFFER PRICE</th>
                                     <th scope="col">OFFER DISCOUNT</th>
                                     <th scope="col">OFFER DESCRIPTION</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col">EDIT</th>
+                                    <th scope="col">DELETE</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.productOffers.length > 0 && this.state.productOffers.map((item, index) =>
+                                {this.state.productOffers.length > 0 && this.state.productOffers.filter((values) => {
+                                    if (this.state.searchProduct == "") {
+                                        return values;
+                                    } else if (values.productName.toLowerCase().includes(this.state.searchProduct.toLowerCase())) {
+                                        return values;
+                                    }
+                                }).map((item, index) =>
                                     <tr>
                                         <td>{item.productName}</td>
-                                        <td>{"Rs."+item.productPrice}</td>
-                                        <td>{item.productDiscount+"%"}</td>
-                                        <td>{"Rs."+item.offerPrice}</td>
-                                        <td>{item.offerDiscount+"%"}</td>
+                                        <td>{"Rs." + item.productPrice}</td>
+                                        <td>{item.productDiscount + "%"}</td>
+                                        <td>{"Rs." + item.offerPrice}</td>
+                                        <td>{item.offerDiscount + "%"}</td>
                                         <td>{item.offerDescription}</td>
+                                        <td>{item.offerStatus}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">EDIT</button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">DELETE</button>
+                                        </td>
                                     </tr>
                                 )}
                             </tbody>
