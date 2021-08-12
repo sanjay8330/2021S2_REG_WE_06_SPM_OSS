@@ -11,7 +11,8 @@ const initialStates = {
     "productInfo": [],
     "offerAmount": '',
     "offerDiscount": '',
-    "offerDescription": ''
+    "offerDescription": '',
+    "offerEndDate": ''
 }
 
 export default class AddProductOffer extends Component {
@@ -29,15 +30,14 @@ export default class AddProductOffer extends Component {
     }
 
     onPriceChange(e) {
-        this.setState({ offerAmount: e.target.value });
+        this.setState({ offerAmount: e.target.value });  
 
-        if (this.state.offerAmount >= this.state.productInfo.productPrice) {
-            this.setState({ offerDiscount: 'Invalid Offer Amount' });
-        } else {
-            let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
-            this.setState({ offerDiscount: discount });
-        }
+        //Calculate the discount
+        let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
+        this.setState({ offerDiscount: discount });
+        
     }
+
     onSelectedOption(e) {
         this.setState({ selectedProduct: e.value });
 
@@ -67,24 +67,25 @@ export default class AddProductOffer extends Component {
             })
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
         let productOffer = {
+            "product": this.state.selectedProduct,
             "productName": this.state.productInfo.productName,
             "productPrice": this.state.productInfo.productPrice,
             "productDiscount": this.state.productInfo.productDiscount,
-            "categoryType": this.state.productInfo.categoryType,
-            "productDescription": this.state.productInfo.productDescription,
             "offerPrice": this.state.offerAmount,
             "offerDiscount": this.state.offerDiscount,
-            "offerDescription": this.state.offerDiscount
+            "offerDescription": this.state.offerDescription,
+            "offerEndDate": this.state.offerEndDate
         }
         Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
-        .then(response => {
-            alert('Product Offer Details Added Successfully');
-        }).catch(error => {
-            alert(error.message);
-        })
+            .then(response => {
+                alert('Product Offer Details Added Successfully');
+                window.location = "/viewProductOffers";
+            }).catch(error => {
+                alert(error.message);
+            })
     }
 
     render() {
@@ -146,16 +147,10 @@ export default class AddProductOffer extends Component {
                                 value={this.state.offerAmount}
                                 onChange={this.onPriceChange}
                                 max={this.state.productInfo.productPrice}
+                                min="0"
                                 title="Product offer price should be less than the original price"
                                 required
                             /><br />
-
-                            <span style={{ color: "black" }}>New Product Offer Discount %</span>
-                            <input
-                                class="form-control"
-                                type="text"
-                                value={this.state.offerDiscount}
-                                disabled /><br />
 
                             <span style={{ color: "black" }}>Offer Description</span>
                             <textarea
@@ -166,6 +161,17 @@ export default class AddProductOffer extends Component {
                                 onChange={this.onChange}
                                 required>
                             </textarea><br />
+
+                            <span style={{ color: "black" }}>Offer Valid till</span>
+                            <input
+                                type="date"
+                                className="form-control"
+                                id="offerEndDate"
+                                name="offerEndDate"
+                                value={this.state.offerEndDate}
+                                onChange={this.onChange}
+                                required
+                            /><br />
 
                             <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
                         </form>

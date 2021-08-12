@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const ProductOfferSchema = new mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Products'
+    },
     productName: { 
         type: String,
         required: true,
@@ -16,14 +21,6 @@ const ProductOfferSchema = new mongoose.Schema({
         required: true,
         trim: true 
     },
-    categoryType: { 
-        type: String 
-    },
-    productDescription: { 
-        type: String,
-        required: true,
-        trim: true 
-    },
     offerPrice: {
         type: Number,
         required: true
@@ -31,10 +28,16 @@ const ProductOfferSchema = new mongoose.Schema({
     offerDiscount: {
         type: Number,
         required: true
-    },
+    }, 
     offerDescription: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+    },
+    offerEndDate: {
+        type: String,
+        required: true,
+        trim: true
     }
 });
 
