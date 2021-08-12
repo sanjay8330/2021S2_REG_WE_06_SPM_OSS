@@ -12,7 +12,8 @@ const initialStates = {
     "offerAmount": '',
     "offerDiscount": '',
     "offerDescription": '',
-    "offerEndDate": ''
+    "offerEndDate": '',
+    "offerStatus": 'Active'
 }
 
 export default class AddProductOffer extends Component {
@@ -34,7 +35,7 @@ export default class AddProductOffer extends Component {
 
         //Calculate the discount
         let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
-        this.setState({ offerDiscount: discount });
+        this.setState({ offerDiscount: discount.toFixed(2) });
         
     }
 
@@ -77,7 +78,8 @@ export default class AddProductOffer extends Component {
             "offerPrice": this.state.offerAmount,
             "offerDiscount": this.state.offerDiscount,
             "offerDescription": this.state.offerDescription,
-            "offerEndDate": this.state.offerEndDate
+            "offerEndDate": this.state.offerEndDate,
+            "offerStatus": this.state.offerStatus
         }
         Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
             .then(response => {
