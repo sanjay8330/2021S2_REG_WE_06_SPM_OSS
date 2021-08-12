@@ -3,6 +3,7 @@ import '../../css/admin.css';
 import Axios from 'axios';
 
 import Select from 'react-select';
+import moment from 'moment';
 
 const initialStates = {
     "products": [],
@@ -31,12 +32,12 @@ export default class AddProductOffer extends Component {
     }
 
     onPriceChange(e) {
-        this.setState({ offerAmount: e.target.value });  
+        this.setState({ offerAmount: e.target.value });
 
         //Calculate the discount
         let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
         this.setState({ offerDiscount: discount.toFixed(2) });
-        
+
     }
 
     onSelectedOption(e) {
@@ -70,6 +71,7 @@ export default class AddProductOffer extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+
         let productOffer = {
             "product": this.state.selectedProduct,
             "productName": this.state.productInfo.productName,
@@ -88,6 +90,7 @@ export default class AddProductOffer extends Component {
             }).catch(error => {
                 alert(error.message);
             })
+
     }
 
     render() {
@@ -115,6 +118,7 @@ export default class AddProductOffer extends Component {
                             <Select
                                 options={this.state.options}
                                 onChange={this.onSelectedOption}
+                                required
                             /><br />
 
                             <span style={{ color: "black" }}>Product Price</span>
@@ -122,21 +126,24 @@ export default class AddProductOffer extends Component {
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.productPrice}
-                                disabled /><br />
+                                disabled 
+                                required/><br />
 
                             <span style={{ color: "black" }}>Current Product Discount %</span>
                             <input
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.productDiscount}
-                                disabled /><br />
+                                disabled 
+                                required/><br />
 
                             <span style={{ color: "black" }}>Product Category</span>
                             <input
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.categoryType}
-                                disabled /><br />
+                                disabled 
+                                required/><br />
 
                             <h3>Add Product Offer Information</h3>
 
@@ -173,6 +180,7 @@ export default class AddProductOffer extends Component {
                                 value={this.state.offerEndDate}
                                 onChange={this.onChange}
                                 required
+                                min={moment().format("YYYY-MM-DD")}
                             /><br />
 
                             <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>

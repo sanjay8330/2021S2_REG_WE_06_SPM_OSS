@@ -23,6 +23,10 @@ export default class ViewProductOffer extends Component {
     navigateAddProductOffer(e) {
         window.location = '/addProductOffer';
     }
+    
+    navigateToUpdateOffer(e, offerId){
+        window.location = `/updateProductOffer/${offerId}`;
+    }
 
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
@@ -53,8 +57,8 @@ export default class ViewProductOffer extends Component {
                         <h1>View Product Offer</h1>
 
                         <div>
-                            <a href="#" onClick={this.navigateAddProductOffer}>Add Product Offers</a>
-                        </div>
+                            <button onClick={this.navigateAddProductOffer}>Add Product Offers</button>
+                        </div><br />
 
                         <div>
                             <span style={{ color: "black" }}>Search :</span>
@@ -64,7 +68,7 @@ export default class ViewProductOffer extends Component {
                                 name="searchProduct"
                                 id="searchProduct"
                                 onChange={this.onChange} /><br />
-                        </div>
+                        </div><br />
 
 
                         <table class="table border shadow">
@@ -75,6 +79,7 @@ export default class ViewProductOffer extends Component {
                                     <th scope="col">PRODUCT DISCOUNT</th>
                                     <th scope="col">OFFER PRICE</th>
                                     <th scope="col">OFFER DISCOUNT</th>
+                                    <th scope="col">OFFER VALID TILL</th>
                                     <th scope="col">OFFER DESCRIPTION</th>
                                     <th scope="col">STATUS</th>
                                     <th scope="col">EDIT</th>
@@ -96,10 +101,11 @@ export default class ViewProductOffer extends Component {
                                         <td>{item.productDiscount + "%"}</td>
                                         <td>{"Rs." + item.offerPrice}</td>
                                         <td>{item.offerDiscount + "%"}</td>
+                                        <td>{item.offerEndDate}</td>
                                         <td>{item.offerDescription}</td>
                                         <td>{item.offerStatus}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">EDIT</button>
+                                            <button type="button" onClick={e => this.navigateToUpdateOffer(e, item._id)} class="btn btn-primary">EDIT</button>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-primary">DELETE</button>
