@@ -4,7 +4,7 @@ import Axios from 'axios';
 
 const initialStates = {
     "productOffers": [],
-    "products": []
+    "productInfo": []
 }
 
 export default class ViewProductOffer extends Component {
@@ -22,7 +22,6 @@ export default class ViewProductOffer extends Component {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
                 this.setState({ productOffers: response.data.data });
-                console.log('RESPONSE ', this.state.productOffers);
             }).catch(error => {
                 alert(error.message);
             })
@@ -49,6 +48,31 @@ export default class ViewProductOffer extends Component {
                         <div>
                             <a href="#" onClick={this.navigateAddProductOffer}>Add Product Offers</a>
                         </div>
+
+                        <table class="table border shadow">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">PRODUCT NAME</th>
+                                    <th scope="col">PRODUCT PRICE</th>
+                                    <th scope="col">PRODUCT DISCOUNT</th>
+                                    <th scope="col">OFFER PRICE</th>
+                                    <th scope="col">OFFER DISCOUNT</th>
+                                    <th scope="col">OFFER DESCRIPTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.productOffers.length > 0 && this.state.productOffers.map((item, index) =>
+                                    <tr>
+                                        <td>{item.productName}</td>
+                                        <td>{"Rs."+item.productPrice}</td>
+                                        <td>{item.productDiscount+"%"}</td>
+                                        <td>{"Rs."+item.offerPrice}</td>
+                                        <td>{item.offerDiscount+"%"}</td>
+                                        <td>{item.offerDescription}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
 
                     </main>
                 </div>

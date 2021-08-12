@@ -4,37 +4,38 @@ const ProductOfferModel = require('../models/ProductOffer');
 
 //Create a new offer for a product - ADMINISTRATOR/SUPPLIER
 router.route('/addProductOffer').post(async (req, res) => {
-    if(req.body){
-        
+    if (req.body) {
+
         const ProductOffer = new ProductOfferModel(req.body);
         await ProductOffer.save()
-        .then(data => {
-            res.status(200).send({data: data});
-        }).catch(error => {
-            res.status(500).send({error: error});
-        })
+            .then(data => {
+                res.status(200).send({ data: data });
+            }).catch(error => {
+                res.status(500).send({ error: error });
+            })
     }
 });
 
 //Get all product offers - ADMINISTRATOR/SUPPLIER
 router.route('/getAllProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({})
-    .then(data => {
-        res.status(200).send({data: data});
-    }).catch(error => {
-        res.status(500).send({error: error});
-    })
+    .populate('product', 'productName')
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
 });
 
 //Get the product offer by ID - ADMIN TASK
 router.route('/getProductOfferById/:id').get(async (req, res) => {
-    if(req.params && req.params.id){
+    if (req.params && req.params.id) {
         await ProductOfferModel.findById(req.params.id)
-        .then(data => {
-            res.status(200).send({data: data});
-        }).catch(error => {
-            res.status(500).send({error: error});
-        })
+            .then(data => {
+                res.status(200).send({ data: data });
+            }).catch(error => {
+                res.status(500).send({ error: error });
+            })
     }
 });
 
@@ -48,33 +49,33 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
     //Offer ID
     const Id = req.params.id;
 
-    try{
+    try {
         await ProductOfferModel.findById(Id, (err, updatedProductOfferObject) => {
             updatedProductOfferObject.offerPrice = offerPrice;
             updatedProductOfferObject.offerDiscount = offerDiscount;
             updatedProductOfferObject.offerDescription = offerDescription;
 
             updatedProductOfferObject.save()
-            .then(data => {
-                res.status(200).send({data: data});
-            }).catch(error => {
-                res.status(500).send({error: error});
-            })
+                .then(data => {
+                    res.status(200).send({ data: data });
+                }).catch(error => {
+                    res.status(500).send({ error: error });
+                })
         });
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 });
 
 //Delete product offer - ADMIN TASK
 router.route('/deleteProductOffer/:id').delete(async (req, res) => {
-    if(req.params && req.params.id){
+    if (req.params && req.params.id) {
         await ProductOfferModel.findByIdAndDelete(req.params.id)
-        .then(data => {
-            res.status(200).send({data: data});
-        }).catch(error => {
-            res.status(500).send({error: error});
-        })
+            .then(data => {
+                res.status(200).send({ data: data });
+            }).catch(error => {
+                res.status(500).send({ error: error });
+            })
     }
 });
 
