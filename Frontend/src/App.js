@@ -14,6 +14,7 @@ import AdminAddUser from './components/Administrator/registerUsers';
 import AddProductOffer from './components/ProductOffer/addProductOffer';
 import ViewProductOffer from './components/ProductOffer/viewProductOffer';
 import UpdateProductOffer from './components/ProductOffer/updateProductOffer';
+import DeleteProductOffer from './components/ProductOffer/deleteProductOffer';
 
 import adminDashboard from '../src/adminDashboard';
 import createProduct from './components/productManagement/createProduct';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
             <Route path="/updateProductOffer/:id" component={ UpdateProductOffer } />
+            <Route path="/deleteProductOffer/:id" component={ DeleteProductOffer } />
 
             <Route path="/adminDashboard" component={ adminDashboard } />
             <Route path="/createProduct" component={ createProduct } />

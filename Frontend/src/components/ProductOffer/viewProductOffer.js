@@ -28,6 +28,10 @@ export default class ViewProductOffer extends Component {
         window.location = `/updateProductOffer/${offerId}`;
     }
 
+    navigateToDeleteOffer(e, offerId){
+        window.location = `/deleteProductOffer/${offerId}`;
+    }
+
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
@@ -108,7 +112,7 @@ export default class ViewProductOffer extends Component {
                                             <button type="button" onClick={e => this.navigateToUpdateOffer(e, item._id)} class="btn btn-primary">EDIT</button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">DELETE</button>
+                                            <button type="button" onClick={e => this.navigateToDeleteOffer(e, item._id)} class="btn btn-primary">DELETE</button>
                                         </td>
                                     </tr>
                                 )}
