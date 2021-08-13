@@ -22,18 +22,27 @@ export default class UpdateProductOffer extends Component {
         this.state = initialStates;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
-        .then(response => {
-            //console.log('RESPONSE>>', response.data.data);
-            this.setState({ offerInfo: response.data.data });
-        }).catch(error => {
-            console.log(error.message);
-        })
+            .then(response => {
+                //console.log('RESPONSE>>', response.data.data);
+                this.setState({ offerInfo: response.data.data });
+
+                this.setState({ offerAmount: this.state.offerInfo.offerPrice });
+                this.setState({ offerDiscount: this.state.offerInfo.offerDiscount });
+                this.setState({ offerDescription: this.state.offerInfo.offerDescription });
+                this.setState({ offerStatus: this.state.offerInfo.offerStatus });
+                this.setState({ offerEndDate: this.state.offerInfo.offerEndDate });
+
+            }).catch(error => {
+                console.log(error.message);
+            })
 
     }
 
     onChange(e) {
+        e.persist();
+
         this.setState({ [e.target.name]: e.target.value });
     }
 
@@ -41,14 +50,29 @@ export default class UpdateProductOffer extends Component {
         this.setState({ offerAmount: e.target.value });
 
         //Calculate the discount
-        let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
+        let discount = (100 * (this.state.offerInfo.productPrice - e.target.value)) / this.state.offerInfo.productPrice;
         this.setState({ offerDiscount: discount.toFixed(2) });
 
     }
 
-    onSubmit(e){
-        e.preventDefault()
-        alert('Button clicked');
+    onSubmit(e) {
+        e.preventDefault();
+    
+        let updProductOffer = {
+            "offerPrice": this.state.offerAmount,
+            "offerDiscount": this.state.offerDiscount,
+            "offerDescription": this.state.offerDescription,
+            "offerEndDate": this.state.offerEndDate,
+            "offerStatus": this.state.offerInfo.offerStatus
+        }
+        Axios.put(`http://localhost:3001/productOffer/updateProductOffer/${this.props.match.params.id}`, updProductOffer)
+            .then(response => {
+                alert('Offer details Updated Successfully!!');
+                window.location = "/viewProductOffers";
+            }).catch(error => {
+                alert(error.message);
+            })
+
     }
 
     render() {
@@ -74,10 +98,12 @@ export default class UpdateProductOffer extends Component {
                             <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
 
                             <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
-                    
+
                             <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
 
                             <h3>Edit Product Offer Information</h3>
+
+                            <span style={{ color: "black" }}>Offer Status : {this.state.offerInfo.offerStatus}</span><br />
 
                             <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
                             <input
@@ -85,12 +111,11 @@ export default class UpdateProductOffer extends Component {
                                 className="form-control"
                                 id="offerAmount"
                                 name="offerAmount"
-                                value={this.state.offerInfo.offerPrice}
+                                defaultValue={this.state.offerAmount}
                                 onChange={this.onPriceChange}
                                 max={this.state.offerInfo.productPrice}
                                 min="0"
                                 title="Product offer price should be less than the original price"
-                                required
                             /><br />
 
                             <span style={{ color: "black" }}>Offer Description</span>
@@ -98,9 +123,8 @@ export default class UpdateProductOffer extends Component {
                                 className="form-control"
                                 rows="2"
                                 name="offerDescription"
-                                value={this.state.offerInfo.offerDescription}
-                                onChange={this.onChange}
-                                required>
+                                defaultValue={this.state.offerDescription}
+                                onChange={this.onChange}>
                             </textarea><br />
 
                             <span style={{ color: "black" }}>Offer Valid till</span>
@@ -109,9 +133,8 @@ export default class UpdateProductOffer extends Component {
                                 className="form-control"
                                 id="offerEndDate"
                                 name="offerEndDate"
-                                value={this.state.offerInfo.offerEndDate}
+                                defaultValue={this.state.offerEndDate}
                                 onChange={this.onChange}
-                                required
                                 min={moment().format("YYYY-MM-DD")}
                             /><br />
 
