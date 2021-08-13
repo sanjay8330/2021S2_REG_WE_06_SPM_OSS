@@ -45,6 +45,8 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
     const offerPrice = req.body.offerPrice;
     const offerDiscount = req.body.offerDiscount;
     const offerDescription = req.body.offerDescription;
+    const offerEndDate = req.body.offerEndDate;
+    const offerStatus = req.body.offerStatus;
 
     //Offer ID
     const Id = req.params.id;
@@ -54,6 +56,8 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
             updatedProductOfferObject.offerPrice = offerPrice;
             updatedProductOfferObject.offerDiscount = offerDiscount;
             updatedProductOfferObject.offerDescription = offerDescription;
+            updatedProductOfferObject.offerEndDate = offerEndDate;
+            updatedProductOfferObject.offerStatus = offerStatus;
 
             updatedProductOfferObject.save()
                 .then(data => {
