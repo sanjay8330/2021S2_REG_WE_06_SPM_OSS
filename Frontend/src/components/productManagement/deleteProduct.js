@@ -10,6 +10,7 @@ export default class deleteproduct extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.navigatetoViewPage = this.navigatetoViewPage.bind(this);
         this.state = initialStates;
     }
 
@@ -33,31 +34,54 @@ export default class deleteproduct extends Component {
             })
     }
 
-  render() {
-    return (
-        <div>
-        <div class="wrapper">
-            <nav>
-                <header><br />
-                    &nbsp; &nbsp;  &nbsp; ADMIN PANEL
-                </header><hr style={{ color: "white" }} />
-                <ul><br />
-                    <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                    <li><a href="/createProduct" style={{ color: "white" }} class="active">Add Product</a></li>
-                    <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
-                    <li><a href="/" style={{ color: "white" }}>Logout</a></li>
-                </ul>
-            </nav>
-            <main>
-                <h1>Delete Confirmation</h1>
+    navigatetoViewPage(e) {
+        window.location = "/viewProducts";
+    }
 
-                <br/><br/><br/><br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    render() {
+        return (
+            <div>
+                <div class="wrapper">
+                    <nav>
+                        <header><br />
+                            &nbsp; &nbsp;  &nbsp; ADMIN PANEL
+                        </header><hr style={{ color: "white" }} />
+                        <ul><br />
+                            <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
+                            <li><a href="/createProduct" style={{ color: "white" }} class="active">Add Product</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
+                            <li><a href="/" style={{ color: "white" }}>Logout</a></li>
+                        </ul>
+                    </nav>
+                    <main>
+                        <h1>DELETE CONFIRMATION</h1>
+                        <div class="content">
+                            <div class="wrapper-1">
+                                <div class="wrapper-2">
 
-                
-            </main>
-    </div>
-    </div >
-    )
-  }
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Name:<b> {this.state.products.productName}</b></span><br />
+
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Price: <b>Rs.{this.state.products.productPrice}.00</b></span><br />
+
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Discount:<b> {this.state.products.productDiscount}%</b></span><br /><br />
+
+                                    <div class="alert alert-danger" role="alert">
+                                        <center><p>Are you sure you want to permanently remove this product?</p><hr />
+                                            By deleting this product detail you can't undo this action.</center>
+                                    </div>
+                                    <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
+                                        Cancel
+                                    </button>
+                                    <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </main>
+                </div>
+            </div >
+        )
+    }
 }

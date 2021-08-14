@@ -77,7 +77,7 @@ export default class updateProduct extends Component {
                         </ul>
                     </nav>
                     <main>
-                        <h1>Update Products</h1>
+                        <h1>UPDATE PRODUCT</h1>
 
                         <div class="container3">
                             <form onSubmit={this.onSubmit}>
@@ -124,8 +124,7 @@ export default class updateProduct extends Component {
                                 </textarea><br />
 
                                 <span style={{ color: "black" }}>Product Category*</span>
-                                <select name="categoryType" onChange={this.onChange} class="form-select" aria-label="Default select example">
-                                    <option selected value="coconut" disabled>Select category</option>
+                                <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example">
                                     <option value="Men">Men</option>
                                     <option value="Women">Women</option>
                                     <option value="Adults">Adults</option>

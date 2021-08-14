@@ -61,7 +61,7 @@ export default class createProduct extends Component {
                         </ul>
                     </nav>
                     <main>
-                        <h1>Create Product</h1>
+                        <h1>CREATE PRODUCT</h1>
 
                         <div class="container3">
                             <form onSubmit={this.onSubmit}>
