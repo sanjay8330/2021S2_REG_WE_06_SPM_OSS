@@ -20,14 +20,16 @@ const ProductSchema = new mongoose.Schema({
         trim: true 
     },
 
-    categoryType: { 
-        type: String 
-    },
-
     productDescription: { 
         type: String,
         required: true,
         trim: true 
+    },
+
+    categoryType: { 
+        type: String,
+        required: true,
+        trim: true  
     },
 
     productImage: { 

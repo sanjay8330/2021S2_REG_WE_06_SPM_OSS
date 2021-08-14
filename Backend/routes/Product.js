@@ -17,11 +17,12 @@ router.route('/addProduct').post(async (req, res) => {
 //Get all products - ADMIN TASK
 router.route('/getAllProducts').get(async (req, res) => {
     await ProductModel.find({})
-    .then(data => {
-        res.status(200).send({data: data});
-    }).catch(error => {
-        res.status(500).send({error: error});
-    })
+    .populate('product', 'productName')
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
 });
 
 //Get the product by ID - ADMIN TASK
