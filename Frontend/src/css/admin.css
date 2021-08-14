@@ -144,3 +144,32 @@ main h1 {
   color: rgb(243, 237, 237);
 }
 
+/**View Offer page CSS*/
+.search {
+  width: 100%;
+  position: center;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00b4cc;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #00b4cc;
+}
+
+.wrap {
+  width: 30%;
+  display: flex;
+  top: 50%;
+  float: right;
+}
+
+

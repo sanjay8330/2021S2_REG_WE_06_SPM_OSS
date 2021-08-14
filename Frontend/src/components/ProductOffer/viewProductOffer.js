@@ -23,12 +23,12 @@ export default class ViewProductOffer extends Component {
     navigateAddProductOffer(e) {
         window.location = '/addProductOffer';
     }
-    
-    navigateToUpdateOffer(e, offerId){
+
+    navigateToUpdateOffer(e, offerId) {
         window.location = `/updateProductOffer/${offerId}`;
     }
 
-    navigateToDeleteOffer(e, offerId){
+    navigateToDeleteOffer(e, offerId) {
         window.location = `/deleteProductOffer/${offerId}`;
     }
 
@@ -60,19 +60,23 @@ export default class ViewProductOffer extends Component {
 
                         <h1>View Product Offer</h1>
 
-                        <div>
-                            <button onClick={this.navigateAddProductOffer}>Add Product Offers</button>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button onClick={this.navigateAddProductOffer} class="btn btn-primary" type="button">Add Product Offers</button>
                         </div><br />
 
-                        <div>
-                            <span style={{ color: "black" }}>Search :</span>
+                        <div class="wrap">
+                            <div class="searchLabel">
+                                <span style={{ color: "black" }}>Search Product</span>
+                            </div>
+
                             <input
                                 type="text"
                                 placeholder="Search by product name.."
                                 name="searchProduct"
                                 id="searchProduct"
-                                onChange={this.onChange} /><br />
-                        </div><br />
+                                onChange={this.onChange}
+                                class="searchTerm" /><br />
+                        </div><br /><br /><br />
 
 
                         <table class="table border shadow">
