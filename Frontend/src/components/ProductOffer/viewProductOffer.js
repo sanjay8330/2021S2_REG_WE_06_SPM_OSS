@@ -51,8 +51,8 @@ export default class ViewProductOffer extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} class="active">Add Product</a></li>
-                            <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
+                            <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offer</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }} class="active">View Product Offers</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
