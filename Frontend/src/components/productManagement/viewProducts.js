@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 const initialStates = {
     "products": [],
@@ -35,6 +37,20 @@ export default class viewProducts extends Component {
         window.location = `/deleteProduct/${productId}`;
     }
 
+     //generate product Report
+     jsPdfGeneratorProduct() {
+
+        var doc = new jsPDF('p', 'pt');
+        doc.text(210, 20, 'SUMMARY OF PRODUCT DETAILS')
+
+        doc.setFont('courier')
+
+        doc.autoTable({ html: 'table' })
+
+        //save PDF
+        doc.save('productReport.pdf')
+    }
+
     render() {
         return (
             <div>
@@ -52,6 +68,8 @@ export default class viewProducts extends Component {
                     </nav>
                     <main>
                         <h1>VIEW PRODUCT DETAILS</h1>
+
+                        <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-primary">Download Report</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -75,9 +93,10 @@ export default class viewProducts extends Component {
                                     <tr>
                                         <th scope="col">IMAGE</th>
                                         <th scope="col">PRODUCT NAME</th>
-                                        <th scope="col">PRODUCT PRICE</th>
-                                        <th scope="col">PRODUCT DISCOUNT</th>
+                                        <th scope="col">PRICE</th>
+                                        <th scope="col">DISCOUNT</th>
                                         <th scope="col">PRODUCT DESCRIPTION</th>
+                                        <th scope="col">CATEGORY TYPE</th>
                                         <th scope="col">EDIT</th>
                                         <th scope="col">DELETE</th>
 
@@ -97,6 +116,7 @@ export default class viewProducts extends Component {
                                             <td>{"Rs." + item.productPrice}</td>
                                             <td>{item.productDiscount + "%"}</td>
                                             <td>{item.productDescription}</td>
+                                            <td>{item.categoryType}</td>
 
                                             <td>
                                                 <li class="list-inline-item">
@@ -114,7 +134,6 @@ export default class viewProducts extends Component {
                                     )}
                                 </tbody>
                             </table><br/><br/><br/><br/><br/><br/>
-
                     </main>
                 </div>
                 </div>
