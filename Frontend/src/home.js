@@ -21,6 +21,9 @@ export default class home extends Component {
                         </div>
                     </div>
                 </section>
+                <section>
+                    <h4>Special Product Offers</h4>
+                </section>
                 <br /><br /><br /><br /><br /><br /><br /><br />
                 <br /><br />
             </div>

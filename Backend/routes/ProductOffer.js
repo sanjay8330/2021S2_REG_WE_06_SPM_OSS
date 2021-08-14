@@ -71,6 +71,30 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
     }
 });
 
+//Update Product Offer - ADMIN TASK
+router.route("/changeProductOfferStatus/:id").put(async (req, res) => {
+    //Updating the offer status
+    const offerStatus = req.body.offerStatus;
+
+    //Offer ID
+    const Id = req.params.id;
+
+    try {
+        await ProductOfferModel.findById(Id, (err, updatedProductOfferObject) => {
+            updatedProductOfferObject.offerStatus = offerStatus;
+
+            updatedProductOfferObject.save()
+                .then(data => {
+                    res.status(200).send({ data: data });
+                }).catch(error => {
+                    res.status(500).send({ error: error });
+                })
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 //Delete product offer - ADMIN TASK
 router.route('/deleteProductOffer/:id').delete(async (req, res) => {
     if (req.params && req.params.id) {
