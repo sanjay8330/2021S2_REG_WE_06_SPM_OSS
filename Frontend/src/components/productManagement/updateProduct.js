@@ -11,7 +11,7 @@ const initialStates = {
     productImage: ''
 }
 
-export default class createProduct extends Component {
+export default class updateProduct extends Component {
 
     constructor(props) {
         super(props);
@@ -20,14 +20,30 @@ export default class createProduct extends Component {
         this.state = initialStates;
     }
 
+    componentDidMount() {
+        Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState({ products: response.data.data });
+                this.setState({ productName: this.state.products.productName });
+                this.setState({ productPrice: this.state.products.productPrice });
+                this.setState({ productDiscount: this.state.products.productDiscount });
+                this.setState({ productDescription: this.state.products.productDescription });
+                this.setState({ categoryType: this.state.products.categoryType });
+                this.setState({ productImage: this.state.products.productImage });
+            }).catch(error => {
+                console.log(error.message);
+            })
+    }
+
     onChange(e) {
+        e.persist();
         this.setState({ [e.target.name]: e.target.value });
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        let product = {
+        let updateProduct = {
             productName: this.state.productName,
             productPrice: this.state.productPrice,
             productDiscount: this.state.productDiscount,
@@ -35,9 +51,9 @@ export default class createProduct extends Component {
             categoryType: this.state.categoryType,
             productImage: this.state.productImage
         }
-        Axios.post('http://localhost:3001/product/addProduct', product)
+        Axios.put(`http://localhost:3001/product/updateProduct/${this.props.match.params.id}`, updateProduct)
             .then(response => {
-                alert('Product Details Added Successfully');
+                alert('Product Details Updated Successfully');
                 window.location = "/viewProducts";
             }).catch(error => {
                 alert(error.message);
@@ -61,7 +77,7 @@ export default class createProduct extends Component {
                         </ul>
                     </nav>
                     <main>
-                        <h1>Create Product</h1>
+                        <h1>Update Products</h1>
 
                         <div class="container3">
                             <form onSubmit={this.onSubmit}>
@@ -70,7 +86,7 @@ export default class createProduct extends Component {
                                 <input
                                     class="form-control"
                                     type="text"
-                                    value={this.state.productName}
+                                    defaultValue={this.state.productName}
                                     name="productName"
                                     onChange={this.onChange}
                                     required 
@@ -80,7 +96,7 @@ export default class createProduct extends Component {
                                 <input
                                     class="form-control"
                                     type="number"
-                                    value={this.state.productPrice}
+                                    defaultValue={this.state.productPrice}
                                     name="productPrice"
                                     onChange={this.onChange}
                                     required 
@@ -90,7 +106,7 @@ export default class createProduct extends Component {
                                 <input
                                     class="form-control"
                                     type="number"
-                                    value={this.state.productDiscount}
+                                    defaultValue={this.state.productDiscount}
                                     name="productDiscount"
                                     onChange={this.onChange}
                                     required 
@@ -100,7 +116,7 @@ export default class createProduct extends Component {
                                 <textarea
                                     className="form-control"
                                     rows="2"
-                                    value={this.state.productDescription}
+                                    defaultValue={this.state.productDescription}
                                     name="productDescription"
                                     onChange={this.onChange}
                                     required
@@ -119,7 +135,7 @@ export default class createProduct extends Component {
                                 </select><br />
                                 <br />
 
-                                <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
+                                <button type="submit" className="btn btn-primary" id="submitBtn">Update</button>
                             </form>
                         </div>
                     </main>

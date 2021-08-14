@@ -37,6 +37,40 @@ router.route('/getProductById/:id').get(async (req, res) => {
     }
 });
 
+//Update Product  - ADMIN TASK
+router.route("/updateProduct/:id").put(async (req, res) => {
+    //Updating the product details
+    const productName = req.body.productName;
+    const productPrice = req.body.productPrice;
+    const productDiscount = req.body.productDiscount;
+    const productDescription = req.body.productDescription;
+    const categoryType = req.body.categoryType;
+    const productImage = req.body.productImage;
+
+    //Offer ID
+    const Id = req.params.id;
+
+    try {
+        await ProductModel.findById(Id, (err, updatedProductObject) => {
+            updatedProductObject.productName = productName;
+            updatedProductObject.productPrice = productPrice;
+            updatedProductObject.productDiscount = productDiscount;
+            updatedProductObject.productDescription = productDescription;
+            updatedProductObject.categoryType = categoryType;
+            updatedProductObject.productImage = productImage;
+
+            updatedProductObject.save()
+                .then(data => {
+                    res.status(200).send({ data: data });
+                }).catch(error => {
+                    res.status(500).send({ error: error });
+                })
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 //Delete the product - ADMIN TASK
 router.route('/deleteProduct/:id').delete(async (req, res) => {
     if(req.params && req.params.id){
