@@ -102,7 +102,7 @@ export default class AdminAddUser extends Component {
         return (
             <div>
                 <Header /><br /><br />
-                <div className="container">
+                <div className="container3">
                     <center><h2 class="log" style={{ color: "black" }}>Add Application User Details</h2></center><br />
                     <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
 

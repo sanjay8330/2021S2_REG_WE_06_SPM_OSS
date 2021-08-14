@@ -111,8 +111,9 @@ export default class AddProductOffer extends Component {
                     <main>
                         <h1>Create Product Offer</h1>
 
+                        <div class="container3">
                         <form onSubmit={this.onSubmit}>
-                            <h3>Product Information</h3>
+                            <h3><b>Product Information</b></h3><br/>
                             <span style={{ color: "black" }}>Product</span>
 
                             <Select
@@ -145,7 +146,7 @@ export default class AddProductOffer extends Component {
                                 disabled 
                                 required/><br />
 
-                            <h3>Add Product Offer Information</h3>
+                            <h3><b>Add Product Offer Information</b></h3><br/>
 
                             <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
                             <input
@@ -185,6 +186,7 @@ export default class AddProductOffer extends Component {
 
                             <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
                         </form>
+                        </div>
                     </main>
                 </div>
             </div>
