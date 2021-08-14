@@ -17,8 +17,12 @@ import UpdateProductOffer from './components/ProductOffer/updateProductOffer';
 import DeleteProductOffer from './components/ProductOffer/deleteProductOffer';
 
 import adminDashboard from '../src/adminDashboard';
+
+//Product Management - Routes
 import createProduct from './components/productManagement/createProduct';
 import ViewProducts from './components/productManagement/viewProducts';
+import UpdateProduct from './components/productManagement/updateProduct';
+import DeleteProduct from './components/productManagement/deleteProduct';
 
 function App() {
   return (
@@ -41,6 +45,8 @@ function App() {
             <Route path="/adminDashboard" component={ adminDashboard } />
             <Route path="/createProduct" component={ createProduct } />
             <Route path="/viewProducts" component={ ViewProducts } />
+            <Route path="/updateProduct/:id" component={ UpdateProduct } />
+            <Route path="/deleteProduct/:id" component={ DeleteProduct } />
           </Switch>
         </section>
       </Router>

@@ -27,6 +27,14 @@ export default class viewProducts extends Component {
             })
     }
 
+    navigateToUpdatePage(e, productId) {
+        window.location = `/updateProduct/${productId}`;
+    }
+
+    navigateToDeletePage(e, productId) {
+        window.location = `/deleteProduct/${productId}`;
+    }
+
     render() {
         return (
             <div>
@@ -46,60 +54,70 @@ export default class viewProducts extends Component {
                         <h1>VIEW PRODUCT DETAILS</h1>
 
                         <div class="wrap">
-                            <div class="searchLabel">
-                                <span style={{ color: "black" }}>Search Product</span>
+                            <div class="search">
+                                <input 
+                                    type="text"
+                                    placeholder="Search by product name"
+                                    name="searchProduct"
+                                    id="searchProduct"
+                                    onChange={this.onChange}
+                                    class="searchTerm" />
+                                    <button type="submit" class="searchButton">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                            </div>
                             </div>
 
-                            <input
-                                type="text"
-                                placeholder="Search by product name"
-                                name="searchProduct"
-                                id="searchProduct"
-                                onChange={this.onChange}
-                                class="searchTerm" /><br />
-                        </div><br /><br /><br />
+                            <br /><br /><br />
 
-                        <table class="table border shadow">
-                            <thead class="thead-dark">
-                                <tr>
-                                `   <th scope="col">IMAGE</th>
-                                    <th scope="col">PRODUCT NAME</th>
-                                    <th scope="col">PRODUCT PRICE</th>
-                                    <th scope="col">PRODUCT DISCOUNT</th>
-                                    <th scope="col">PRODUCT DESCRIPTION</th>
-                                    <th scope="col">EDIT</th>
-                                    <th scope="col">DELETE</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.products.length > 0 && this.state.products.filter((values) => {
-                                    if (this.state.searchProduct == "") {
-                                        return values;
-                                    } else if (values.productName.toLowerCase().includes(this.state.searchProduct.toLowerCase())) {
-                                        return values;
-                                    }
-                                }).map((item, index) =>
+                            <table class="table border shadow">
+                                <thead class="thead-dark">
                                     <tr>
-                                        <td></td>
-                                        <td>{item.productName}</td>
-                                        <td>{"Rs." + item.productPrice}</td>
-                                        <td>{item.productDiscount + "%"}</td>
-                                        <td>{item.productDescription}</td>
-                                        <td>
-                                            <button type="button" onClick={e => this.navigateToUpdateOffer(e, item._id)} class="btn btn-primary">EDIT</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" onClick={e => this.navigateToDeleteOffer(e, item._id)} class="btn btn-primary">DELETE</button>
-                                        </td>
+                                        <th scope="col">IMAGE</th>
+                                        <th scope="col">PRODUCT NAME</th>
+                                        <th scope="col">PRODUCT PRICE</th>
+                                        <th scope="col">PRODUCT DISCOUNT</th>
+                                        <th scope="col">PRODUCT DESCRIPTION</th>
+                                        <th scope="col">EDIT</th>
+                                        <th scope="col">DELETE</th>
+
                                     </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {this.state.products.length > 0 && this.state.products.filter((values) => {
+                                        if (this.state.searchProduct == "") {
+                                            return values;
+                                        } else if (values.productName.toLowerCase().includes(this.state.searchProduct.toLowerCase())) {
+                                            return values;
+                                        }
+                                    }).map((item, index) =>
+                                        <tr>
+                                            <td></td>
+                                            <td>{item.productName}</td>
+                                            <td>{"Rs." + item.productPrice}</td>
+                                            <td>{item.productDiscount + "%"}</td>
+                                            <td>{item.productDescription}</td>
+
+                                            <td>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                </li>
+                                            </td>
+
+                                            <td>
+                                                <li class="list-inline-item">
+                                                    <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
+                                                </li>
+                                            </td>
+                                            
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table><br/><br/><br/><br/><br/><br/>
 
                     </main>
                 </div>
-            </div>
-        )
+                </div>
+                )
     }
 }
