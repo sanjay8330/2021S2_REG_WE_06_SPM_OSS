@@ -10,7 +10,8 @@ const initialStates = {
     "offerDiscount": '',
     "offerDescription": '',
     "offerEndDate": '',
-    "offerStatus": ''
+    "offerStatus": '',
+    "buttonlabel": 'Activate Offer'
 }
 
 export default class UpdateProductOffer extends Component {
@@ -19,6 +20,7 @@ export default class UpdateProductOffer extends Component {
         this.onChange = this.onChange.bind(this);
         this.onPriceChange = this.onPriceChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.changeOfferStatus = this.changeOfferStatus.bind(this);
         this.state = initialStates;
     }
 
@@ -34,10 +36,13 @@ export default class UpdateProductOffer extends Component {
                 this.setState({ offerStatus: this.state.offerInfo.offerStatus });
                 this.setState({ offerEndDate: this.state.offerInfo.offerEndDate });
 
+                if (this.state.offerStatus === 'Active') {
+                    this.setState({ buttonlabel: 'Deactivate Offer' })
+                }
+
             }).catch(error => {
                 console.log(error.message);
             })
-
     }
 
     onChange(e) {
@@ -57,7 +62,7 @@ export default class UpdateProductOffer extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-    
+
         let updProductOffer = {
             "offerPrice": this.state.offerAmount,
             "offerDiscount": this.state.offerDiscount,
@@ -73,6 +78,31 @@ export default class UpdateProductOffer extends Component {
                 alert(error.message);
             })
 
+    }
+
+    changeOfferStatus(e) {
+        e.preventDefault();
+
+        let currentOfferStatus = this.state.offerInfo.offerStatus;
+        let newOfferState = null;
+
+        if (currentOfferStatus === 'In-Active') {
+            newOfferState = 'Active';
+        } else {
+            newOfferState = 'In-Active';
+        }
+
+        let updOffer = {
+            "offerStatus": newOfferState
+        }
+        
+        Axios.put(`http://localhost:3001/productOffer/changeProductOfferStatus/${this.props.match.params.id}`, updOffer)
+            .then(response => {
+                alert(`Offer ${this.state.newOfferStatus} Updated Successfully!!`);
+                window.location = "/viewProductOffers";
+            }).catch(error => {
+                alert(error.message);
+            })
     }
 
     render() {
@@ -92,6 +122,10 @@ export default class UpdateProductOffer extends Component {
                     </nav>
                     <main>
                         <h1>Update Product Offer</h1>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus}>{this.state.buttonlabel}</button>
+                        </div><br />
 
                         <form onSubmit={this.onSubmit}>
                             <h3>Product Information</h3>
