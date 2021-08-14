@@ -127,24 +127,27 @@ export default class AddProductOffer extends Component {
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.productPrice}
-                                disabled 
-                                required/><br />
+                                disabled
+                                required 
+                                style={{ border: "1px solid black "}}/><br />
 
                             <span style={{ color: "black" }}>Current Product Discount %</span>
                             <input
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.productDiscount}
-                                disabled 
-                                required/><br />
+                                disabled
+                                required 
+                                style={{ border: "1px solid black "}}/><br />
 
                             <span style={{ color: "black" }}>Product Category</span>
                             <input
                                 class="form-control"
                                 type="text"
                                 value={this.state.productInfo.categoryType}
-                                disabled 
-                                required/><br />
+                                disabled
+                                required 
+                                style={{ border: "1px solid black "}}/><br />
 
                             <h3><b>Add Product Offer Information</b></h3><br/>
 
@@ -160,6 +163,7 @@ export default class AddProductOffer extends Component {
                                 min="0"
                                 title="Product offer price should be less than the original price"
                                 required
+                                style={{ border: "1px solid black "}}
                             /><br />
 
                             <span style={{ color: "black" }}>Offer Description</span>
@@ -169,7 +173,8 @@ export default class AddProductOffer extends Component {
                                 name="offerDescription"
                                 value={this.state.offerDescription}
                                 onChange={this.onChange}
-                                required>
+                                required
+                                style={{ border: "1px solid black "}}>
                             </textarea><br />
 
                             <span style={{ color: "black" }}>Offer Valid till</span>
@@ -182,6 +187,7 @@ export default class AddProductOffer extends Component {
                                 onChange={this.onChange}
                                 required
                                 min={moment().format("YYYY-MM-DD")}
+                                style={{ border: "1px solid black "}}
                             /><br />
 
                             <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>

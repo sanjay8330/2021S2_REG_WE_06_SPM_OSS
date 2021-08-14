@@ -45,15 +45,19 @@ export default class viewProducts extends Component {
                     <main>
                         <h1>VIEW PRODUCT DETAILS</h1>
 
-                        <div>
-                            <span style={{ color: "black" }}>Search  </span>
+                        <div class="wrap">
+                            <div class="searchLabel">
+                                <span style={{ color: "black" }}>Search Product</span>
+                            </div>
+
                             <input
                                 type="text"
-                                placeholder="Search by Product Name"
+                                placeholder="Search by product name"
                                 name="searchProduct"
                                 id="searchProduct"
-                                onChange={this.onChange} /><br />
-                        </div><br />
+                                onChange={this.onChange}
+                                class="searchTerm" /><br />
+                        </div><br /><br /><br />
 
                         <table class="table border shadow">
                             <thead class="thead-dark">

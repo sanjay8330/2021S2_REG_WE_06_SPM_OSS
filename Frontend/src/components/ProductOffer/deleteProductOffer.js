@@ -24,19 +24,19 @@ export default class DeleteProductOffer extends Component {
             })
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/productOffer/deleteProductOffer/${this.props.match.params.id}`)
-        .then(response => {
-            alert('Product Offer deleted Successfully');
-            window.location= "/viewProductOffers";
-        }).catch(error => {
-            console.log(error.message);
-        })
+            .then(response => {
+                alert('Product Offer deleted Successfully');
+                window.location = "/viewProductOffers";
+            }).catch(error => {
+                console.log(error.message);
+            })
     }
 
-    navigatetoViewOffer(e){
-        window.location= "/viewProductOffers";
+    navigatetoViewOffer(e) {
+        window.location = "/viewProductOffers";
     }
 
     render() {
@@ -70,14 +70,22 @@ export default class DeleteProductOffer extends Component {
                         <div>
                             <label>Are you sure you want to delete</label>
 
-                            <button onClick={this.onSubmit}>YES</button><br />
+                            <button type="button" class="btn btn-danger" onClick={this.onSubmit}>YES</button>
 
-                            <button onClick={this.navigatetoViewOffer}>NO</button>
+                            <button type="button" class="btn btn-success" onClick={this.navigatetoViewOffer}>NO</button>
 
                         </div>
+
+                        <div style={{ position: "center" }}>
+                        <h3>Warning!!!</h3>
+                        <h4>By deleting the product offer you will be unable to :</h4>
+                        <h5>1. The product offer is no longer active to the customers.</h5>
+                        <h5>2. The product offer which is active will be in-activated and deleted</h5>
+                        <h5>3. By deleting the product offer you cant revert it back</h5>
+                        </div>
                     </main>
-                </div>
             </div>
+            </div >
         )
     }
 }

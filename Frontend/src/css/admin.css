@@ -172,5 +172,32 @@ select {
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 }
 
+/**View Offer page CSS*/
+.search {
+  width: 100%;
+  position: center;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00b4cc;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #00b4cc;
+}
+
+.wrap {
+  width: 30%;
+  display: flex;
+  top: 50%;
+  float: right;
+}
 
 
