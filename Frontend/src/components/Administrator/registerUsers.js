@@ -101,7 +101,21 @@ export default class AdminAddUser extends Component {
     render() {
         return (
             <div>
-                <Header /><br /><br />
+                <div class="wrapper">
+                <nav>
+                    <header><br />
+                        &nbsp; &nbsp;  &nbsp; ADMIN PANEL
+                    </header><hr style={{ color: "white" }} />
+                    <ul><br />
+                            <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
+                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} >View Products</a></li>
+                            <li><a href="/addProductOffer" style={{ color: "white" }} >Add Product Offers</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }} >View Product Offers</a></li>
+                            <li><a href="/adminUserRegister" style={{ color: "white" }} class="active">Add Users</a></li>
+                            <li><a href="/" style={{ color: "white" }}>Logout</a></li>
+                    </ul>
+                </nav>
                 <div className="container3">
                     <center><h2 class="log" style={{ color: "black" }}>Add Application User Details</h2></center><br />
                     <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
@@ -188,7 +202,7 @@ export default class AdminAddUser extends Component {
                     </form>
                 </div><br />
             </div>
-
+            </div>
         )
     }
 }
