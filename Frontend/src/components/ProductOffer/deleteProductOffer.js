@@ -55,36 +55,33 @@ export default class DeleteProductOffer extends Component {
                         </ul>
                     </nav>
                     <main>
-                        <h1>Delete Product Offer</h1>
 
-                        <div>
-                            <h4>Product Information</h4>
+                        <h1>DELETE CONFIRMATION</h1>
+                        <div class="content">
+                            <div class="wrapper-1">
+                                <div class="wrapper-2">
 
-                            <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Name:<b> {this.state.offerInfo.productName}</b></span><br />
 
-                            <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Price: <b>Rs.{this.state.offerInfo.productPrice}.00</b></span><br />
 
-                            <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
-                        </div>
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Discount:<b> {this.state.offerInfo.productDiscount}%</b></span><br /><br />
 
-                        <div>
-                            <label>Are you sure you want to delete</label>
-
-                            <button type="button" class="btn btn-danger" onClick={this.onSubmit}>YES</button>
-
-                            <button type="button" class="btn btn-success" onClick={this.navigatetoViewOffer}>NO</button>
-
-                        </div>
-
-                        <div style={{ position: "center" }}>
-                        <h3>Warning!!!</h3>
-                        <h4>By deleting the product offer you will be unable to :</h4>
-                        <h5>1. The product offer is no longer active to the customers.</h5>
-                        <h5>2. The product offer which is active will be in-activated and deleted</h5>
-                        <h5>3. By deleting the product offer you cant revert it back</h5>
+                                    <div class="alert alert-danger" role="alert">
+                                        <center><p>Are you sure you want to permanently remove this product offer?</p><hr />
+                                            By deleting this product offer detail you can't undo this action.</center>
+                                    </div>
+                                    <button class="cancel" onClick={this.navigatetoViewOffer} style={{ float: "left" }}>
+                                        Cancel
+                                    </button>
+                                    <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </main>
-            </div>
+                </div>
             </div >
         )
     }
