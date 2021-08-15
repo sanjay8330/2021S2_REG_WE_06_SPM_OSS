@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
-// import firebase from '../../Firebase/firebase';
+import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     productName: '',
@@ -9,7 +9,7 @@ const initialStates = {
     productDiscount: '',
     productDescription: '',
     categoryType: '',
-    productImage: ''
+    productImage: 'No-Image'
 }
 
 export default class createProduct extends Component {
@@ -18,7 +18,7 @@ export default class createProduct extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        // this.onImageChange = this.onImageChange.bind(this);
+        this.onImageChange = this.onImageChange.bind(this);
         this.state = initialStates;
     }
 
@@ -26,19 +26,24 @@ export default class createProduct extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    // async onImageChange(e) {
-    //     const file = e.target.files[0];
-    //     const storageRef = firebase.storage().ref();
-    //     const fileRef = storageRef.child(file.name);
-    //     await fileRef.put(file).then(() => {
-    //         alert('Image Uploaded Successfully!!', file.name);
-    //         document.getElementById("submitBtn").disabled = false;
-    //     })
-       
-    //     const downloadImage = await fileRef.getDownloadImage();
-    //     console.log('Download Image', downloadImage);
-    //     this.setState({ fileImage: downloadImage });
-    // }
+    async onImageChange(e) {
+        document.getElementById("submitBtn").disabled = true;
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(file.name);
+
+        await fileRef.put(file).then(() => {
+        }).catch(error => {
+            alert(error.message);
+        });
+
+        const downloadImage = await fileRef.getDownloadURL();
+        this.setState({ productImage: downloadImage });
+        alert('Image Uploaded Successfully!!', file.name);
+        document.getElementById("submitBtn").disabled = false;
+
+
+    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -49,7 +54,7 @@ export default class createProduct extends Component {
             productDiscount: this.state.productDiscount,
             productDescription: this.state.productDescription,
             categoryType: this.state.categoryType,
-            productImage: this.state.fileImage
+            productImage: this.state.productImage
         }
         Axios.post('http://localhost:3001/product/addProduct', product)
             .then(response => {
