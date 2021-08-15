@@ -65,18 +65,22 @@ export default class ViewProductOffer extends Component {
                         </div><br />
 
                         <div class="wrap">
-                            <div class="searchLabel">
-                                <span style={{ color: "black" }}>Search Product</span>
+                            <div class="search">
+                                <input
+                                    type="text"
+                                    placeholder="Search by product name"
+                                    name="searchProduct"
+                                    id="searchProduct"
+                                    onChange={this.onChange}
+                                    class="searchTerm" />
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </div>
+                        </div>
 
-                            <input
-                                type="text"
-                                placeholder="Search by product name.."
-                                name="searchProduct"
-                                id="searchProduct"
-                                onChange={this.onChange}
-                                class="searchTerm" /><br />
-                        </div><br /><br /><br />
+
+                        <br /><br /><br />
 
 
                         <table class="table border shadow">
@@ -113,10 +117,14 @@ export default class ViewProductOffer extends Component {
                                         <td>{item.offerDescription}</td>
                                         <td>{item.offerStatus}</td>
                                         <td>
-                                            <button type="button" onClick={e => this.navigateToUpdateOffer(e, item._id)} class="btn btn-primary">EDIT</button>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateOffer(e, item._id)}><i class="fa fa-edit"></i></button>
+                                            </li>
                                         </td>
                                         <td>
-                                            <button type="button" onClick={e => this.navigateToDeleteOffer(e, item._id)} class="btn btn-primary">DELETE</button>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteOffer(e, item._id)}><i class="fa fa-trash"></i></button>
+                                            </li>
                                         </td>
                                     </tr>
                                 )}
