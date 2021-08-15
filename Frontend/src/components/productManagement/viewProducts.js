@@ -116,7 +116,7 @@ export default class viewProducts extends Component {
                                     <tr>
                                         <td></td>
                                         <td>{item.productName}</td>
-                                        <td>{"Rs." + item.productPrice}</td>
+                                        <td>{"Rs." + item.productPrice}.00</td>
                                         <td>{item.productDiscount + "%"}</td>
                                         <td>{item.productDescription}</td>
                                         <td>{item.categoryType}</td>
