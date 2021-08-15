@@ -117,7 +117,7 @@ export default class AdminAddUser extends Component {
                     </ul>
                 </nav>
                 <div className="container3">
-                    <center><h2 class="log" style={{ color: "black" }}>Add Application User Details</h2></center><br />
+                    <center><h2 class="log" style={{ color: "black" }}><b><i>Add Application User Details</i></b></h2></center><br />
                     <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
 
                         <span style={{ color: "black" }}>User Type</span>
@@ -198,7 +198,7 @@ export default class AdminAddUser extends Component {
                             required
                             title="Enter only the last 4 digits of you NIC card" /><br />
 
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-dark">Submit</button>
                     </form>
                 </div><br />
             </div>

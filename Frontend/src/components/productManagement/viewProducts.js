@@ -73,7 +73,7 @@ export default class viewProducts extends Component {
                     <main>
                         <h1>VIEW PRODUCT DETAILS</h1>
 
-                        <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-primary">Download Report</button>
+                        <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-dark">Download Report</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -137,7 +137,7 @@ export default class viewProducts extends Component {
                                     </tr>
                                 )}
                             </tbody>
-                        </table><br /><br /><br /><br /><br /><br />
+                        </table><br />
                     </main>
                 </div>
             </div>

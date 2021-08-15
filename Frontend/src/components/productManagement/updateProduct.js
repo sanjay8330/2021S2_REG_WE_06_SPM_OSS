@@ -177,7 +177,7 @@ export default class updateProduct extends Component {
                                             </select><br />
                                             <br />
 
-                                            <button type="submit" className="btn btn-primary" id="submitBtn">Update</button>
+                                            <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
                                     <img src={product} alt="delivery" style={{ width: '50%' }} />

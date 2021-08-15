@@ -199,7 +199,7 @@ export default class createProduct extends Component {
                                             onChange={this.onImageChange}
                                         /><br />
 
-                                        <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
+                                        <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
                                     </form>
                                 </div>
                                 <img src={product} alt="delivery" style={{ width: '50%', height: '60%;' }} />
