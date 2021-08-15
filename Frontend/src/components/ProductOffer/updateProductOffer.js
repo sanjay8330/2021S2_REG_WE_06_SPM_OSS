@@ -176,7 +176,7 @@ export default class UpdateProductOffer extends Component {
                                 min={moment().format("YYYY-MM-DD")}
                             /><br />
 
-                            <button type="submit" className="btn btn-primary" id="submitBtn">Update</button>
+                            <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                         </form>
                         </div>
                     </main>

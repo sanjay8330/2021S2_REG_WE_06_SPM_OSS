@@ -61,10 +61,10 @@ export default class ViewProductOffer extends Component {
                     </nav>
                     <main>
 
-                        <h1>VIEW PRODUCT OFFER</h1>
+                        <h1>VIEW PRODUCT OFFERS</h1>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button onClick={this.navigateAddProductOffer} class="btn btn-primary" type="button">Add Product Offers</button>
+                            <button onClick={this.navigateAddProductOffer} class="btn btn-dark" type="button">Add Product Offers</button>
                         </div><br />
 
                         <div class="wrap">

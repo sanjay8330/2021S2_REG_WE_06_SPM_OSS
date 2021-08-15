@@ -193,7 +193,7 @@ export default class AddProductOffer extends Component {
                                 style={{ border: "1px solid #c8cfcb "}}
                             /><br />
 
-                            <button type="submit" className="btn btn-primary" id="submitBtn">Submit</button>
+                            <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
                         </form>
                         </div>
                     </main>

@@ -3,6 +3,7 @@ import '../../css/admin.css';
 import Axios from 'axios';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     "products": [],
@@ -72,7 +73,7 @@ export default class viewProducts extends Component {
                     <main>
                         <h1>VIEW PRODUCT DETAILS</h1>
 
-                        <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-primary">Download Report</button>
+                        <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-dark">Download Report</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -114,9 +115,9 @@ export default class viewProducts extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
-                                        <td></td>
+                                        <td><img style = {{ minWidth: '50px' , width: '50px' , height: '60px'}} src = {item.productImage}/></td>
                                         <td>{item.productName}</td>
-                                        <td>{"Rs." + item.productPrice}</td>
+                                        <td>{"Rs." + item.productPrice}.00</td>
                                         <td>{item.productDiscount + "%"}</td>
                                         <td>{item.productDescription}</td>
                                         <td>{item.categoryType}</td>
@@ -136,7 +137,7 @@ export default class viewProducts extends Component {
                                     </tr>
                                 )}
                             </tbody>
-                        </table><br /><br /><br /><br /><br /><br />
+                        </table><br />
                     </main>
                 </div>
             </div>
