@@ -51,14 +51,17 @@ export default class ViewProductOffer extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offer</a></li>
+                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} >View Products</a></li>
+                            <li><a href="/addProductOffer" style={{ color: "white" }} >Add Product Offers</a></li>
                             <li><a href="/viewProductOffers" style={{ color: "white" }} class="active">View Product Offers</a></li>
+                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
                     <main>
 
-                        <h1>View Product Offer</h1>
+                        <h1>VIEW PRODUCT OFFER</h1>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button onClick={this.navigateAddProductOffer} class="btn btn-primary" type="button">Add Product Offers</button>

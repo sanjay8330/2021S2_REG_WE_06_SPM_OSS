@@ -115,27 +115,31 @@ export default class UpdateProductOffer extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} class="active">Add Product</a></li>
+                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
                             <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
+                            <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offers</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
+                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
                     <main>
-                        <h1>Update Product Offer</h1>
+                        <h1>UPDATE PRODUCT OFFER</h1>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus}>{this.state.buttonlabel}</button>
                         </div><br />
 
+                        <div class="container3">
                         <form onSubmit={this.onSubmit}>
-                            <h3>Product Information</h3>
+                            <h3><b><i>Product Information</i></b></h3>
                             <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
 
                             <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
 
                             <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
 
-                            <h3>Edit Product Offer Information</h3>
+                            <h3><b><i>Edit Product Offer Information</i></b></h3>
 
                             <span style={{ color: "black" }}>Offer Status : {this.state.offerInfo.offerStatus}</span><br />
 
@@ -174,6 +178,7 @@ export default class UpdateProductOffer extends Component {
 
                             <button type="submit" className="btn btn-primary" id="submitBtn">Update</button>
                         </form>
+                        </div>
                     </main>
                 </div>
             </div>
