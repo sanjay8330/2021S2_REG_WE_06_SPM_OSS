@@ -3,6 +3,7 @@ import '../../css/admin.css';
 import Axios from 'axios';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     "products": [],
@@ -114,7 +115,7 @@ export default class viewProducts extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
-                                        <td></td>
+                                        <td><img style = {{ minWidth: '50px' , width: '50px' , height: '60px'}} src = {item.productImage}/></td>
                                         <td>{item.productName}</td>
                                         <td>{"Rs." + item.productPrice}.00</td>
                                         <td>{item.productDiscount + "%"}</td>
