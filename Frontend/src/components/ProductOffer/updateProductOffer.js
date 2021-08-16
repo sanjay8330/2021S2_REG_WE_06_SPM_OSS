@@ -12,6 +12,7 @@ const initialStates = {
     "offerEndDate": '',
     "offerStatus": '',
     "buttonlabel": 'Activate Offer'
+    
 }
 
 export default class UpdateProductOffer extends Component {
@@ -35,6 +36,7 @@ export default class UpdateProductOffer extends Component {
                 this.setState({ offerDescription: this.state.offerInfo.offerDescription });
                 this.setState({ offerStatus: this.state.offerInfo.offerStatus });
                 this.setState({ offerEndDate: this.state.offerInfo.offerEndDate });
+                this.setState({ productId: this.state.offerInfo.product });
 
                 if (this.state.offerStatus === 'Active') {
                     this.setState({ buttonlabel: 'Deactivate Offer' })
@@ -95,7 +97,7 @@ export default class UpdateProductOffer extends Component {
         let updOffer = {
             "offerStatus": newOfferState
         }
-        
+
         Axios.put(`http://localhost:3001/productOffer/changeProductOfferStatus/${this.props.match.params.id}`, updOffer)
             .then(response => {
                 alert(`Offer ${this.state.newOfferStatus} Updated Successfully!!`);
@@ -131,53 +133,55 @@ export default class UpdateProductOffer extends Component {
                         </div><br />
 
                         <div class="container3">
-                        <form onSubmit={this.onSubmit}>
-                            <h3><b><i>Product Information</i></b></h3>
-                            <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
+                            <form onSubmit={this.onSubmit}>
+                                <h3><b><i>Product Information</i></b></h3>
+                                <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
 
-                            <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
+                                <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
 
-                            <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
+                                <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
 
-                            <h3><b><i>Edit Product Offer Information</i></b></h3>
+                                <img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={this.state.offerInfo.productImage} />
 
-                            <span style={{ color: "black" }}>Offer Status : {this.state.offerInfo.offerStatus}</span><br />
+                                <h3><b><i>Edit Product Offer Information</i></b></h3>
 
-                            <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="offerAmount"
-                                name="offerAmount"
-                                defaultValue={this.state.offerAmount}
-                                onChange={this.onPriceChange}
-                                max={this.state.offerInfo.productPrice}
-                                min="0"
-                                title="Product offer price should be less than the original price"
-                            /><br />
+                                <span style={{ color: "black" }}>Offer Status : {this.state.offerInfo.offerStatus}</span><br />
 
-                            <span style={{ color: "black" }}>Offer Description</span>
-                            <textarea
-                                className="form-control"
-                                rows="2"
-                                name="offerDescription"
-                                defaultValue={this.state.offerDescription}
-                                onChange={this.onChange}>
-                            </textarea><br />
+                                <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="offerAmount"
+                                    name="offerAmount"
+                                    defaultValue={this.state.offerAmount}
+                                    onChange={this.onPriceChange}
+                                    max={this.state.offerInfo.productPrice}
+                                    min="0"
+                                    title="Product offer price should be less than the original price"
+                                /><br />
 
-                            <span style={{ color: "black" }}>Offer Valid till</span>
-                            <input
-                                type="date"
-                                className="form-control"
-                                id="offerEndDate"
-                                name="offerEndDate"
-                                defaultValue={this.state.offerEndDate}
-                                onChange={this.onChange}
-                                min={moment().format("YYYY-MM-DD")}
-                            /><br />
+                                <span style={{ color: "black" }}>Offer Description</span>
+                                <textarea
+                                    className="form-control"
+                                    rows="2"
+                                    name="offerDescription"
+                                    defaultValue={this.state.offerDescription}
+                                    onChange={this.onChange}>
+                                </textarea><br />
 
-                            <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
-                        </form>
+                                <span style={{ color: "black" }}>Offer Valid till</span>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="offerEndDate"
+                                    name="offerEndDate"
+                                    defaultValue={this.state.offerEndDate}
+                                    onChange={this.onChange}
+                                    min={moment().format("YYYY-MM-DD")}
+                                /><br />
+
+                                <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
+                            </form>
                         </div>
                     </main>
                 </div>
