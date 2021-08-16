@@ -89,9 +89,10 @@ export default class ViewProductOffer extends Component {
                         <table class="table border shadow">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th scope="col">IMAGE</th>
                                     <th scope="col">PRODUCT NAME</th>
-                                    <th scope="col">PRODUCT PRICE</th>
-                                    <th scope="col">PRODUCT DISCOUNT</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DISCOUNT</th>
                                     <th scope="col">OFFER PRICE</th>
                                     <th scope="col">OFFER DISCOUNT</th>
                                     <th scope="col">OFFER VALID TILL</th>
@@ -111,6 +112,7 @@ export default class ViewProductOffer extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
+                                         <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
                                         <td>{item.productName}</td>
                                         <td>{"Rs." + item.productPrice}</td>
                                         <td>{item.productDiscount + "%"}</td>

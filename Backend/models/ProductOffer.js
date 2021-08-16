@@ -44,6 +44,11 @@ const ProductOfferSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    productImage: { 
+        type: String,
+        required: false,
+        trim: true 
+    }
 });
 
 const ProductOffer = mongoose.model("ProductOffers", ProductOfferSchema);
