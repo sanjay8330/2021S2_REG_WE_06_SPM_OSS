@@ -28,7 +28,7 @@ class Header extends Component {
                             </a>
                         </div>
                         <div class="comp comp--background-transparent comp--border-none pull-left">
-                            <a href="/" class="hdr-btn link-reset active">
+                            <a href="/" class="hdr-btn link-reset">
                                 HOME
                             </a>
                         </div>
