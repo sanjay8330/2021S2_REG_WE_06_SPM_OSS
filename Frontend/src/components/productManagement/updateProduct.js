@@ -180,7 +180,7 @@ export default class updateProduct extends Component {
                                             <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
-                                    <img src={product} alt="delivery" style={{ width: '50%' }} />
+                                    <img style = {{ width: '450px' , height: '560px'}} src = {this.state.productImage}/>
                                 </div>
                             </div>
                     </main>

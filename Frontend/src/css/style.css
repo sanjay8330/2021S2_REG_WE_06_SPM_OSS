@@ -11,7 +11,7 @@
         margin-top: 0;
     }
     .airbnb-header.airbnb-business-header {
-        background: #1e023f;
+        background: #202020;
         border-bottom: 0;
         color: #82898d;
         display: block;
@@ -462,7 +462,7 @@
     }
   
     .footer {
-      background: #1e023f;
+      background: #202020;
       color: rgba(255,255,255,0.75);
       padding: 60px 0 30px;
       text-align: left;
