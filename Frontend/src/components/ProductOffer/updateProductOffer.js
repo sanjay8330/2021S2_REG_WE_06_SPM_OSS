@@ -100,7 +100,7 @@ export default class UpdateProductOffer extends Component {
 
         Axios.put(`http://localhost:3001/productOffer/changeProductOfferStatus/${this.props.match.params.id}`, updOffer)
             .then(response => {
-                alert(`Offer ${this.state.newOfferStatus} Updated Successfully!!`);
+                alert(`Offer status changed Successfully!!`);
                 window.location = "/viewProductOffers";
             }).catch(error => {
                 alert(error.message);
