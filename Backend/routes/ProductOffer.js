@@ -71,7 +71,7 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
     }
 });
 
-//Update Product Offer - ADMIN TASK
+//Update Product Offer Status - ADMIN TASK
 router.route("/changeProductOfferStatus/:id").put(async (req, res) => {
     //Updating the offer status
     const offerStatus = req.body.offerStatus;
@@ -99,6 +99,18 @@ router.route("/changeProductOfferStatus/:id").put(async (req, res) => {
 router.route('/deleteProductOffer/:id').delete(async (req, res) => {
     if (req.params && req.params.id) {
         await ProductOfferModel.findByIdAndDelete(req.params.id)
+            .then(data => {
+                res.status(200).send({ data: data });
+            }).catch(error => {
+                res.status(500).send({ error: error });
+            })
+    }
+});
+
+//Get the product offer by product ID - ADMIN TASK
+router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
+    if (req.params && req.params.id) {
+        await ProductOfferModel.find({ product: req.params.id })
             .then(data => {
                 res.status(200).send({ data: data });
             }).catch(error => {
