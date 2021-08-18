@@ -11,7 +11,8 @@ const initialStates = {
     "offerDescription": '',
     "offerEndDate": '',
     "offerStatus": '',
-    "buttonlabel": 'Activate Offer'
+    "buttonlabel": 'Activate Offer',
+    "labelcolor": 'red'
 
 }
 
@@ -39,7 +40,7 @@ export default class UpdateProductOffer extends Component {
                 this.setState({ productId: this.state.offerInfo.product });
 
                 if (this.state.offerStatus === 'Active') {
-                    this.setState({ buttonlabel: 'Deactivate Offer' })
+                    this.setState({ buttonlabel: 'Deactivate Offer', labelcolor: 'green' })
                 }
 
             }).catch(error => {
@@ -129,25 +130,32 @@ export default class UpdateProductOffer extends Component {
                         <h1>UPDATE PRODUCT OFFER</h1>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus}>{this.state.buttonlabel}</button>
+                            <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus} style={{ marginRight: '12%'}}>{this.state.buttonlabel}</button>
                         </div><br />
 
                         <div class="container border rounded" style={{ width: '950px' }}>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}>
-                                        <h3><b><i>Product Information</i></b></h3><br/>
-                                        <span style={{ color: "black" }}>Product Name       :{this.state.offerInfo.productName}</span><br />
+                                        <br />
+                                        <h3><b><i>Product Information</i></b></h3>
+                                        <hr style={{ border: "2px solid black" }} />
+                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Name :</span><br />
+                                        <h4><b>{this.state.offerInfo.productName}</b></h4>
 
-                                        <span style={{ color: "black" }}>Product Price      :{this.state.offerInfo.productPrice}</span><br />
+                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Price :</span><br />
+                                        <h4><b>{"Rs. " + this.state.offerInfo.productPrice + " /="}</b></h4>
 
-                                        <span style={{ color: "black" }}>Product Discount % :{this.state.offerInfo.productDiscount}</span><br /><br />
+                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Discount Percentage (%) :</span><br />
+                                        <h4><b>{this.state.offerInfo.productDiscount + "%"}</b></h4><br />
 
-                                        <h3><b><i>Edit Product Offer Information</i></b></h3><br/>
+                                        <h3><b><i>Edit Product Offer Information</i></b></h3>
+                                        <hr style={{ border: "2px solid black" }} />
+                                        
+                                        <span style={{ color: "grey", fontSize: "14px" }}>Offer Status :</span><br />
+                                        <h4 style={{ color: this.state.labelcolor }}><b>{this.state.offerInfo.offerStatus}</b></h4>
 
-                                        <span style={{ color: "black" }}>Offer Status : {this.state.offerInfo.offerStatus}</span><br />
-
-                                        <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
+                                        <span style={{ color: "black", fontSize: "14px" }}>Product Offer Amount in Rs.<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                         <input
                                             type="number"
                                             className="form-control"
@@ -160,7 +168,7 @@ export default class UpdateProductOffer extends Component {
                                             title="Product offer price should be less than the original price"
                                         /><br />
 
-                                        <span style={{ color: "black" }}>Offer Description</span>
+                                        <span style={{ color: "black", fontSize: "14px" }}>Offer Description<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                         <textarea
                                             className="form-control"
                                             rows="2"
@@ -169,7 +177,7 @@ export default class UpdateProductOffer extends Component {
                                             onChange={this.onChange}>
                                         </textarea><br />
 
-                                        <span style={{ color: "black" }}>Offer Valid till</span>
+                                        <span style={{ color: "black", fontSize: "14px" }}>Offer Valid till<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                         <input
                                             type="date"
                                             className="form-control"
@@ -182,13 +190,13 @@ export default class UpdateProductOffer extends Component {
 
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
-                                    </div>
-                                    <img style = {{ width: '450px' , height: '560px'}} src = {this.state.offerInfo.productImage}/>
-                            </div>
+                                </div>
+                                <img style={{ width: '450px', height: '600px', marginTop: '8%' }} src={this.state.offerInfo.productImage} />
+                            </div><br />
                         </div>
                     </main>
-                        </div>
+                </div>
             </div>
-                    )
+        )
     }
 }
