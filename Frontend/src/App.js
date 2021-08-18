@@ -24,6 +24,9 @@ import ViewProducts from './components/productManagement/viewProducts';
 import UpdateProduct from './components/productManagement/updateProduct';
 import DeleteProduct from './components/productManagement/deleteProduct';
 
+//Payment Management
+import Checkout from './components/paymentManagement/checkout';
+
 function App() {
   return (
     <div>
@@ -47,6 +50,8 @@ function App() {
             <Route path="/viewProducts" component={ ViewProducts } />
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
+
+            <Route path="/checkout" component={ Checkout } />
           </Switch>
         </section>
       </Router>
