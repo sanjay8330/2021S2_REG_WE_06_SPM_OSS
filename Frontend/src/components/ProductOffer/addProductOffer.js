@@ -137,46 +137,49 @@ export default class AddProductOffer extends Component {
                         <div class="container3">
                             <form onSubmit={this.onSubmit}>
                                 <h3><b><i>Product Information</i></b></h3><br />
-                                <span style={{ color: "black" }}>Product</span>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <span style={{ color: "black" }}>Product</span>
 
-                                <Select
-                                    options={this.state.options}
-                                    onChange={this.onSelectedOption}
-                                    required
-                                /><br />
+                                        <Select
+                                            options={this.state.options}
+                                            onChange={this.onSelectedOption}
+                                            required
+                                        /><br />
 
-                                <span style={{ color: "black" }}>Product Price</span>
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    value={this.state.productInfo.productPrice}
-                                    disabled
-                                    required
-                                    style={{ border: "1px solid #c8cfcb " }} /><br />
+                                        <span style={{ color: "black" }}>Product Price (Rs.)</span>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            value={this.state.productInfo.productPrice}
+                                            disabled
+                                            required
+                                            style={{ border: "1px solid #c8cfcb " }} /><br />
 
-                                <span style={{ color: "black" }}>Current Product Discount %</span>
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    value={this.state.productInfo.productDiscount}
-                                    disabled
-                                    required
-                                    style={{ border: "1px solid #c8cfcb " }} /><br />
+                                        <span style={{ color: "black" }}>Current Product Discount %</span>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            value={this.state.productInfo.productDiscount}
+                                            disabled
+                                            required
+                                            style={{ border: "1px solid #c8cfcb " }} /><br />
 
-                                <span style={{ color: "black" }}>Product Category</span>
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    value={this.state.productInfo.categoryType}
-                                    disabled
-                                    required
-                                    style={{ border: "1px solid #c8cfcb " }} /><br />
-
-                                <img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={this.state.productInfo.productImage} />
+                                        <span style={{ color: "black" }}>Product Category</span>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            value={this.state.productInfo.categoryType}
+                                            disabled
+                                            required
+                                            style={{ border: "1px solid #c8cfcb " }} /><br />
+                                    </div>
+                                    <img style={{ minWidth: '50px', width: '330px', height: '310px' }} src={this.state.productInfo.productImage} alt="Product Image" />
+                                </div>
 
                                 <h3><b><i>Add Product Offer Information</i></b></h3><br />
 
-                                <span style={{ color: "black" }}>Product Offer Amount in Rs.</span>
+                                <span style={{ color: "black" }}>Product Offer Amount in (Rs.)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                 <input
                                     type="number"
                                     className="form-control"
@@ -192,7 +195,7 @@ export default class AddProductOffer extends Component {
                                     disabled
                                 /><br />
 
-                                <span style={{ color: "black" }}>Offer Description</span>
+                                <span style={{ color: "black" }}>Offer Description<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                 <textarea
                                     className="form-control"
                                     rows="2"
@@ -205,7 +208,7 @@ export default class AddProductOffer extends Component {
                                     disabled>
                                 </textarea><br />
 
-                                <span style={{ color: "black" }}>Offer Valid till</span>
+                                <span style={{ color: "black" }}>Offer Valid till<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                 <input
                                     type="date"
                                     className="form-control"
