@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
 import Footer from './components/footer/footer';
+import React, { Component }  from 'react';
 
 //User Management - Routes
 import Register from './components/userManagement/register';
@@ -23,6 +24,10 @@ import createProduct from './components/productManagement/createProduct';
 import ViewProducts from './components/productManagement/viewProducts';
 import UpdateProduct from './components/productManagement/updateProduct';
 import DeleteProduct from './components/productManagement/deleteProduct';
+
+
+//Payment Management
+//import Checkout from './components/paymentManagement/checkout';
 
 function App() {
   return (
@@ -47,6 +52,8 @@ function App() {
             <Route path="/viewProducts" component={ ViewProducts } />
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
+
+            
           </Switch>
         </section>
       </Router>
