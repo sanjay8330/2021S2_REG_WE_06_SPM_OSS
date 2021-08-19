@@ -16,6 +16,7 @@ import Axios from 'axios';
 
 const initialStates = {
     "productOffers": [],
+    "products": []
 }
 
 export default class home extends Component {
@@ -32,6 +33,7 @@ export default class home extends Component {
             }).catch(error => {
                 alert(error.message);
             })
+
     }
 
     render() {
@@ -48,32 +50,6 @@ export default class home extends Component {
                         <h1>FASHIONZ</h1>
                         <p>Shop Now</p>
                     </div>
-                </div><br /><br /><br />
-
-                <div class="titleNew"><br />
-                    <center><h1>PRODUCTS ON OFFERS</h1></center><br />
-                </div><br /><br />
-
-                <div class="row1">
-                    {this.state.productOffers.length > 0 && this.state.productOffers.map((item, index) => {
-                        return (
-
-                            <div class="column1">
-                                <div class="card">
-                                    <img src={item.productImage} alt="Avatar" style={{ minWidth: '100px', width: '260px', height: '300px' }}/>
-                                    <div class="container"><br />
-                                        <h4><b>{item.productName}</b></h4>
-                                        <p style={{ color: "red" }}><strike>{"Rs." + item.productPrice}</strike></p>
-                                        <p style={{ fontSize: "20px" }}>{"Rs." + item.offerPrice}</p>
-                                        <i><p style={{ fontSize: "14px", color: "grey" }}>{item.offerDescription}</p></i>
-                                        <button type="button" class="btn btn-primary" style={{ backgroundColor: "#0ba6ff"}}>Add To Cart</button>
-                                    </div><br />
-                                </div><br /><br />
-                                
-                            </div>
-
-                        )
-                    })}
                 </div><br /><br /><br />
 
                 <div class="titleNew"><br />
@@ -123,13 +99,42 @@ export default class home extends Component {
 
                 </div><br /><br /><br />
 
+                <div class="titleNew"><br />
+                    <center><h1>PRODUCTS ON OFFERS</h1></center><br />
+                </div><br /><br />
 
-                <div><center><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                <div><center><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                <div><center><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                <div><center><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                <div><center><img src={jewellery} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                <div><center><img src={bags} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                <div class="row1">
+                    {this.state.productOffers.length > 0 && this.state.productOffers.map((item, index) => {
+                        return (
+
+                            <div class="column1">
+                                <div class="card">
+                                    <img src={item.productImage} alt="Avatar" style={{ width: '250px', height: '260px' }} />
+                                    <div class="container"><br />
+                                        <h4><b>{item.productName}</b></h4>
+                                        <p style={{ color: "red" }}><strike>{"Rs." + item.productPrice}</strike></p>
+                                        <p style={{ fontSize: "20px" }}>{"Rs." + item.offerPrice}</p>
+                                        <i><p style={{ fontSize: "14px", color: "grey" }}>{item.offerDescription}</p></i>
+                                        <button type="button" class="btn btn-primary" style={{ backgroundColor: "#0ba6ff" }}>Add To Cart</button>
+                                    </div><br />
+                                </div><br /><br />
+
+                            </div>
+
+                        )
+                    })}
+                </div><br /><br /><br />
+
+                    <div class="row1">
+                        <div>
+                            <div><center><a href = "/menProducts"><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                            <div><center><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                            <div><center><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                            <div><center><img src={jewellery} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                            <div><center><img src={bags} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                        </div>
+                    </div>
 
                 <br /><br />
 

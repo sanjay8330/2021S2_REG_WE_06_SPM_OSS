@@ -23,6 +23,7 @@ import createProduct from './components/productManagement/createProduct';
 import ViewProducts from './components/productManagement/viewProducts';
 import UpdateProduct from './components/productManagement/updateProduct';
 import DeleteProduct from './components/productManagement/deleteProduct';
+import menProducts from './components/productManagement/menProducts';
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
@@ -50,6 +51,7 @@ function App() {
             <Route path="/viewProducts" component={ ViewProducts } />
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
+            <Route path="/menProducts" component={menProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
           </Switch>
