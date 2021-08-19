@@ -116,7 +116,6 @@
         vertical-align: bottom;
         overflow: hidden;
         background-color: #bbb;
-        background-image: url(../images/home1.jpg);
     }
     .media-cover, .media-cover-dark:after {
         position: absolute;
