@@ -183,7 +183,6 @@ export default class createProduct extends Component {
                                             <option selected value="coconut" disabled>Select category</option>
                                             <option value="Men">Men</option>
                                             <option value="Women">Women</option>
-                                            <option value="Adults">Adults</option>
                                             <option value="Teenagers">Teenagers</option>
                                             <option value="Kids">Kids</option>
                                             <option value="Babies">Babies</option>

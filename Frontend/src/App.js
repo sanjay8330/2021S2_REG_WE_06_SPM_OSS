@@ -24,6 +24,10 @@ import ViewProducts from './components/productManagement/viewProducts';
 import UpdateProduct from './components/productManagement/updateProduct';
 import DeleteProduct from './components/productManagement/deleteProduct';
 import menProducts from './components/productManagement/menProducts';
+import womenProducts from './components/productManagement/womenProducts';
+import kidsProducts from './components/productManagement/kidsProducts';
+import babiesProducts from './components/productManagement/babiesProducts';
+import teenagersProducts from './components/productManagement/teenagersProducts';
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
@@ -52,6 +56,10 @@ function App() {
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
             <Route path="/menProducts" component={menProducts}/>
+            <Route path="/womenProducts" component={womenProducts}/>
+            <Route path="/kidsProducts" component={kidsProducts}/>
+            <Route path="/babiesProducts" component={babiesProducts}/>
+            <Route path="/teenagersProducts" component={teenagersProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
           </Switch>

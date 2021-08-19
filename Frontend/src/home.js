@@ -5,8 +5,7 @@ import men from '../src/images/men.jpg';
 import women from '../src/images/women.jpg';
 import kids from '../src/images/kids.jpg';
 import babies from '../src/images/babies.jpg';
-import jewellery from '../src/images/jewellery.png';
-import bags from '../src/images/bags.jpg';
+import teens from '../src/images/teens.png';
 import home1 from '../src/images/womenNew.jpg';
 import home2 from '../src/images/womenNew4.jpg';
 import home3 from '../src/images/womenNew5.jpg';
@@ -109,13 +108,13 @@ export default class home extends Component {
 
                             <div class="column1">
                                 <div class="card">
-                                    <img src={item.productImage} alt="Avatar" style={{ width: '250px', height: '260px' }} />
+                                    <img src={item.productImage} alt="Avatar" style={{ width: '250px', height: '320px' }} />
                                     <div class="container"><br />
                                         <h4><b>{item.productName}</b></h4>
                                         <p style={{ color: "red" }}><strike>{"Rs." + item.productPrice}</strike></p>
                                         <p style={{ fontSize: "20px" }}>{"Rs." + item.offerPrice}</p>
                                         <i><p style={{ fontSize: "14px", color: "grey" }}>{item.offerDescription}</p></i>
-                                        <button type="button" class="btn btn-primary" style={{ backgroundColor: "#0ba6ff" }}>Add To Cart</button>
+                                        <button type="button" class="btn btn-dark">Add To Cart</button>
                                     </div><br />
                                 </div><br /><br />
 
@@ -123,20 +122,17 @@ export default class home extends Component {
 
                         )
                     })}
-                </div><br /><br /><br />
+                </div>
 
                     <div class="row1">
                         <div>
                             <div><center><a href = "/menProducts"><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                            <div><center><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                            <div><center><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                            <div><center><img src={jewellery} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
-                            <div><center><img src={bags} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></center></div> <br /><br />
+                            <div><center><a href = "/womenProducts"><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = "/kidsProducts"><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = "/babiesProducts"><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = "/teenagersProducts"><img src={teens} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
                         </div>
                     </div>
-
-                <br /><br />
 
             </div>
         )

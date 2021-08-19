@@ -3,19 +3,19 @@ import Header from '../header/header';
 import Axios from 'axios';
 
 const initialStates = {
-  "menProducts": []
+  "kidsProducts": []
 }
 
-export default class displayProducts extends Component {
+export default class displayKidsProducts extends Component {
   constructor(props) {
     super(props);
     this.state = initialStates;
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:3001/product/getAllMenProducts')
+    Axios.get('http://localhost:3001/product/getAllKidsProducts')
       .then(response => {
-        this.setState({ menProducts: response.data.data });
+        this.setState({ kidsProducts: response.data.data });
       }).catch(error => {
         alert(error.message);
       })
@@ -25,15 +25,15 @@ export default class displayProducts extends Component {
     return (
 
       <div>
-        <Header /><br />
-        <center><h1>MENS PRODUCTS</h1>
+        <Header /><br/>
+        <center><h1>KIDS PRODUCTS</h1>
         <div class="alert alert-primary" role="alert" style={{ width: '650px'}}>
-        <a href="#" class="alert-link"> FASHIONZ </a> - Mens Basic Product Collections
+        <a href="#" class="alert-link"> FASHIONZ </a> - Kids Basic Product Collections
         </div>
         <hr /><br/></center>
 
         <div class="row1">
-          {this.state.menProducts.length > 0 && this.state.menProducts.map((item, index) => {
+          {this.state.kidsProducts.length > 0 && this.state.kidsProducts.map((item, index) => {
             return (
 
               <div class="column1">
