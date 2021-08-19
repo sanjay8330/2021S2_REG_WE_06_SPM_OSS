@@ -174,7 +174,7 @@ export default class AddProductOffer extends Component {
                                             required
                                             style={{ border: "1px solid #c8cfcb " }} /><br />
                                     </div>
-                                    <img style={{ minWidth: '50px', width: '330px', height: '310px' }} src={this.state.productInfo.productImage} alt="Product Image" />
+                                    <img style={{ minWidth: '50px', width: '330px', height: '310px' }} src={this.state.productInfo.productImage} />
                                 </div>
 
                                 <h3><b><i>Add Product Offer Information</i></b></h3><br />

@@ -119,5 +119,16 @@ router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
     }
 });
 
+//Get all product active offers - CUSTOMER HOMEPAGE
+router.route('/getAllActiveProductOffers').get(async (req, res) => {
+    await ProductOfferModel.find({ offerStatus: 'Active' })
+    .populate('product', 'productName')
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
 
 module.exports = router;
