@@ -5,7 +5,7 @@ import product from '../../images/product.jpg';
 import firebase from '../../Firebase/firebase';
 
 const initialStates = {
-    amount: '',
+    amount: '500',
     paymentMethod: '',
     slip: 'cash-on-delivery',
     comments: '',
@@ -29,16 +29,17 @@ export default class checkout extends Component {
         e.preventDefault();
 
         //validate data before submitting to the db 
-        const err = this.validate();
-        if (!err) {
+        //const err = this.validate();
+        //if (!err) {
 
             let checkout = {
+                amount: this.state.amount,
                 paymentMethod: this.state.paymentMethod,
                 slip: this.state.slip,
                 comments: this.state.comments,
             }
             
-            Axios.post('http://localhost:3001/checkout/checkout', checkout)
+            Axios.post('http://localhost:3001/checkout', checkout)
                 .then(response => {
                     alert('Checkout Details Added Successfully');
                     window.location = "/checkout";
@@ -46,51 +47,73 @@ export default class checkout extends Component {
                     alert(error.message);
                 })
 
-        }
+        //}
+    }
+
+    async onImageChange(e) {
+        document.getElementById("submitBtn").disabled = true;
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(file.name);
+
+        await fileRef.put(file).then(() => {
+        }).catch(error => {
+            alert(error.message);
+        });
+
+        const downloadImage = await fileRef.getDownloadURL();
+        this.setState({ productImage: downloadImage });
+        alert('Image Uploaded Successfully!!', file.name);
+        document.getElementById("submitBtn").disabled = false;
     }
 
     render(){
         return(
             <main>
-                <h1>Checkout</h1>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Checkout</h1>
                 <div class="container border rounded" style={{ width: '950px' }}>
                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
                                         <div className="form-group">
-                                            <span style={{ color: "black" }}>Amount (Rs.) : xxx</span>                                            
-                                        
+
+                                        <span style={{ color: "black" }}>Amount (Rs.) : &nbsp; xxx </span>                                            
 
                                         <br />
-
+                                        <br />
                                         <span style={{ color: "black" }}>Payment method : *</span>
+                                        <br />
+                                        
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <input 
                                             class = "form-check-input"
-                                            type = "checkbox"
+                                            type = "radio"
                                             value = {this.state.paymentMethod}
-                                            name = "cashOnDelivery"
+                                            name = "paymentMethodRadio"
                                             id = "cashOnDelivery"
                                         ></input>
                                         <label 
                                             class = "form-check-label" 
                                             for = "cashOnDelivery"
-                                            style={{ color: "black" }}>Cash on Delivery </label>
+                                            style={{ color: "black" }}>&nbsp;&nbsp; Cash on Delivery </label>
                                         <br />
-
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <input 
                                             class = "form-check-input"
-                                            type = "checkbox"
+                                            type = "radio"
                                             value = {this.state.paymentMethod}
-                                            name = "bankTransfer"
+                                            name = "paymentMethodRadio"
                                             id = "bankTransfer"
                                         ></input>
                                         <label 
                                             class = "form-check-label" 
                                             for = "bankTransfer"
-                                            style={{ color: "black" }}>Bank Transfer </label>
+                                            style={{ color: "black" }}>&nbsp;&nbsp; Bank Transfer </label>
                                         <br />
-
+                                        <br />
                                         <span style={{ color: "black" }}>If bank transfer upload the slip</span>
+                                        <br />
+                                        
                                         <input
                                             type="file"
                                             className="form-control"
@@ -101,6 +124,7 @@ export default class checkout extends Component {
 
                                         <div className="form-group">
                                             <span style={{ color: "black" }}>Add comments/instructions : </span>
+                                            <br />
                                             <textarea
                                                 className="form-control"
                                                 rows="4"
@@ -114,9 +138,9 @@ export default class checkout extends Component {
 
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
                                         </div>
+                                        <br />
                                     </form>
                                 </div>
-                                <img src={product} alt="delivery" style={{ width: '50%', height: '60%;' }} />
                             </div>
                         </div>
             </main>
