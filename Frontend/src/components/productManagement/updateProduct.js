@@ -170,7 +170,6 @@ export default class updateProduct extends Component {
                                             <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
                                                 <option value="Men">Men</option>
                                                 <option value="Women">Women</option>
-                                                <option value="Adults">Adults</option>
                                                 <option value="Teenagers">Teenagers</option>
                                                 <option value="Kids">Kids</option>
                                                 <option value="Babies">Babies</option>

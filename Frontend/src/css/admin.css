@@ -259,7 +259,7 @@ h1{
 }
 
 .zoom {
-  width: 400px;
+  width: 200px;
   height: auto;
   /* ease | ease-in | ease-out | linear */
   transition: transform ease-in-out 0.3s;
@@ -267,6 +267,23 @@ h1{
 .zoom:hover {
   transform: scale(0.9);
 }
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: white;
+  background-color: rgb(5, 6, 83);
+  text-align: center;
+  cursor: pointer;
+  width: fixed;
+  font-size: 14px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
 
 
 
