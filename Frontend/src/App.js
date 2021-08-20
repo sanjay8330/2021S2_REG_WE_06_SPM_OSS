@@ -34,6 +34,8 @@ import teenagersProducts from './components/productManagement/teenagersProducts'
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
+import History from './components/paymentManagement/paymentHistory';
+import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 
 //Insert Item
 import insertItem from './components/addItems/addItems';
@@ -70,8 +72,10 @@ function App() {
             <Route path="/teenagersProducts" component={teenagersProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
-
+            <Route path="/payment-history" component={ History } />
+            <Route path="/delivery-details" component={ DeliveryDetails } />
             <Route path="/insertItem/:id" component={ insertItem } />
+
           </Switch>
         </section>
       </Router>

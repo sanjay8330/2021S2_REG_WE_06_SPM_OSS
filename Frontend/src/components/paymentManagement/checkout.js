@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
-import product from '../../images/product.jpg';
 import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     amount: '500',
     paymentMethod: '',
-    slip: 'cash-on-delivery',
+    slip: 'no-slip-cash-on-delivery',
     comments: '',
 }
 
@@ -39,10 +38,11 @@ export default class checkout extends Component {
                 comments: this.state.comments,
             }
             
-            Axios.post('http://localhost:3001/checkout', checkout)
+            console.log("Data", checkout);
+            Axios.post('http://localhost:3001/checkout/insert', checkout)
                 .then(response => {
                     alert('Checkout Details Added Successfully');
-                    window.location = "/checkout";
+                    //window.location = "/checkout";
                 }).catch(error => {
                     alert(error.message);
                 })
@@ -81,35 +81,15 @@ export default class checkout extends Component {
 
                                         <br />
                                         <br />
-                                        <span style={{ color: "black" }}>Payment method : *</span>
-                                        <br />
-                                        
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input 
-                                            class = "form-check-input"
-                                            type = "radio"
-                                            value = {this.state.paymentMethod}
-                                            name = "paymentMethodRadio"
-                                            id = "cashOnDelivery"
-                                        ></input>
-                                        <label 
-                                            class = "form-check-label" 
-                                            for = "cashOnDelivery"
-                                            style={{ color: "black" }}>&nbsp;&nbsp; Cash on Delivery </label>
-                                        <br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input 
-                                            class = "form-check-input"
-                                            type = "radio"
-                                            value = {this.state.paymentMethod}
-                                            name = "paymentMethodRadio"
-                                            id = "bankTransfer"
-                                        ></input>
-                                        <label 
-                                            class = "form-check-label" 
-                                            for = "bankTransfer"
-                                            style={{ color: "black" }}>&nbsp;&nbsp; Bank Transfer </label>
-                                        <br />
+                                        </div>
+
+                                        <span style={{ color: "black" }}>Payment Method </span>  <br/>
+                                        <select name="paymentMethod" id="paymentMethod" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                            <option selected value="Cash on Delivery" disabled>Select Payment Method</option>
+                                            <option value="Cash on Delivery">Cash on Delivery</option>
+                                            <option value="Bank Transfer">Bank Transfer</option>
+                                        </select><br />
+
                                         <br />
                                         <span style={{ color: "black" }}>If bank transfer upload the slip</span>
                                         <br />
@@ -137,7 +117,7 @@ export default class checkout extends Component {
                                             </textarea></div><br />
 
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
-                                        </div>
+
                                         <br />
                                     </form>
                                 </div>
