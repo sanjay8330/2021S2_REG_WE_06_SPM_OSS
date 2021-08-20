@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
 import Header from '../header/header';
+import delivery from '../../images/ccc.png';
 
 const initialStates = {
     senderName: '',
@@ -65,19 +66,22 @@ export default class deliveryDetails extends Component {
             <div>
                 <Header />
                 <main>
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Delivery Details</h1>
-                    <div class="container border rounded" style={{ width: '950px' }}>
+                    <div class="container border rounded" style={{ width: '560px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <form onSubmit={this.onSubmit}><br />
-                                    <div className="form-group">
+                                <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
+                                <div class = "centered">
+                                <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
+                                </div>
+                                    <div className="form-group"><br/>
 
                                         <table>
                                             <tr>
                                                 <td>
                                                     <span style={{ color: "black" }}>Sender's Name</span>
                                                 </td>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <td>
                                                     <span style={{ color: "black" }}>Sender's Phone Number</span>
                                                 </td>
@@ -158,18 +162,18 @@ export default class deliveryDetails extends Component {
                                     <table>
                                         <tr>
                                             <td>
-                                                <span style={{ color: "black",}} >Street Address : </span>
+                                                <span style={{ color: "black", }} >Street Address : </span>
                                             </td>
-                                            
+
                                             <td>
-                                            <input
-                                                        class="form-control"
-                                                        type="text"
-                                                        value={this.state.streetAddress}
-                                                        name="streetAddress"
-                                                        onChange={this.onChange}
-                                                        required
-                                                        style={{ border: "1px solid #c8cfcb " }} />
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    value={this.state.streetAddress}
+                                                    name="streetAddress"
+                                                    onChange={this.onChange}
+                                                    required
+                                                    style={{ border: "1px solid #c8cfcb " }} />
                                             </td>
                                         </tr>
                                         <br />
@@ -177,16 +181,16 @@ export default class deliveryDetails extends Component {
                                             <td>
                                                 <span style={{ color: "black" }}>Street Address - 2 : </span>
                                             </td>
-                                            
+
                                             <td>
                                                 <input
-                                                            class="form-control"
-                                                            type="text"
-                                                            value={this.state.streetAddress2}
-                                                            name="streetAddress2"
-                                                            onChange={this.onChange}
-                                                            required
-                                                            style={{ border: "1px solid #c8cfcb " }} />
+                                                    class="form-control"
+                                                    type="text"
+                                                    value={this.state.streetAddress2}
+                                                    name="streetAddress2"
+                                                    onChange={this.onChange}
+                                                    required
+                                                    style={{ border: "1px solid #c8cfcb " }} />
                                             </td>
                                         </tr>
                                         <br />
@@ -196,14 +200,14 @@ export default class deliveryDetails extends Component {
                                             </td>
 
                                             <td>
-                                            <input
-                                                        class="form-control"
-                                                        type="text"
-                                                        value={this.state.city}
-                                                        name="city"
-                                                        onChange={this.onChange}
-                                                        required
-                                                        style={{ border: "1px solid #c8cfcb " }} />
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    value={this.state.city}
+                                                    name="city"
+                                                    onChange={this.onChange}
+                                                    required
+                                                    style={{ border: "1px solid #c8cfcb " }} />
                                             </td>
                                         </tr>
                                         <br />
@@ -211,16 +215,16 @@ export default class deliveryDetails extends Component {
                                             <td>
                                                 <span style={{ color: "black" }}>State/Province : </span>
                                             </td>
-                                            
+
                                             <td>
-                                            <input
-                                                        class="form-control"
-                                                        type="text"
-                                                        value={this.state.province}
-                                                        name="province"
-                                                        onChange={this.onChange}
-                                                        required
-                                                        style={{ border: "1px solid #c8cfcb " }} />
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    value={this.state.province}
+                                                    name="province"
+                                                    onChange={this.onChange}
+                                                    required
+                                                    style={{ border: "1px solid #c8cfcb " }} />
                                             </td>
                                         </tr>
                                         <br />
@@ -230,14 +234,14 @@ export default class deliveryDetails extends Component {
                                             </td>
 
                                             <td>
-                                            <input
-                                                        class="form-control"
-                                                        type="text"
-                                                        value={this.state.postalCode}
-                                                        name="postalCode"
-                                                        onChange={this.onChange}
-                                                        required
-                                                        style={{ border: "1px solid #c8cfcb " }} />
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    value={this.state.postalCode}
+                                                    name="postalCode"
+                                                    onChange={this.onChange}
+                                                    required
+                                                    style={{ border: "1px solid #c8cfcb " }} />
                                             </td>
                                         </tr>
                                     </table>
@@ -245,20 +249,19 @@ export default class deliveryDetails extends Component {
 
                                     <table>
                                         <tr>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            
                                             <td>
-                                            <button type="reset" className="btn btn-dark" id="resetBtn">Cancel</button>
+                                                <button type="reset" className="btn btn-dark" id="resetBtn">Cancel</button>
                                             </td>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;
                                             <td>
                                                 <button type="submit" className="btn btn-dark" id="submitBtn">Checkout</button>
                                             </td>
                                         </tr>
                                     </table>
-                                    <br /><br />
+                                    <br />
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </main>
