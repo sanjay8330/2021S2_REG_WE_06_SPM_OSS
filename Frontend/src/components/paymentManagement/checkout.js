@@ -3,6 +3,7 @@ import '../../css/admin.css';
 import Axios from 'axios';
 import firebase from '../../Firebase/firebase';
 import Header from '../header/header';
+import check from '../../images/check.jpg';
 
 const initialStates = {
     amount: '500',
@@ -81,15 +82,13 @@ export default class checkout extends Component {
             <div>
                 <Header />
                 <main>
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;Checkout</h1>
-                    <div class="container border rounded" style={{ width: '950px' }}>
+                <center><b><p style={{ fontSize: '50px' }}>Checkout</p></b><br/></center>
+                    <div class="container border rounded" style={{ width: '1000px' }}>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <form onSubmit={this.onSubmit}><br />
                                     <div className="form-group">
-
-                                        <span style={{ color: "black" }}>Amount (Rs.) : &nbsp; xxx </span>
-
+                                        <span style={{ color: "black" }}>Amount: &nbsp;<span style={{ color: "red" }}> Rs. xxx.00 </span></span>
                                         <br />
                                         <br />
                                     </div>
@@ -101,7 +100,6 @@ export default class checkout extends Component {
                                         <option value="Bank Transfer">Bank Transfer</option>
                                     </select><br />
 
-                                    <br />
                                     <span style={{ color: "black" }}>If bank transfer upload the slip</span>
                                     <br />
 
@@ -114,7 +112,7 @@ export default class checkout extends Component {
                                     /><br />
 
                                     <div className="form-group">
-                                        <span style={{ color: "black" }}>Add comments/instructions : </span>
+                                        <span style={{ color: "black" }}>Add comments/instructions</span>
                                         <br />
                                         <textarea
                                             className="form-control"
@@ -123,15 +121,17 @@ export default class checkout extends Component {
                                             name="comments"
                                             onChange={this.onChange}
                                             id="comments"
+                                            placeholder = "Enter your comment here.."
                                             required
                                             style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
                                         </textarea></div><br />
 
-                                    <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
+                                    <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button><br/>
 
                                     <br />
                                 </form>
                             </div>
+                            <img src={check} alt="delivery" style={{ width: '50%', height: '40%;' }} />
                         </div>
                     </div>
                 </main>
