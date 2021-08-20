@@ -26,12 +26,6 @@ const ItemSchema = new mongoose.Schema({
         trim: true 
     },
 
-    productDescription: { 
-        type: String,
-        required: true,
-        trim: true 
-    },
-
     productColor: { 
         type: String,
         required: true,
@@ -48,7 +42,7 @@ const ItemSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true 
-    },
+    }
 
 });
 
