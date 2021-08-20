@@ -8,7 +8,8 @@ const initialStates = {
     itemSizeError: '',
     itemQuantity: '',
     itemQuantityError: '',
-    "productinfo": []
+    "productinfo": [],
+    "userID": ''
 }
 
 export default class addOfferItem extends Component {
@@ -32,6 +33,8 @@ export default class addOfferItem extends Component {
             }).catch(error => {
                 console.log(error.message);
             })
+
+        this.setState({ userID: this.props.match.params.userId })
     }
 
 
@@ -71,9 +74,14 @@ export default class addOfferItem extends Component {
         if (!err) {
 
             let item = {
-                itemColor: this.state.itemColor,
-                itemSize: this.state.itemSize,
-                itemQuantity: this.state.itemQuantity,
+                "userID": this.state.userID, 
+                "productName": this.state.productinfo.productName,
+                "productImage": this.state.productinfo.productImage,
+                "productDescription": this.state.productinfo.productDescription,
+                "productPrice": this.state.productinfo.productPrice,
+                "productColor": this.state.itemColor,
+                "productSize": this.state.itemSize,
+                "productQuantity": this.state.itemQuantity
             }
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {

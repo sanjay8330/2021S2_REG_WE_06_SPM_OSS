@@ -8,6 +8,12 @@ const CheckoutSchema = new mongoose.Schema({
         trim: true 
     },
 
+    amount: { 
+        type: String,
+        required: false,
+        trim: true 
+    },
+
     slip: { 
         type: String,
         required: false,
@@ -17,6 +23,12 @@ const CheckoutSchema = new mongoose.Schema({
     comments: { 
         type: String,
         required: false,
+        trim: true 
+    },
+
+    date: { 
+        type: String,
+        required: true,
         trim: true 
     }
 

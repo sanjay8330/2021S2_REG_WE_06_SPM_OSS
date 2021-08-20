@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 
 const ItemSchema = new mongoose.Schema({
 
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Users'
+    },
+
     productName: { 
         type: String,
         required: true,
@@ -26,12 +32,6 @@ const ItemSchema = new mongoose.Schema({
         trim: true 
     },
 
-    productDescription: { 
-        type: String,
-        required: true,
-        trim: true 
-    },
-
     productColor: { 
         type: String,
         required: true,
@@ -48,7 +48,7 @@ const ItemSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true 
-    },
+    }
 
 });
 

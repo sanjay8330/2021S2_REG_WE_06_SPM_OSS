@@ -47,9 +47,9 @@ function App() {
       <Router>
         <section>
           <Switch>
-            <Route path="/" component={Home} exact />
+            <Route path="/" component={Login} exact />
             <Route path="/register" component={Register} />
-            <Route path="/login" component={ Login } />
+            <Route path="/home/:id" component={ Home } />
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
             <Route path="/adminUserRegister" component={ AdminAddUser } />
@@ -66,18 +66,18 @@ function App() {
             <Route path="/viewProducts" component={ ViewProducts } />
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
-            <Route path="/menProducts" component={menProducts}/>
-            <Route path="/womenProducts" component={womenProducts}/>
-            <Route path="/kidsProducts" component={kidsProducts}/>
-            <Route path="/babiesProducts" component={babiesProducts}/>
-            <Route path="/teenagersProducts" component={teenagersProducts}/>
+            <Route path="/menProducts/:userId" component={menProducts}/>
+            <Route path="/womenProducts/:userId" component={womenProducts}/>
+            <Route path="/kidsProducts/:userId" component={kidsProducts}/>
+            <Route path="/babiesProducts/:userId" component={babiesProducts}/>
+            <Route path="/teenagersProducts/:userId" component={teenagersProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
             <Route path="/payment-history" component={ History } />
             <Route path="/delivery-details" component={ DeliveryDetails } />
             
-            <Route path="/insertItem/:id" component={ insertItem } />
-            <Route path="/addOfferItems/:id" component = { addOfferItem } />
+            <Route path="/insertItem/:id/:userId" component={ insertItem } />
+            <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
 
           </Switch>
         </section>
