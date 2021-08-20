@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
 import Footer from './components/footer/footer';
+import React, { Component }  from 'react';
 
 //User Management - Routes
 import Register from './components/userManagement/register';
@@ -9,6 +10,8 @@ import Login from './components/userManagement/login';
 import ForgotPassword from './components/userManagement/forgotPassword';
 import ResetPassword from './components/userManagement/resetPassword';
 import AdminAddUser from './components/Administrator/registerUsers';
+import ViewUsers from './components/Administrator/viewUsers';
+import ViewAdministrators from './components/Administrator/viewAdmins';
 
 //Product Offer Management - Routes
 import AddProductOffer from './components/ProductOffer/addProductOffer';
@@ -24,11 +27,18 @@ import ViewProducts from './components/productManagement/viewProducts';
 import UpdateProduct from './components/productManagement/updateProduct';
 import DeleteProduct from './components/productManagement/deleteProduct';
 import menProducts from './components/productManagement/menProducts';
+import womenProducts from './components/productManagement/womenProducts';
+import kidsProducts from './components/productManagement/kidsProducts';
+import babiesProducts from './components/productManagement/babiesProducts';
+import teenagersProducts from './components/productManagement/teenagersProducts';
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
 import History from './components/paymentManagement/paymentHistory';
 import DeliveryDetails from './components/paymentManagement/deliveryDetails';
+
+//Insert Item
+import insertItem from './components/addItems/addItems';
 
 function App() {
   return (
@@ -42,6 +52,8 @@ function App() {
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
             <Route path="/adminUserRegister" component={ AdminAddUser } />
+            <Route path="/viewUsers" component={ ViewUsers } />
+            <Route path="/viewAdmin" component={ ViewAdministrators } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
@@ -54,10 +66,15 @@ function App() {
             <Route path="/updateProduct/:id" component={ UpdateProduct } />
             <Route path="/deleteProduct/:id" component={ DeleteProduct } />
             <Route path="/menProducts" component={menProducts}/>
+            <Route path="/womenProducts" component={womenProducts}/>
+            <Route path="/kidsProducts" component={kidsProducts}/>
+            <Route path="/babiesProducts" component={babiesProducts}/>
+            <Route path="/teenagersProducts" component={teenagersProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
             <Route path="/payment-history" component={ History } />
             <Route path="/delivery-details" component={ DeliveryDetails } />
+            <Route path="/insertItem/:id" component={ insertItem } />
 
           </Switch>
         </section>

@@ -49,11 +49,9 @@ export default class DeleteProductOffer extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
-                            <li><a href="/viewProducts" style={{ color: "white" }}>View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offers</a></li>
-                            <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
-                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} >Manage Products</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }} class="active">Manage Product Offers</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }} >Manage Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>

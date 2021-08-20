@@ -97,7 +97,8 @@ export default class AddProductOffer extends Component {
                         "offerDescription": this.state.offerDescription,
                         "offerEndDate": this.state.offerEndDate,
                         "offerStatus": this.state.offerStatus,
-                        "productImage": this.state.productInfo.productImage
+                        "productImage": this.state.productInfo.productImage,
+                        "productDescription": this.state.productInfo.productDescription
                     }
                     Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
                         .then(response => {
@@ -106,7 +107,6 @@ export default class AddProductOffer extends Component {
                         }).catch(error => {
                             alert(error.message);
                         })
-
                 }
             }).catch(error => {
                 alert(error.message);
@@ -123,11 +123,9 @@ export default class AddProductOffer extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
-                            <li><a href="/viewProducts" style={{ color: "white" }} >View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }} class="active">Add Product Offers</a></li>
-                            <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
-                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} >Manage Products</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }} class="active">Manage Product Offers</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }} >Manage Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>

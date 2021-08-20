@@ -25,6 +25,26 @@ router.route('/getAllUsers').get(async (req, res) => {
     })
 });
 
+//Get all users - ADMINISTRATORS - ADMIN TASK
+router.route('/getAllAdministrators').get(async (req, res) => {
+    await UserModel.find({userCategory: 'Administrator'})
+    .then(data => {
+        res.status(200).send({data: data});
+    }).catch(error => {
+        res.status(500).send({error: error});
+    })
+});
+
+//Get all users - CUSTOMERS - ADMIN TASK
+router.route('/getAllCustomers').get(async (req, res) => {
+    await UserModel.find({userCategory: 'Customer'})
+    .then(data => {
+        res.status(200).send({data: data});
+    }).catch(error => {
+        res.status(500).send({error: error});
+    })
+});
+
 //Get the user by ID - GENERAL USER & ADMIN TASK
 router.route('/getUserById/:id').get(async (req, res) => {
     if(req.params && req.params.id){

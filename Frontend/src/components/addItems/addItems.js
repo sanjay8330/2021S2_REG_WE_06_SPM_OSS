@@ -4,7 +4,10 @@ import Axios from 'axios';
 const initialStates = {
     itemColor: '',
     itemSize: '',
-    itemQuantity: ''
+    itemSizeError: '',
+    itemQuantity: '',
+    itemQuantityError: '',
+    "productinfo": []
 }
 
 export default class addItem extends Component {
@@ -20,20 +23,64 @@ export default class addItem extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+   
+    componentDidMount() {
+        Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState({ productinfo: response.data.data });
+            }).catch(error => {
+                console.log(error.message);
+            })
+    }
+
+
+    //Validation Part
+    validate = () => {
+        let isError = false;
+        const errors = {
+            itemSizeError: '',
+            itemQuantityError: ''
+        };
+
+        if (this.state.itemSize == null) {
+            isError = true;
+            errors.itemSizeError = "you need to select the Size of the item";
+        }
+
+        if (this.state.itemQuantity == null) {
+            isError = true;
+            errors.itemQuantityError = "you need to select the Quantity of the item";
+        }
+
+        if (isError) {
+            this.setState({
+                ...this.state,
+                ...errors
+            });
+        }
+
+        return isError;
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
-        let item = {
-            itemColor: this.state.itemColor,
-            itemSize: this.state.itemSize,
-            itemQuantity: this.state.itemQuantity,
+        //Validate the data
+        const err = this.validate();
+        if (!err) {
+
+            let item = {
+                itemColor: this.state.itemColor,
+                itemSize: this.state.itemSize,
+                itemQuantity: this.state.itemQuantity,
+            }
+            Axios.post('http://localhost:3001/insertItem/addItem', item)
+                .then(response => {
+                    alert('Item Details Added Successfully');
+                }).catch(error => {
+                    alert(error.message);
+                })
         }
-        Axios.post('http://localhost:3001/item/addItem', item)
-            .then(response => {
-                alert('Item Details Added Successfully');
-            }).catch(error => {
-                alert(error.message);
-            })
     }
 
     render() {
@@ -42,7 +89,7 @@ export default class addItem extends Component {
                 <div class="wrapper">
                     <nav>
                         <header><br />
-                            &nbsp; &nbsp;  &nbsp; Item Name
+                            &nbsp; &nbsp;  &nbsp;
                         </header><hr style={{ color: "white" }} />
 
                     </nav>
@@ -51,9 +98,14 @@ export default class addItem extends Component {
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
+
+                                        <h1>{this.state.productinfo.productName}</h1>
+                                        <img src={this.state.productinfo.productImage} class="img-thumbnail" alt="..."></img>
                                         <div className="form-group">
+
                                             <span style={{ color: "black" }}>Item Color</span>
-                                            <select name="categoryType" onChange={this.onChange} value={this.state.itemColor} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                            <select name="itemColor" id="itemColor" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_color" disabled></option>
                                                 <option value="Black">Black</option>
                                                 <option value="Grey">Grey</option>
                                                 <option value="Blue">Blue</option>
@@ -63,14 +115,19 @@ export default class addItem extends Component {
                                             <br />
 
                                             <span style={{ color: "black" }}>Item Size</span>
-                                            <select name="categoryType" onChange={this.onChange} value={this.state.itemSize} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                                <option value="15 inch">Black</option>
-                                                <option value="17 inch">Grey</option>
+                                            <select name="itemSize" id="itemSize" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_size" disabled></option>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XLL">XLL</option>
                                             </select><br />
                                             <br />
 
                                             <span style={{ color: "black" }}>Item Quantity</span>
-                                            <select name="categoryType" onChange={this.onChange} value={this.state.itemQuantity} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                            <select name="itemQuantity" id="itemQuantity" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_quantity" disabled></option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -78,6 +135,8 @@ export default class addItem extends Component {
                                                 <option value="6">5</option>
                                             </select><br />
                                             <br />
+
+                                            <button type="submit" className="btn btn-dark" id="submitBtn">Add to cart</button>
                                         </div>
                                         <br />
                                     </form>
@@ -88,8 +147,6 @@ export default class addItem extends Component {
                     </main>
                 </div>
             </div>
-
-
         )
     }
 
