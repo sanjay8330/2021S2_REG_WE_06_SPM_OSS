@@ -3,7 +3,8 @@ import Header from '../header/header';
 import Axios from 'axios';
 
 const initialStates = {
-  "menProducts": []
+  "menProducts": [],
+  "userId": ''
 }
 
 export default class displayProducts extends Component {
@@ -13,8 +14,9 @@ export default class displayProducts extends Component {
     this.state = initialStates;
   }
 
-  navigateToAddNormalitempage(e, productID) {
-    window.location = `/insertItem/${productID}`;
+  navigateToAddNormalitempage(e, productID, userId) {
+    userId = this.state.userId;
+    window.location = `/insertItem/${productID}/${userId}`;
   }
 
   componentDidMount() {
@@ -24,6 +26,8 @@ export default class displayProducts extends Component {
       }).catch(error => {
         alert(error.message);
       })
+
+    this.setState({ userId: this.props.match.params.userId });
 
   }
   render() {
