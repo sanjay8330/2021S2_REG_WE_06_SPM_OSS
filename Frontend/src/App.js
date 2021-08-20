@@ -47,9 +47,9 @@ function App() {
       <Router>
         <section>
           <Switch>
-            <Route path="/" component={Home} exact />
+            <Route path="/" component={Login} exact />
             <Route path="/register" component={Register} />
-            <Route path="/login" component={ Login } />
+            <Route path="/home" component={ Home } />
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
             <Route path="/adminUserRegister" component={ AdminAddUser } />
