@@ -24,6 +24,7 @@ const ProductRoutes = require('./routes/Product');
 const UserDeliveryRoutes = require('./routes/UserDelivery');
 const UserReport = require('./routes/UserReport');
 const ProductOfferRoutes = require('./routes/ProductOffer');
+const insertItemRoutes = require('./routes/Item');
 
 //Using the routes
 app.use("/user", UserRoutes);
@@ -31,6 +32,7 @@ app.use("/product", ProductRoutes);
 app.use("/userdelivery", UserDeliveryRoutes);
 app.use("/userreport", UserReport);
 app.use("/productOffer", ProductOfferRoutes);
+app.use("/insertitem", insertItemRoutes);
 
 const PORT = process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;

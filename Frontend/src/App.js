@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
 import Footer from './components/footer/footer';
+import React, { Component }  from 'react';
 
 //User Management - Routes
 import Register from './components/userManagement/register';
@@ -33,6 +34,9 @@ import teenagersProducts from './components/productManagement/teenagersProducts'
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
+
+//Insert Item
+import insertItem from './components/addItems/addItems';
 
 function App() {
   return (
@@ -66,6 +70,8 @@ function App() {
             <Route path="/teenagersProducts" component={teenagersProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
+
+            <Route path="/insertItem" component={ insertItem } />
           </Switch>
         </section>
       </Router>
