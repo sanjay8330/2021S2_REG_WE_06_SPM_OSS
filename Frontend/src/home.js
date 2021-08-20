@@ -15,7 +15,8 @@ import Axios from 'axios';
 
 const initialStates = {
     "productOffers": [],
-    "products": []
+    "products": [],
+    "userId": ''
 }
 
 export default class home extends Component {
@@ -33,11 +34,14 @@ export default class home extends Component {
             }).catch(error => {
                 alert(error.message);
             })
+        
+        this.setState({ userId: this.props.match.params.id })
 
     }
 
-    navigateToAdditempage(e, productID){
-        window.location = `/addOfferItems/${productID}`;
+    navigateToAdditempage(e, productID, userId){
+        userId = this.state.userId;
+        window.location = `/addOfferItems/${productID}/${userId}`;
     }
 
     render() {
@@ -132,11 +136,11 @@ export default class home extends Component {
 
                     <div class="row1">
                         <div>
-                            <div><center><a href = "/menProducts"><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = "/womenProducts"><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = "/kidsProducts"><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = "/babiesProducts"><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = "/teenagersProducts"><img src={teens} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = {`/menProducts/${this.state.userId}`}><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = {`/womenProducts/${this.state.userId}`}><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = {`/kidsProducts/${this.state.userId}`}><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = {`/babiesProducts/${this.state.userId}`}><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                            <div><center><a href = {`/teenagersProducts/${this.state.userId}`}><img src={teens} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
                         </div>
                     </div>
 

@@ -3,7 +3,8 @@ import Header from '../header/header';
 import Axios from 'axios';
 
 const initialStates = {
-  "kidsProducts": []
+  "kidsProducts": [],
+  "userId": ''
 }
 
 export default class displayKidsProducts extends Component {
@@ -13,8 +14,9 @@ export default class displayKidsProducts extends Component {
     this.state = initialStates;
   }
 
-  navigateToAddNormalitempage(e, productID) {
-    window.location = `/insertItem/${productID}`;
+  navigateToAddNormalitempage(e, productID, userId) {
+    userId = this.state.userId;
+    window.location = `/insertItem/${productID}/${userId}`;
   }
 
 
@@ -26,17 +28,19 @@ export default class displayKidsProducts extends Component {
         alert(error.message);
       })
 
+    this.setState({ userId: this.props.match.params.userId })
+
   }
   render() {
     return (
 
       <div>
-        <Header /><br/>
+        <Header /><br />
         <center><h1>KIDS PRODUCTS</h1>
-        <div class="alert alert-primary" role="alert" style={{ width: '650px'}}>
-        <a href="#" class="alert-link"> FASHIONZ </a> - Kids Basic Product Collections
-        </div>
-        <hr /><br/></center>
+          <div class="alert alert-primary" role="alert" style={{ width: '650px' }}>
+            <a href="#" class="alert-link"> FASHIONZ </a> - Kids Basic Product Collections
+          </div>
+          <hr /><br /></center>
 
         <div class="row1">
           {this.state.kidsProducts.length > 0 && this.state.kidsProducts.map((item, index) => {

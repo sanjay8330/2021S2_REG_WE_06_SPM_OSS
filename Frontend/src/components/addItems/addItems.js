@@ -7,7 +7,8 @@ const initialStates = {
     itemSizeError: '',
     itemQuantity: '',
     itemQuantityError: '',
-    "productinfo": []
+    "productinfo": [],
+    "userID": ''
 }
 
 export default class addItem extends Component {
@@ -31,6 +32,8 @@ export default class addItem extends Component {
             }).catch(error => {
                 console.log(error.message);
             })
+
+        this.setState({ userID: this.props.match.params.userId })
     }
 
 
@@ -70,6 +73,7 @@ export default class addItem extends Component {
         if (!err) {
 
             let item = {
+                "userID": this.state.userID, 
                 "productName": this.state.productinfo.productName,
                 "productImage": this.state.productinfo.productImage,
                 "productDescription": this.state.productinfo.productDescription,
