@@ -27,6 +27,8 @@ import menProducts from './components/productManagement/menProducts';
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
+import History from './components/paymentManagement/paymentHistory';
+import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 
 function App() {
   return (
@@ -54,6 +56,9 @@ function App() {
             <Route path="/menProducts" component={menProducts}/>
 
             <Route path="/checkout" component={ Checkout } />
+            <Route path="/payment-history" component={ History } />
+            <Route path="/delivery-details" component={ DeliveryDetails } />
+
           </Switch>
         </section>
       </Router>
