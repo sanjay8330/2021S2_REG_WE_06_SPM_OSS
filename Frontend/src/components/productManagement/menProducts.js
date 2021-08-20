@@ -9,7 +9,12 @@ const initialStates = {
 export default class displayProducts extends Component {
   constructor(props) {
     super(props);
+    this.navigateToAddNormalitempage = this.navigateToAddNormalitempage.bind(this);
     this.state = initialStates;
+  }
+
+  navigateToAddNormalitempage(e, productID) {
+    window.location = `/insertItem/${productID}`;
   }
 
   componentDidMount() {
@@ -27,10 +32,10 @@ export default class displayProducts extends Component {
       <div>
         <Header /><br />
         <center><h1>MENS PRODUCTS</h1>
-        <div class="alert alert-primary" role="alert" style={{ width: '650px'}}>
-        <a href="#" class="alert-link"> FASHIONZ </a> - Mens Basic Product Collections
-        </div>
-        <hr /><br/></center>
+          <div class="alert alert-primary" role="alert" style={{ width: '650px' }}>
+            <a href="#" class="alert-link"> FASHIONZ </a> - Mens Basic Product Collections
+          </div>
+          <hr /><br /></center>
 
         <div class="row1">
           {this.state.menProducts.length > 0 && this.state.menProducts.map((item, index) => {
@@ -44,7 +49,7 @@ export default class displayProducts extends Component {
                     <p style={{ color: "red" }}>{"Rs." + item.productPrice}.00</p>
                     <p style={{ fontSize: "20px" }}>{item.productDiscount + "%"}</p>
                     <i><p style={{ fontSize: "14px", color: "grey" }}>{item.productDescription}</p></i>
-                    <button type="button" class="btn btn-dark">Add To Cart</button>
+                    <button onClick={e => this.navigateToAddNormalitempage(e, item._id)} type="button" class="btn btn-dark">Add To Cart</button>
                   </div><br />
                 </div><br /><br />
 

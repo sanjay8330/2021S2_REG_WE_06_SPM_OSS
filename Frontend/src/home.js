@@ -37,7 +37,7 @@ export default class home extends Component {
     }
 
     navigateToAdditempage(e, productID){
-        window.location = `/insertItem/${productID}`;
+        window.location = `/addOfferItems/${productID}`;
     }
 
     render() {
@@ -118,8 +118,9 @@ export default class home extends Component {
                                         <h4><b>{item.productName}</b></h4>
                                         <p style={{ color: "red" }}><strike>{"Rs." + item.productPrice}</strike></p>
                                         <p style={{ fontSize: "20px" }}>{"Rs." + item.offerPrice}</p>
+                                        <h6>Discount : <p style={{ fontSize: "20px" }}>{item.offerDiscount + "%"}</p></h6>
                                         <i><p style={{ fontSize: "14px", color: "grey" }}>{item.offerDescription}</p></i>
-                                        <button onClick={e => this.navigateToAdditempage(e, item.product._id)} type="button" class="btn btn-dark">Add To Cart</button>
+                                        <button onClick={e => this.navigateToAdditempage(e, item._id)} type="button" class="btn btn-dark">Add To Cart</button>
                                     </div><br />
                                 </div><br /><br />
 

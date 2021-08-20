@@ -10,7 +10,7 @@ const initialStates = {
     "productinfo": []
 }
 
-export default class addItem extends Component {
+export default class addOfferItem extends Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +25,7 @@ export default class addItem extends Component {
 
 
     componentDidMount() {
-        Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
+        Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({ productinfo: response.data.data });
             }).catch(error => {
@@ -98,18 +98,17 @@ export default class addItem extends Component {
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
-
+                                    
                                         <h1>{this.state.productinfo.productName}</h1>
 
                                         <span style={{ color: "grey", fontSize: "14px" }}>Product Image</span><br />
                                         <img src={this.state.productinfo.productImage} class="img-thumbnail" alt="..." style={{ width: '300px', height: '320px' }}></img><br /><br />
-
+                                        
                                         <span style={{ color: "grey", fontSize: "14px" }}>Product Description</span><br />
                                         <h4>{this.state.productinfo.productDescription}</h4>
 
-                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Price</span><br />
-                                        <h4>{"Rs. " + this.state.productinfo.productPrice + " /="}</h4>
-
+                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Offer Price</span><br />
+                                        <h4>{"Rs. " + this.state.productinfo.offerPrice + " /="}</h4>
 
 
                                         <div className="form-group">

@@ -9,8 +9,14 @@ const initialStates = {
 export default class displayKidsProducts extends Component {
   constructor(props) {
     super(props);
+    this.navigateToAddNormalitempage = this.navigateToAddNormalitempage.bind(this);
     this.state = initialStates;
   }
+
+  navigateToAddNormalitempage(e, productID) {
+    window.location = `/insertItem/${productID}`;
+  }
+
 
   componentDidMount() {
     Axios.get('http://localhost:3001/product/getAllKidsProducts')
@@ -44,7 +50,7 @@ export default class displayKidsProducts extends Component {
                     <p style={{ color: "red" }}>{"Rs." + item.productPrice}.00</p>
                     <p style={{ fontSize: "20px" }}>{item.productDiscount + "%"}</p>
                     <i><p style={{ fontSize: "14px", color: "grey" }}>{item.productDescription}</p></i>
-                    <button type="button" class="btn btn-dark">Add To Cart</button>
+                    <button onClick={e => this.navigateToAddNormalitempage(e, item._id)} type="button" class="btn btn-dark">Add To Cart</button>
                   </div><br />
                 </div><br /><br />
 
