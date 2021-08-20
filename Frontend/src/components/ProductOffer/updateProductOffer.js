@@ -59,7 +59,7 @@ export default class UpdateProductOffer extends Component {
 
         //Calculate the discount
         let discount = (100 * (this.state.offerInfo.productPrice - e.target.value)) / this.state.offerInfo.productPrice;
-        this.setState({ offerDiscount: discount.toFixed(2) });
+        this.setState({ offerDiscount: discount.toFixed(0) });
 
     }
 
