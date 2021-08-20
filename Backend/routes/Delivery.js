@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const CheckoutModel = require('../models/Checkout');
+const DeliveryModel = require('../models/Delivery');
 
-//Add payment details
-router.route('/paymentDetails').post(async (req, res) => {
+//Add delivery details
+router.route('/deliveryDetails').post(async (req, res) => {
     if(req.body){
-        const Checkout = new CheckoutModel(req.body);
-        await Checkout.save()
+        const Delivery = new DeliveryModel(req.body);
+        await Delivery.save()
         .then(data => {
             res.status(200).send({data: data});
         }).catch(error => {
