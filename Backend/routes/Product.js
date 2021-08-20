@@ -83,9 +83,49 @@ router.route('/deleteProduct/:id').delete(async (req, res) => {
     }
 });
 
-//Get all productsvon men category - CUSTOMER TASK
+//Get all products on men category - CUSTOMER TASK
 router.route('/getAllMenProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Men'})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
+//Get all products on women category - CUSTOMER TASK
+router.route('/getAllWomenProducts').get(async (req, res) => {
+    await ProductModel.find({categoryType: 'Women'})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
+//Get all products on kids category - CUSTOMER TASK
+router.route('/getAllKidsProducts').get(async (req, res) => {
+    await ProductModel.find({categoryType: 'Kids'})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
+//Get all products on Babies category - CUSTOMER TASK
+router.route('/getAllBabiesProducts').get(async (req, res) => {
+    await ProductModel.find({categoryType: 'Babies'})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
+//Get all products on Teenagers category - CUSTOMER TASK
+router.route('/getAllTeenagersProducts').get(async (req, res) => {
+    await ProductModel.find({categoryType: 'Teenagers'})
         .then(data => {
             res.status(200).send({ data: data });
         }).catch(error => {

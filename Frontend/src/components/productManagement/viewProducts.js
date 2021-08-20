@@ -62,17 +62,16 @@ export default class viewProducts extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
-                            <li><a href="/viewProducts" style={{ color: "white" }} class="active">View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offers</a></li>
-                            <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
-                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} class="active">Manage Products</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }}>Manage Product Offers</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }} >Manage Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
                     <main>
                         <h1>VIEW PRODUCT DETAILS</h1>
 
+                        <a href="/createProduct"><button type="button" class="btn btn-dark">Add Product</button></a> &nbsp;
                         <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-dark">Download Report</button>
 
                         <div class="wrap">
@@ -91,7 +90,7 @@ export default class viewProducts extends Component {
                         </div>
 
                         <br /><br /><br />
-
+                        
                         <table class="table border shadow" id="casti_male">
                             <thead class="thead-dark">
                                 <tr>
@@ -115,24 +114,24 @@ export default class viewProducts extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
-                                            <td><img id="myImg" style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
-                                            <td>{item.productName}</td>
-                                            <td>{"Rs." + item.productPrice}.00</td>
-                                            <td>{item.productDiscount + "%"}</td>
-                                            <td>{item.productDescription}</td>
-                                            <td>{item.categoryType}</td>
+                                        <td><img id="myImg" style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
+                                        <td>{item.productName}</td>
+                                        <td>{"Rs." + item.productPrice}.00</td>
+                                        <td>{item.productDiscount + "%"}</td>
+                                        <td>{item.productDescription}</td>
+                                        <td>{item.categoryType}</td>
 
-                                            <td>
-                                                <li class="list-inline-item">
-                                                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)}><i class="fa fa-edit"></i></button>
-                                                </li>
-                                            </td>
+                                        <td>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)}><i class="fa fa-edit"></i></button>
+                                            </li>
+                                        </td>
 
-                                            <td>
-                                                <li class="list-inline-item">
-                                                    <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
-                                                </li>
-                                            </td>
+                                        <td>
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
+                                            </li>
+                                        </td>
 
                                     </tr>
                                 )}
@@ -140,7 +139,7 @@ export default class viewProducts extends Component {
                         </table><br />
                     </main>
                 </div>
-                </div>
-                )
+            </div>
+        )
     }
 }
