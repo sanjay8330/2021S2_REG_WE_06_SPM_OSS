@@ -39,6 +39,7 @@ import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 
 //Insert Item
 import insertItem from './components/addItems/addItems';
+import addOfferItem from './components/addItems/addOfferItems';
 
 function App() {
   return (
@@ -74,7 +75,9 @@ function App() {
             <Route path="/checkout" component={ Checkout } />
             <Route path="/payment-history" component={ History } />
             <Route path="/delivery-details" component={ DeliveryDetails } />
+            
             <Route path="/insertItem/:id" component={ insertItem } />
+            <Route path="/addOfferItems/:id" component = { addOfferItem } />
 
           </Switch>
         </section>

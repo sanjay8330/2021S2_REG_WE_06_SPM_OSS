@@ -37,7 +37,7 @@ export default class AddProductOffer extends Component {
 
         //Calculate the discount
         let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
-        this.setState({ offerDiscount: discount.toFixed(2) });
+        this.setState({ offerDiscount: discount.toFixed(0) });
 
     }
 
@@ -97,7 +97,7 @@ export default class AddProductOffer extends Component {
                         "offerDescription": this.state.offerDescription,
                         "offerEndDate": this.state.offerEndDate,
                         "offerStatus": this.state.offerStatus,
-                        "productImage": this.state.productInfo.productImage,
+                        "productImage": this.state.productInfo.productImage, 
                         "productDescription": this.state.productInfo.productDescription
                     }
                     Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
