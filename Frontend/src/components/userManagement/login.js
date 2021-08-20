@@ -49,7 +49,7 @@ export default class Login extends Component {
                             Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
                             .then(response => {
                                 alert('General User logged in!!');
-                                // window.location = "/loggedHome"
+                                window.location = "/Home"
                             }).catch(error => {
                                 alert(error.message);
                             })  
