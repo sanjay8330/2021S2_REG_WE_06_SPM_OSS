@@ -97,7 +97,8 @@ export default class AddProductOffer extends Component {
                         "offerDescription": this.state.offerDescription,
                         "offerEndDate": this.state.offerEndDate,
                         "offerStatus": this.state.offerStatus,
-                        "productImage": this.state.productInfo.productImage
+                        "productImage": this.state.productInfo.productImage,
+                        "productDescription": this.state.productInfo.productDescription
                     }
                     Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)
                         .then(response => {
@@ -106,7 +107,6 @@ export default class AddProductOffer extends Component {
                         }).catch(error => {
                             alert(error.message);
                         })
-
                 }
             }).catch(error => {
                 alert(error.message);
