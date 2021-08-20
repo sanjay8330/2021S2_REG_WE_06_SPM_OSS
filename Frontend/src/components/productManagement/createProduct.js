@@ -12,7 +12,7 @@ const initialStates = {
     productDescription: '',
     productDescriptionError: '',
     categoryType: '',
-    productImage: 'No-Image'
+    productImage: 'No-Image',
 }
 
 export default class createProduct extends Component {
@@ -53,15 +53,16 @@ export default class createProduct extends Component {
         let isError = false;
         const errors = {
             productNameError: '',
-            productDescriptionError: ''
+            productDescriptionError: '',
+            productImageError: ''
         };
-        
-        if (this.state.productName.length < 3) {
+
+        if (this.state.productName.length < 4) {
             isError = true;
-            errors.productNameError = "Needs to be more than 2 characters long";
+            errors.productNameError = "Needs to be more than 3 characters long";
         }
 
-        if (this.state.productDescription.length < 5) {
+        if (this.state.productDescription.length < 6) {
             isError = true;
             errors.productDescriptionError = "Needs to be more than 5 characters long";
         }
@@ -187,7 +188,7 @@ export default class createProduct extends Component {
                                         </select><br />
                                         <br />
 
-                                        <span style={{ color: "black" }}>Product Image</span>
+                                        <span style={{ color: "black" }}>Product Image</span> 
                                         <input
                                             type="file"
                                             className="form-control"

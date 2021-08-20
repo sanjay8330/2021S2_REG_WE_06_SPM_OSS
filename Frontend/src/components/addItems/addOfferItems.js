@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import Header from '../header/header';
 
 const initialStates = {
     itemColor: '',
@@ -86,73 +87,58 @@ export default class addOfferItem extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="wrapper">
-                    <nav>
-                        <header><br />
-                            &nbsp; &nbsp;  &nbsp;
-                        </header><hr style={{ color: "white" }} />
-
-                    </nav>
                     <main>
-                        <div class="container border rounded" style={{ width: '950px' }}>
+                        <div class="container border rounded" style={{ width: '800px' }}>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
-                                    
-                                        <h1>{this.state.productinfo.productName}</h1>
+                                        <h2 style={{ color: '#8e9be6' }}>{this.state.productinfo.productName}</h2><br/>
 
-                                        <span style={{ color: "grey", fontSize: "14px" }}>Product Image</span><br />
-                                        <img src={this.state.productinfo.productImage} class="img-thumbnail" alt="..." style={{ width: '300px', height: '320px' }}></img><br /><br />
-                                        
                                         <span style={{ color: "grey", fontSize: "14px" }}>Product Description</span><br />
                                         <h4>{this.state.productinfo.productDescription}</h4>
 
                                         <span style={{ color: "grey", fontSize: "14px" }}>Product Offer Price</span><br />
                                         <h4>{"Rs. " + this.state.productinfo.offerPrice + " /="}</h4>
 
-
                                         <div className="form-group">
-
                                             <span style={{ color: "black" }}>Item Color</span>
                                             <select name="itemColor" id="itemColor" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                                <option selected value="item_color" disabled></option>
+                                                <option selected value="item_color" disabled>select color</option>
                                                 <option value="Black">Black</option>
                                                 <option value="Grey">Grey</option>
                                                 <option value="Blue">Blue</option>
                                                 <option value="Red">red</option>
                                                 <option value="Matt">Matt</option>
                                             </select><br />
-                                            <br />
 
                                             <span style={{ color: "black" }}>Item Size</span>
                                             <select name="itemSize" id="itemSize" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                                <option selected value="item_size" disabled></option>
+                                                <option selected value="item_size" disabled>select size</option>
                                                 <option value="S">S</option>
                                                 <option value="M">M</option>
                                                 <option value="L">L</option>
                                                 <option value="XL">XL</option>
                                                 <option value="XLL">XLL</option>
                                             </select><br />
-                                            <br />
 
                                             <span style={{ color: "black" }}>Item Quantity</span>
                                             <select name="itemQuantity" id="itemQuantity" onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                                <option selected value="item_quantity" disabled></option>
+                                                <option selected value="item_quantity" disabled>select quantity</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="5">4</option>
                                                 <option value="6">5</option>
                                             </select><br />
-                                            <br />
 
                                             <button type="submit" className="btn btn-dark" id="submitBtn">Add to cart</button>
                                         </div>
                                         <br />
                                     </form>
                                 </div>
-
-                            </div>
+                                <img src={this.state.productinfo.productImage} class="img-thumbnail" alt="..." style={{ width: '390px', height: '480px' }}></img></div>
                         </div>
                     </main>
                 </div>
