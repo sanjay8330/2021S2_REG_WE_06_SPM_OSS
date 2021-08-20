@@ -70,9 +70,13 @@ export default class addOfferItem extends Component {
         if (!err) {
 
             let item = {
-                itemColor: this.state.itemColor,
-                itemSize: this.state.itemSize,
-                itemQuantity: this.state.itemQuantity,
+                "productName": this.state.productinfo.productName,
+                "productImage": this.state.productinfo.productImage,
+                "productDescription": this.state.productinfo.productDescription,
+                "productPrice": this.state.productinfo.productPrice,
+                "productColor": this.state.itemColor,
+                "productSize": this.state.itemSize,
+                "productQuantity": this.state.itemQuantity
             }
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
