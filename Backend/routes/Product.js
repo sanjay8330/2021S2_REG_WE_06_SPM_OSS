@@ -83,4 +83,14 @@ router.route('/deleteProduct/:id').delete(async (req, res) => {
     }
 });
 
+//Get all productsvon men category - CUSTOMER TASK
+router.route('/getAllMenProducts').get(async (req, res) => {
+    await ProductModel.find({categoryType: 'Men'})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
 module.exports = router;

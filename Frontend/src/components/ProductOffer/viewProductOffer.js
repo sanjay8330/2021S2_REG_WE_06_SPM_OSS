@@ -33,7 +33,7 @@ export default class ViewProductOffer extends Component {
     }
 
     componentDidMount(e) {
-        Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
+        Axios.get('http://localhost:3001/productOffer/getAllProductOffers') 
             .then(response => {
                 this.setState({ productOffers: response.data.data });
             }).catch(error => {

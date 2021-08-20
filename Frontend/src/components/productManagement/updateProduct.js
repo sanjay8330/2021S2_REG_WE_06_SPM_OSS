@@ -121,9 +121,9 @@ export default class updateProduct extends Component {
                         <div class="container border rounded" style={{ width: '950px' }}>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <form onSubmit={this.onSubmit}><br /><br /><br />
-                                        <div className="form-group">
-                                            <span style={{ color: "black" }}>Product Name*</span> &emsp; &emsp; &emsp; <font color="red" style={{ fontSize: '14px' }}>{this.state.productNameError}</font>
+                                    <form onSubmit={this.onSubmit}>
+                                        <div className="form-group"><br/>
+                                            <span style={{ color: "black" }}>Product Name<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <font color="red" style={{ fontSize: '14px' }}>{this.state.productNameError}</font>
                                             <input
                                                 class="form-control"
                                                 type="text"
@@ -134,7 +134,7 @@ export default class updateProduct extends Component {
                                                 style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}
                                             /></div><br />
 
-                                        <span style={{ color: "black" }}>Product Price (Rs.)*</span>
+                                        <span style={{ color: "black" }}>Product Price (Rs.)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                         <input
                                             class="form-control"
                                             type="number"
@@ -144,7 +144,7 @@ export default class updateProduct extends Component {
                                             required
                                             style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }} /><br />
 
-                                        <span style={{ color: "black" }}>Product Discount (%)*</span>
+                                        <span style={{ color: "black" }}>Product Discount (%)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                         <input
                                             class="form-control"
                                             type="number"
@@ -155,7 +155,7 @@ export default class updateProduct extends Component {
                                             style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }} /><br />
 
                                         <div className="form-group">
-                                            <span style={{ color: "black" }}>Product Description*</span>&emsp; &emsp;<font color="red" style={{ fontSize: '14px' }}>{this.state.productDescriptionError}</font>
+                                            <span style={{ color: "black" }}>Product Description<span style={{ color: "red", fontSize: "24px" }}>*</span></span>&emsp; &emsp;<font color="red" style={{ fontSize: '14px' }}>{this.state.productDescriptionError}</font>
                                             <textarea
                                                 className="form-control"
                                                 rows="2"
@@ -166,7 +166,7 @@ export default class updateProduct extends Component {
                                                 style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
                                             </textarea></div><br />
 
-                                            <span style={{ color: "black" }}>Product Category*</span>
+                                            <span style={{ color: "black" }}>Product Category<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
                                             <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
                                                 <option value="Men">Men</option>
                                                 <option value="Women">Women</option>
@@ -175,12 +175,11 @@ export default class updateProduct extends Component {
                                                 <option value="Kids">Kids</option>
                                                 <option value="Babies">Babies</option>
                                             </select><br />
-                                            <br />
 
                                             <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
-                                    <img style = {{ width: '450px' , height: '560px'}} src = {this.state.productImage}/>
+                                    <img style = {{ width: '450px' , height: '560px'}} src = {this.state.productImage} class="zoom"/>
                                 </div>
                             </div>
                     </main>
