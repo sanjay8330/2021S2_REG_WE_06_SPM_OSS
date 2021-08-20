@@ -13,3 +13,5 @@ router.route('/paymentDetails').post(async (req, res) => {
         })
     }
 });
+
+module.exports = router;

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
 import firebase from '../../Firebase/firebase';
+import Header from '../header/header';
 
 const initialStates = {
     amount: '500',
     paymentMethod: '',
-    slip: 'no-slip-cash-on-delivery',
+    slip: 'No-Image',
     comments: '',
 }
 
@@ -35,11 +36,11 @@ export default class checkout extends Component {
                 amount: this.state.amount,
                 paymentMethod: this.state.paymentMethod,
                 slip: this.state.slip,
-                comments: this.state.comments,
+                comments: this.state.comments
             }
             
             console.log("Data", checkout);
-            Axios.post('http://localhost:3001/checkout/insert', checkout)
+            Axios.post('http://localhost:3001/checkout/paymentDetails', checkout)
                 .then(response => {
                     alert('Checkout Details Added Successfully');
                     //window.location = "/checkout";
@@ -62,13 +63,15 @@ export default class checkout extends Component {
         });
 
         const downloadImage = await fileRef.getDownloadURL();
-        this.setState({ productImage: downloadImage });
+        this.setState({ slip: downloadImage });
         alert('Image Uploaded Successfully!!', file.name);
         document.getElementById("submitBtn").disabled = false;
     }
 
     render(){
         return(
+            <div>
+            <Header />
             <main>
                 <h1>&nbsp;&nbsp;&nbsp;&nbsp;Checkout</h1>
                 <div class="container border rounded" style={{ width: '950px' }}>
@@ -124,6 +127,7 @@ export default class checkout extends Component {
                             </div>
                         </div>
             </main>
+            </div>
         )
     }
 
