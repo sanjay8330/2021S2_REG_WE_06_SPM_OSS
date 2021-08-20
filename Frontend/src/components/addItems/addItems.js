@@ -6,7 +6,8 @@ const initialStates = {
     itemSize: '',
     itemSizeError: '',
     itemQuantity: '',
-    itemQuantityError: ''
+    itemQuantityError: '',
+    "productinfo": []
 }
 
 export default class addItem extends Component {
@@ -20,6 +21,16 @@ export default class addItem extends Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+   
+    componentDidMount() {
+        Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState({ productinfo: response.data.data });
+            }).catch(error => {
+                console.log(error.message);
+            })
     }
 
 
@@ -63,7 +74,7 @@ export default class addItem extends Component {
                 itemSize: this.state.itemSize,
                 itemQuantity: this.state.itemQuantity,
             }
-            Axios.post('http://localhost:3001/insertItem', item)
+            Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
                     alert('Item Details Added Successfully');
                 }).catch(error => {
@@ -88,8 +99,8 @@ export default class addItem extends Component {
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
 
-                                        <h1> Item Name</h1>
-                                        <img src="..." class="img-thumbnail" alt="..."></img>
+                                        <h1>{this.state.productinfo.productName}</h1>
+                                        <img src={this.state.productinfo.productImage} class="img-thumbnail" alt="..."></img>
                                         <div className="form-group">
 
                                             <span style={{ color: "black" }}>Item Color</span>
@@ -136,8 +147,6 @@ export default class addItem extends Component {
                     </main>
                 </div>
             </div>
-
-
         )
     }
 

@@ -71,7 +71,7 @@ function App() {
 
             <Route path="/checkout" component={ Checkout } />
 
-            <Route path="/insertItem" component={ insertItem } />
+            <Route path="/insertItem/:id" component={ insertItem } />
           </Switch>
         </section>
       </Router>

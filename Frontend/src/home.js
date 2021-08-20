@@ -21,6 +21,7 @@ const initialStates = {
 export default class home extends Component {
     constructor(props) {
         super(props);
+        this.navigateToAdditempage = this.navigateToAdditempage.bind(this);
         this.state = initialStates;
     }
 
@@ -33,6 +34,10 @@ export default class home extends Component {
                 alert(error.message);
             })
 
+    }
+
+    navigateToAdditempage(e, productID){
+        window.location = `/insertItem/${productID}`;
     }
 
     render() {
@@ -114,7 +119,7 @@ export default class home extends Component {
                                         <p style={{ color: "red" }}><strike>{"Rs." + item.productPrice}</strike></p>
                                         <p style={{ fontSize: "20px" }}>{"Rs." + item.offerPrice}</p>
                                         <i><p style={{ fontSize: "14px", color: "grey" }}>{item.offerDescription}</p></i>
-                                        <button type="button" class="btn btn-dark">Add To Cart</button>
+                                        <button onClick={e => this.navigateToAdditempage(e, item.product._id)} type="button" class="btn btn-dark">Add To Cart</button>
                                     </div><br />
                                 </div><br /><br />
 
