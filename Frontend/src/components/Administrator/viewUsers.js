@@ -48,12 +48,9 @@ export default class ViewUsers extends Component {
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
-                            <li><a href="/createProduct" style={{ color: "white" }} >Add Products</a></li>
-                            <li><a href="/viewProducts" style={{ color: "white" }} >View Products</a></li>
-                            <li><a href="/addProductOffer" style={{ color: "white" }} >Add Product Offers</a></li>
-                            <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
-                            <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
-                            <li><a href="/viewUsers" style={{ color: "white" }} class="active">View Users</a></li>
+                            <li><a href="/viewProducts" style={{ color: "white" }} >Manage Products</a></li>
+                            <li><a href="/viewProductOffers" style={{ color: "white" }}>Manage Product Offers</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }} class="active">Manage Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
@@ -61,13 +58,8 @@ export default class ViewUsers extends Component {
 
                         <h1>VIEW USERS</h1>
 
-                        <div class="d-grid gap-2 d-md-block">
-                            <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button>
-                        </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
                             <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
-                        </div><br />
 
                         <div class="wrap">
                             <div class="search">
