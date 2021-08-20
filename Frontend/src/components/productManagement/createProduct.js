@@ -117,6 +117,7 @@ export default class createProduct extends Component {
                             <li><a href="/addProductOffer" style={{ color: "white" }}>Add Product Offers</a></li>
                             <li><a href="/viewProductOffers" style={{ color: "white" }}>View Product Offers</a></li>
                             <li><a href="/adminUserRegister" style={{ color: "white" }}>Add Users</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }}>View Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>

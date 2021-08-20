@@ -113,6 +113,7 @@ export default class AdminAddUser extends Component {
                             <li><a href="/addProductOffer" style={{ color: "white" }} >Add Product Offers</a></li>
                             <li><a href="/viewProductOffers" style={{ color: "white" }} >View Product Offers</a></li>
                             <li><a href="/adminUserRegister" style={{ color: "white" }} class="active">Add Users</a></li>
+                            <li><a href="/viewUsers" style={{ color: "white" }}>View Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                     </ul>
                 </nav>
@@ -158,13 +159,6 @@ export default class AdminAddUser extends Component {
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                             title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" /><br />
 
-                        <PasswordChecklist
-                            rules={["minLength", "specialChar", "number", "capital"]}
-                            minLength={5}
-                            value={this.state.password}
-                            onChange={(isValid) => { }}
-                        /><br />
-
                         <span style={{ color: "black" }}>Confirm Password</span>
                         <input
                             class="form-control"
@@ -174,6 +168,14 @@ export default class AdminAddUser extends Component {
                             value={this.state.confirmPassword}
                             onChange={this.onChange}
                             required /><br />
+                        
+                        <PasswordChecklist
+                            rules={["minLength", "specialChar", "number", "capital", "match"]}
+                            minLength={5}
+                            value={this.state.password}
+                            valueAgain={this.state.confirmPassword}
+                            onChange={(isValid) => { }}
+                        /><br />
 
                         <span style={{ color: "black" }}>Contact Number</span>
                         <input

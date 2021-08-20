@@ -9,6 +9,8 @@ import Login from './components/userManagement/login';
 import ForgotPassword from './components/userManagement/forgotPassword';
 import ResetPassword from './components/userManagement/resetPassword';
 import AdminAddUser from './components/Administrator/registerUsers';
+import ViewUsers from './components/Administrator/viewUsers';
+import ViewAdministrators from './components/Administrator/viewAdmins';
 
 //Product Offer Management - Routes
 import AddProductOffer from './components/ProductOffer/addProductOffer';
@@ -44,6 +46,8 @@ function App() {
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
             <Route path="/adminUserRegister" component={ AdminAddUser } />
+            <Route path="/viewUsers" component={ ViewUsers } />
+            <Route path="/viewAdmin" component={ ViewAdministrators } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
