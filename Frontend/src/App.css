@@ -206,3 +206,10 @@
   opacity: 0.7;
 }
 
+main {
+  flex: 1;
+  padding: 55px;
+  background: #f5f5f5;
+}
+
+

@@ -28,7 +28,7 @@ class Header extends Component {
                             </a>
                         </div>
                         <div class="comp comp--background-transparent comp--border-none pull-left">
-                            <a href="/" class="hdr-btn link-reset">
+                            <a href="/home" class="hdr-btn link-reset">
                                 HOME
                             </a>
                         </div>
@@ -43,7 +43,7 @@ class Header extends Component {
                             </a>
                         </div>
                         <div class="comp pull-right show-logout">
-                            <a href="/login" class="hdr-btn link-reset" data-login-modal="">
+                            <a href="/" class="hdr-btn link-reset" data-login-modal="">
                                 LOGIN
                             </a>
                         </div>
