@@ -38,15 +38,15 @@ export default class addOfferItem extends Component {
 
         this.setState({ userID: this.props.match.params.userId });
 
-         //Getting the current date
-         this.state.today = new Date();
-         var dd = String(this.state.today.getDate());
-         var mm = String(this.state.today.getMonth() + 1); //January is 0!
-         var yyyy = this.state.today.getFullYear();
- 
-         var date = mm + '-' + dd + '-' + yyyy;
- 
-         this.setState({ currentDate: date});     
+        //Getting the current date
+        this.state.today = new Date();
+        var dd = String(this.state.today.getDate());
+        var mm = String(this.state.today.getMonth() + 1); //January is 0!
+        var yyyy = this.state.today.getFullYear();
+
+        var date = mm + '-' + dd + '-' + yyyy;
+
+        this.setState({ currentDate: date });
     }
 
 
@@ -88,7 +88,7 @@ export default class addOfferItem extends Component {
         if (!err) {
 
             let item = {
-                "userID": this.state.userID, 
+                "userID": this.state.userID,
                 "productName": this.state.productinfo.productName,
                 "productImage": this.state.productinfo.productImage,
                 "productDescription": this.state.productinfo.productDescription,
@@ -101,6 +101,7 @@ export default class addOfferItem extends Component {
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
                     alert('Item Details Added Successfully');
+                    window.location = `/home/${this.state.userID}`;
                 }).catch(error => {
                     alert(error.message);
                 })
@@ -117,7 +118,7 @@ export default class addOfferItem extends Component {
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}><br />
-                                        <h2 style={{ color: '#8e9be6' }}>{this.state.productinfo.productName}</h2><br/>
+                                        <h2 style={{ color: '#8e9be6' }}>{this.state.productinfo.productName}</h2><br />
 
                                         <span style={{ color: "grey", fontSize: "14px" }}>Product Description</span><br />
                                         <h4>{this.state.productinfo.productDescription}</h4>

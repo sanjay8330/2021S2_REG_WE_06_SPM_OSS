@@ -30,62 +30,62 @@ export default class paymentHistory extends Component {
             })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <main>
-            <div class="wrap">
-                <div class="search">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        name="searchProduct"
-                        id="searchProduct"
-                        onChange={this.onChange}
-                        class="searchTerm" />
+                <div class="wrap">
+                    <div class="search">
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            name="searchProduct"
+                            id="searchProduct"
+                            onChange={this.onChange}
+                            class="searchTerm" />
                         <button type="submit" class="searchButton">
                             <i class="fa fa-search"></i>
-                            </button>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <br/><br/>
-            <table class="table border shadow" id="casti_male">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Receiver's name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Payment Method</th>
-                                    <th scope="col">Delete</th>
-                                </tr>
-                            </thead>
+                <br /><br />
+                <table class="table border shadow" id="casti_male">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Receiver's name</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
 
-                            <tbody>
-                                {this.state.payment.length > 0 && this.state.payment.filter((values) => {
-                                    if (this.state.searchPayment == "") {
-                                        return values;
-                                    } else if (values.checkout.toLowerCase().includes(this.state.checkout.toLowerCase())) {
-                                        return values;
-                                    }
-                                }).map((item, index) =>
-                                    <tr>
-                                            
-                                            
+                    <tbody>
+                        {this.state.payment.length > 0 && this.state.payment.filter((values) => {
+                            if (this.state.searchPayment == "") {
+                                return values;
+                            } else if (values.checkout.toLowerCase().includes(this.state.checkout.toLowerCase())) {
+                                return values;
+                            }
+                        }).map((item, index) =>
+                            <tr>
 
-                                            <td>
-                                                <li class="list-inline-item">
-                                                    <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
-                                                </li>
-                                            </td>
 
-                                    </tr>
-                                )}
-                            </tbody>
 
-            
-            </table>
-            
- 
+                                <td>
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
+                                    </li>
+                                </td>
+
+                            </tr>
+                        )}
+                    </tbody>
+
+
+                </table>
+
+
 
             </main>
 

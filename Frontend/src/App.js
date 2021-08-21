@@ -75,9 +75,9 @@ function App() {
             <Route path="/babiesProducts/:userId" component={babiesProducts}/>
             <Route path="/teenagersProducts/:userId" component={teenagersProducts}/>
 
-            <Route path="/checkout/:id" component={ Checkout } />
-            <Route path="/payment-history" component={ History } />
-            <Route path="/delivery-details" component={ DeliveryDetails } />
+            <Route path="/checkout/:userId" component={ Checkout } />
+            <Route path="/payment-history/:userId" component={ History } />
+            <Route path="/delivery-details/:userId" component={ DeliveryDetails } />
             
             <Route path="/insertItem/:id/:userId" component={ insertItem } />
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
