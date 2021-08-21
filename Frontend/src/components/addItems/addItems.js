@@ -102,6 +102,7 @@ export default class addItem extends Component {
             Axios.post('http://localhost:3001/insertitem/addItem', item)
                 .then(response => {
                     alert('Item Details Added Successfully');
+                    window.location =`/home/${this.state.userID}`;
                 }).catch(error => {
                     alert(error.message);
                 })
