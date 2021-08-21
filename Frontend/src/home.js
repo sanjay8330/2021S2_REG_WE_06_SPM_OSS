@@ -45,7 +45,7 @@ export default class home extends Component {
         window.location = `/addOfferItems/${productID}/${userId}`;
     }
 
-    navigateViewCart(e, userId){
+    navigateViewCart(e, userId) {
         userId = this.state.userId;
         window.location = `/viewItems/${userId}`;
     }
@@ -69,6 +69,8 @@ export default class home extends Component {
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary" type="button" onClick={this.navigateViewCart} style={{ marginRight: '5%' }}>View Shopping Cart</button>
                 </div><br />
+
+
 
                 <div class="titleNew"><br />
                     <center><h1>NEW ARRIVALS</h1></center><br />

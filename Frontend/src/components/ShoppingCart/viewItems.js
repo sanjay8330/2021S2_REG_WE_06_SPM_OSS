@@ -19,7 +19,7 @@ export default class ViewShoppingcart extends Component {
     }
 
     //Navigate to the Payment History Page
-    navigateToPaymentHistory(e){
+    navigateToPaymentHistory(e) {
         window.location = `/payment-history/${this.props.match.params.userId}`;
     }
     navigateToCheckOut(e) {
@@ -51,7 +51,7 @@ export default class ViewShoppingcart extends Component {
     render() {
         return (
             <div>
-                <Header /><br/>
+                <Header /><br />
                 <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -103,8 +103,8 @@ export default class ViewShoppingcart extends Component {
                     </tbody>
                 </table><br />
 
-                <b><h3 style={{ color: "red"}}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
-                            
+                <b><h3 style={{ color: "red" }}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
+
                 <br /><br /><br />
 
             </div>
