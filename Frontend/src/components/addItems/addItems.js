@@ -4,6 +4,7 @@ import Header from '../header/header';
 
 const initialStates = {
     itemColor: '',
+    itemColorError:'',
     itemSize: '',
     itemSizeError: '',
     itemQuantity: '',
@@ -55,9 +56,15 @@ export default class addItem extends Component {
     validate = () => {
         let isError = false;
         const errors = {
+            itemColorError:'',
             itemSizeError: '',
             itemQuantityError: ''
         };
+
+        if (this.state.itemColor == null) {
+            isError = true;
+            errors.itemSizeError = "you need to select the Color of the item";
+        }
 
         if (this.state.itemSize == null) {
             isError = true;
