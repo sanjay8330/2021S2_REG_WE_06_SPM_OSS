@@ -114,7 +114,7 @@ export default class ForgotPassword extends Component {
                                         <input class="btn btn--form" type="submit" value="Validate Me" />
                                     </li>
                                     <li><br />
-                                        <a class="signup__link" href="/login">Remember Password</a>
+                                        <a class="signup__link" href="/">Remember Password</a>
                                     </li>
                                 </ul>
                             </div>

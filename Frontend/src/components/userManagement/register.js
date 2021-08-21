@@ -38,7 +38,7 @@ export default class register extends Component {
                 if (this.state.existingUser.length === 1) {
                     this.state.checkUser = false;
                     alert('User already exists');
-                    window.location = '/login';
+                    window.location = '/';
 
                 } else if (this.state.password !== this.state.confirmPassword) {
                     alert('Password Mismatch!!');
@@ -190,7 +190,7 @@ export default class register extends Component {
                                         <input class="btn btn--form" type="submit" value="Register" />
                                     </li>
                                     <li><br />
-                                        <a class="signup__link" href="/login">I am already a member</a>
+                                        <a class="signup__link" href="/">I am already a member</a>
                                     </li>
                                 </ul>
                             </div>

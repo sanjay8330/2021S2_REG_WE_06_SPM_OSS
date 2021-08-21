@@ -52,9 +52,6 @@ class Header extends Component {
                                 SIGNUP
                             </a>
                         </div>
-                        <div class="comp pull-right show-logout">
-                           <i class="fa fa-shopping-cart" style={{ color: "#e3dfd5", fontSize: "23px",  marginRight: "20px"}}></i>
-                        </div>
                         <div class="search-bar-container pull-right">
                         </div>
                     </div>
