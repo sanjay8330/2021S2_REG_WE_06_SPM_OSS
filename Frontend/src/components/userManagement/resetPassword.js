@@ -55,7 +55,7 @@ export default class ResetPassword extends Component {
                     Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
                     .then(response => {
                         alert('Password Reset Successful!!');
-                        window.location = "/login";
+                        window.location = "/";
                     }).catch(error => {
                         alert(error.message);
                     })  
