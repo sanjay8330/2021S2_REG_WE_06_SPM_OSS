@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
+import Header from '../header/header';
 
 const initialStates = {
     "today": '',
@@ -40,8 +41,12 @@ export default class ViewShoppingcart extends Component {
     render() {
         return (
             <div>
+                <Header /><br/>
+                <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center>
 
-                <h2>Shopping cart</h2><br />
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-dark" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
+                </div><br />
 
                 <table class="table border shadow">
                     <thead class="thead-dark">
@@ -85,15 +90,10 @@ export default class ViewShoppingcart extends Component {
                             </tr>
                         )}
                     </tbody>
-                </table><br /><br />
+                </table><br />
 
-                <h3>Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3>
+                <b><h3 style={{ color: "red"}}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
                             
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '5%' }}>Checkout</button>
-                </div><br />
-
-
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                 <br /><br /><br /><br /><br /><br />
 
