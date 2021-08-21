@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const ItemSchema = new mongoose.Schema({
 
     userID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: false,
-        ref: 'Users'
+        trim: true 
+        /*type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Users'*/
     },
 
     productName: { 
@@ -48,6 +51,12 @@ const ItemSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true 
+    },
+
+    date: {
+        type: String,
+        required: true,
+        trim: true
     }
 
 });

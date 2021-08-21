@@ -9,7 +9,9 @@ const initialStates = {
     itemQuantity: '',
     itemQuantityError: '',
     "productinfo": [],
-    "userID": ''
+    "userID": '',
+    "today": '',
+    "currentDate": ''
 }
 
 export default class addOfferItem extends Component {
@@ -34,7 +36,17 @@ export default class addOfferItem extends Component {
                 console.log(error.message);
             })
 
-        this.setState({ userID: this.props.match.params.userId })
+        this.setState({ userID: this.props.match.params.userId });
+
+         //Getting the current date
+         this.state.today = new Date();
+         var dd = String(this.state.today.getDate());
+         var mm = String(this.state.today.getMonth() + 1); //January is 0!
+         var yyyy = this.state.today.getFullYear();
+ 
+         var date = mm + '-' + dd + '-' + yyyy;
+ 
+         this.setState({ currentDate: date});     
     }
 
 
@@ -69,6 +81,8 @@ export default class addOfferItem extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        console.log(this.state.currentDate);
+
         //Validate the data
         const err = this.validate();
         if (!err) {
@@ -81,7 +95,8 @@ export default class addOfferItem extends Component {
                 "productPrice": this.state.productinfo.productPrice,
                 "productColor": this.state.itemColor,
                 "productSize": this.state.itemSize,
-                "productQuantity": this.state.itemQuantity
+                "productQuantity": this.state.itemQuantity,
+                "date": this.state.currentDate
             }
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
