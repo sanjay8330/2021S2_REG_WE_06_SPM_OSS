@@ -141,6 +141,9 @@ export default class createProduct extends Component {
                                         <br />
 
                                         <span style={{ color: "black" }}>Product Price (Rs.)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
+                                        <span style={{ color: "grey", fontSize: "13px" }}> 
+                                        &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; 
+                                        Allow only numbers</span>
                                         <input
                                             class="form-control"
                                             type="number"
@@ -153,6 +156,9 @@ export default class createProduct extends Component {
                                         <br />
 
                                         <span style={{ color: "black" }}>Product Discount (%)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
+                                        <span style={{ color: "grey", fontSize: "13px" }}> 
+                                        &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  
+                                        Allow only numbers</span>
                                         <input
                                             class="form-control"
                                             type="number"

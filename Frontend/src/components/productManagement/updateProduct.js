@@ -120,7 +120,7 @@ export default class updateProduct extends Component {
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}>
-                                        <div className="form-group"><br/>
+                                        <div className="form-group"><br />
                                             <span style={{ color: "black" }}>Product Name<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <font color="red" style={{ fontSize: '14px' }}>{this.state.productNameError}</font>
                                             <input
                                                 class="form-control"
@@ -133,6 +133,9 @@ export default class updateProduct extends Component {
                                             /></div><br />
 
                                         <span style={{ color: "black" }}>Product Price (Rs.)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
+                                        <span style={{ color: "grey", fontSize: "13px" }}>
+                                            &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp; &emsp;&emsp;&emsp;
+                                            Allow only numbers</span>
                                         <input
                                             class="form-control"
                                             type="number"
@@ -143,6 +146,9 @@ export default class updateProduct extends Component {
                                             style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }} /><br />
 
                                         <span style={{ color: "black" }}>Product Discount (%)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
+                                        <span style={{ color: "grey", fontSize: "13px" }}>
+                                            &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;
+                                            Allow only numbers</span>
                                         <input
                                             class="form-control"
                                             type="number"
@@ -164,26 +170,26 @@ export default class updateProduct extends Component {
                                                 style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
                                             </textarea></div><br />
 
-                                            <span style={{ color: "black" }}>Product Category<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
-                                            <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                                <option value="Men">Men</option>
-                                                <option value="Women">Women</option>
-                                                <option value="Teenagers">Teenagers</option>
-                                                <option value="Kids">Kids</option>
-                                                <option value="Babies">Babies</option>
-                                            </select><br />
+                                        <span style={{ color: "black" }}>Product Category<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
+                                        <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                            <option value="Men">Men</option>
+                                            <option value="Women">Women</option>
+                                            <option value="Teenagers">Teenagers</option>
+                                            <option value="Kids">Kids</option>
+                                            <option value="Babies">Babies</option>
+                                        </select><br />
 
-                                            <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
+                                        <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
-                                    <img style = {{ width: '450px' , height: '560px'}} src = {this.state.productImage} class="zoom"/>
-                                </div>
+                                <img style={{ width: '450px', height: '560px' }} src={this.state.productImage} class="zoom" />
                             </div>
+                        </div>
                     </main>
                 </div>
-                </div>
+            </div>
 
 
-                )
+        )
     }
 }
