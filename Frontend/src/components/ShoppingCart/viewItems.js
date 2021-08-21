@@ -5,21 +5,31 @@ import Axios from 'axios';
 const initialStates = {
     "today": '',
     "itemlist": [],
-    "totalamount": 0
+    "totalamount": 0,
+    "userId": ''
 }
 
 export default class ViewShoppingcart extends Component {
     constructor(props) {
         super(props);
         this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
+        this.navigateToPaymentHistory = this.navigateToPaymentHistory.bind(this);
         this.state = initialStates;
     }
 
+    //Navigate to the Payment History Page
+    navigateToPaymentHistory(e){
+        window.location = `/payment-history/${this.props.match.params.userId}`;
+    }
     navigateToCheckOut(e) {
-        window.location = `/checkout/${this.props.match.params.userId}`;
+        //window.location = `/checkout/${this.props.match.params.userId}`;
+        window.location = `/delivery-details/${this.props.match.params.userId}`;
     }
 
     componentDidMount(e) {
+
+        //Set the global state for user ID
+        this.setState({ userId: this.props.match.params.userId });
 
         //Getting the current date
         this.state.today = new Date();
@@ -43,6 +53,10 @@ export default class ViewShoppingcart extends Component {
 
                 <h2>Shopping cart</h2><br />
 
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '5%' }}>Payment History</button>
+                </div><br />
+
                 <table class="table border shadow">
                     <thead class="thead-dark">
                         <tr>
@@ -56,7 +70,7 @@ export default class ViewShoppingcart extends Component {
                             <th scope="col">ITEM TOTAL PRICE</th>
                             <th scope="col">EDIT</th>
                             <th scope="col">DELETE</th>
-                            <th scope="col" style={{ display:"none" }}>TOTAL IN ROW</th>
+                            <th scope="col" style={{ display: "none" }}>TOTAL IN ROW</th>
 
                         </tr>
                     </thead>
@@ -81,14 +95,14 @@ export default class ViewShoppingcart extends Component {
                                         <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                                     </li>
                                 </td>
-                                <td style={{ display:"none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
+                                <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
                             </tr>
                         )}
                     </tbody>
                 </table><br /><br />
 
                 <h3>Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3>
-                            
+
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '5%' }}>Checkout</button>
                 </div><br />

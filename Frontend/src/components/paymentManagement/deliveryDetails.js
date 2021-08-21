@@ -13,7 +13,8 @@ const initialStates = {
     streetAddress2: '',
     city: '',
     province: '',
-    postalCode: ''
+    postalCode: '',
+    "userId": ''
 }
 
 
@@ -29,6 +30,10 @@ export default class deliveryDetails extends Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    componentDidMount(){
+        this.setState({ userId: this.props.match.params.userId });
     }
 
     onSubmit(e) {
@@ -53,7 +58,7 @@ export default class deliveryDetails extends Component {
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
             .then(response => {
                 alert('Delivery Details Added Successfully');
-                //window.location = "/checkout";
+                window.location = `/checkout/${this.state.userId}`;
             }).catch(error => {
                 alert(error.message);
             })
