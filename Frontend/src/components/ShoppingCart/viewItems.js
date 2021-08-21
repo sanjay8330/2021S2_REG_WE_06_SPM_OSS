@@ -52,6 +52,7 @@ export default class ViewShoppingcart extends Component {
         return (
             <div>
                 <Header /><br />
+                <main>
                 <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -103,10 +104,10 @@ export default class ViewShoppingcart extends Component {
                     </tbody>
                 </table><br />
 
-                <b><h3 style={{ color: "red" }}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
+                <b><h3 style={{ color: "red", backgroundColor: "#c7d4ca", width: "340px" }}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
 
                 <br /><br /><br />
-
+            </main>
             </div>
         )
     }

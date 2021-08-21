@@ -67,7 +67,7 @@ export default class home extends Component {
                 </div><br /><br /><br />
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary" type="button" onClick={this.navigateViewCart} style={{ marginRight: '5%' }}>View Shopping Cart</button>
+                    <button class="btn btn-dark" type="button" onClick={this.navigateViewCart} style={{ marginRight: '5%' }}>View Shopping Cart</button>
                 </div><br />
 
 
