@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DeliverySchema = new mongoose.Schema({
+const HistorySchema = new mongoose.Schema({
 
     senderName: { 
         type: String,
@@ -64,5 +64,5 @@ const DeliverySchema = new mongoose.Schema({
 
 });
 
-const delivery = mongoose.model("Delivery", DeliverySchema);
-module.exports = delivery;
+const history = mongoose.model("History", HistorySchema);
+module.exports = history;

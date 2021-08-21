@@ -52,7 +52,8 @@ export default class deliveryDetails extends Component {
             streetAddress2: this.state.streetAddress2,
             province: this.state.province,
             city: this.state.city,
-            postalCode: this.state.postalCode
+            postalCode: this.state.postalCode,
+            userId: this.state.userId,
         }
         //console.log("Data", deliveryDetails);
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)

@@ -7,7 +7,7 @@ const initialStates = {
     "today": '',
     "itemlist": [],
     "totalamount": 0,
-    "userId": ''
+    "userId": '',
 }
 
 export default class ViewShoppingcart extends Component {
@@ -24,7 +24,7 @@ export default class ViewShoppingcart extends Component {
     }
     navigateToCheckOut(e) {
         //window.location = `/checkout/${this.props.match.params.userId}`;
-        window.location = `/delivery-details/${this.props.match.params.userId}`;
+        window.location = `/delivery-details/${this.props.match.params.userId}/${this.props.match.params.totalamount}`;
     }
 
     componentDidMount(e) {

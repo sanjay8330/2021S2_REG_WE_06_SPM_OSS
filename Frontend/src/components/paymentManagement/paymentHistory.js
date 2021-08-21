@@ -7,7 +7,8 @@ import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     "payment": [],
-    "searchPayment": ''
+    "searchPayment": '',
+    "userId": '',
 }
 
 export default class paymentHistory extends Component {
@@ -18,11 +19,14 @@ export default class paymentHistory extends Component {
     }
 
     onChange(e) {
-        this.setState({ searchProduct: e.target.value });
+        this.setState({ searchPayment: e.target.value });
     }
 
-    componentDidMount(e) {
-        Axios.get('http://localhost:3001/checkout/payment-history')
+    componentDidMount(e) {        
+        //Set the global state for user ID
+        this.setState({ userId: this.props.match.params.userId });
+
+        Axios.get(`http://localhost:3001/checkout/payment-history/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ checkout: response.data.data });
             }).catch(error => {
@@ -52,8 +56,6 @@ export default class paymentHistory extends Component {
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Date</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Receiver's name</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Delete</th>
@@ -64,21 +66,26 @@ export default class paymentHistory extends Component {
                         {this.state.payment.length > 0 && this.state.payment.filter((values) => {
                             if (this.state.searchPayment == "") {
                                 return values;
-                            } else if (values.checkout.toLowerCase().includes(this.state.checkout.toLowerCase())) {
+                            } else if (values.payment.toLowerCase().includes(this.payment.checkout.toLowerCase())) {
                                 return values;
                             }
-                        }).map((item, index) =>
+                        }).map((payment, index) =>
                             <tr>
-
+                                        <td>{payment.date}</td>
+                                        <td>{"Rs." + payment.amount}.00</td>
+                                        <td>{payment.paymentMethod}</td>
+                                        <td>{payment.comments}</td>
 
 
                                 <td>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, payment._id)}><i class="fa fa-trash"></i></button>
                                     </li>
                                 </td>
 
                             </tr>
+
+                            
                         )}
                     </tbody>
 

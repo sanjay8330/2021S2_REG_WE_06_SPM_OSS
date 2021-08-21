@@ -22,8 +22,7 @@ export default class checkout extends Component {
         this.onImageChange = this.onImageChange.bind(this);
         this.state = initialStates;
         var today = new Date(),
-
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         this.state = {
             date: date
         }
@@ -33,6 +32,10 @@ export default class checkout extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    componentDidMount(){
+        this.setState({ userId: this.props.match.params.userId });
+    }
+    
     onSubmit(e) {
         e.preventDefault();
 
@@ -45,7 +48,8 @@ export default class checkout extends Component {
             paymentMethod: this.state.paymentMethod,
             slip: this.state.slip,
             comments: this.state.comments,
-            date: this.state.date
+            date: this.state.date,
+            userId: this.state.userId,
         }
 
         console.log("Data", checkout);
