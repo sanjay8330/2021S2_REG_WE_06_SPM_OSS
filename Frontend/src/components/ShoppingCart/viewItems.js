@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
+import Header from '../header/header';
 
 const initialStates = {
     "today": '',
@@ -50,11 +51,12 @@ export default class ViewShoppingcart extends Component {
     render() {
         return (
             <div>
-
-                <h2>Shopping cart</h2><br />
+                <Header /><br/>
+                <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '5%' }}>Payment History</button>
+                    <button class="btn btn-dark" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
+                    <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
                 </div><br />
 
                 <table class="table border shadow">
@@ -99,17 +101,11 @@ export default class ViewShoppingcart extends Component {
                             </tr>
                         )}
                     </tbody>
-                </table><br /><br />
+                </table><br />
 
-                <h3>Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3>
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '5%' }}>Checkout</button>
-                </div><br />
-
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br />
+                <b><h3 style={{ color: "red"}}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
+                            
+                <br /><br /><br />
 
             </div>
         )
