@@ -20,11 +20,11 @@ export default class ViewShoppingcart extends Component {
 
     //Navigate to the Payment History Page
     navigateToPaymentHistory(e) {
-        window.location = `/payment-history/${this.props.match.params.userId}`;
+        window.location = `/payment-history/${this.props.match.params.userId}`; 
     }
     navigateToCheckOut(e) {
         //window.location = `/checkout/${this.props.match.params.userId}`;
-        window.location = `/delivery-details/${this.props.match.params.userId}/${this.props.match.params.totalamount}`;
+        window.location = `/delivery-details/${this.props.match.params.userId}/${this.state.totalamount}`;
     }
 
     componentDidMount(e) {

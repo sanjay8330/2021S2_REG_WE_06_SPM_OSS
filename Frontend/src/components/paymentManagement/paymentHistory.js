@@ -25,11 +25,12 @@ export default class paymentHistory extends Component {
         var mm = String(this.state.today.getMonth() + 1); //January is 0!
         var yyyy = this.state.today.getFullYear();
 
-        var date = mm + '-' + dd + '-' + yyyy;
+        var date = yyyy + '-' + mm + '-' + dd;
 
         Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}/${date}`)
             .then(response => {
                 this.setState({ Checkout: response.data.data });
+                console.log('RESPONSE>>>', this,this.state.Checkout);
             }).catch(error => {
                 alert(error.message);
             })
