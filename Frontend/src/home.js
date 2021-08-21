@@ -23,6 +23,7 @@ export default class home extends Component {
     constructor(props) {
         super(props);
         this.navigateToAdditempage = this.navigateToAdditempage.bind(this);
+        this.navigateViewCart = this.navigateViewCart.bind(this);
         this.state = initialStates;
     }
 
@@ -34,14 +35,19 @@ export default class home extends Component {
             }).catch(error => {
                 alert(error.message);
             })
-        
+
         this.setState({ userId: this.props.match.params.id })
 
     }
 
-    navigateToAdditempage(e, productID, userId){
+    navigateToAdditempage(e, productID, userId) {
         userId = this.state.userId;
         window.location = `/addOfferItems/${productID}/${userId}`;
+    }
+
+    navigateViewCart(e, userId){
+        userId = this.state.userId;
+        window.location = `/viewItems/${userId}`;
     }
 
     render() {
@@ -59,6 +65,10 @@ export default class home extends Component {
                         <p>Shop Now</p>
                     </div>
                 </div><br /><br /><br />
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" type="button" onClick={this.navigateViewCart} style={{ marginRight: '5%' }}>View Shopping Cart</button>
+                </div><br />
 
                 <div class="titleNew"><br />
                     <center><h1>NEW ARRIVALS</h1></center><br />
@@ -134,15 +144,15 @@ export default class home extends Component {
                     })}
                 </div>
 
-                    <div class="row1">
-                        <div>
-                            <div><center><a href = {`/menProducts/${this.state.userId}`}><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = {`/womenProducts/${this.state.userId}`}><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = {`/kidsProducts/${this.state.userId}`}><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = {`/babiesProducts/${this.state.userId}`}><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                            <div><center><a href = {`/teenagersProducts/${this.state.userId}`}><img src={teens} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
-                        </div>
+                <div class="row1">
+                    <div>
+                        <div><center><a href={`/menProducts/${this.state.userId}`}><img src={men} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                        <div><center><a href={`/womenProducts/${this.state.userId}`}><img src={women} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                        <div><center><a href={`/kidsProducts/${this.state.userId}`}><img src={kids} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                        <div><center><a href={`/babiesProducts/${this.state.userId}`}><img src={babies} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
+                        <div><center><a href={`/teenagersProducts/${this.state.userId}`}><img src={teens} class="img-fluid" alt="Responsive image" style={{ width: "1000px" }}></img></a></center></div> <br /><br />
                     </div>
+                </div>
 
             </div>
         )

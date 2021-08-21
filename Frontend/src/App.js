@@ -41,6 +41,9 @@ import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 import insertItem from './components/addItems/addItems';
 import addOfferItem from './components/addItems/addOfferItems';
 
+//Shopping - cart
+import ViewShoppingcart from './components/ShoppingCart/viewItems';
+
 function App() {
   return (
     <div>
@@ -72,12 +75,14 @@ function App() {
             <Route path="/babiesProducts/:userId" component={babiesProducts}/>
             <Route path="/teenagersProducts/:userId" component={teenagersProducts}/>
 
-            <Route path="/checkout" component={ Checkout } />
+            <Route path="/checkout/:id" component={ Checkout } />
             <Route path="/payment-history" component={ History } />
             <Route path="/delivery-details" component={ DeliveryDetails } />
             
             <Route path="/insertItem/:id/:userId" component={ insertItem } />
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
+
+            <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
 
           </Switch>
         </section>
