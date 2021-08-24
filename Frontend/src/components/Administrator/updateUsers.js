@@ -18,6 +18,8 @@ export default class UpdateUsers extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.navigatetoResetPassword = this.navigatetoResetPassword.bind(this);
         this.state = initialStates;
     }
 
@@ -58,6 +60,31 @@ export default class UpdateUsers extends Component {
             })
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+
+        let updUser = {
+            "userFullName": this.state.userFullName,
+            "userEmail": this.state.userEmail,
+            "userContact": this.state.userContact,
+            "imageURL": this.state.userImage,
+            "resetAnswer": this.state.resetAnswer
+        }
+        Axios.put(`http://localhost:3001/user/updateUser/${this.props.match.params.id}`, updUser)
+            .then(response => {
+                alert('User detials Updated Successfully!!');
+                window.location = "/viewUsers";
+            }).catch(error => {
+                alert(error.message);
+            })
+
+    }
+
+    navigatetoResetPassword(e, userId){
+        userId = this.props.match.params.id;
+        window.location = `/resetUserPassword/${userId}`;
+    }
+
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });
@@ -84,7 +111,7 @@ export default class UpdateUsers extends Component {
                         <center><h2 class="log" style={{ color: "black" }}><b><i>Update User Details</i></b></h2></center><br />
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }}>Change Password</button>
+                            <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }} onClick={this.navigatetoResetPassword}>Change Password</button>
                         </div><br />
 
                         <form onSubmit={this.onSubmit}>
@@ -153,7 +180,7 @@ export default class UpdateUsers extends Component {
                                     id="file"
                                     name="file"
                                     onChange={this.onImageChange}
-                                    style={{ width: '40%', height: '20%', marginTop: '-4%', marginLeft: '55%'}}
+                                    style={{ width: '40%', height: '20%', marginTop: '-4%', marginLeft: '55%' }}
                                 /><br />
 
                             </div>
