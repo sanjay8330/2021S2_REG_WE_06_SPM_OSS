@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
+import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     "userInfo": [],
@@ -8,14 +9,35 @@ const initialStates = {
     "userEmail": '',
     "userContact": '',
     "userCategory": '',
-    "resetAnswer": ''
+    "resetAnswer": '',
+    "userImage": ''
 }
 
 export default class UpdateUsers extends Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
+        this.onImageChange = this.onImageChange.bind(this);
         this.state = initialStates;
+    }
+
+    async onImageChange(e) {
+        document.getElementById("submitBtn").disabled = true;
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(file.name);
+
+        await fileRef.put(file).then(() => {
+        }).catch(error => {
+            alert(error.message);
+        });
+
+        const downloadImage = await fileRef.getDownloadURL();
+        this.setState({ userImage: downloadImage });
+        alert('Image Uploaded Successfully!!', file.name);
+        document.getElementById("submitBtn").disabled = false;
+
+
     }
 
     componentDidMount() {
@@ -29,6 +51,7 @@ export default class UpdateUsers extends Component {
                 this.setState({ userContact: this.state.userInfo.userContact });
                 this.setState({ userCategory: this.state.userInfo.userCategory });
                 this.setState({ resetAnswer: this.state.userInfo.resetAnswer });
+                this.setState({ userImage: this.state.userInfo.imageURL });
 
             }).catch(error => {
                 console.log(error.message);
@@ -56,7 +79,7 @@ export default class UpdateUsers extends Component {
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
-                    <div className="container3">
+                    <div className="container4">
 
                         <center><h2 class="log" style={{ color: "black" }}><b><i>Update User Details</i></b></h2></center><br />
 
@@ -64,63 +87,77 @@ export default class UpdateUsers extends Component {
                             <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }}>Change Password</button>
                         </div><br />
 
-                        <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
+                        <form onSubmit={this.onSubmit}>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <span style={{ color: "black" }}>User Type</span>
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="userCategory"
+                                        id="userCategory"
+                                        defaultValue={this.state.userCategory}
+                                        onChange={this.onChange}
+                                        required
+                                        disabled /><br />
 
-                            <span style={{ color: "black" }}>User Type</span>
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="userCategory"
-                                id="userCategory"
-                                defaultValue={this.state.userCategory}
-                                onChange={this.onChange}
-                                required
-                                disabled /><br />
 
-                            <span style={{ color: "black" }}>Full Name</span>
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="userFullName"
-                                id="userFullName"
-                                defaultValue={this.state.userFullName}
-                                onChange={this.onChange}
-                                required /><br />
+                                    <span style={{ color: "black" }}>Full Name</span>
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="userFullName"
+                                        id="userFullName"
+                                        defaultValue={this.state.userFullName}
+                                        onChange={this.onChange}
+                                        required /><br />
 
-                            <span style={{ color: "black" }}>Email Address</span>
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="userEmail"
-                                id="userEmail"
-                                defaultValue={this.state.userEmail}
-                                onChange={this.onChange}
-                                required /><br />
+                                    <span style={{ color: "black" }}>Email Address</span>
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="userEmail"
+                                        id="userEmail"
+                                        defaultValue={this.state.userEmail}
+                                        onChange={this.onChange}
+                                        required /><br />
 
-                            <span style={{ color: "black" }}>Contact Number</span>
-                            <input
-                                class="form-control"
-                                type="tel"
-                                pattern="[0-9]{10}"
-                                name="userContact"
-                                id="userContact"
-                                defaultValue={this.state.userContact}
-                                onChange={this.onChange}
-                                required /><br />
+                                    <span style={{ color: "black" }}>Contact Number</span>
+                                    <input
+                                        class="form-control"
+                                        type="tel"
+                                        pattern="[0-9]{10}"
+                                        name="userContact"
+                                        id="userContact"
+                                        defaultValue={this.state.userContact}
+                                        onChange={this.onChange}
+                                        required /><br />
 
-                            <span style={{ color: "black" }}>Enter last 4 digits of your NIC card</span>
-                            <input
-                                class="form-control"
-                                type="number"
-                                pattern="[0-9]{4}"
-                                name="resetAnswer"
-                                id="resetAnswer"
-                                defaultValue={this.state.resetAnswer}
-                                onChange={this.onChange}
-                                required
-                                title="Enter only the last 4 digits of you NIC card" /><br />
+                                    <span style={{ color: "black" }}>Enter last 4 digits of your NIC card</span>
+                                    <input
+                                        class="form-control"
+                                        type="number"
+                                        pattern="[0-9]{4}"
+                                        name="resetAnswer"
+                                        id="resetAnswer"
+                                        defaultValue={this.state.resetAnswer}
+                                        onChange={this.onChange}
+                                        required
+                                        disabled /><br />
 
-                            <button type="submit" className="btn btn-dark">Update</button>
+                                </div>
+                                <img style={{ minWidth: '50px', width: '300px', height: '310px', marginTop: '6%', marginLeft: '5%' }} src={this.state.userImage} alt="Profile Picture" />
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="file"
+                                    name="file"
+                                    onChange={this.onImageChange}
+                                    style={{ width: '40%', height: '20%', marginTop: '-4%', marginLeft: '55%'}}
+                                /><br />
+
+                            </div>
+                            <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                         </form>
                     </div><br />
                 </div>
