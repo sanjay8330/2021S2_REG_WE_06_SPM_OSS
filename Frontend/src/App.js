@@ -33,6 +33,7 @@ import womenProducts from "./components/productManagement/womenProducts";
 import kidsProducts from "./components/productManagement/kidsProducts";
 import babiesProducts from "./components/productManagement/babiesProducts";
 import teenagersProducts from "./components/productManagement/teenagersProducts";
+import deleteproductWithOffer from "./components/productManagement/deleteProductWithOffer";
 
 //Payment Management
 import Checkout from "./components/paymentManagement/checkout";
@@ -78,6 +79,7 @@ function App() {
             <Route path="/kidsProducts/:userId" component={kidsProducts} />
             <Route path="/babiesProducts/:userId" component={babiesProducts} />
             <Route path="/teenagersProducts/:userId" component={teenagersProducts} />
+            <Route path="/deleteProductWithOffer/:productId" component={ deleteproductWithOffer } />
 
             <Route path="/checkout/:userId/:amount" component={Checkout} />
             <Route path="/payment-history/:userId" component={History} />

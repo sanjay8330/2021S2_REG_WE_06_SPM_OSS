@@ -107,7 +107,7 @@ router.route('/deleteProductOffer/:id').delete(async (req, res) => {
     }
 });
 
-//Get the product offer by product ID - ADMIN TASK
+//Get the product offer by product ID - ADMIN TASK - USED IN THE DELETE PRODUCT FUNCTION
 router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
     if (req.params && req.params.id) {
         await ProductOfferModel.find({ product: req.params.id })
