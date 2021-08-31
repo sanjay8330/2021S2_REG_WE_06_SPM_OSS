@@ -8,12 +8,15 @@ const initialStates = {
     "offerPrice": '',
     "offerDiscount": '',
     "offerDescription": '',
-    "offervalidTill": ''
+    "offervalidTill": '',
+    "offerId": ''
 }
 
 export default class deleteproductWithOffer extends Component {
     constructor(props) {
         super(props);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.navigatetoViewPage = this.navigatetoViewPage.bind(this);
         this.state = initialStates;
     }
 
@@ -30,17 +33,40 @@ export default class deleteproductWithOffer extends Component {
             .then(response => {
                 this.setState({ productOffer: response.data.data });
 
-                {this.state.productOffer.length > 0 && this.state.productOffer.map((item, index) => {
-                    this.setState({ offerPrice: item.offerPrice });
-                    this.setState({ offerDiscount: item.offerDiscount });
-                    this.setState({ offerDescription: item.offerDescription });
-                    this.setState({ offervalidTill: item.offerEndDate });
-                })}
+                {
+                    this.state.productOffer.length > 0 && this.state.productOffer.map((item, index) => {
+                        this.setState({ offerId: item._id });
+                        this.setState({ offerPrice: item.offerPrice });
+                        this.setState({ offerDiscount: item.offerDiscount });
+                        this.setState({ offerDescription: item.offerDescription });
+                        this.setState({ offervalidTill: item.offerEndDate });
+                    })
+                }
 
 
             }).catch(error => {
                 console.log(error.message);
             })
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        Axios.delete(`http://localhost:3001/product/deleteProduct/${this.props.match.params.productId}`)
+            .then(response => {
+                Axios.delete(`http://localhost:3001/productOffer/deleteProductOffer/${this.state.offerId}`)
+                    .then(response => {
+                        alert('Product Offer & Product details deleted Successfully');
+                        window.location = "/viewProducts";
+                    }).catch(error => {
+                        console.log(error.message);
+                    })
+            }).catch(error => {
+                console.log(error.message);
+            })
+    }
+
+    navigatetoViewPage(e) {
+        window.location = "/viewProducts";
     }
 
     render() {
@@ -83,11 +109,11 @@ export default class deleteproductWithOffer extends Component {
                                         <center><p>Are you sure you want to permanently remove this product along with the product offer?</p><hr />
                                             By deleting this product detail you can't undo this action.</center>
                                     </div>
-                                    <button class="cancel" style={{ float: "left" }}>
+                                    <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
                                         Cancel
                                     </button>
-                                    <button class="delete" style={{ float: "right" }}>
-                                        Delete
+                                    <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
+                                        Delete Anyway
                                     </button>
                                 </div>
                             </div>
