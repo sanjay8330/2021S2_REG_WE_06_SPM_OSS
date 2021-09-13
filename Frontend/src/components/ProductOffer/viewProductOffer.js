@@ -82,7 +82,7 @@ export default class ViewProductOffer extends Component {
 
 
                         <br /><br /><br />
-
+                        <button type="button" class="btn btn-dark">Download Report</button>
 
                         <table class="table border shadow">
                             <thead class="thead-dark">
