@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 const initialStates = {
     "productOffers": [],
-    "productInfo": [], 
+    "productInfo": [],
     "searchProduct": ''
 }
 
@@ -35,12 +37,23 @@ export default class ViewProductOffer extends Component {
     }
 
     componentDidMount(e) {
-        Axios.get('http://localhost:3001/productOffer/getAllProductOffers') 
+        Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
                 this.setState({ productOffers: response.data.data });
             }).catch(error => {
                 alert(error.message);
             })
+    }
+    jsPdfGeneratorProductOffer() {
+        var doc = new jsPDF('p', 'pt');
+        doc.text(200, 20, 'SUMMARY OF PRODUCT OFFER DETAILS')
+
+        doc.setFont('courier')
+
+        doc.autoTable({ html: '#reportTable' })
+
+        //save PDF
+        doc.save('productOfferReport.pdf')
     }
 
     render() {
@@ -63,7 +76,8 @@ export default class ViewProductOffer extends Component {
 
                         <h1>VIEW PRODUCT OFFERS</h1>
 
-                            <button onClick={this.navigateAddProductOffer} class="btn btn-dark" type="button">Add Product Offers</button>
+                        <button onClick={this.navigateAddProductOffer} class="btn btn-dark" type="button">Add Product Offers</button>
+                        <button type="button" class="btn btn-dark" style={{ marginLeft: 20 }} onClick={this.jsPdfGeneratorProductOffer}>Download Report</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -82,7 +96,6 @@ export default class ViewProductOffer extends Component {
 
 
                         <br /><br /><br />
-                        <button type="button" class="btn btn-dark">Download Report</button>
 
                         <table class="table border shadow">
                             <thead class="thead-dark">
@@ -110,7 +123,7 @@ export default class ViewProductOffer extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
-                                         <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
+                                        <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
                                         <td>{item.productName}</td>
                                         <td>{"Rs." + item.productPrice}</td>
                                         <td>{item.productDiscount + "%"}</td>
@@ -134,6 +147,34 @@ export default class ViewProductOffer extends Component {
                             </tbody>
                         </table>
 
+                        <table id="reportTable" style={{ display: 'none'}}>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">PRODUCT NAME</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DISCOUNT</th>
+                                    <th scope="col">OFFER PRICE</th>
+                                    <th scope="col">OFFER DISCOUNT</th>
+                                    <th scope="col">OFFER VALID TILL</th>
+                                    <th scope="col">OFFER DESCRIPTION</th>
+                                    <th scope="col">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.productOffers.length > 0 && this.state.productOffers.map((item, index) =>
+                                    <tr>
+                                        <td>{item.productName}</td>
+                                        <td>{"Rs." + item.productPrice}</td>
+                                        <td>{item.productDiscount + "%"}</td>
+                                        <td>{"Rs." + item.offerPrice}</td>
+                                        <td>{item.offerDiscount + "%"}</td>
+                                        <td>{item.offerEndDate}</td>
+                                        <td>{item.offerDescription}</td>
+                                        <td>{item.offerStatus}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
                     </main>
                 </div>
             </div>
