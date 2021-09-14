@@ -19,7 +19,7 @@ router.route('/addProductOffer').post(async (req, res) => {
 //Get all product offers - ADMINISTRATOR/SUPPLIER
 router.route('/getAllProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({})
-    .populate('product', 'productName')
+        .populate('product', 'productName')
         .then(data => {
             res.status(200).send({ data: data });
         }).catch(error => {
@@ -122,12 +122,36 @@ router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
 //Get all product active offers - CUSTOMER HOMEPAGE
 router.route('/getAllActiveProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({ offerStatus: 'Active' })
-    .populate('product', 'productName')
+        .populate('product', 'productName')
         .then(data => {
             res.status(200).send({ data: data });
         }).catch(error => {
             res.status(500).send({ error: error });
         })
+});
+
+//Update the usercount in productOffers - REPORT GENERATION
+router.route("/changeUserCount/:id").put(async (req, res) => {
+    //Updating the offer status
+    const userCount = req.body.userCount;
+
+    //Offer ID
+    const Id = req.params.id;
+
+    try {
+        await ProductOfferModel.findById(Id, (err, updatedProductOfferObject) => {
+            updatedProductOfferObject.userCount = userCount;
+
+            updatedProductOfferObject.save()
+                .then(data => {
+                    res.status(200).send({ data: data });
+                }).catch(error => {
+                    res.status(500).send({ error: error });
+                })
+        });
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 

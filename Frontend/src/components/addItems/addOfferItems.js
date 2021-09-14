@@ -100,8 +100,18 @@ export default class addOfferItem extends Component {
             }
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
-                    alert('Item Details Added Successfully');
-                    window.location = `/home/${this.state.userID}`;
+
+                    let updOffer = {
+                        userCount: this.state.productinfo.userCount + 1
+                    }
+                    Axios.put(`http://localhost:3001/productOffer/changeUserCount/${this.props.match.params.id}`, updOffer)
+                        .then(response => {
+                            alert('Item Details Added Successfully');
+                            window.location = `/home/${this.state.userID}`;
+                        }).catch(error => {
+                            alert(error.message);
+                        })
+
                 }).catch(error => {
                     alert(error.message);
                 })
