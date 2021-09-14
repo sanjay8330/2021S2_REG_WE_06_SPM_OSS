@@ -46,7 +46,7 @@ export default class ViewProductOffer extends Component {
     }
     jsPdfGeneratorProductOffer() {
         var doc = new jsPDF('p', 'pt');
-        doc.text(200, 20, 'SUMMARY OF PRODUCT OFFER DETAILS')
+        doc.text(270, 20, 'SUMMARY OF PRODUCT OFFER DETAILS', 'center')
 
         doc.setFont('courier')
 
@@ -158,6 +158,7 @@ export default class ViewProductOffer extends Component {
                                     <th scope="col">OFFER VALID TILL</th>
                                     <th scope="col">OFFER DESCRIPTION</th>
                                     <th scope="col">STATUS</th>
+                                    <th scope="col">USERS PURCHASED</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -171,6 +172,7 @@ export default class ViewProductOffer extends Component {
                                         <td>{item.offerEndDate}</td>
                                         <td>{item.offerDescription}</td>
                                         <td>{item.offerStatus}</td>
+                                        <td>{item.userCount}</td>
                                     </tr>
                                 )}
                             </tbody>
