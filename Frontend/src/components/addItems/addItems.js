@@ -21,7 +21,9 @@ export default class addItem extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.validate = this.validate.bind(this);
         this.state = initialStates;
+        
     }
 
     onChange(e) {
@@ -53,7 +55,7 @@ export default class addItem extends Component {
 
 
     //Validation Part
-    validate = () => {
+    validate () {
         let isError = false;
         const errors = {
             itemColorError:'',
@@ -61,19 +63,22 @@ export default class addItem extends Component {
             itemQuantityError: ''
         };
 
-        if (this.state.itemColor == null) {
+        if (this.state.itemColor === '') {
             isError = true;
-            errors.itemSizeError = "you need to select the Color of the item";
+            alert('you need to select the Color of the item')
+            //errors.itemColorError = "you need to select the Color of the item";
         }
 
-        if (this.state.itemSize == null) {
+        if (this.state.itemSize === '') {
             isError = true;
-            errors.itemSizeError = "you need to select the Size of the item";
+            alert('you need to select the Size of the item')
+            //errors.itemSizeError = "you need to select the Size of the item";
         }
 
-        if (this.state.itemQuantity == null) {
+        if (this.state.itemQuantity === '') {
             isError = true;
-            errors.itemQuantityError = "you need to select the Quantity of the item";
+            alert('you need to select the Quantity of the item')
+            //errors.itemQuantityError = "you need to select the Quantity of the item";
         }
 
         if (isError) {
@@ -89,10 +94,11 @@ export default class addItem extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(this.state.currentDate);
+        //console.log(this.state.currentDate);
 
         //Validate the data
         const err = this.validate();
+        console.log('Error>>>', err);
         if (!err) {
 
             let item = {

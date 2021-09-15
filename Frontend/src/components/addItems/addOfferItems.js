@@ -51,21 +51,30 @@ export default class addOfferItem extends Component {
 
 
     //Validation Part
-    validate = () => {
+    validate () {
         let isError = false;
         const errors = {
+            itemColorError:'',
             itemSizeError: '',
             itemQuantityError: ''
         };
 
-        if (this.state.itemSize == null) {
+        if (this.state.itemColor === '') {
             isError = true;
-            errors.itemSizeError = "you need to select the Size of the item";
+            alert('you need to select the Color of the item')
+            //errors.itemColorError = "you need to select the Color of the item";
         }
 
-        if (this.state.itemQuantity == null) {
+        if (this.state.itemSize === '') {
             isError = true;
-            errors.itemQuantityError = "you need to select the Quantity of the item";
+            alert('you need to select the Size of the item')
+            //errors.itemSizeError = "you need to select the Size of the item";
+        }
+
+        if (this.state.itemQuantity === '') {
+            isError = true;
+            alert('you need to select the Quantity of the item')
+            //errors.itemQuantityError = "you need to select the Quantity of the item";
         }
 
         if (isError) {
@@ -100,8 +109,18 @@ export default class addOfferItem extends Component {
             }
             Axios.post('http://localhost:3001/insertItem/addItem', item)
                 .then(response => {
-                    alert('Item Details Added Successfully');
-                    window.location = `/home/${this.state.userID}`;
+
+                    let updOffer = {
+                        userCount: this.state.productinfo.userCount + 1
+                    }
+                    Axios.put(`http://localhost:3001/productOffer/changeUserCount/${this.props.match.params.id}`, updOffer)
+                        .then(response => {
+                            alert('Item Details Added Successfully');
+                            window.location = `/home/${this.state.userID}`;
+                        }).catch(error => {
+                            alert(error.message);
+                        })
+
                 }).catch(error => {
                     alert(error.message);
                 })

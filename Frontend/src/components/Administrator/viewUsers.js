@@ -29,6 +29,10 @@ export default class ViewUsers extends Component {
         window.location = '/viewAdmin';
     }
 
+    navigateToUpdateUser(e, userId){
+        window.location = `/updateUser/${userId}`;
+    }
+
     componentDidMount(e) {
         Axios.get('http://localhost:3001/user/getAllCustomers')
             .then(response => {
@@ -107,7 +111,7 @@ export default class ViewUsers extends Component {
                                         <td>{item.userCategory}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                         <td>

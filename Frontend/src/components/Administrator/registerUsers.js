@@ -102,105 +102,105 @@ export default class AdminAddUser extends Component {
         return (
             <div>
                 <div class="wrapper">
-                <nav>
-                    <header><br />
-                        &nbsp; &nbsp;  &nbsp; ADMIN PANEL
-                    </header><hr style={{ color: "white" }} />
-                    <ul><br />
+                    <nav>
+                        <header><br />
+                            &nbsp; &nbsp;  &nbsp; ADMIN PANEL
+                        </header><hr style={{ color: "white" }} />
+                        <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }}>Dashboard</a></li>
                             <li><a href="/viewProducts" style={{ color: "white" }} >Manage Products</a></li>
                             <li><a href="/viewProductOffers" style={{ color: "white" }} >Manage Product Offers</a></li>
                             <li><a href="/viewUsers" style={{ color: "white" }} class="active">Manage Users</a></li>
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
-                    </ul>
-                </nav>
-                <div className="container3">
-                    <center><h2 class="log" style={{ color: "black" }}><b><i>Add Application User Details</i></b></h2></center><br />
-                    <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
+                        </ul>
+                    </nav>
+                    <div className="container3">
+                        <center><h2 class="log" style={{ color: "black" }}><b><i>Add Application User Details</i></b></h2></center><br />
+                        <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
 
-                        <span style={{ color: "black" }}>User Type</span>
-                        <Select
-                            options={this.state.options}
-                            onChange={this.onSelectedOption}
-                        /><br />
+                            <span style={{ color: "black" }}>User Type</span>
+                            <Select
+                                options={this.state.options}
+                                onChange={this.onSelectedOption}
+                            /><br />
 
-                        <span style={{ color: "black" }}>Full Name</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            name="fullName"
-                            id="fullName"
-                            value={this.state.fullName}
-                            onChange={this.onChange}
-                            required /><br />
+                            <span style={{ color: "black" }}>Full Name</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="fullName"
+                                id="fullName"
+                                value={this.state.fullName}
+                                onChange={this.onChange}
+                                required /><br />
 
-                        <span style={{ color: "black" }}>Email Address</span>
-                        <input
-                            class="form-control"
-                            type="text"
-                            name="email"
-                            id="email"
-                            value={this.state.email}
-                            onChange={this.onChange}
-                            required /><br />
+                            <span style={{ color: "black" }}>Email Address</span>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="email"
+                                id="email"
+                                value={this.state.email}
+                                onChange={this.onChange}
+                                required /><br />
 
-                        <span style={{ color: "black" }}>Password</span>
-                        <input
-                            class="form-control"
-                            type="password"
-                            name="password"
-                            id="password"
-                            value={this.state.password}
-                            onChange={this.onChange}
-                            required
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" /><br />
+                            <span style={{ color: "black" }}>Password</span>
+                            <input
+                                class="form-control"
+                                type="password"
+                                name="password"
+                                id="password"
+                                value={this.state.password}
+                                onChange={this.onChange}
+                                required
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" /><br />
 
-                        <span style={{ color: "black" }}>Confirm Password</span>
-                        <input
-                            class="form-control"
-                            type="password"
-                            name="confirmPassword"
-                            id="confirmPassword"
-                            value={this.state.confirmPassword}
-                            onChange={this.onChange}
-                            required /><br />
-                        
-                        <PasswordChecklist
-                            rules={["minLength", "specialChar", "number", "capital", "match"]}
-                            minLength={5}
-                            value={this.state.password}
-                            valueAgain={this.state.confirmPassword}
-                            onChange={(isValid) => { }}
-                        /><br />
+                            <span style={{ color: "black" }}>Confirm Password</span>
+                            <input
+                                class="form-control"
+                                type="password"
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                value={this.state.confirmPassword}
+                                onChange={this.onChange}
+                                required /><br />
 
-                        <span style={{ color: "black" }}>Contact Number</span>
-                        <input
-                            class="form-control"
-                            type="tel"
-                            pattern="[0-9]{10}"
-                            name="contactNo"
-                            id="contactNo"
-                            value={this.state.contactNo}
-                            onChange={this.onChange}
-                            required /><br />
+                            <PasswordChecklist
+                                rules={["minLength", "specialChar", "number", "capital", "match"]}
+                                minLength={5}
+                                value={this.state.password}
+                                valueAgain={this.state.confirmPassword}
+                                onChange={(isValid) => { }}
+                            /><br />
 
-                        <span style={{ color: "black" }}>Enter last 4 digits of your NIC card</span>
-                        <input
-                            class="form-control"
-                            type="number"
-                            pattern="[0-9]{4}"
-                            name="resetAnswer"
-                            id="resetAnswer"
-                            value={this.state.resetAnswer}
-                            onChange={this.onChange}
-                            required
-                            title="Enter only the last 4 digits of you NIC card" /><br />
+                            <span style={{ color: "black" }}>Contact Number</span>
+                            <input
+                                class="form-control"
+                                type="tel"
+                                pattern="[0-9]{10}"
+                                name="contactNo"
+                                id="contactNo"
+                                value={this.state.contactNo}
+                                onChange={this.onChange}
+                                required /><br />
 
-                        <button type="submit" className="btn btn-dark">Submit</button>
-                    </form>
-                </div><br />
-            </div>
+                            <span style={{ color: "black" }}>Enter last 4 digits of your NIC card</span>
+                            <input
+                                class="form-control"
+                                type="number"
+                                pattern="[0-9]{4}"
+                                name="resetAnswer"
+                                id="resetAnswer"
+                                value={this.state.resetAnswer}
+                                onChange={this.onChange}
+                                required
+                                title="Enter only the last 4 digits of you NIC card" /><br />
+
+                            <button type="submit" className="btn btn-dark">Submit</button>
+                        </form>
+                    </div><br />
+                </div>
             </div>
         )
     }

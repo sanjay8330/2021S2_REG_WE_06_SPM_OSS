@@ -1,36 +1,39 @@
-import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './home';
-import Footer from './components/footer/footer';
-import React, { Component }  from 'react';
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./home";
+import Footer from "./components/footer/footer";
+import React, { Component } from "react";
 
 //User Management - Routes
-import Register from './components/userManagement/register';
-import Login from './components/userManagement/login';
-import ForgotPassword from './components/userManagement/forgotPassword';
-import ResetPassword from './components/userManagement/resetPassword';
-import AdminAddUser from './components/Administrator/registerUsers';
-import ViewUsers from './components/Administrator/viewUsers';
-import ViewAdministrators from './components/Administrator/viewAdmins';
+import Register from "./components/userManagement/register";
+import Login from "./components/userManagement/login";
+import ForgotPassword from "./components/userManagement/forgotPassword";
+import ResetPassword from "./components/userManagement/resetPassword";
+import AdminAddUser from "./components/Administrator/registerUsers";
+import ViewUsers from "./components/Administrator/viewUsers";
+import ViewAdministrators from "./components/Administrator/viewAdmins";
+import UpdateUsers from "./components/Administrator/updateUsers";
+import UpdateUserPassword from "./components/Administrator/updateUserPassword";
 
 //Product Offer Management - Routes
-import AddProductOffer from './components/ProductOffer/addProductOffer';
-import ViewProductOffer from './components/ProductOffer/viewProductOffer';
-import UpdateProductOffer from './components/ProductOffer/updateProductOffer';
-import DeleteProductOffer from './components/ProductOffer/deleteProductOffer';
+import AddProductOffer from "./components/ProductOffer/addProductOffer";
+import ViewProductOffer from "./components/ProductOffer/viewProductOffer";
+import UpdateProductOffer from "./components/ProductOffer/updateProductOffer";
+import DeleteProductOffer from "./components/ProductOffer/deleteProductOffer";
 
-import adminDashboard from '../src/adminDashboard';
+import adminDashboard from "../src/adminDashboard";
 
 //Product Management - Routes
-import createProduct from './components/productManagement/createProduct';
-import ViewProducts from './components/productManagement/viewProducts';
-import UpdateProduct from './components/productManagement/updateProduct';
-import DeleteProduct from './components/productManagement/deleteProduct';
-import menProducts from './components/productManagement/menProducts';
-import womenProducts from './components/productManagement/womenProducts';
-import kidsProducts from './components/productManagement/kidsProducts';
-import babiesProducts from './components/productManagement/babiesProducts';
-import teenagersProducts from './components/productManagement/teenagersProducts';
+import createProduct from "./components/productManagement/createProduct";
+import ViewProducts from "./components/productManagement/viewProducts";
+import UpdateProduct from "./components/productManagement/updateProduct";
+import DeleteProduct from "./components/productManagement/deleteProduct";
+import menProducts from "./components/productManagement/menProducts";
+import womenProducts from "./components/productManagement/womenProducts";
+import kidsProducts from "./components/productManagement/kidsProducts";
+import babiesProducts from "./components/productManagement/babiesProducts";
+import teenagersProducts from "./components/productManagement/teenagersProducts";
+import deleteproductWithOffer from "./components/productManagement/deleteProductWithOffer";
 
 //Payment Management
 import Checkout from './components/paymentManagement/checkout';
@@ -39,11 +42,14 @@ import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 import DeletePayment from './components/paymentManagement/deletePayment';
 
 //Insert Item
-import insertItem from './components/addItems/addItems';
-import addOfferItem from './components/addItems/addOfferItems';
+import insertItem from "./components/addItems/addItems";
+import addOfferItem from "./components/addItems/addOfferItems";
+
+//Update Item
+import UpdateItem from './components/addItems/updateitem';
 
 //Shopping - cart
-import ViewShoppingcart from './components/ShoppingCart/viewItems';
+import ViewShoppingcart from "./components/ShoppingCart/viewItems";
 
 function App() {
   return (
@@ -59,6 +65,8 @@ function App() {
             <Route path="/adminUserRegister" component={ AdminAddUser } />
             <Route path="/viewUsers" component={ ViewUsers } />
             <Route path="/viewAdmin" component={ ViewAdministrators } />
+            <Route path="/updateUser/:id" component={ UpdateUsers } />
+            <Route path="/resetUserPassword/:id" component={ UpdateUserPassword } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
@@ -75,6 +83,7 @@ function App() {
             <Route path="/kidsProducts/:userId" component={kidsProducts}/>
             <Route path="/babiesProducts/:userId" component={babiesProducts}/>
             <Route path="/teenagersProducts/:userId" component={teenagersProducts}/>
+            <Route path="/deleteProductWithOffer/:productId" component={ deleteproductWithOffer } />
 
             <Route path="/checkout/:userId/:amount" component={ Checkout } />
             <Route path="/payment-history/:userId" component={ History } />
@@ -85,6 +94,8 @@ function App() {
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
 
             <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
+            <Route path="/updateitem/:userId" component={ UpdateItem } />
+            <Route path="/viewItems/:userId" component={ViewShoppingcart} />
 
           </Switch>
         </section>

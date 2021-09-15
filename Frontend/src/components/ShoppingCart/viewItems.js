@@ -27,6 +27,14 @@ export default class ViewShoppingcart extends Component {
         window.location = `/delivery-details/${this.props.match.params.userId}/${this.state.totalamount}`;
     }
 
+    navigateToUpdatePage(e, productId) {
+        window.location = `/updateitem/${productId}`;
+    }
+
+    navigateToDeletePage(e, productId) {
+        window.location = `/deleteitem/${productId}`;
+    }
+
     componentDidMount(e) {
 
         //Set the global state for user ID
@@ -90,12 +98,12 @@ export default class ViewShoppingcart extends Component {
                                 <td>{"Rs. " + item.productPrice * item.productQuantity + "/="}</td>
                                 <td>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)} ><i class="fa fa-edit"></i></button>
                                     </li>
                                 </td>
                                 <td>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)} ><i class="fa fa-trash"></i></button>
                                     </li>
                                 </td>
                                 <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
