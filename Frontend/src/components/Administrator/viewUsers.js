@@ -60,7 +60,7 @@ export default class ViewUsers extends Component {
                     </nav>
                     <main>
 
-                        <h1>VIEW USERS</h1>
+                        <h1>VIEW USERS</h1><br/>
 
                             <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
                             <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
@@ -106,17 +106,17 @@ export default class ViewUsers extends Component {
                                 }).map((item, index) =>
                                     <tr>
                                         <td>{item.userFullName}</td>
-                                        <td>{item.userEmail}</td>
+                                        <td style={{ color: 'blue'}}><u><i>{item.userEmail}</i></u></td>
                                         <td>{"(+94)-" + item.userContact}</td>
                                         <td>{item.userCategory}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
                                     </tr>
