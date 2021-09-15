@@ -44,6 +44,9 @@ import DeliveryDetails from "./components/paymentManagement/deliveryDetails";
 import insertItem from "./components/addItems/addItems";
 import addOfferItem from "./components/addItems/addOfferItems";
 
+//Update Item
+import UpdateItem from './components/addItems/updateitem';
+
 //Shopping - cart
 import ViewShoppingcart from "./components/ShoppingCart/viewItems";
 
@@ -88,7 +91,6 @@ function App() {
             <Route path="/insertItem/:id/:userId" component={insertItem} />
             <Route path="/addOfferItems/:id/:userId" component={addOfferItem} />
 
-            <Route path="/viewItems/:userId" component={ViewShoppingcart} />
           </Switch>
         </section>
       </Router>
