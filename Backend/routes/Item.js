@@ -27,6 +27,7 @@ router.route("/readItemsForCustomer/:userId/:date").get(async (req, res) => {
         })
 });
 
+
 //Get the product by ID - ADMIN TASK
 router.route('/getItemById/:id').get(async (req, res) => {
     if(req.params && req.params.id){
