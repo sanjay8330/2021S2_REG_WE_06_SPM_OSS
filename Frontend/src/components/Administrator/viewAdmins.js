@@ -24,6 +24,10 @@ export default class ViewAdministrators extends Component {
         window.location = '/adminUserRegister';
     }
 
+    navigateToUpdateUser(e, userId){
+        window.location = `/updateUser/${userId}`;
+    }
+
     componentDidMount(e) {
         Axios.get('http://localhost:3001/user/getAllAdministrators')
             .then(response => {
@@ -101,12 +105,12 @@ export default class ViewAdministrators extends Component {
                                         <td>{item.userCategory}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateOffer(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteOffer(e, item._id)}><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
                                     </tr>
