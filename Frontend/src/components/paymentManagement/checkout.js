@@ -59,7 +59,7 @@ export default class checkout extends Component {
         Axios.post(`http://localhost:3001/checkout/paymentDetails/${this.props.match.params.userId}/${this.props.match.params.amount}`, checkout)
             .then(response => {
                 alert('Checkout Details Added Successfully');
-                window.location = `/viewItems/${this.state.userId}`;
+                //window.location = "/checkout";
             }).catch(error => {
                 alert(error.message);
             })
