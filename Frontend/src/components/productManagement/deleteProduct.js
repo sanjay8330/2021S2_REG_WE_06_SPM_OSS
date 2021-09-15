@@ -81,11 +81,11 @@ export default class deleteproduct extends Component {
                             <div class="wrapper-1">
                                 <div class="wrapper-2">
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Name:<b> {this.state.products.productName}</b></span><br />
+                                    <span style={{ color: "black", fontFamily: "'Abril Fatface', cursive;" }}>Product Name:<b> {this.state.products.productName}</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Price: <b>Rs.{this.state.products.productPrice}.00</b></span><br />
+                                    <span style={{ color: "black", fontFamily: "'Abril Fatface', cursive;" }}>Product Price: <b>Rs.{this.state.products.productPrice}.00</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Product Discount:<b> {this.state.products.productDiscount}%</b></span><br /><br />
+                                    <span style={{ color: "black", fontFamily: "'Abril Fatface', cursive;" }}>Product Discount:<b> {this.state.products.productDiscount}%</b></span><br /><br />
 
                                     <div class="alert alert-danger" role="alert">
                                         <center><p>Are you sure you want to permanently remove this product?</p><hr />
