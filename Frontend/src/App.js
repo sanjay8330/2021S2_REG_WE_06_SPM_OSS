@@ -92,7 +92,7 @@ function App() {
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
 
             <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
-            <Route path="/updateitem/:userId" component={ UpdateItem } />
+            <Route path="/updateitem/:id" component={ UpdateItem } />
             <Route path="/viewItems/:userId" component={ViewShoppingcart} />
 
           </Switch>
