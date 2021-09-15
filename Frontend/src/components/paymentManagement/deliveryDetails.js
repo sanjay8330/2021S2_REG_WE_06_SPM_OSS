@@ -15,7 +15,7 @@ const initialStates = {
     province: '',
     postalCode: '',
     "userId": '',
-    "amount": ''
+    "totamount": ''
 }
 
 
@@ -24,6 +24,7 @@ export default class deliveryDetails extends Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
+        this.navigateToCheckOutForm = this.navigateToCheckOutForm.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = initialStates;
     }
@@ -33,9 +34,14 @@ export default class deliveryDetails extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    navigateToCheckOutForm(e) {
+        //window.location = `/checkout/${this.props.match.params.userId}`;
+        window.location = `/checkout/${this.props.match.params.userId}/${this.state.totalamount}`;
+    }
+
     componentDidMount(){
         this.setState({ userId: this.props.match.params.userId });
-        this.setState({ amount: this.props.match.params.amount });
+        this.setState({ totamount: this.props.match.params.totamount });
     }
 
     onSubmit(e) {
@@ -56,13 +62,12 @@ export default class deliveryDetails extends Component {
             city: this.state.city,
             postalCode: this.state.postalCode,
             userId: this.state.userId,
-            amount: this.state.amount,
         }
         //console.log("Data", deliveryDetails);
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
             .then(response => {
                 alert('Delivery Details Added Successfully');
-                window.location = `/checkout/${this.state.userId}/${this.state.amount}`;
+                window.location = `/checkout/${this.state.userId}/${this.state.totamount}`;
             }).catch(error => {
                 alert(error.message);
             })
@@ -84,7 +89,6 @@ export default class deliveryDetails extends Component {
                                 <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                 </div>
                                     <div className="form-group"><br/>
-
                                         <table>
                                             <tr>
                                                 <td>
@@ -95,7 +99,6 @@ export default class deliveryDetails extends Component {
                                                     <span style={{ color: "black" }}>Sender's Phone Number</span>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td>
                                                     <input
@@ -264,7 +267,7 @@ export default class deliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Checkout</button>
+                                                <button type="submit" className="btn btn-dark" onClick={this.navigateToCheckOutForm} id="submitBtn">Checkout</button>
                                             </td>
                                         </tr>
                                     </table>
