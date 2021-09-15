@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const HistoryModel = require('../models/Checkout');
 
-//Add payment details
+//show payment history
 router.route('/payment-history/:id').get(async (req, res) => {
 
     const userId = req.params.id;
@@ -25,5 +25,17 @@ router.route('/deletePayment/:id').delete(async (req, res) => {
         })
     }
 });
+
+//Get payment record by Id
+router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
+    const currentuserId = req.params.userId;
+
+    CheckoutModel.find({ userId: currentuserId})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+}); 
 
 module.exports = router;

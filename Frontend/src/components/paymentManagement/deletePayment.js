@@ -4,11 +4,11 @@ import Axios from 'axios';
 import Header from '../header/header';
 
 const initialStates = {
-    payment: [],
+    Checkout: [],
     "userId": '',
 }
 
-export default class deleteproduct extends Component {
+export default class deletePayment extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,7 +22,7 @@ export default class deleteproduct extends Component {
 
         Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
-                this.setState({ payment : response.data.data });
+                this.setState({ Checkout : response.data.data });
             }).catch(error => {
                 console.log(error.message);
             })
@@ -53,11 +53,11 @@ export default class deleteproduct extends Component {
                             <div class="wrapper-1">
                                 <div class="wrapper-2">
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Date:<b> {this.state.payment.date}</b></span><br />
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Date:<b> {this.state.Checkout.date}</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Amount: <b>Rs.{this.state.payment.amount}.00</b></span><br />
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Amount: <b>Rs.{this.state.Checkout.amount}.00</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Payment Method:<b> {this.state.payment.paymentMethod}</b></span><br /><br />
+                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Payment Method:<b> {this.state.Checkout.paymentMethod}</b></span><br /><br />
 
                                     <div class="alert alert-danger" role="alert">
                                         <center><p>Are you sure you want to permanently remove this payment?</p><hr />
