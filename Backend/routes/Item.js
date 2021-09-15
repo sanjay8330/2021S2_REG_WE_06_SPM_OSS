@@ -31,7 +31,7 @@ router.route("/readItemsForCustomer/:userId/:date").get(async (req, res) => {
 //Get the product by ID - ADMIN TASK
 router.route('/getItemById/:id').get(async (req, res) => {
     if(req.params && req.params.id){
-        await ItemtModel.findById(req.params.id)
+        await ItemModel.findById(req.params.id)
         .then(data => {
             res.status(200).send({data: data});
         }).catch(error => {

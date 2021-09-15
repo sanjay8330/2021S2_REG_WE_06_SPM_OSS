@@ -11,7 +11,8 @@ const initialStates = {
     itemSizeError: '',
     itemQuantity: '',
     itemQuantityError: '',
-    "productinfo": [],
+    itemdescription: '',
+    "iteminfo": [],
     "userID": '',
     "today": '',
     "currentDate": ''
@@ -27,16 +28,18 @@ export default class updateItem extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:3001/product/getItemById/${this.props.match.params.id}`)
+        Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
-                this.setState({ items: response.data.data });
+                this.setState({ iteminfo: response.data.data});
                 this.setState({ productQuantity: this.state.items.itemQuantity });
                 this.setState({ productColor: this.state.items.itemColor });
                 this.setState({ productSize: this.state.items.itemSize });
+                this.setState({ productDescription: this.state.items.itemdescription });
             }).catch(error => {
                 console.log(error.message);
             })
     }
+
 
     onChange(e) {
         e.persist();
@@ -114,7 +117,7 @@ export default class updateItem extends Component {
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}>
                                         <div className="form-group"><br />
-                                            <span style={{ color: "black" }}>Item Name<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <h4>{this.state.productinfo.productDescription}</h4><br>
+                                            <span style={{ color: "black" }}>Item Name<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <h4>{this.state.iteminfo.productDescription}</h4><br>
                                             
                                             </br>
                                             
