@@ -58,7 +58,6 @@ function App() {
           <Switch>
             <Route path="/" component={Login} exact />
             <Route path="/register" component={Register} />
-<<<<<<< HEAD
             <Route path="/home/:id" component={ Home } />
             <Route path="/forgotPassword" component={ ForgotPassword } />
             <Route path="/resetPassword/:id" component={ ResetPassword } />
@@ -90,41 +89,6 @@ function App() {
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
 
             <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
-=======
-            <Route path="/home/:id" component={Home} />
-            <Route path="/forgotPassword" component={ForgotPassword} />
-            <Route path="/resetPassword/:id" component={ResetPassword} />
-            <Route path="/adminUserRegister" component={AdminAddUser} />
-            <Route path="/viewUsers" component={ViewUsers} />
-            <Route path="/viewAdmin" component={ViewAdministrators} />
-            <Route path="/updateUser/:id" component={UpdateUsers} />
-            <Route path="/resetUserPassword/:id" component={UpdateUserPassword} />
-
-            <Route path="/addProductOffer" component={AddProductOffer} />
-            <Route path="/viewProductOffers" component={ViewProductOffer} />
-            <Route path="/updateProductOffer/:id" component={UpdateProductOffer} />
-            <Route path="/deleteProductOffer/:id" component={DeleteProductOffer} />
-
-            <Route path="/adminDashboard" component={adminDashboard} />
-            <Route path="/createProduct" component={createProduct} />
-            <Route path="/viewProducts" component={ViewProducts} />
-            <Route path="/updateProduct/:id" component={UpdateProduct} />
-            <Route path="/deleteProduct/:id" component={DeleteProduct} />
-            <Route path="/menProducts/:userId" component={menProducts} />
-            <Route path="/womenProducts/:userId" component={womenProducts} />
-            <Route path="/kidsProducts/:userId" component={kidsProducts} />
-            <Route path="/babiesProducts/:userId" component={babiesProducts} />
-            <Route path="/teenagersProducts/:userId" component={teenagersProducts} />
-            <Route path="/deleteProductWithOffer/:productId" component={ deleteproductWithOffer } />
-
-            <Route path="/checkout/:userId/:amount" component={Checkout} />
-            <Route path="/payment-history/:userId" component={History} />
-            <Route path="/delivery-details/:userId/:amount" component={DeliveryDetails} />
-
-            <Route path="/insertItem/:id/:userId" component={insertItem} />
-            <Route path="/addOfferItems/:id/:userId" component={addOfferItem} />
-
->>>>>>> 87454b9790314d08557eeb98b21ae55070e13f7a
             <Route path="/updateitem/:userId" component={ UpdateItem } />
             <Route path="/viewItems/:userId" component={ViewShoppingcart} />
 
