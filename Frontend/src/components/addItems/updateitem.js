@@ -98,7 +98,6 @@ export default class updateItem extends Component {
                 }).catch(error => {
                     alert(error.message);
                 })
-
         }
     }
 
