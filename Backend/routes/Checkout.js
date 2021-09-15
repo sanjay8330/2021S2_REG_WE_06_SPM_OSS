@@ -12,19 +12,19 @@ router.route('/paymentDetails').post(async (req, res) => {
             res.status(500).send({error: error});
         })
     }
-});
+});  
 
 //Get payment history by userId - CUSTOMER PAYMENT HISTORY
-router.route("/readHistoryForCustomer/:userId/:date").get(async (req, res) => {
+router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
     const currentuserId = req.params.userId;
-    const currentDate = req.params.date;
+    //const currentDate = req.params.date;
 
-    CheckoutModel.find({ userId: currentuserId, date: currentDate })
+    CheckoutModel.find({ userId: currentuserId})
         .then(data => {
             res.status(200).send({ data: data });
         }).catch(error => {
             res.status(500).send({ error: error });
         })
-});
+}); 
 
 module.exports = router;

@@ -14,7 +14,8 @@ const initialStates = {
     city: '',
     province: '',
     postalCode: '',
-    "userId": ''
+    "userId": '',
+    "itemlist": [],
 }
 
 
@@ -23,6 +24,7 @@ export default class deliveryDetails extends Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
+        this.navigateToCheckOutForm = this.navigateToCheckOutForm.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = initialStates;
     }
@@ -30,6 +32,11 @@ export default class deliveryDetails extends Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    navigateToCheckOutForm(e) {
+        //window.location = `/checkout/${this.props.match.params.userId}`;
+        window.location = `/checkout/${this.props.match.params.userId}/${this.state.totalamount}`;
     }
 
     componentDidMount(){
@@ -59,7 +66,7 @@ export default class deliveryDetails extends Component {
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
             .then(response => {
                 alert('Delivery Details Added Successfully');
-                window.location = `/checkout/${this.state.userId}`;
+                //window.location = `/checkout/${this.state.userId}/${this.state.totalamount}`;
             }).catch(error => {
                 alert(error.message);
             })
@@ -81,7 +88,6 @@ export default class deliveryDetails extends Component {
                                 <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                 </div>
                                     <div className="form-group"><br/>
-
                                         <table>
                                             <tr>
                                                 <td>
@@ -92,7 +98,6 @@ export default class deliveryDetails extends Component {
                                                     <span style={{ color: "black" }}>Sender's Phone Number</span>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td>
                                                     <input
@@ -261,7 +266,7 @@ export default class deliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Checkout</button>
+                                                <button type="submit" className="btn btn-dark" onClick={this.navigateToCheckOutForm} id="submitBtn">Checkout</button>
                                             </td>
                                         </tr>
                                     </table>

@@ -92,7 +92,7 @@ export default class checkout extends Component {
                             <div class="col-lg-6 col-md-6">
                                 <form onSubmit={this.onSubmit}><br />
                                     <div className="form-group">
-                                        <span style={{ color: "black" }}>Amount: &nbsp;<span style={{ color: "red" }}> Rs. xxx.00 </span></span>
+                                        <span style={{ color: "black" }}>Amount: &nbsp;<span style={{ color: "red" }}>{this.state.amount}</span></span>
                                         <br />
                                         <br />
                                     </div>
