@@ -16,7 +16,8 @@ import Axios from 'axios';
 const initialStates = {
     "productOffers": [],
     "products": [],
-    "userId": ''
+    "userId": '',
+    "userInfo": []
 }
 
 export default class home extends Component {
@@ -38,6 +39,13 @@ export default class home extends Component {
 
         this.setState({ userId: this.props.match.params.id })
 
+        Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState({ userInfo: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
     }
 
     navigateToAdditempage(e, productID, userId) {
@@ -57,8 +65,11 @@ export default class home extends Component {
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
+                        <img style={{ minWidth: '50px', width: '50px', height: '60px', marginLeft: '90%' }} src={this.state.userInfo.imageURL} />
+                        <label style={{ color: 'black', marginLeft: '80%' }}>{"Logged in as : " + this.state.userInfo.userEmail}</label>
                         <img class="d-block w-100" src={ss} alt="First slide" style={{ filter: 'blur(1px)' }} />
                     </div>
+
                     <div class="bg-text">
                         <h2>Online Shopping Store</h2>
                         <h1>FASHIONZ</h1>

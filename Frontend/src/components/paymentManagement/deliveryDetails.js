@@ -15,7 +15,7 @@ const initialStates = {
     province: '',
     postalCode: '',
     "userId": '',
-    "itemlist": [],
+    "totamount": ''
 }
 
 
@@ -41,6 +41,7 @@ export default class deliveryDetails extends Component {
 
     componentDidMount(){
         this.setState({ userId: this.props.match.params.userId });
+        this.setState({ totamount: this.props.match.params.totamount });
     }
 
     onSubmit(e) {
@@ -66,7 +67,7 @@ export default class deliveryDetails extends Component {
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
             .then(response => {
                 alert('Delivery Details Added Successfully');
-                //window.location = `/checkout/${this.state.userId}/${this.state.totalamount}`;
+                window.location = `/checkout/${this.state.userId}/${this.state.totamount}`;
             }).catch(error => {
                 alert(error.message);
             })

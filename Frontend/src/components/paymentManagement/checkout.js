@@ -6,11 +6,13 @@ import Header from '../header/header';
 import check from '../../images/check.jpg';
 
 const initialStates = {
-    amount: '500',
+    //amount: '',
     paymentMethod: '',
     slip: 'No-Image',
     comments: '',
-    date: ''
+    date: '',
+    "userId": '',
+    "amount": ''
 }
 
 export default class checkout extends Component {
@@ -34,6 +36,7 @@ export default class checkout extends Component {
 
     componentDidMount(){
         this.setState({ userId: this.props.match.params.userId });
+        this.setState({ amount: this.props.match.params.amount });
     }
     
     onSubmit(e) {
@@ -53,7 +56,7 @@ export default class checkout extends Component {
         }
 
         console.log("Data", checkout);
-        Axios.post('http://localhost:3001/checkout/paymentDetails', checkout)
+        Axios.post(`http://localhost:3001/checkout/paymentDetails/${this.props.match.params.userId}/${this.props.match.params.amount}`, checkout)
             .then(response => {
                 alert('Checkout Details Added Successfully');
                 //window.location = "/checkout";
@@ -92,7 +95,7 @@ export default class checkout extends Component {
                             <div class="col-lg-6 col-md-6">
                                 <form onSubmit={this.onSubmit}><br />
                                     <div className="form-group">
-                                        <span style={{ color: "black" }}>Amount: &nbsp;<span style={{ color: "red" }}>{this.state.amount}</span></span>
+                                        <span style={{ color: "black" }}>Amount: &nbsp;<span style={{ color: "red" }}> Rs. {this.state.amount}.00 </span></span>
                                         <br />
                                         <br />
                                     </div>

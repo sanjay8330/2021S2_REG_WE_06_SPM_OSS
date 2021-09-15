@@ -10,7 +10,7 @@ const CheckoutSchema = new mongoose.Schema({
 
     amount: { 
         type: String,
-        required: false,
+        required: true,
         trim: true 
     },
 

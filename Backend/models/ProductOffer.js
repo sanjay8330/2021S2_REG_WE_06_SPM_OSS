@@ -54,6 +54,11 @@ const ProductOfferSchema = new mongoose.Schema({
         required: true,
         trim: true 
     },
+    userCount: {
+        type: Number,
+        required: false,
+        default: 0
+    }
 
 });
 

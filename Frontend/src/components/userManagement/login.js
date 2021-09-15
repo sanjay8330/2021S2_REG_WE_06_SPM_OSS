@@ -25,6 +25,7 @@ export default class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        //Get the users registered in the database
         Axios.get(`http://localhost:3001/user/validateUser/${this.state.email}`)
             .then(response => {
                 this.setState({ users: response.data.data });

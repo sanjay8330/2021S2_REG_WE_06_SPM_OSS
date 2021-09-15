@@ -5,7 +5,8 @@ import Header from '../header/header';
 
 const initialStates = {
     "Checkout": [],
-    "userId": ''
+    "userId": '',
+    "searchHistory": '',
 }
 
 export default class paymentHistory extends Component {
@@ -33,22 +34,47 @@ export default class paymentHistory extends Component {
                 <Header /><br />
                 <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b></center>
                 <main>
+                <div class="wrap">
+                            <div class="search">
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    name="searchHistory"
+                                    id="searchHistory"
+                                    onChange={this.onChange}
+                                    class="searchTerm" />
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <br/><br/>
                     <table class="table border shadow" id="casti_male">
                         <thead class="thead-dark">
                             <tr>
+                                {/* <th scope="col">AMOUNT</th> */}
                                 <th scope="col">DATE</th>
-                                <th scope="col">TOTAL AMOUNT</th>
+                                <th scope="col">AMOUNT</th>
                                 <th scope="col">PAYMENT METHOD</th>
                                 <th scope="col">DELETE</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {this.state.Checkout.length > 0 && this.state.Checkout.map((item, index) => 
+
+                        {this.state.Checkout.length > 0 && this.state.Checkout.filter((values) => {
+                                    if (this.state.searchHistory == "") {
+                                        return values;
+                                    } else if (values.date.includes(this.state.date)) {
+                                        return values;
+                                    }
+                                }).map((item, index) => 
                                 <tr>
                                 <td>{item.date}</td>
-                                <td></td>
+                                <td>{item.amount}</td>
+                                {/* <td>{item.amount}</td> */}
                                 <td>{item.paymentMethod}</td>
+                               
                                 <td>
                                     <li class="list-inline-item">
                                         <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
