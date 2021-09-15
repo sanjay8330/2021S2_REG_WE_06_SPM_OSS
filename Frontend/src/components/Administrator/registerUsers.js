@@ -114,6 +114,8 @@ export default class AdminAddUser extends Component {
                             <li><a href="/" style={{ color: "white" }}>Logout</a></li>
                         </ul>
                     </nav>
+                    <main>
+                        <h1>REGISTER USERS</h1>
                     <div className="container3">
                         <center><h2 class="log" style={{ color: "black" }}><b><i>Add Application User Details</i></b></h2></center><br />
                         <form onSubmit={this.onSubmit} style={{ height: "100px;" }}>
@@ -199,7 +201,8 @@ export default class AdminAddUser extends Component {
 
                             <button type="submit" className="btn btn-dark">Submit</button>
                         </form>
-                    </div><br />
+                    </div>
+                    </main>
                 </div>
             </div>
         )

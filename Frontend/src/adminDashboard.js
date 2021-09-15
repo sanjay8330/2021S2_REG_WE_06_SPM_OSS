@@ -27,7 +27,7 @@ export default class adminDashboard extends Component {
                 <div class="wrapper">
                     <nav>
                         <header><br />
-                            &nbsp; &nbsp;  &nbsp; ADMIN PANEL
+                            &nbsp; &nbsp; &nbsp; &nbsp; ADMIN PANEL
                         </header><hr style={{ color: "white" }} />
                         <ul><br />
                             <li><a href="/adminDashboard" style={{ color: "white" }} class="active">Dashboard</a></li>
@@ -40,32 +40,11 @@ export default class adminDashboard extends Component {
                     <main>
                         <h1>ADMIN DASHBOARD</h1>
 
-                        <div class="offerContainer">
-                            <table class="table border shadow">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col"><h3>Total Product Offers</h3></th>
-                                        <th scope="col"><h4>Active product Offers</h4></th>
-                                        <th scope="col"><h4>In-active product offers</h4></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><h3>XX</h3></td>
-                                        <td><h4>{this.state.activeProductOffers.length}</h4></td>
-                                        <td><h4>ZZ</h4></td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src={ss} alt="First slide" /><br />
                                 <div class="row">
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-primary o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
@@ -81,7 +60,7 @@ export default class adminDashboard extends Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-warning o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
@@ -90,14 +69,13 @@ export default class adminDashboard extends Component {
                                                 <div class="mr-5">Product Offers</div>
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <span class="float-left">View Details</span>
-                                                <span class="float-right">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </span>
+                                                <span class="float-left" style={{ color: "black" }}><b>Total Product Offers: XX</b></span><br/>
+                                                <span class="float-left" style={{ color: "black" }}><b>Active Product Offers: {this.state.activeProductOffers.length}</b></span><br/>
+                                                <span class="float-left" style={{ color: "black" }}><b>In-active Product Offers: ZZ</b></span>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-success o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
@@ -113,7 +91,7 @@ export default class adminDashboard extends Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-danger o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
@@ -129,7 +107,7 @@ export default class adminDashboard extends Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-danger o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
