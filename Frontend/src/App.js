@@ -64,6 +64,8 @@ function App() {
             <Route path="/adminUserRegister" component={ AdminAddUser } />
             <Route path="/viewUsers" component={ ViewUsers } />
             <Route path="/viewAdmin" component={ ViewAdministrators } />
+            <Route path="/updateUser/:id" component={ UpdateUsers } />
+            <Route path="/resetUserPassword/:id" component={ UpdateUserPassword } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
@@ -80,6 +82,7 @@ function App() {
             <Route path="/kidsProducts/:userId" component={kidsProducts}/>
             <Route path="/babiesProducts/:userId" component={babiesProducts}/>
             <Route path="/teenagersProducts/:userId" component={teenagersProducts}/>
+            <Route path="/deleteProductWithOffer/:productId" component={ deleteproductWithOffer } />
 
             <Route path="/checkout/:userId/:amount" component={ Checkout } />
             <Route path="/payment-history/:userId" component={ History } />
