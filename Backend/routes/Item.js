@@ -28,10 +28,10 @@ router.route("/readItemsForCustomer/:userId/:date").get(async (req, res) => {
 });
 
 
-//Get the product by ID - ADMIN TASK
+//Get the item by ID - USER TASK
 router.route('/getItemById/:id').get(async (req, res) => {
     if(req.params && req.params.id){
-        await ItemtModel.findById(req.params.id)
+        await ItemModel.findById(req.params.id)
         .then(data => {
             res.status(200).send({data: data});
         }).catch(error => {
@@ -40,29 +40,22 @@ router.route('/getItemById/:id').get(async (req, res) => {
     }
 });
 
-//Update Product  - ADMIN TASK
+//Update Item  - USER TASK
 router.route("/updateitem/:id").put(async (req, res) => {
-    //Updating the product details
-    const productName = req.body.productName;
-    const productPrice = req.body.productPrice;
-    const productDiscount = req.body.productDiscount;
-    const productDescription = req.body.productDescription;
-    const categoryType = req.body.categoryType;
-    const productImage = req.body.productImage;
+    //Updating the item details
+    const itemQuantity = req.body.itemQuantity;
+    const itemColor = req.body.itemColor;
+    const itemSize = req.body.itemSize;
 
     //Offer ID
     const Id = req.params.id;
 
     try {
-        await ProductModel.findById(Id, (err, updatedProductObject) => {
-            updatedProductObject.productName = productName;
-            updatedProductObject.productPrice = productPrice;
-            updatedProductObject.productDiscount = productDiscount;
-            updatedProductObject.productDescription = productDescription;
-            updatedProductObject.categoryType = categoryType;
-            updatedProductObject.productImage = productImage;
-
-            updatedProductObject.save()
+        await ItemModel.findById(Id, (err, updateItemObject) => {
+            updateItemObject.productQuantity = itemQuantity;
+            updateItemObject.productColor = itemColor;
+            updateItemObject.productSize = itemSize;
+            updateItemObject.save()
                 .then(data => {
                     res.status(200).send({ data: data });
                 }).catch(error => {

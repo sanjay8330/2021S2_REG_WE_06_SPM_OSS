@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
-import product from '../../images/product.jpg';
+
 
 
 const initialStates = {
     itemColor: '',
-    itemColorError:'',
+    itemColorError: '',
     itemSize: '',
     itemSizeError: '',
     itemQuantity: '',
     itemQuantityError: '',
-    "productinfo": [],
-    "userID": '',
-    "today": '',
-    "currentDate": ''
+    itemdescription: '',
+    itemprice: '',
+    "iteminfo": [],
 }
 
 export default class updateItem extends Component {
@@ -26,59 +25,69 @@ export default class updateItem extends Component {
         this.state = initialStates;
     }
 
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+
     componentDidMount() {
-        Axios.get(`http://localhost:3001/product/getItemById/${this.props.match.params.id}`)
+        Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
-                this.setState({ items: response.data.data });
-                this.setState({ productQuantity: this.state.items.itemQuantity });
-                this.setState({ productColor: this.state.items.itemColor });
-                this.setState({ productSize: this.state.items.itemSize });
+                this.setState({ iteminfo: response.data.data });
+                this.setState({ itemdescription: this.state.iteminfo.productDescription });
+                this.setState({ itemprice: this.state.iteminfo.productPrice });
+                this.setState({ itemColor: this.state.iteminfo.productColor });
+                this.setState({ itemSize: this.state.iteminfo.productSize });
+                this.setState({ itemQuantity: this.state.iteminfo.productQuantity });
             }).catch(error => {
                 console.log(error.message);
             })
     }
+
 
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });
     }
 
-   //Validation Part
-   validate () {
-    let isError = false;
-    const errors = {
-        itemColorError:'',
-        itemSizeError: '',
-        itemQuantityError: ''
-    };
+    //Validation Part
+    validate() {
+        let isError = false;
+        const errors = {
+            itemColorError: '',
+            itemSizeError: '',
+            itemQuantityError: ''
+        };
 
-    if (this.state.itemColor === '') {
-        isError = true;
-        alert('you need to select the Color of the item')
-        //errors.itemColorError = "you need to select the Color of the item";
+        if (this.state.itemColor === '') {
+            isError = true;
+            alert('you need to select the Color of the item')
+            //errors.itemColorError = "you need to select the Color of the item";
+        }
+
+        if (this.state.itemSize === '') {
+            isError = true;
+            alert('you need to select the Size of the item')
+            //errors.itemSizeError = "you need to select the Size of the item";
+        }
+
+        if (this.state.itemQuantity === '') {
+            isError = true;
+            alert('you need to select the Quantity of the item')
+            //errors.itemQuantityError = "you need to select the Quantity of the item";
+        }
+
+        if (isError) {
+            this.setState({
+                ...this.state,
+                ...errors
+            });
+        }
+
+        return isError;
     }
 
-    if (this.state.itemSize === '') {
-        isError = true;
-        alert('you need to select the Size of the item')
-        //errors.itemSizeError = "you need to select the Size of the item";
-    }
 
-    if (this.state.itemQuantity === '') {
-        isError = true;
-        alert('you need to select the Quantity of the item')
-        //errors.itemQuantityError = "you need to select the Quantity of the item";
-    }
-
-    if (isError) {
-        this.setState({
-            ...this.state,
-            ...errors
-        });
-    }
-
-    return isError;
-}
     onSubmit(e) {
         e.preventDefault();
 
@@ -91,9 +100,9 @@ export default class updateItem extends Component {
                 productColor: this.state.itemColor,
                 productSize: this.state.itemSize,
             }
-            Axios.put(`http://localhost:3001/updateitem/updateitem/${this.props.match.params.id}`, updateItem)
+            Axios.put(`http://localhost:3001/insertitem/updateitem/${this.props.match.params.id}`, updateItem)
                 .then(response => {
-                    alert('Product Details Updated Successfully');
+                    alert('Item Details Updated Successfully');
                     window.location = "/viewProducts";
                 }).catch(error => {
                     alert(error.message);
@@ -105,7 +114,6 @@ export default class updateItem extends Component {
         return (
             <div>
                 <div class="wrapper">
-                    
                     <main>
                         <h1>UPDATE ITEM</h1>
 
@@ -114,64 +122,53 @@ export default class updateItem extends Component {
                                 <div class="col-lg-6 col-md-6">
                                     <form onSubmit={this.onSubmit}>
                                         <div className="form-group"><br />
-                                            <span style={{ color: "black" }}>Item Name<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <h4>{this.state.productinfo.productDescription}</h4><br>
-                                            
-                                            </br>
-                                            
-                                           
-                                            </div><br />
 
-                                        <span style={{ color: "black" }}>Product Price (Rs.)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
-                                        <span style={{ color: "grey", fontSize: "13px" }}>
-                                            &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp; &emsp;&emsp;&emsp;
-                                            Allow only numbers</span>
-                                        <input
-                                            class="form-control"
-                                            type="number"
-                                            defaultValue={this.state.productPrice}
-                                            name="productPrice"
-                                            onChange={this.onChange}
-                                            required
-                                            style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }} /><br />
+                                            <h2 style={{ color: '#8e9be6' }}>{this.state.iteminfo.productName}</h2><br />
+                                            <span style={{ color: "black" }}>Item Description<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <h4>{this.state.iteminfo.productDescription}</h4>
+                                            <span style={{ color: "black" }}>Item Price<span style={{ color: "red", fontSize: "24px" }}>*</span></span> &emsp; &emsp; &emsp; <h4> RS {this.state.iteminfo.productPrice} /=</h4>
 
-                                        <span style={{ color: "black" }}>Product Discount (%)<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
-                                        <span style={{ color: "grey", fontSize: "13px" }}>
-                                            &emsp; &emsp; &emsp; &emsp;&emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;
-                                            Allow only numbers</span>
-                                        <input
-                                            class="form-control"
-                                            type="number"
-                                            defaultValue={this.state.productDiscount}
-                                            name="productDiscount"
-                                            onChange={this.onChange}
-                                            required
-                                            style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }} /><br />
+                                        </div><br />
+
 
                                         <div className="form-group">
-                                            <span style={{ color: "black" }}>Product Description<span style={{ color: "red", fontSize: "24px" }}>*</span></span>&emsp; &emsp;<font color="red" style={{ fontSize: '14px' }}>{this.state.productDescriptionError}</font>
-                                            <textarea
-                                                className="form-control"
-                                                rows="2"
-                                                defaultValue={this.state.productDescription}
-                                                name="productDescription"
-                                                onChange={this.onChange}
-                                                required
-                                                style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                            </textarea></div><br />
 
-                                        <span style={{ color: "black" }}>Product Category<span style={{ color: "red", fontSize: "24px" }}>*</span></span>
-                                        <select name="categoryType" onChange={this.onChange} value={this.state.categoryType} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
-                                            <option value="Men">Men</option>
-                                            <option value="Women">Women</option>
-                                            <option value="Teenagers">Teenagers</option>
-                                            <option value="Kids">Kids</option>
-                                            <option value="Babies">Babies</option>
-                                        </select><br />
+                                            <span style={{ color: "black" }}>Item Color</span>
+                                            <select name="itemColor" id="itemColor" value={this.state.itemColor} onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_color" disabled>Select color</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Grey">Grey</option>
+                                                <option value="Blue">Blue</option>
+                                                <option value="Red">red</option>
+                                                <option value="Matt">Matt</option>
+                                            </select><br />
+
+                                            <span style={{ color: "black" }}>Item Size</span>
+                                            <select name="itemSize" id="itemSize" value={this.state.itemSize} onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_size" disabled>Select size</option>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XLL">XLL</option>
+                                            </select><br />
+
+                                            <span style={{ color: "black" }}>Item Quantity</span>
+                                            <select name="itemQuantity" id="itemQuantity" value={this.state.itemQuantity} onChange={this.onChange} class="form-select" aria-label="Default select example" style={{ border: "1px solid #c8cfcb", backgroundColor: "#edf0eb" }}>
+                                                <option selected value="item_quantity" disabled>Select quantity</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="5">4</option>
+                                                <option value="6">5</option>
+                                            </select><br />
+
+                                        </div>
+                                        <br />
 
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
-                                <img style={{ width: '450px', height: '560px' }} src={this.state.productImage} class="zoom" />
+                                <img style={{ width: '450px', height: '560px' }} src={this.state.iteminfo.productImage} class="zoom" />
                             </div>
                         </div>
                     </main>
