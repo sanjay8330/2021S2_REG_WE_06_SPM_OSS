@@ -14,4 +14,16 @@ router.route('/payment-history/:id').get(async (req, res) => {
     })
 });
 
+//Delete payment details
+router.route('/deletePayment/:id').delete(async (req, res) => {
+    if(req.params && req.params.id){
+        await HistoryModel.findByIdAndDelete(req.params.id)
+        .then(data => {
+            res.status(200).send({data: data});
+        }).catch(error => {
+            res.status(500).send({error: error});
+        })
+    }
+});
+
 module.exports = router;
