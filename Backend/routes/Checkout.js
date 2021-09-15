@@ -12,7 +12,7 @@ router.route('/paymentDetails/:userId/:amount').post(async (req, res) => {
             res.status(500).send({error: error});
         })
     }
-});
+});  
 
 //Get payment history by userId - CUSTOMER PAYMENT HISTORY
 router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
@@ -24,6 +24,6 @@ router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
         }).catch(error => {
             res.status(500).send({ error: error });
         })
-});
+}); 
 
 module.exports = router;
