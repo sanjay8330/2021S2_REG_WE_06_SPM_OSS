@@ -41,7 +41,7 @@ export default class viewProducts extends Component {
     jsPdfGeneratorProduct() {
 
         var doc = new jsPDF('p', 'pt');
-        doc.text(200, 20, 'SUMMARY OF PRODUCT DETAILS', 'center')
+        doc.text(300, 20, 'SUMMARY OF PRODUCT DETAILS', 'center')
 
         doc.setFont('courier')
 
@@ -140,7 +140,6 @@ export default class viewProducts extends Component {
                         <table style={{ display: 'none'}} id="productReportTable">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">IMAGE</th>
                                     <th scope="col">PRODUCT NAME</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">DISCOUNT</th>
@@ -157,7 +156,6 @@ export default class viewProducts extends Component {
                                     }
                                 }).map((item, index) =>
                                     <tr>
-                                        <td><img id="myImg" style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
                                         <td>{item.productName}</td>
                                         <td>{"Rs." + item.productPrice}.00</td>
                                         <td>{item.productDiscount + "%"}</td>
