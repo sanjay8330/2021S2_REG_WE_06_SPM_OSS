@@ -91,6 +91,9 @@ function App() {
             <Route path="/insertItem/:id/:userId" component={insertItem} />
             <Route path="/addOfferItems/:id/:userId" component={addOfferItem} />
 
+            <Route path="/updateitem/:userId" component={ UpdateItem } />
+            <Route path="/viewItems/:userId" component={ViewShoppingcart} />
+
           </Switch>
         </section>
       </Router>
