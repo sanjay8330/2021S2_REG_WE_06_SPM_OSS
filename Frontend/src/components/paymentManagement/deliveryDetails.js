@@ -41,10 +41,6 @@ export default class deliveryDetails extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        //validate data before submitting to the db 
-        //const err = this.validate();
-        //if (!err) {
-
         let deliveryDetails = {
             senderName: this.state.senderName,
             senderMobile: this.state.senderMobile,
@@ -58,7 +54,7 @@ export default class deliveryDetails extends Component {
             userId: this.state.userId,
             amount: this.state.amount,
         }
-        //console.log("Data", deliveryDetails);
+
         Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
             .then(response => {
                 alert('Delivery Details Added Successfully');
@@ -67,7 +63,6 @@ export default class deliveryDetails extends Component {
                 alert(error.message);
             })
 
-        //}
     }
 
     render() {

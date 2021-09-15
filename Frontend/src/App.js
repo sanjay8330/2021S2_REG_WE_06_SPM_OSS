@@ -36,9 +36,10 @@ import teenagersProducts from "./components/productManagement/teenagersProducts"
 import deleteproductWithOffer from "./components/productManagement/deleteProductWithOffer";
 
 //Payment Management
-import Checkout from "./components/paymentManagement/checkout";
-import History from "./components/paymentManagement/paymentHistory";
-import DeliveryDetails from "./components/paymentManagement/deliveryDetails";
+import Checkout from './components/paymentManagement/checkout';
+import History from './components/paymentManagement/paymentHistory';
+import DeliveryDetails from './components/paymentManagement/deliveryDetails';
+import DeletePayment from './components/paymentManagement/deletePayment';
 
 //Insert Item
 import insertItem from "./components/addItems/addItems";
@@ -87,6 +88,7 @@ function App() {
             <Route path="/checkout/:userId/:amount" component={ Checkout } />
             <Route path="/payment-history/:userId" component={ History } />
             <Route path="/delivery-details/:userId/:amount" component={ DeliveryDetails } />
+            <Route path="/deletePayment/:id/:userId" component={ DeletePayment } />
             
             <Route path="/insertItem/:id/:userId" component={ insertItem } />
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
