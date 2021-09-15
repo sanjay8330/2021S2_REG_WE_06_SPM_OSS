@@ -119,10 +119,20 @@ router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
     }
 });
 
-//Get all product active offers - CUSTOMER HOMEPAGE
+//Get all product active offers - CUSTOMER HOMEPAGE & ADMIN DASHBOARD
 router.route('/getAllActiveProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({ offerStatus: 'Active' })
         .populate('product', 'productName')
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+});
+
+//Get all product in active offers - ADMIN DASHBOARD
+router.route('/getAllInActiveProductOffers').get(async (req, res) => {
+    await ProductOfferModel.find({ offerStatus: 'In-Active' })
         .then(data => {
             res.status(200).send({ data: data });
         }).catch(error => {
