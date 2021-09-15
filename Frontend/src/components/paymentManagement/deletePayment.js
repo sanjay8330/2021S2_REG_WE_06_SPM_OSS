@@ -20,9 +20,10 @@ export default class deletePayment extends Component {
         //Set the global state for user ID
         this.setState({ userId: this.props.match.params.userId });
 
-        Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}`)
+        Axios.get(`http://localhost:3001/checkout/getPaymentByID/${this.props.match.params.id}`)
             .then(response => {
-                this.setState({ Checkout : response.data.data });
+                this.setState({ Checkout: response.data.data });
+                console.log(this.state.Checkout);
             }).catch(error => {
                 console.log(error.message);
             })
@@ -30,7 +31,7 @@ export default class deletePayment extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        Axios.delete(`http://localhost:3001/deletePayment/${this.props.match.params.id}`)
+        Axios.delete(`http://localhost:3001/checkout/deletePayment/${this.props.match.params.id}`)
             .then(response => {
                 alert('Payment Record deleted Successfully');
                 window.location = "/payment-history";
@@ -48,32 +49,32 @@ export default class deletePayment extends Component {
             <div>
                 <Header />
                 <main>
-                        <h1>DELETE CONFIRMATION</h1>
-                        <div class="content">
-                            <div class="wrapper-1">
-                                <div class="wrapper-2">
+                    <h1>DELETE CONFIRMATION</h1>
+                    <div class="content">
+                        <div class="wrapper-1">
+                            <div class="wrapper-2">
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Date:<b> {this.state.Checkout.date}</b></span><br />
+                                <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Date:<b> {this.state.Checkout.date}</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Amount: <b>Rs.{this.state.Checkout.amount}.00</b></span><br />
+                                <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Amount: <b>Rs.{this.state.Checkout.amount}.00</b></span><br />
 
-                                    <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Payment Method:<b> {this.state.Checkout.paymentMethod}</b></span><br /><br />
+                                <span style={{ color: "black", fontFamily: "'Libre Baskerville', serif" }}>Payment Method:<b> {this.state.Checkout.paymentMethod}</b></span><br /><br />
 
-                                    <div class="alert alert-danger" role="alert">
-                                        <center><p>Are you sure you want to permanently remove this payment?</p><hr />
-                                            By deleting this payment detail you can't undo this action.</center>
-                                    </div>
-                                    <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
-                                        Cancel
-                                    </button>
-                                    <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
-                                        Delete
-                                    </button>
+                                <div class="alert alert-danger" role="alert">
+                                    <center><p>Are you sure you want to permanently remove this payment?</p><hr />
+                                        By deleting this payment detail you can't undo this action.</center>
                                 </div>
+                                <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
+                                    Cancel
+                                </button>
+                                <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
+                                    Delete
+                                </button>
                             </div>
                         </div>
+                    </div>
 
-                    </main>
+                </main>
             </div>
         )
     }

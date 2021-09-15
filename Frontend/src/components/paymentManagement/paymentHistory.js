@@ -28,8 +28,8 @@ export default class paymentHistory extends Component {
             })
     }
 
-    navigateToDeletePage(e, paymentID) {
-        window.location = `/deletePayment/${paymentID}/${this.props.match.params.userId}`;
+    navigateToDeletePage(e, paymentID, UserID) {
+        window.location = `/deletePayment/${paymentID}/${UserID}`;
     }
 
     render() {
@@ -81,7 +81,7 @@ export default class paymentHistory extends Component {
                                
                                 <td>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e,this.state.userId ,item._id)}><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e,item._id, this.state.userId )}><i class="fa fa-trash"></i></button>
                                     </li>
                                 </td>
                             </tr>
