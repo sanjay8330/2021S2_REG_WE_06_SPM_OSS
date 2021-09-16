@@ -15,7 +15,8 @@ const initialStates = {
     province: '',
     postalCode: '',
     "userId": '',
-    "amount": ''
+    "amount": '',
+    "deliveryDetails": []
 }
 
 
@@ -41,6 +42,9 @@ export default class updateDeliveryDetails extends Component {
         Axios.get(`http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ deliveryDetails: response.data.data });
+                
+                console.log(this.state.deliveryDetails);
+
                 this.setState({ senderName: this.state.deliveryDetails.senderName });
                 this.setState({ senderMobile: this.state.deliveryDetails.senderMobile });
                 this.setState({ receiverName: this.state.deliveryDetails.receiverName });
@@ -51,10 +55,13 @@ export default class updateDeliveryDetails extends Component {
                 this.setState({ province: this.state.deliveryDetails.province });
                 this.setState({ postalCode: this.state.deliveryDetails.postalCode });
 
-                console.log(this.state.deliveryDetails);
+
+                //console.log(this.state.senderName);
+
             }).catch(error => {
                 console.log(error.message);
-            })
+            });
+
     }
 
 
@@ -105,7 +112,7 @@ export default class updateDeliveryDetails extends Component {
                                         <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
                                     <div className="form-group"><br />
-
+                                   
                                         <table>
                                             <tr>
                                                 <td>
@@ -119,6 +126,7 @@ export default class updateDeliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
+                                                    
                                                     <input
                                                         class="form-control"
                                                         type="text"
