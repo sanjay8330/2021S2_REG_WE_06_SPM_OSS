@@ -20,7 +20,7 @@ export default class ViewShoppingcart extends Component {
 
     //Navigate to the Payment History Page
     navigateToPaymentHistory(e) {
-        window.location = `/payment-history/${this.props.match.params.userId}`; 
+        window.location = `/payment-history/${this.props.match.params.userId}`;
     }
     navigateToCheckOut(e) {
         //window.location = `/checkout/${this.props.match.params.userId}`;
@@ -59,63 +59,64 @@ export default class ViewShoppingcart extends Component {
     render() {
         return (
             <div>
-                <Header /><br />
+                <Header />
                 <main>
-                <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center>
+                    <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-dark" style={{ marginRight: '2%' }}>Download Report</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
-                </div><br />
+                   
+                    <br/><br/>
 
-                <table class="table border shadow">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">ITEM IMAGE</th>
-                            <th scope="col">ITEM NAME</th>
-                            <th scope="col">DESCRIPTION</th>
-                            <th scope="col">ITEM COLOR</th>
-                            <th scope="col">ITEM SIZE</th>
-                            <th scope="col">ITEM PRICE</th>
-                            <th scope="col">ITEM QUANTITY</th>
-                            <th scope="col">ITEM TOTAL PRICE</th>
-                            <th scope="col">EDIT</th>
-                            <th scope="col">DELETE</th>
-                            <th scope="col" style={{ display: "none" }}>TOTAL IN ROW</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.itemlist.length > 0 && this.state.itemlist.map((item, index) =>
+                    <table class="table border shadow">
+                        <thead class="thead-dark">
                             <tr>
-                                <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
-                                <td>{item.productName}</td>
-                                <td>{item.productDescription}</td>
-                                <td>{item.productColor}</td>
-                                <td>{item.productSize}</td>
-                                <td>{"Rs. " + item.productPrice + "/="}</td>
-                                <td>{item.productQuantity}</td>
-                                <td>{"Rs. " + item.productPrice * item.productQuantity + "/="}</td>
-                                <td>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)} ><i class="fa fa-edit"></i></button>
-                                    </li>
-                                </td>
-                                <td>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)} ><i class="fa fa-trash"></i></button>
-                                    </li>
-                                </td>
-                                <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
+                                <th scope="col">ITEM IMAGE</th>
+                                <th scope="col">ITEM NAME</th>
+                                <th scope="col">DESCRIPTION</th>
+                                <th scope="col">ITEM COLOR</th>
+                                <th scope="col">ITEM SIZE</th>
+                                <th scope="col">ITEM PRICE</th>
+                                <th scope="col">ITEM QUANTITY</th>
+                                <th scope="col">ITEM TOTAL PRICE</th>
+                                <th scope="col">EDIT</th>
+                                <th scope="col">DELETE</th>
+                                <th scope="col" style={{ display: "none" }}>TOTAL IN ROW</th>
+
                             </tr>
-                        )}
-                    </tbody>
-                </table><br />
+                        </thead>
+                        <tbody>
+                            {this.state.itemlist.length > 0 && this.state.itemlist.map((item, index) =>
+                                <tr>
+                                    <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
+                                    <td>{item.productName}</td>
+                                    <td>{item.productDescription}</td>
+                                    <td>{item.productColor}</td>
+                                    <td>{item.productSize}</td>
+                                    <td>{"Rs. " + item.productPrice + "/="}</td>
+                                    <td>{item.productQuantity}</td>
+                                    <td>{"Rs. " + item.productPrice * item.productQuantity + "/="}</td>
+                                    <td>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)} ><i class="fa fa-edit"></i></button>
+                                        </li>
+                                    </td>
+                                    <td>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)} ><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </td>
+                                    <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table><br />
 
-                <b><h3 style={{ color: "red", backgroundColor: "#c7d4ca", width: "340px" }}>&nbsp; &nbsp;Total Amount : {"Rs. " + this.state.totalamount + " /="}</h3></b>
+                    <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + this.state.totalamount + " /="}</h3></b>
 
-                <br /><br /><br />
-            </main>
+                    <br />
+                </main>
             </div>
         )
     }

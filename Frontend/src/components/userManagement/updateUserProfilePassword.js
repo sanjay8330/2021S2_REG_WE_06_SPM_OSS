@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
 import PasswordChecklist from "react-password-checklist";
+import Header from "../header/header";
 
 const initialStates = {
     "password": '',
@@ -52,6 +53,7 @@ export default class UpdateUserProfilePassword extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="wrapper">
                     <div className="container4">
 

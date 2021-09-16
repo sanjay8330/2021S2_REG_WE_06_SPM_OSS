@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
 import firebase from '../../Firebase/firebase';
+import Header from '../header/header';
 
 const initialStates = {
     "userInfo": [],
@@ -93,6 +94,7 @@ export default class UpdateCustomerProfile extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="wrapper">
                     <div className="container4">
 
