@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
 import Header from '../header/header';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 const initialStates = {
     "today": '',
@@ -56,6 +58,20 @@ export default class ViewShoppingcart extends Component {
             })
     }
 
+    //generate product Report
+    jsPdfGeneratorProduct() {
+
+        var doc = new jsPDF('p', 'pt');
+        doc.text(300, 20, 'SUMMARY OF ITEM DETAILS', 'center')
+
+        doc.setFont('courier')
+
+        doc.autoTable({ html: '#itemReportTable' })
+
+        //save PDF
+        doc.save('itemreport.pdf')
+    }
+
     render() {
         return (
             <div>
@@ -63,11 +79,11 @@ export default class ViewShoppingcart extends Component {
                 <main>
                     <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
 
-                    <button type="button" class="btn btn-dark" style={{ marginRight: '2%' }}>Download Report</button>
+                    <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
-                   
-                    <br/><br/>
+
+                    <br /><br />
 
                     <table class="table border shadow">
                         <thead class="thead-dark">
@@ -116,6 +132,34 @@ export default class ViewShoppingcart extends Component {
                     <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + this.state.totalamount + " /="}</h3></b>
 
                     <br />
+
+                    <table class="table border shadow" id="itemReportTable" style={{ display: 'none'}}>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ITEM NAME</th>
+                                <th scope="col">DESCRIPTION</th>
+                                <th scope="col">ITEM COLOR</th>
+                                <th scope="col">ITEM SIZE</th>
+                                <th scope="col">ITEM PRICE</th>
+                                <th scope="col">ITEM QUANTITY</th>
+                                <th scope="col">ITEM TOTAL PRICE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.itemlist.length > 0 && this.state.itemlist.map((item, index) =>
+                                <tr>
+                                    
+                                    <td>{item.productName}</td>
+                                    <td>{item.productDescription}</td>
+                                    <td>{item.productColor}</td>
+                                    <td>{item.productSize}</td>
+                                    <td>{"Rs. " + item.productPrice + "/="}</td>
+                                    <td>{item.productQuantity}</td>
+                                    <td>{"Rs. " + item.productPrice * item.productQuantity + "/="}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table><br />
                 </main>
             </div>
         )

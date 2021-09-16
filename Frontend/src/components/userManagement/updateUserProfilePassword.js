@@ -14,7 +14,14 @@ export default class UpdateUserProfilePassword extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.navigateToHome = this.navigateToHome.bind(this);
         this.state = initialStates;
+    }
+
+    //Navigate to the homepage
+    navigateToHome(){
+        let userID = this.props.match.params.id;
+        window.location = `/home/${userID}`;
     }
 
     onChange(e) {
@@ -102,7 +109,7 @@ export default class UpdateUserProfilePassword extends Component {
                                         <input class="btn btn--form" type="submit" value="Reset Password" />
                                     </li>
                                     <li><br />
-                                        <a class="signup__link" href="/viewUsers">Cancel</a>
+                                        <a class="signup__link" onClick={this.navigateToHome}>Cancel</a>
                                     </li>
                                 </ul>
                             </div>
