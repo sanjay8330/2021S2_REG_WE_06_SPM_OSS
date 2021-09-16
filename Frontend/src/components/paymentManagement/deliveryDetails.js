@@ -42,7 +42,7 @@ export default class deliveryDetails extends Component {
 
     
     navigateToView(e) {
-        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}`; 
+        window.location = `/deliveryForCustomer/${this.props.match.params.userId}`; 
     }
 
 
