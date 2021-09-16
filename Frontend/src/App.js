@@ -50,6 +50,9 @@ import addOfferItem from "./components/addItems/addOfferItems";
 //Update Item
 import UpdateItem from './components/addItems/updateitem';
 
+//Delete Item
+import DeleteteItem from './components/addItems/deleteitem';
+
 //Shopping - cart
 import ViewShoppingcart from "./components/ShoppingCart/viewItems";
 
@@ -101,6 +104,7 @@ function App() {
             <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
             <Route path="/updateitem/:id" component={ UpdateItem } />
             <Route path="/viewItems/:userId" component={ViewShoppingcart} />
+            <Route path="/deleteitem/:id" component={DeleteteItem} />
 
           </Switch>
         </section>

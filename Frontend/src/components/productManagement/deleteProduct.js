@@ -55,7 +55,7 @@ export default class deleteproduct extends Component {
             })
     }
 
-    navigatetoViewPage(e) {
+    navigatetoViewPage(e, item_id ) {
         window.location = "/viewProducts";
     }
 
