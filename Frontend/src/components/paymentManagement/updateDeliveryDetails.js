@@ -15,11 +15,12 @@ const initialStates = {
     province: '',
     postalCode: '',
     "userId": '',
-    "amount": ''
+    "amount": '',
+    "deliveryDetails": []
 }
 
 
-export default class deliveryDetails extends Component {
+export default class updateDeliveryDetails extends Component {
 
     constructor(props) {
         super(props);
@@ -31,18 +32,42 @@ export default class deliveryDetails extends Component {
 
 
     onChange(e) {
+        e.persist();
         this.setState({ [e.target.name]: e.target.value });
     }
 
     componentDidMount() {
         this.setState({ userId: this.props.match.params.userId });
-        this.setState({ amount: this.props.match.params.amount });
+
+        Axios.get(`http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}`)
+            .then(response => {
+                this.setState({ deliveryDetails: response.data.data });
+                
+                console.log(this.state.deliveryDetails);
+
+                this.setState({ senderName: this.state.deliveryDetails.senderName });
+                this.setState({ senderMobile: this.state.deliveryDetails.senderMobile });
+                this.setState({ receiverName: this.state.deliveryDetails.receiverName });
+                this.setState({ receiverMobiie: this.state.deliveryDetails.receiverMobiie });
+                this.setState({ streetAddress: this.state.deliveryDetails.streetAddress });
+                this.setState({ streetAddress2: this.state.deliveryDetails.streetAddress2 });
+                this.setState({ city: this.state.deliveryDetails.city });
+                this.setState({ province: this.state.deliveryDetails.province });
+                this.setState({ postalCode: this.state.deliveryDetails.postalCode });
+
+
+                //console.log(this.state.senderName);
+
+            }).catch(error => {
+                console.log(error.message);
+            });
+
     }
 
 
-    
+
     navigateToView(e) {
-        window.location = `/deliveryForCustomer/${this.props.match.params.userId}`; 
+        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}`;
     }
 
 
@@ -81,16 +106,13 @@ export default class deliveryDetails extends Component {
                     <div class="container border rounded" style={{ width: '560px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-dark" type="button" onClick={ this.navigateToView} style={{ marginRight: '2%' }}>View</button>
-                            </div><br />
                                 <form onSubmit={this.onSubmit}><br />
                                     <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
                                     <div class="centered">
                                         <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
                                     <div className="form-group"><br />
-
+                                   
                                         <table>
                                             <tr>
                                                 <td>
@@ -104,10 +126,11 @@ export default class deliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
+                                                    
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        value={this.state.senderName}
+                                                        defaultValue={this.state.senderName}
                                                         name="senderName"
                                                         onChange={this.onChange}
                                                         required
@@ -120,7 +143,7 @@ export default class deliveryDetails extends Component {
                                                         class="form-control"
                                                         type="tel"
                                                         pattern="[0-9]{10}"
-                                                        value={this.state.senderMobile}
+                                                        defaultValue={this.state.senderMobile}
                                                         name="senderMobile"
                                                         onChange={this.onChange}
                                                         required
@@ -145,7 +168,7 @@ export default class deliveryDetails extends Component {
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        value={this.state.receiverName}
+                                                        defaultValue={this.state.receiverName}
                                                         name="receiverName"
                                                         onChange={this.onChange}
                                                         required
@@ -157,7 +180,7 @@ export default class deliveryDetails extends Component {
                                                         class="form-control"
                                                         type="tel"
                                                         pattern="[0-9]{10}"
-                                                        value={this.state.receiverMobiie}
+                                                        defaultValue={this.state.receiverMobiie}
                                                         name="receiverMobiie"
                                                         onChange={this.onChange}
                                                         required
@@ -184,7 +207,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.streetAddress}
+                                                    defaultValue={this.state.streetAddress}
                                                     name="streetAddress"
                                                     onChange={this.onChange}
                                                     required
@@ -201,7 +224,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.streetAddress2}
+                                                    defaultValue={this.state.streetAddress2}
                                                     name="streetAddress2"
                                                     onChange={this.onChange}
                                                     required
@@ -218,7 +241,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.city}
+                                                    defaultValue={this.state.city}
                                                     name="city"
                                                     onChange={this.onChange}
                                                     required
@@ -235,7 +258,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.province}
+                                                    defaultValue={this.state.province}
                                                     name="province"
                                                     onChange={this.onChange}
                                                     required
@@ -252,7 +275,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.postalCode}
+                                                    defaultValue={this.state.postalCode}
                                                     name="postalCode"
                                                     onChange={this.onChange}
                                                     required
