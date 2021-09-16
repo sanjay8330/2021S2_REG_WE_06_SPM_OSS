@@ -67,4 +67,17 @@ router.route("/updateitem/:id").put(async (req, res) => {
     }
 });
 
+//Delete the Item - USER TASK
+router.route('/deleteItem/:id').delete(async (req, res) => {
+    if(req.params && req.params.id){
+        await ItemModel.findByIdAndDelete(req.params.id)
+        .then(data => {
+            res.status(200).send({data: data});
+        }).catch(error => {
+            res.status(500).send({error: error});
+        })
+    }
+});
+
+
 module.exports = router;
