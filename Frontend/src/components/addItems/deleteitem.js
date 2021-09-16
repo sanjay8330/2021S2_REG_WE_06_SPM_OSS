@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
+import Header from '../header/header';
 
 const initialStates = {
     iteminfo: [],
@@ -46,9 +47,10 @@ export default class deleteproduct extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="wrapper">
                     <main>
-                        <h1>DELETE CONFIRMATION</h1>
+                    <h1>DELETE CONFIRMATION</h1>
                         <div class="content">
                             <div class="wrapper-1">
                                 <div class="wrapper-2">

@@ -74,8 +74,8 @@ export default class home extends Component {
                     </div>
 
                     <div class="carousel-item active" style={{ backgroundColor: 'transparent'}}>
-                        <img class="img-circle" style={{ minWidth: '50px', width: '50px', height: '50px', marginLeft: '95%', marginTop: 15 }} src={this.state.userInfo.imageURL} />
-                        <a style={{ marginLeft: '94%', color: 'hotpink', textDecorationLine: 'underline' }} onClick={e => this.navigateToUpdateUser(e, this.state.userId)}>View Profile</a>
+                        <img class="img-circle" style={{ minWidth: '50px', width: '50px', height: '50px', marginLeft: '95.3%', marginTop: 15 }} src={this.state.userInfo.imageURL} />
+                        <a style={{ marginLeft: '94.5%', color: 'hotpink', textDecorationLine: 'underline', fontSize: '14px' }} onClick={e => this.navigateToUpdateUser(e, this.state.userId)}>View Profile</a>
                     </div>
 
                     <div class="bg-text">

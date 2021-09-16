@@ -164,7 +164,7 @@ export default class viewProducts extends Component {
                                     </tr>
                                 )}
                             </tbody>
-                        </table><br />
+                        </table>
                     </main>
                 </div>
             </div>

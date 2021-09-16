@@ -36,7 +36,7 @@ export default class paymentHistory extends Component {
         return (
             <div>
                 <Header /><br />
-                <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b></center>
+                <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b><hr/></center>
                 <main>
                 <div class="wrap">
                             <div class="search">
@@ -52,7 +52,7 @@ export default class paymentHistory extends Component {
                                 </button>
                             </div>
                         </div>
-                        <br/><br/>
+                        <br/><br/><br/>
                     <table class="table border shadow" id="casti_male">
                         <thead class="thead-dark">
                             <tr>
@@ -81,7 +81,7 @@ export default class paymentHistory extends Component {
                                
                                 <td>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e,item._id, this.state.userId )}><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-sm rounded-0"  style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e,item._id, this.state.userId )}><i class="fa fa-trash"></i></button>
                                     </li>
                                 </td>
                             </tr>

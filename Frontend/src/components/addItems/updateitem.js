@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
+import Header from '../header/header';
 
 
 
@@ -115,10 +116,10 @@ export default class updateItem extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <div class="wrapper">
                     <main>
-                        <h1>UPDATE ITEM</h1>
-
+                    <h1>UPDATE ITEM</h1><br />
                         <div class="container border rounded" style={{ width: '950px' }}>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
