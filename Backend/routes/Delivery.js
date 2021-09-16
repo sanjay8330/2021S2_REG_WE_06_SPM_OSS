@@ -14,4 +14,17 @@ router.route('/deliveryDetails').post(async (req, res) => {
     }
 });
 
+
+//Get delivery by userId - CUSTOMER PAYMENT HISTORY
+router.route("/deliveryForCustomer/:userId").get(async (req, res) => {
+    const currentuserId = req.params.userId;
+
+    DeliveryModel.find({ userId: currentuserId})
+        .then(data => {
+            res.status(200).send({ data: data });
+        }).catch(error => {
+            res.status(500).send({ error: error });
+        })
+}); 
+
 module.exports = router;

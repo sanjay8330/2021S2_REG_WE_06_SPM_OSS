@@ -25,6 +25,7 @@ export default class deliveryDetails extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.navigateToView = this.navigateToView.bind(this);
         this.state = initialStates;
     }
 
@@ -33,10 +34,17 @@ export default class deliveryDetails extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({ userId: this.props.match.params.userId });
         this.setState({ amount: this.props.match.params.amount });
     }
+
+
+    
+    navigateToView(e) {
+        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}`; 
+    }
+
 
     onSubmit(e) {
         e.preventDefault();
@@ -73,12 +81,15 @@ export default class deliveryDetails extends Component {
                     <div class="container border rounded" style={{ width: '560px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-dark" type="button" onClick={ this.navigateToView} style={{ marginRight: '2%' }}>View</button>
+                            </div><br />
                                 <form onSubmit={this.onSubmit}><br />
-                                <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
-                                <div class = "centered">
-                                <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
-                                </div>
-                                    <div className="form-group"><br/>
+                                    <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
+                                    <div class="centered">
+                                        <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
+                                    </div>
+                                    <div className="form-group"><br />
 
                                         <table>
                                             <tr>
@@ -253,7 +264,7 @@ export default class deliveryDetails extends Component {
 
                                     <table>
                                         <tr>
-                                            
+
                                             <td>
                                                 <button type="reset" className="btn btn-dark" id="resetBtn">Cancel</button>
                                             </td>

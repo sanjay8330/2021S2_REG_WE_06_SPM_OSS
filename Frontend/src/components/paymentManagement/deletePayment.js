@@ -34,7 +34,7 @@ export default class deletePayment extends Component {
         Axios.delete(`http://localhost:3001/checkout/deletePayment/${this.props.match.params.id}`)
             .then(response => {
                 alert('Payment Record deleted Successfully');
-                window.location = "/payment-history";
+                window.location = `/payment-history/${this.state.userId}`;
             }).catch(error => {
                 console.log(error.message);
             })
