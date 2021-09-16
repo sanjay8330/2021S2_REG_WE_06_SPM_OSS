@@ -14,6 +14,8 @@ import ViewUsers from "./components/Administrator/viewUsers";
 import ViewAdministrators from "./components/Administrator/viewAdmins";
 import UpdateUsers from "./components/Administrator/updateUsers";
 import UpdateUserPassword from "./components/Administrator/updateUserPassword";
+import UpdateCustomerProfile from './components/userManagement/updateUser';
+import UpdateUserProfilePassword from './components/userManagement/updateUserProfilePassword';
 
 //Product Offer Management - Routes
 import AddProductOffer from "./components/ProductOffer/addProductOffer";
@@ -67,6 +69,8 @@ function App() {
             <Route path="/viewAdmin" component={ ViewAdministrators } />
             <Route path="/updateUser/:id" component={ UpdateUsers } />
             <Route path="/resetUserPassword/:id" component={ UpdateUserPassword } />
+            <Route path="/updateUserProfile/:id" component={ UpdateCustomerProfile } /> 
+            <Route path="/resetUserProfilePassword/:id" component={ UpdateUserProfilePassword } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />
@@ -95,7 +99,7 @@ function App() {
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
 
             <Route path="/viewItems/:userId" component={ ViewShoppingcart } />
-            <Route path="/updateitem/:userId" component={ UpdateItem } />
+            <Route path="/updateitem/:id" component={ UpdateItem } />
             <Route path="/viewItems/:userId" component={ViewShoppingcart} />
 
           </Switch>
