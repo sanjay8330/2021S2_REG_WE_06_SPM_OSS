@@ -25,6 +25,7 @@ export default class home extends Component {
         super(props);
         this.navigateToAdditempage = this.navigateToAdditempage.bind(this);
         this.navigateViewCart = this.navigateViewCart.bind(this);
+        this.navigateToUpdateUser = this.navigateToUpdateUser.bind(this);
         this.state = initialStates;
     }
 
@@ -58,6 +59,10 @@ export default class home extends Component {
         window.location = `/viewItems/${userId}`;
     }
 
+    navigateToUpdateUser(e, userId){
+        window.location = `/updateUserProfile/${userId}`;
+    }
+
     render() {
         return (
             <div>
@@ -65,9 +70,12 @@ export default class home extends Component {
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img style={{ minWidth: '50px', width: '50px', height: '60px', marginLeft: '90%' }} src={this.state.userInfo.imageURL} />
-                        <label style={{ color: 'black', marginLeft: '80%' }}>{"Logged in as : " + this.state.userInfo.userEmail}</label>
                         <img class="d-block w-100" src={ss} alt="First slide" style={{ filter: 'blur(1px)' }} />
+                    </div>
+
+                    <div class="carousel-item active" style={{ backgroundColor: 'transparent'}}>
+                        <img class="img-circle" style={{ minWidth: '50px', width: '50px', height: '50px', marginLeft: '95%', marginTop: 15 }} src={this.state.userInfo.imageURL} />
+                        <a style={{ marginLeft: '94%', color: 'hotpink', textDecorationLine: 'underline' }} onClick={e => this.navigateToUpdateUser(e, this.state.userId)}>View Profile</a>
                     </div>
 
                     <div class="bg-text">

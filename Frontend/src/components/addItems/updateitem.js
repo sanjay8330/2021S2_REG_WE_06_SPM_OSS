@@ -14,6 +14,7 @@ const initialStates = {
     itemdescription: '',
     itemprice: '',
     "iteminfo": [],
+    "userID": ''
 }
 
 export default class updateItem extends Component {
@@ -39,6 +40,7 @@ export default class updateItem extends Component {
                 this.setState({ itemColor: this.state.iteminfo.productColor });
                 this.setState({ itemSize: this.state.iteminfo.productSize });
                 this.setState({ itemQuantity: this.state.iteminfo.productQuantity });
+                this.setState({ userID: this.state.iteminfo.userID });
             }).catch(error => {
                 console.log(error.message);
             })
@@ -95,15 +97,15 @@ export default class updateItem extends Component {
         const err = this.validate();
         if (!err) {
 
-            let updateItem = {
-                productQuantity: this.state.itemQuantity,
-                productColor: this.state.itemColor,
-                productSize: this.state.itemSize,
+            let updateItem = { 
+                itemQuantity: this.state.itemQuantity,
+                itemColor: this.state.itemColor,
+                itemSize: this.state.itemSize,
             }
             Axios.put(`http://localhost:3001/insertitem/updateitem/${this.props.match.params.id}`, updateItem)
                 .then(response => {
                     alert('Item Details Updated Successfully');
-                    window.location = "/viewProducts";
+                    window.location = `/viewItems/${this.state.userID}`;
                 }).catch(error => {
                     alert(error.message);
                 })

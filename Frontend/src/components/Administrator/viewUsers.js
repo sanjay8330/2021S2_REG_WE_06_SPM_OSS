@@ -13,6 +13,7 @@ export default class ViewUsers extends Component {
         super(props);
         this.navigateAddUsersPage = this.navigateAddUsersPage.bind(this);
         this.navigateViewAdminPage = this.navigateViewAdminPage.bind(this);
+        this.navigateToUpdateUser = this.navigateToUpdateUser.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = initialStates;
     }
