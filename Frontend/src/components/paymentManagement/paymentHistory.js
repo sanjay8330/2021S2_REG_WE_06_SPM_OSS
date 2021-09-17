@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
 import Header from '../header/header';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 const initialStates = {
     "Checkout": [],
@@ -13,6 +15,11 @@ export default class paymentHistory extends Component {
     constructor(props) {
         super(props);
         this.state = initialStates;
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ searchHistory: e.target.value });
     }
 
     componentDidMount(e) {
@@ -22,7 +29,7 @@ export default class paymentHistory extends Component {
         Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ Checkout: response.data.data });
-                console.log('RESPONSE>>>', this,this.state.Checkout);
+                console.log('RESPONSE>>>', this, this.state.Checkout);
             }).catch(error => {
                 alert(error.message);
             })
@@ -32,28 +39,58 @@ export default class paymentHistory extends Component {
         window.location = `/deletePayment/${paymentID}/${UserID}`;
     }
 
+    //generate payment Report
+    jsPdfGeneratorPayment() {
+
+        var doc = new jsPDF('p', 'pt');
+        doc.text(300, 20, 'Report of Payment History', 'center')
+
+        doc.setFont('courier')
+
+        doc.autoTable({ html: '#paymentReportTable' })
+
+        //save PDF
+        doc.save('payment_history.pdf')
+    }
+
     render() {
         return (
             <div>
                 <Header /><br />
-                <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b><hr/></center>
+                <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b><hr /></center>
                 <main>
-                <div class="wrap">
-                            <div class="search">
-                                <input
-                                    type="text"
-                                    placeholder="Search"
-                                    name="searchHistory"
-                                    id="searchHistory"
-                                    onChange={this.onChange}
-                                    class="searchTerm" />
-                                <button type="submit" class="searchButton">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+                
+                    <table width="100%">
+                        <td>
+                        <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
+                        </td>
+
+                        <td>
+                        <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Clear History</button>
+                        </td>
+
+                        <td align="right" width="30%">
+                        
+                        <div class="search">
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                name="searchHistory"
+                                id="searchHistory"
+                                onChange={this.onChange}
+                                class="searchTerm" />
+                            <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        
                         </div>
-                        <br/><br/><br/>
-                    <table class="table border shadow" id="casti_male">
+                        </td>
+                        <td></td>
+                    </table>
+
+                   
+                    <br /><br /><br />
+                    <table class="table border shadow" id="paymentTable" >
                         <thead class="thead-dark">
                             <tr>
                                 {/* <th scope="col">AMOUNT</th> */}
@@ -66,28 +103,64 @@ export default class paymentHistory extends Component {
 
                         <tbody>
 
-                        {this.state.Checkout.length > 0 && this.state.Checkout.filter((values) => {
-                                    if (this.state.searchHistory == "") {
-                                        return values;
-                                    } else if (values.date.includes(this.state.date)) {
-                                        return values;
-                                    }
-                                }).map((item, index) => 
+                            {this.state.Checkout.length > 0 && this.state.Checkout.filter((values) => {
+                                if (this.state.searchHistory == "") {
+                                    return values;
+                                } else if (values.paymentMethod.toLowerCase().includes(this.state.searchHistory.toLowerCase())) {
+                                    return values;
+                                }
+                            }).map((item, index) =>
                                 <tr>
-                                <td>{item.date}</td>
-                                <td>{item.amount}</td>
-                                {/* <td>{item.amount}</td> */}
-                                <td>{item.paymentMethod}</td>
-                               
-                                <td>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0"  style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e,item._id, this.state.userId )}><i class="fa fa-trash"></i></button>
-                                    </li>
-                                </td>
-                            </tr>
+                                    <td>{item.date}</td>
+                                    <td>{item.amount}</td>
+                                    {/* <td>{item.amount}</td> */}
+                                    <td>{item.paymentMethod}</td>
+
+                                    <td>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id, this.state.userId)}><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </td>
+                                </tr>
                             )}
                         </tbody>
                     </table>
+
+                    <table class="table border shadow" id="paymentReportTable"  style={{ display: 'none'}}>
+                        <thead class="thead-dark">
+                            <tr>
+                                {/* <th scope="col">AMOUNT</th> */}
+                                <th scope="col">DATE</th>
+                                <th scope="col">AMOUNT</th>
+                                <th scope="col">PAYMENT METHOD</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {this.state.Checkout.length > 0 && this.state.Checkout.filter((values) => {
+                                if (this.state.searchHistory == "") {
+                                    return values;
+                                } else if (values.date.includes(this.state.date)) {
+                                    return values;
+                                }
+                            }).map((item, index) =>
+                                <tr>
+                                    <td>{item.date}</td>
+                                    <td>{item.amount}</td>
+                                    {/* <td>{item.amount}</td> */}
+                                    <td>{item.paymentMethod}</td>
+
+                                    <td>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id, this.state.userId)}><i class="fa fa-trash"></i></button>
+                                        </li>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                    
                 </main>
             </div>
 

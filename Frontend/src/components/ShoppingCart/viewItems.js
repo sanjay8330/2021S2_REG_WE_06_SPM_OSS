@@ -10,6 +10,7 @@ const initialStates = {
     "itemlist": [],
     "totalamount": 0,
     "userId": '',
+    "itemtotalamount": 0,
 }
 
 export default class ViewShoppingcart extends Component {
@@ -24,10 +25,13 @@ export default class ViewShoppingcart extends Component {
     navigateToPaymentHistory(e) {
         window.location = `/payment-history/${this.props.match.params.userId}`;
     }
+
     navigateToCheckOut(e) {
-        //window.location = `/checkout/${this.props.match.params.userId}`;
-        window.location = `/delivery-details/${this.props.match.params.userId}/${this.state.totalamount}`;
+        this.state.totalamount = this.state.itemtotalamount / 2;
+        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.totalamount}`;
     }
+
+
 
     navigateToUpdatePage(e, productId) {
         window.location = `/updateitem/${productId}`;
@@ -58,7 +62,7 @@ export default class ViewShoppingcart extends Component {
             })
     }
 
-    //generate product Report
+    //generate item Report
     jsPdfGeneratorProduct() {
 
         var doc = new jsPDF('p', 'pt');
@@ -123,13 +127,13 @@ export default class ViewShoppingcart extends Component {
                                             <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)} ><i class="fa fa-trash"></i></button>
                                         </li>
                                     </td>
-                                    <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
+                                    <td style={{ display: "none" }}>{this.state.itemtotalamount = this.state.itemtotalamount + (item.productPrice * item.productQuantity)}</td>
                                 </tr>
                             )}
                         </tbody>
                     </table><br />
 
-                    <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + this.state.totalamount + " /="}</h3></b>
+                    <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + (this.state.itemtotalamount) + " /="}</h3></b>
 
                     <br />
 
