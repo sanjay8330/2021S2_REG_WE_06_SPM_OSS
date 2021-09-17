@@ -27,8 +27,8 @@ export default class ViewShoppingcart extends Component {
     }
 
     navigateToCheckOut(e) {
-        this.state.totalamount = this.state.itemtotalamount / 2;
-        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.totalamount}`;
+        this.state.itemtotalamount = this.state.totalamount / 2;
+        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.itemtotalamount}`;
     }
 
 
@@ -93,8 +93,8 @@ export default class ViewShoppingcart extends Component {
                 <main>
                     <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
 
-                    <button type="button" class="btn btn-dark" disabled id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
-                    <button class="btn btn-dark" type="button" disabled id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
+                    <button type="button" class="btn btn-dark" id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
+                    <button class="btn btn-dark" type="button" id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
 
                     <br /><br />
@@ -137,13 +137,13 @@ export default class ViewShoppingcart extends Component {
                                             <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)} ><i class="fa fa-trash"></i></button>
                                         </li>
                                     </td>
-                                    <td style={{ display: "none" }}>{this.state.itemtotalamount = this.state.itemtotalamount + (item.productPrice * item.productQuantity)}</td>
+                                    <td style={{ display: "none" }}>{this.state.totalamount = this.state.totalamount + (item.productPrice * item.productQuantity)}</td>
                                 </tr>
                             )}
                         </tbody>
                     </table><br />
 
-                    <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + (this.state.itemtotalamount) + " /="}</h3></b>
+                    <b><h3 style={{ color: "white", backgroundColor: "#050978", width: "340px", padding: '1.2em 0.6em' }}>&nbsp; &nbsp;Total Amount: {"Rs. " + this.state.totalamount + " /="}</h3></b>
 
                     <br />
 
