@@ -15,7 +15,7 @@ router.route('/deliveryDetails').post(async (req, res) => {
 });
 
 //Update delivery details
-router.route("/updateDeliveryDetail/:id").put(async (req, res) => {
+router.route("/updateDeliveryDetail/:id/:amount").put(async (req, res) => {
     //Updating the offer details
     const senderName = req.body.senderName;
     const senderMobile = req.body.senderMobile;
