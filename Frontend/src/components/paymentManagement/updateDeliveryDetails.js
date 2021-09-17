@@ -319,7 +319,7 @@ export default class updateDeliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Update / Insert</button>
+                                                <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                             </td>
                                         </tr>
                                     </table>

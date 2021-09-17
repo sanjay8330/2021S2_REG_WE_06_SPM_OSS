@@ -27,8 +27,8 @@ export default class ViewShoppingcart extends Component {
     }
 
     navigateToCheckOut(e) {
-        this.state.totalamount = this.state.itemtotalamount / 2;
-        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.totalamount}`;
+        this.state.itemtotalamount = this.state.totalamount / 2;
+        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.itemtotalamount}`;
     }
 
 
@@ -93,8 +93,8 @@ export default class ViewShoppingcart extends Component {
                 <main>
                     <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
 
-                    <button type="button" class="btn btn-dark" disabled id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
-                    <button class="btn btn-dark" type="button" disabled id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
+                    <button type="button" class="btn btn-dark" id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
+                    <button class="btn btn-dark" type="button" id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
 
                     <br /><br />
