@@ -67,7 +67,6 @@ export default class updateDeliveryDetails extends Component {
     }
 
 
-
     navigateToView(e) {
         window.location = `/viewItems/${this.props.match.params.userId}`;
     }
