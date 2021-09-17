@@ -21,6 +21,7 @@ export default class UpdateCustomerProfile extends Component {
         this.onImageChange = this.onImageChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.navigatetoResetPassword = this.navigatetoResetPassword.bind(this);
+        this.navigateDeliveryDetail = this.navigateDeliveryDetail.bind(this);
         this.state = initialStates;
     }
 
@@ -86,6 +87,11 @@ export default class UpdateCustomerProfile extends Component {
         window.location = `/resetUserProfilePassword/${userId}`;
     }
 
+    navigateDeliveryDetail(e, userId){
+        userId = this.props.match.params.id;
+        window.location = `/deliveryForCustomer/${userId}`;
+    }
+
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });
@@ -102,6 +108,7 @@ export default class UpdateCustomerProfile extends Component {
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }} onClick={this.navigatetoResetPassword}>Change Password</button>
+                            <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }} onClick={this.navigateDeliveryDetail}>Check Delivery Details</button>
                         </div><br />
 
                         <form onSubmit={this.onSubmit}>
