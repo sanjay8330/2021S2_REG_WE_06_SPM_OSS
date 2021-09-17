@@ -102,6 +102,7 @@ function App() {
             <Route path="/updateDeliveryDetail/:userId" component={ updateDeliveryDetails } />
             <Route path="/deliveryForCustomer/:userId" component={ updateDeliveryDetails } />
             <Route path="/viewDeliveryDetails/:userId/:amount" component={ viewDeliveryDetails } />
+            <Route path="/deletePaymentHistory/:id" component={ History } />
             
             <Route path="/insertItem/:id/:userId" component={ insertItem } />
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />

@@ -16,6 +16,7 @@ export default class paymentHistory extends Component {
         super(props);
         this.state = initialStates;
         this.onChange = this.onChange.bind(this);
+
     }
 
     onChange(e) {
@@ -37,6 +38,10 @@ export default class paymentHistory extends Component {
 
     navigateToDeletePage(e, paymentID, UserID) {
         window.location = `/deletePayment/${paymentID}/${UserID}`;
+    }
+
+    navigateToDeleteHistory(e, UserID) {
+        window.location = `/deletePaymentHistory/${UserID}`;
     }
 
     //generate payment Report
@@ -66,7 +71,7 @@ export default class paymentHistory extends Component {
                         </td>
 
                         <td>
-                        <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Clear History</button>
+                        <button type="button" class="btn btn-dark" onClick={this.navigateToDeleteHistory} style={{ marginRight: '2%' }}>Clear History</button>
                         </td>
 
                         <td align="right" width="30%">
