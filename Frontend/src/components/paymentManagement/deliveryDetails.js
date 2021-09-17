@@ -38,6 +38,7 @@ export default class deliveryDetails extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+
     componentDidMount() {
         this.setState({ userId: this.props.match.params.userId });
 
@@ -65,11 +66,10 @@ export default class deliveryDetails extends Component {
             });
 
     }
+    
 
-
-
-    navigateToCheckOut(e) {
-        window.location = `/checkout/${this.props.match.params.userId}/${this.props.match.params.amount}`;
+    navigateToView(e) {
+        window.location = `/deliveryForCustomer/${this.props.match.params.userId}`; 
     }
 
 
@@ -122,7 +122,16 @@ export default class deliveryDetails extends Component {
             alert('Server is down!!! Will be up in due time!!!');
         }
 
+        Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
+            .then(response => {
+                alert('Delivery Details Added Successfully');
+                window.location = `/viewItems/${this.state.userId}`;
+            }).catch(error => {
+                alert(error.message);
+            })
+
     }
+
 
     render() {
         return (
@@ -325,7 +334,7 @@ export default class deliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Update / Insert</button>
+                                                <button type="submit" className="btn btn-dark" id="submitBtn">Insert</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>

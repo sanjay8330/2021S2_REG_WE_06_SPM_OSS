@@ -46,18 +46,19 @@ export default class updateDeliveryDetails extends Component {
 
                 console.log(this.state.deliveryDetails);
 
-                this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
-                    this.setState({ senderName: item.senderName });
-                    this.setState({ senderMobile: item.senderMobile });
-                    this.setState({ receiverName: item.receiverName });
-                    this.setState({ receiverMobile: item.receiverMobile });
-                    this.setState({ streetAddress: item.streetAddress });
-                    this.setState({ streetAddress2: item.streetAddress2 });
-                    this.setState({ city: item.city });
-                    this.setState({ province: item.province });
-                    this.setState({ postalCode: item.postalCode });
-                    this.setState({ deliveryID: item._id });
-                })
+                    this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
+                        this.setState({ senderName: item.senderName });
+                        this.setState({ senderMobile: item.senderMobile });
+                        this.setState({ receiverName: item.receiverName });
+                        this.setState({ receiverMobile: item.receiverMobile });
+                        this.setState({ streetAddress: item.streetAddress });
+                        this.setState({ streetAddress2: item.streetAddress2 });
+                        this.setState({ city: item.city });
+                        this.setState({ province: item.province });
+                        this.setState({ postalCode: item.postalCode });
+                        this.setState({ deliveryID: item._id });
+                    })
+
 
             }).catch(error => {
                 console.log(error.message);
@@ -68,14 +69,14 @@ export default class updateDeliveryDetails extends Component {
 
 
     navigateToView(e) {
-        window.location = `/viewDeliveryDetails/${this.props.match.params.userId}`;
+        window.location = `/viewItems/${this.props.match.params.userId}`;
     }
 
 
     onSubmit(e) {
         e.preventDefault();
 
-        if(this.state.deliveryDetails.length > 0){
+        if (this.state.deliveryDetails.length > 0) {
             //Create the updObject
             let updDeliveryDetails = {
                 senderName: this.state.senderName,
@@ -91,13 +92,13 @@ export default class updateDeliveryDetails extends Component {
                 amount: this.state.amount
             }
             Axios.put(`http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}`, updDeliveryDetails)
-            .then(response => {
-                alert('Delivery details updated successfully!!!');
-                window.location = `/updateUser/${this.state.userId}`;
-            }).catch(error => {
-                alert(error.message);
-            })
-        }else if(this.state.deliveryDetails.length == 0){
+                .then(response => {
+                    alert('Delivery details updated successfully!!!');
+                    window.location = `/viewItems/${this.props.match.params.userId}`;
+                }).catch(error => {
+                    alert(error.message);
+                })
+        } else if (this.state.deliveryDetails.length == 0) {
             let deliveryDetails = {
                 senderName: this.state.senderName,
                 senderMobile: this.state.senderMobile,
@@ -111,13 +112,13 @@ export default class updateDeliveryDetails extends Component {
                 userId: this.state.userId
             }
             Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
-            .then(response => {
-                alert('Delivery details added successfully!!!');
-                window.location = `/updateUser/${this.state.userId}`;
-            }).catch(error => {
-                alert(error.message);
-            })
-        }else{
+                .then(response => {
+                    alert('Delivery details added successfully!!!');
+                    window.location = `/viewItems/${this.props.match.params.userId}`;
+                }).catch(error => {
+                    alert(error.message);
+                })
+        } else {
             alert('Server is down!!! Will be up in due time!!!');
         }
 
@@ -314,7 +315,7 @@ export default class updateDeliveryDetails extends Component {
                                         <tr>
 
                                             <td>
-                                                <button type="reset" className="btn btn-dark" id="resetBtn">Cancel</button>
+                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToView} id="resetBtn">Cancel</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
