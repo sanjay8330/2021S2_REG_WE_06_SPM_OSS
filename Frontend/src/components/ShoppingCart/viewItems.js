@@ -57,9 +57,19 @@ export default class ViewShoppingcart extends Component {
         Axios.get(`http://localhost:3001/insertitem/readItemsForCustomer/${this.props.match.params.userId}/${date}`)
             .then(response => {
                 this.setState({ itemlist: response.data.data });
+                
+                //Used to auto enable the button when there are items in the cart - SANJAY
+                if(this.state.itemlist.length > 0){
+                    document.getElementById("checkoutBtn").disabled = false;
+                    document.getElementById("downloadReportBtn").disabled = false;
+                }
+                
             }).catch(error => {
                 alert(error.message);
             })
+        
+        
+        
     }
 
     //generate item Report
@@ -83,8 +93,8 @@ export default class ViewShoppingcart extends Component {
                 <main>
                     <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
 
-                    <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
-                    <button class="btn btn-dark" type="button" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
+                    <button type="button" class="btn btn-dark" disabled id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
+                    <button class="btn btn-dark" type="button" disabled id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
 
                     <br /><br />
