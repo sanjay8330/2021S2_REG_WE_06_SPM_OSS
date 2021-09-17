@@ -5,16 +5,19 @@ import Header from '../header/header';
 import delivery from '../../images/ccc.png';
 
 const initialStates = {
-    senderName: '',
-    senderMobile: '',
-    receiverName: '',
-    receiverMobiie: '',
-    streetAddress: '',
-    streetAddress2: '',
-    city: '',
-    province: '',
-    postalCode: '',
+    "senderName": '',
+    "senderMobile": '',
+    "receiverName": '',
+    "receiverMobile": '',
+    "streetAddress": '',
+    "streetAddress2": '',
+    "city": '',
+    "province": '',
+    "postalCode": '',
     "userId": '',
+    "amount": '',
+    "deliveryDetails": [],
+    "deliveryID": '',
     "amount": ''
 }
 
@@ -25,51 +28,99 @@ export default class deliveryDetails extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.navigateToView = this.navigateToView.bind(this);
+        this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
         this.state = initialStates;
     }
 
 
     onChange(e) {
+        e.persist();
         this.setState({ [e.target.name]: e.target.value });
     }
 
     componentDidMount() {
         this.setState({ userId: this.props.match.params.userId });
-        this.setState({ amount: this.props.match.params.amount });
+
+        Axios.get(`http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}`)
+            .then(response => {
+                this.setState({ deliveryDetails: response.data.data });
+
+                console.log(this.state.deliveryDetails);
+
+                this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
+                    this.setState({ senderName: item.senderName });
+                    this.setState({ senderMobile: item.senderMobile });
+                    this.setState({ receiverName: item.receiverName });
+                    this.setState({ receiverMobile: item.receiverMobile });
+                    this.setState({ streetAddress: item.streetAddress });
+                    this.setState({ streetAddress2: item.streetAddress2 });
+                    this.setState({ city: item.city });
+                    this.setState({ province: item.province });
+                    this.setState({ postalCode: item.postalCode });
+                    this.setState({ deliveryID: item._id });
+                })
+
+            }).catch(error => {
+                console.log(error.message);
+            });
+
     }
 
 
-    
-    navigateToView(e) {
-        window.location = `/deliveryForCustomer/${this.props.match.params.userId}`; 
+
+    navigateToCheckOut(e) {
+        window.location = `/checkout/${this.props.match.params.userId}/${this.props.match.params.amount}`;
     }
 
 
     onSubmit(e) {
         e.preventDefault();
 
-        let deliveryDetails = {
-            senderName: this.state.senderName,
-            senderMobile: this.state.senderMobile,
-            receiverName: this.state.receiverName,
-            receiverMobile: this.state.receiverMobiie,
-            streetAddress: this.state.streetAddress,
-            streetAddress2: this.state.streetAddress2,
-            province: this.state.province,
-            city: this.state.city,
-            postalCode: this.state.postalCode,
-            userId: this.state.userId,
-            amount: this.state.amount,
+        if (this.state.deliveryDetails.length > 0) {
+            //Create the updObject
+            let updDeliveryDetails = {
+                senderName: this.state.senderName,
+                senderMobile: this.state.senderMobile,
+                receiverName: this.state.receiverName,
+                receiverMobile: this.state.receiverMobile,
+                streetAddress: this.state.streetAddress,
+                streetAddress2: this.state.streetAddress2,
+                province: this.state.province,
+                city: this.state.city,
+                postalCode: this.state.postalCode,
+                userId: this.state.userId,
+                amount: this.state.amount
+            }
+            Axios.put(`http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}`, updDeliveryDetails)
+                .then(response => {
+                    alert('Delivery details updated successfully!!!');
+                    window.location = `/updateUser/${this.state.userId}`;
+                }).catch(error => {
+                    alert(error.message);
+                })
+        } else if (this.state.deliveryDetails.length == 0) {
+            let deliveryDetails = {
+                senderName: this.state.senderName,
+                senderMobile: this.state.senderMobile,
+                receiverName: this.state.receiverName,
+                receiverMobile: this.state.receiverMobile,
+                streetAddress: this.state.streetAddress,
+                streetAddress2: this.state.streetAddress2,
+                province: this.state.province,
+                city: this.state.city,
+                postalCode: this.state.postalCode,
+                userId: this.state.userId
+            }
+            Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
+                .then(response => {
+                    alert('Delivery details added successfully!!!');
+                    window.location = `/updateUser/${this.state.userId}`;
+                }).catch(error => {
+                    alert(error.message);
+                })
+        } else {
+            alert('Server is down!!! Will be up in due time!!!');
         }
-
-        Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
-            .then(response => {
-                alert('Delivery Details Added Successfully');
-                window.location = `/checkout/${this.state.userId}/${this.state.amount}`;
-            }).catch(error => {
-                alert(error.message);
-            })
 
     }
 
@@ -81,9 +132,6 @@ export default class deliveryDetails extends Component {
                     <div class="container border rounded" style={{ width: '560px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-dark" type="button" onClick={ this.navigateToView} style={{ marginRight: '2%' }}>View</button>
-                            </div><br />
                                 <form onSubmit={this.onSubmit}><br />
                                     <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
                                     <div class="centered">
@@ -104,10 +152,11 @@ export default class deliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
+
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        value={this.state.senderName}
+                                                        defaultValue={this.state.senderName}
                                                         name="senderName"
                                                         onChange={this.onChange}
                                                         required
@@ -120,7 +169,7 @@ export default class deliveryDetails extends Component {
                                                         class="form-control"
                                                         type="tel"
                                                         pattern="[0-9]{10}"
-                                                        value={this.state.senderMobile}
+                                                        defaultValue={this.state.senderMobile}
                                                         name="senderMobile"
                                                         onChange={this.onChange}
                                                         required
@@ -145,7 +194,7 @@ export default class deliveryDetails extends Component {
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        value={this.state.receiverName}
+                                                        defaultValue={this.state.receiverName}
                                                         name="receiverName"
                                                         onChange={this.onChange}
                                                         required
@@ -157,8 +206,8 @@ export default class deliveryDetails extends Component {
                                                         class="form-control"
                                                         type="tel"
                                                         pattern="[0-9]{10}"
-                                                        value={this.state.receiverMobiie}
-                                                        name="receiverMobiie"
+                                                        defaultValue={this.state.receiverMobile}
+                                                        name="receiverMobile"
                                                         onChange={this.onChange}
                                                         required
                                                         style={{ border: "1px solid #c8cfcb " }} /><br />
@@ -184,7 +233,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.streetAddress}
+                                                    defaultValue={this.state.streetAddress}
                                                     name="streetAddress"
                                                     onChange={this.onChange}
                                                     required
@@ -201,7 +250,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.streetAddress2}
+                                                    defaultValue={this.state.streetAddress2}
                                                     name="streetAddress2"
                                                     onChange={this.onChange}
                                                     required
@@ -218,7 +267,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.city}
+                                                    defaultValue={this.state.city}
                                                     name="city"
                                                     onChange={this.onChange}
                                                     required
@@ -235,7 +284,7 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.province}
+                                                    defaultValue={this.state.province}
                                                     name="province"
                                                     onChange={this.onChange}
                                                     required
@@ -252,11 +301,17 @@ export default class deliveryDetails extends Component {
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    value={this.state.postalCode}
+                                                    defaultValue={this.state.postalCode}
                                                     name="postalCode"
                                                     onChange={this.onChange}
                                                     required
                                                     style={{ border: "1px solid #c8cfcb " }} />
+                                            </td>
+                                        </tr>
+                                        <br />
+                                        <tr>
+                                            <td>
+                                                <h3>Total Amount : {this.props.match.params.amount}</h3>
                                             </td>
                                         </tr>
                                     </table>
@@ -270,8 +325,13 @@ export default class deliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Checkout</button>
+                                                <button type="submit" className="btn btn-dark" id="submitBtn">Update / Insert</button>
                                             </td>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <td>
+                                                <button type="submit" className="btn btn-dark" onClick={this.navigateToCheckOut}>Checkout</button>
+                                            </td>
+
                                         </tr>
                                     </table>
                                     <br />
