@@ -5,18 +5,19 @@ import Header from '../header/header';
 import delivery from '../../images/ccc.png';
 
 const initialStates = {
-    senderName: '',
-    senderMobile: '',
-    receiverName: '',
-    receiverMobiie: '',
-    streetAddress: '',
-    streetAddress2: '',
-    city: '',
-    province: '',
-    postalCode: '',
+    "senderName": '',
+    "senderMobile": '',
+    "receiverName": '',
+    "receiverMobile": '',
+    "streetAddress": '',
+    "streetAddress2": '',
+    "city": '',
+    "province": '',
+    "postalCode": '',
     "userId": '',
     "amount": '',
-    "deliveryDetails": []
+    "deliveryDetails": [],
+    "deliveryID": ''
 }
 
 
@@ -42,21 +43,21 @@ export default class updateDeliveryDetails extends Component {
         Axios.get(`http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ deliveryDetails: response.data.data });
-                
+
                 console.log(this.state.deliveryDetails);
 
-                this.setState({ senderName: this.state.deliveryDetails.senderName });
-                this.setState({ senderMobile: this.state.deliveryDetails.senderMobile });
-                this.setState({ receiverName: this.state.deliveryDetails.receiverName });
-                this.setState({ receiverMobiie: this.state.deliveryDetails.receiverMobiie });
-                this.setState({ streetAddress: this.state.deliveryDetails.streetAddress });
-                this.setState({ streetAddress2: this.state.deliveryDetails.streetAddress2 });
-                this.setState({ city: this.state.deliveryDetails.city });
-                this.setState({ province: this.state.deliveryDetails.province });
-                this.setState({ postalCode: this.state.deliveryDetails.postalCode });
-
-
-                //console.log(this.state.senderName);
+                this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
+                    this.setState({ senderName: item.senderName });
+                    this.setState({ senderMobile: item.senderMobile });
+                    this.setState({ receiverName: item.receiverName });
+                    this.setState({ receiverMobile: item.receiverMobile });
+                    this.setState({ streetAddress: item.streetAddress });
+                    this.setState({ streetAddress2: item.streetAddress2 });
+                    this.setState({ city: item.city });
+                    this.setState({ province: item.province });
+                    this.setState({ postalCode: item.postalCode });
+                    this.setState({ deliveryID: item._id });
+                })
 
             }).catch(error => {
                 console.log(error.message);
@@ -74,27 +75,51 @@ export default class updateDeliveryDetails extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        let deliveryDetails = {
-            senderName: this.state.senderName,
-            senderMobile: this.state.senderMobile,
-            receiverName: this.state.receiverName,
-            receiverMobile: this.state.receiverMobiie,
-            streetAddress: this.state.streetAddress,
-            streetAddress2: this.state.streetAddress2,
-            province: this.state.province,
-            city: this.state.city,
-            postalCode: this.state.postalCode,
-            userId: this.state.userId,
-            amount: this.state.amount,
-        }
-
-        Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
+        if(this.state.deliveryDetails.length > 0){
+            //Create the updObject
+            let updDeliveryDetails = {
+                senderName: this.state.senderName,
+                senderMobile: this.state.senderMobile,
+                receiverName: this.state.receiverName,
+                receiverMobile: this.state.receiverMobile,
+                streetAddress: this.state.streetAddress,
+                streetAddress2: this.state.streetAddress2,
+                province: this.state.province,
+                city: this.state.city,
+                postalCode: this.state.postalCode,
+                userId: this.state.userId,
+                amount: this.state.amount
+            }
+            Axios.put(`http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}`, updDeliveryDetails)
             .then(response => {
-                alert('Delivery Details Added Successfully');
-                window.location = `/checkout/${this.state.userId}/${this.state.amount}`;
+                alert('Delivery details updated successfully!!!');
+                window.location = `/updateUser/${this.state.userId}`;
             }).catch(error => {
                 alert(error.message);
             })
+        }else if(this.state.deliveryDetails.length == 0){
+            let deliveryDetails = {
+                senderName: this.state.senderName,
+                senderMobile: this.state.senderMobile,
+                receiverName: this.state.receiverName,
+                receiverMobile: this.state.receiverMobile,
+                streetAddress: this.state.streetAddress,
+                streetAddress2: this.state.streetAddress2,
+                province: this.state.province,
+                city: this.state.city,
+                postalCode: this.state.postalCode,
+                userId: this.state.userId
+            }
+            Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
+            .then(response => {
+                alert('Delivery details added successfully!!!');
+                window.location = `/updateUser/${this.state.userId}`;
+            }).catch(error => {
+                alert(error.message);
+            })
+        }else{
+            alert('Server is down!!! Will be up in due time!!!');
+        }
 
     }
 
@@ -112,7 +137,7 @@ export default class updateDeliveryDetails extends Component {
                                         <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
                                     <div className="form-group"><br />
-                                   
+
                                         <table>
                                             <tr>
                                                 <td>
@@ -126,7 +151,7 @@ export default class updateDeliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
-                                                    
+
                                                     <input
                                                         class="form-control"
                                                         type="text"
@@ -180,8 +205,8 @@ export default class updateDeliveryDetails extends Component {
                                                         class="form-control"
                                                         type="tel"
                                                         pattern="[0-9]{10}"
-                                                        defaultValue={this.state.receiverMobiie}
-                                                        name="receiverMobiie"
+                                                        defaultValue={this.state.receiverMobile}
+                                                        name="receiverMobile"
                                                         onChange={this.onChange}
                                                         required
                                                         style={{ border: "1px solid #c8cfcb " }} /><br />
@@ -293,7 +318,7 @@ export default class updateDeliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="submit" className="btn btn-dark" id="submitBtn">Checkout</button>
+                                                <button type="submit" className="btn btn-dark" id="submitBtn">Update / Insert</button>
                                             </td>
                                         </tr>
                                     </table>
