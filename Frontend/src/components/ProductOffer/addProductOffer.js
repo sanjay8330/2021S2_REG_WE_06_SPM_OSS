@@ -28,25 +28,41 @@ export default class AddProductOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to capture the user input and assign it the states
+     * @param e - event
+     * Uses - setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+    * The function written to validate the function change - Offer price should be less than product price
+    * @param e - event
+    * Uses - setState()
+    * Validation - toFixed()
+    */
     onPriceChange(e) {
         this.setState({ offerAmount: e.target.value });
 
-        //Calculate the discount
+        //Calculate the discount - TO BE SENT TO THE BACKEND
         let discount = (100 * (this.state.productInfo.productPrice - e.target.value)) / this.state.productInfo.productPrice;
         this.setState({ offerDiscount: discount.toFixed(0) });
 
     }
 
+    /**
+     * The function written to get the product details once selected & enable the fields in offer form
+     * @param e - event
+     * Uses - setState()
+     * API CALL - GET PRODUCT BY ID
+     */
     onSelectedOption(e) {
         this.setState({ selectedProduct: e.value });
 
         Axios.get(`http://localhost:3001/product/getProductById/${e.value}`)
             .then(response => {
-                //console.log('RESPONSE>>', response.data.data);
                 this.setState({ productInfo: response.data.data });
             }).catch(error => {
                 console.log(error.message);
@@ -58,6 +74,11 @@ export default class AddProductOffer extends Component {
 
     }
 
+    /**
+     * The function written to get all the product details
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCTS
+     */
     componentDidMount() {
         Axios.get('http://localhost:3001/product/getAllProducts')
             .then(response => {
@@ -75,6 +96,11 @@ export default class AddProductOffer extends Component {
             })
     }
 
+    /**
+    * The function written to save the product offer details.
+    * Uses - setState()
+    * API CALL - ADD PRODUCT OFFERS
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -97,7 +123,7 @@ export default class AddProductOffer extends Component {
                         "offerDescription": this.state.offerDescription,
                         "offerEndDate": this.state.offerEndDate,
                         "offerStatus": this.state.offerStatus,
-                        "productImage": this.state.productInfo.productImage, 
+                        "productImage": this.state.productInfo.productImage,
                         "productDescription": this.state.productInfo.productDescription
                     }
                     Axios.post('http://localhost:3001/productOffer/addProductOffer', productOffer)

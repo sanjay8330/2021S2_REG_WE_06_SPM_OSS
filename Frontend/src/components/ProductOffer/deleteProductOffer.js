@@ -14,6 +14,11 @@ export default class DeleteProductOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to get product offer details by path param (id)
+     * Uses - setState()
+     * API CALL - GET PRODUCT OFFER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
             .then(response => {
@@ -24,6 +29,10 @@ export default class DeleteProductOffer extends Component {
             })
     }
 
+    /**
+     * The function written to delete the product offer details by path param (id).
+     * API CALL - DELETE PRODUCT OFFER BY ID
+     */
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/productOffer/deleteProductOffer/${this.props.match.params.id}`)
@@ -35,6 +44,9 @@ export default class DeleteProductOffer extends Component {
             })
     }
 
+    /**
+     * The function to navigate to the View all offer page
+     */
     navigatetoViewOffer(e) {
         window.location = "/viewProductOffers";
     }

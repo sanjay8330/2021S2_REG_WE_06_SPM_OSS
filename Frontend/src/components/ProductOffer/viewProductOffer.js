@@ -20,22 +20,41 @@ export default class ViewProductOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to capture the user input and assign it the states
+     * @param e - event
+     * Uses - setState()
+     */
     onChange(e) {
         this.setState({ searchProduct: e.target.value });
     }
 
+    /**
+    * The function to navigate to the add product offer page
+    */
     navigateAddProductOffer(e) {
         window.location = '/addProductOffer';
     }
 
+    /**
+     * The function to navigate to the update product offer page
+     */
     navigateToUpdateOffer(e, offerId) {
         window.location = `/updateProductOffer/${offerId}`;
     }
 
+    /**
+     * The function to navigate to the delete product offer page
+     */
     navigateToDeleteOffer(e, offerId) {
         window.location = `/deleteProductOffer/${offerId}`;
     }
 
+    /**
+     * The function written to get all the product offer details
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCT OFFERS
+     */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
@@ -44,15 +63,19 @@ export default class ViewProductOffer extends Component {
                 alert(error.message);
             })
     }
+
+    /**
+     * The function written to generate reports for the product offers
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCT OFFERS
+     */
     jsPdfGeneratorProductOffer() {
         var doc = new jsPDF('p', 'pt');
         doc.text(270, 20, 'SUMMARY OF PRODUCT OFFER DETAILS', 'center')
-
         doc.setFont('courier')
-
         doc.autoTable({ html: '#reportTable' })
 
-        //save PDF
+        //Name used to save the pdf when downloading
         doc.save('productOfferReport.pdf')
     }
 
@@ -74,7 +97,7 @@ export default class ViewProductOffer extends Component {
                     </nav>
                     <main>
 
-                        <h1>VIEW PRODUCT OFFERS</h1><br/>
+                        <h1>VIEW PRODUCT OFFERS</h1><br />
 
                         <button onClick={this.navigateAddProductOffer} class="btn btn-dark" type="button">Add Product Offers</button>
                         <button type="button" class="btn btn-dark" style={{ marginLeft: 20 }} onClick={this.jsPdfGeneratorProductOffer}>Download Report</button>
@@ -126,20 +149,20 @@ export default class ViewProductOffer extends Component {
                                         <td><img style={{ minWidth: '50px', width: '50px', height: '60px' }} src={item.productImage} /></td>
                                         <td>{item.productName}</td>
                                         <td>{"Rs." + item.productPrice}</td>
-                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red'}} ><b>{item.productDiscount + "%"}</b></span></td>
+                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red' }} ><b>{item.productDiscount + "%"}</b></span></td>
                                         <td>{"Rs." + item.offerPrice}</td>
-                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red'}} ><b>{item.offerDiscount + "%"}</b></span></td>
+                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red' }} ><b>{item.offerDiscount + "%"}</b></span></td>
                                         <td>{item.offerEndDate}</td>
                                         <td>{item.offerDescription}</td>
                                         <td>{item.offerStatus}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateOffer(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateOffer(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteOffer(e, item._id)}><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteOffer(e, item._id)}><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
                                     </tr>
@@ -147,7 +170,7 @@ export default class ViewProductOffer extends Component {
                             </tbody>
                         </table>
 
-                        <table id="reportTable" style={{ display: 'none'}}>
+                        <table id="reportTable" style={{ display: 'none' }}>
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">PRODUCT NAME</th>
