@@ -327,7 +327,7 @@ export default class deliveryDetails extends Component {
                                         <tr>
 
                                             <td>
-                                                <button type="reset" className="btn btn-dark" id="resetBtn" onClick={this.navigateViewCart} >Cancel</button>
+                                                <button type="reset" className="btn btn-secondary" id="resetBtn" onClick={this.navigateViewCart} >Cancel</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>

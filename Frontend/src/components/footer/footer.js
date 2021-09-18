@@ -10,8 +10,9 @@ export default class footer extends Component {
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <p class="footer-head">About</p>
-                                <p class="about">Lorem Ipsum is simply dummy text of the printing and typesetting. <br />Lorem Ipsum is simply dummy text of the printing and typesetting.<br /> Lorem Ipsum is simply dummy text of the printing and typesetting. <br />Lorem Ipsum is simply dummy text of the printing and typesetting. </p>
-                                <br/>
+                                <p class="about" style={{ position: "justify" }}>This online shopping platform provides an easy access portal for the customers and suppliers to meet together and exchange the goods
+                                    and services respectively. </p>
+                                <br />
                                 <div class="copyright">
                                     &copy; Copyright <strong>SPM SLIIT PROJECT - 2021</strong>. All Rights Reserved
                                 </div>
@@ -33,6 +34,7 @@ export default class footer extends Component {
                             </div>
 
                             <div class="col-lg-2 col-md-3 col-sm-3">
+
                                 <p class="footer-head">Contact</p>
                                 <ul class="list-unstyled social-links">
                                     <a href="mailto:ask@kfit.com">0773452221</a>

@@ -27,15 +27,15 @@ export default class ViewUsers extends Component {
         window.location = '/adminUserRegister';
     }
 
-    navigateViewAdminPage(e){
+    navigateViewAdminPage(e) {
         window.location = "/viewAdmin";
     }
 
-    navigateToUpdateUser(e, userId){
+    navigateToUpdateUser(e, userId) {
         window.location = `/updateUser/${userId}`;
     }
 
-    navigateToDeleteUser(e, userId){
+    navigateToDeleteUser(e, userId) {
         window.location = `/deleteUser/${userId}`;
     }
 
@@ -66,10 +66,10 @@ export default class ViewUsers extends Component {
                     </nav>
                     <main>
 
-                        <h1>VIEW USERS</h1><br/>
+                        <h1>VIEW USERS</h1><br />
 
-                            <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
-                            <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
+                        <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
+                        <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -84,11 +84,13 @@ export default class ViewUsers extends Component {
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
+                        </div><br /><br />
+
+                        <div class="info" style={{ width: '16%'}}>
+                            <b><h6>
+                            Total Customers: {this.state.userlist.length}</h6></b>
                         </div>
-
-
-                        <br /><br /><br />
-
+                        <br />
 
                         <table class="table border shadow">
                             <thead class="thead-dark">
@@ -112,17 +114,17 @@ export default class ViewUsers extends Component {
                                 }).map((item, index) =>
                                     <tr>
                                         <td>{item.userFullName}</td>
-                                        <td style={{ color: 'blue'}}><u><i>{item.userEmail}</i></u></td>
+                                        <td style={{ color: 'blue' }}><u><i>{item.userEmail}</i></u></td>
                                         <td>{"(+94)-" + item.userContact}</td>
                                         <td>{item.userCategory}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteUser(e, item._id)}><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteUser(e, item._id)}><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
                                     </tr>
