@@ -101,7 +101,7 @@ export default class addOfferItem extends Component {
                 "productName": this.state.productinfo.productName,
                 "productImage": this.state.productinfo.productImage,
                 "productDescription": this.state.productinfo.productDescription,
-                "productPrice": this.state.productinfo.productPrice,
+                "productPrice": this.state.productinfo.offerPrice,
                 "productColor": this.state.itemColor,
                 "productSize": this.state.itemSize,
                 "productQuantity": this.state.itemQuantity,

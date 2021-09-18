@@ -14,6 +14,7 @@ export default class ViewUsers extends Component {
         this.navigateAddUsersPage = this.navigateAddUsersPage.bind(this);
         this.navigateViewAdminPage = this.navigateViewAdminPage.bind(this);
         this.navigateToUpdateUser = this.navigateToUpdateUser.bind(this);
+        this.navigateToDeleteUser = this.navigateToDeleteUser.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = initialStates;
     }
@@ -27,11 +28,15 @@ export default class ViewUsers extends Component {
     }
 
     navigateViewAdminPage(e){
-        window.location = '/viewAdmin';
+        window.location = "/viewAdmin";
     }
 
     navigateToUpdateUser(e, userId){
         window.location = `/updateUser/${userId}`;
+    }
+
+    navigateToDeleteUser(e, userId){
+        window.location = `/deleteUser/${userId}`;
     }
 
     componentDidMount(e) {
@@ -40,7 +45,7 @@ export default class ViewUsers extends Component {
                 this.setState({ userlist: response.data.data });
             }).catch(error => {
                 alert(error.message);
-            })
+            });
     }
 
     render() {
@@ -117,7 +122,7 @@ export default class ViewUsers extends Component {
                                         </td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeleteUser(e, item._id)}><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
                                     </tr>
