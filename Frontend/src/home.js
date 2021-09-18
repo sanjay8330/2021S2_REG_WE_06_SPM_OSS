@@ -59,7 +59,7 @@ export default class home extends Component {
         window.location = `/viewItems/${userId}`;
     }
 
-    navigateToUpdateUser(e, userId){
+    navigateToUpdateUser(e, userId) {
         window.location = `/updateUserProfile/${userId}`;
     }
 
@@ -73,9 +73,12 @@ export default class home extends Component {
                         <img class="d-block w-100" src={ss} alt="First slide" style={{ filter: 'blur(1px)' }} />
                     </div>
 
-                    <div class="carousel-item active" style={{ backgroundColor: 'transparent'}}>
+                    <div class="carousel-item active" style={{ backgroundColor: 'transparent' }}>
                         <img class="img-circle" style={{ minWidth: '50px', width: '50px', height: '50px', marginLeft: '95.3%', marginTop: 15 }} src={this.state.userInfo.imageURL} />
-                        <a style={{ marginLeft: '94.5%', color: 'hotpink', textDecorationLine: 'underline', fontSize: '14px' }} onClick={e => this.navigateToUpdateUser(e, this.state.userId)}>View Profile</a>
+                        <a style={{ marginLeft: '94.5%', color: 'hotpink', textDecorationLine: 'underline', fontSize: '14px'}} onClick={e => this.navigateToUpdateUser(e, this.state.userId)}>View Profile</a>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-light btn-sm" type="button" onClick={this.navigateViewCart} style={{ marginRight: '8%', marginTop: -35}}>Shopping Cart</button>
+                        </div><br />
                     </div>
 
                     <div class="bg-text">
@@ -84,12 +87,6 @@ export default class home extends Component {
                         <p>Shop Now</p>
                     </div>
                 </div><br /><br /><br />
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-dark" type="button" onClick={this.navigateViewCart} style={{ marginRight: '5%' }}>View Shopping Cart</button>
-                </div><br />
-
-
 
                 <div class="titleNew"><br />
                     <center><h1>NEW ARRIVALS</h1></center><br />

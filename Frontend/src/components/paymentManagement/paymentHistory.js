@@ -16,11 +16,16 @@ export default class paymentHistory extends Component {
         super(props);
         this.state = initialStates;
         this.onChange = this.onChange.bind(this);
-
+        this.navigateToHome = this.navigateToHome.bind(this);
     }
 
     onChange(e) {
         this.setState({ searchHistory: e.target.value });
+    }
+
+    navigateToHome(e, userId) {
+        userId = this.props.match.params.userId 
+        window.location = `/home/${userId}`;
     }
 
     componentDidMount(e) {
@@ -63,15 +68,12 @@ export default class paymentHistory extends Component {
         return (
             <div>
                 <Header /><br />
-                <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b><hr /></center>
+                <center><b><p style={{ fontSize: '50px' }}><i class="fa fa-home fa-lg" onClick={this.navigateToHome} style={{ marginRight: '2%', fontSize: '40px'}}></i>Payment History</p></b><hr /></center>
                 <main>
 
                     <table width="100%">
                         <td>
                             <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
-                        </td>
-
-                        <td>
                             <button type="button" class="btn btn-dark" onClick={this.navigateToDeleteHistory} style={{ marginRight: '2%' }}>Clear History</button>
                         </td>
 
