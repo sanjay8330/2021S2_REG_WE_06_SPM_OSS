@@ -134,13 +134,13 @@ export default class viewProducts extends Component {
                         </div><br /><br />
 
                         <div class="info">
-                            <b><h6>
+                            <b><h6><center>
                                 Mens Products: {this.state.mensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
                                 Womens Products: {this.state.womensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
                                 Teenagers Products: {this.state.teenagersProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
                                 Kids Products: {this.state.kidsProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
                                 Babies Products: {this.state.babiesProducts.length} &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
-                                Total Products: {this.state.products.length}</h6></b>
+                                Total Products: {this.state.products.length}</center></h6></b>
                         </div>
 
                         <br />

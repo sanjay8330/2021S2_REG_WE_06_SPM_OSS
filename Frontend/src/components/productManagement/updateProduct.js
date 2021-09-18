@@ -22,6 +22,7 @@ export default class updateProduct extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
+        this.navigateViewProductPage = this.navigateViewProductPage.bind(this);
         this.state = initialStates;
     }
 
@@ -118,6 +119,10 @@ export default class updateProduct extends Component {
         }
     }
 
+    navigateViewProductPage(e) {
+        window.location = `/viewProducts`;
+    }
+
     render() {
         return (
             <div>
@@ -200,7 +205,7 @@ export default class updateProduct extends Component {
                                             <option value="Babies">Babies</option>
                                         </select><br />
 
-                                        <span style={{ color: "black" }}>Product Image</span> 
+                                        <span style={{ color: "black" }}>Product Image</span>
                                         <input
                                             type="file"
                                             className="form-control"
@@ -209,6 +214,7 @@ export default class updateProduct extends Component {
                                             onChange={this.onImageChange}
                                         /><br />
 
+                                        <button type="submit" className="btn btn-secondary" id="submitBtn" onClick={this.navigateViewProductPage}>Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>

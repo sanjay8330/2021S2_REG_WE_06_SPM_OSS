@@ -72,11 +72,13 @@ export default class ViewAdministrators extends Component {
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
+                        </div><br /><br />
+
+                        <div class="info" style={{ width: '17%'}}>
+                            <b><h6>
+                            Total Administrators: {this.state.userlist.length}</h6></b>
                         </div>
-
-
-                        <br /><br /><br />
-
+                        <br />
 
                         <table class="table border shadow">
                             <thead class="thead-dark">

@@ -22,6 +22,7 @@ export default class createProduct extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
+        this.navigateViewProductPage = this.navigateViewProductPage.bind(this);
         this.state = initialStates;
     }
 
@@ -101,6 +102,10 @@ export default class createProduct extends Component {
                 })
 
         }
+    }
+
+    navigateViewProductPage(e) {
+        window.location = `/viewProducts`;
     }
 
     render() {
@@ -203,6 +208,7 @@ export default class createProduct extends Component {
                                             onChange={this.onImageChange}
                                         /><br />
 
+                                        <button type="submit" className="btn btn-secondary" id="submitBtn" onClick={this.navigateViewProductPage}>Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Submit</button>
                                     </form>
                                 </div>

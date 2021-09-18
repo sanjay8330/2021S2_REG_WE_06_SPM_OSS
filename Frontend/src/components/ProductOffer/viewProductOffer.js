@@ -7,7 +7,9 @@ import jsPDF from 'jspdf';
 const initialStates = {
     "productOffers": [],
     "productInfo": [],
-    "searchProduct": ''
+    "searchProduct": '',
+    "activeProductOffers": [],
+    "inactiveProductOffers": []
 }
 
 export default class ViewProductOffer extends Component {
@@ -59,6 +61,22 @@ export default class ViewProductOffer extends Component {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
                 this.setState({ productOffers: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all active product offers using API - SANJAY*/
+        Axios.get('http://localhost:3001/productOffer/getAllActiveProductOffers')
+            .then(response => {
+                this.setState({ activeProductOffers: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all In-active product offers using API - SANJAY */
+        Axios.get('http://localhost:3001/productOffer/getAllInActiveProductOffers')
+            .then(response => {
+                this.setState({ inactiveProductOffers: response.data.data });
             }).catch(error => {
                 alert(error.message);
             })
@@ -115,10 +133,16 @@ export default class ViewProductOffer extends Component {
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
+                        </div><br /><br />
+
+                        <div class="info" style={{ width: '58%'}}>
+                            <b><h6>
+                            Active Product Offers: {this.state.activeProductOffers.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                            In-active Product Offers: {this.state.inactiveProductOffers.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                            Total Product Offers: {this.state.productOffers.length}</h6></b>
                         </div>
 
-
-                        <br /><br /><br />
+                        <br />
 
                         <table class="table border shadow">
                             <thead class="thead-dark">
