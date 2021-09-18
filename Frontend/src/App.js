@@ -16,6 +16,7 @@ import UpdateUsers from "./components/Administrator/updateUsers";
 import UpdateUserPassword from "./components/Administrator/updateUserPassword";
 import UpdateCustomerProfile from './components/userManagement/updateUser';
 import UpdateUserProfilePassword from './components/userManagement/updateUserProfilePassword';
+import DeleteUsers from './components/Administrator/deleteUsers';
 
 //Product Offer Management - Routes
 import AddProductOffer from "./components/ProductOffer/addProductOffer";
@@ -76,6 +77,7 @@ function App() {
             <Route path="/resetUserPassword/:id" component={ UpdateUserPassword } />
             <Route path="/updateUserProfile/:id" component={ UpdateCustomerProfile } /> 
             <Route path="/resetUserProfilePassword/:id" component={ UpdateUserProfilePassword } />
+            <Route path="/deleteUser/:id" component={ DeleteUsers } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />

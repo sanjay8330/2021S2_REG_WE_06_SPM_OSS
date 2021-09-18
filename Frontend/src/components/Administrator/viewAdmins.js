@@ -24,7 +24,7 @@ export default class ViewAdministrators extends Component {
         window.location = '/adminUserRegister';
     }
 
-    navigateToUpdateUser(e, userId){
+    navigateToUpdateUser(e, userId) {
         window.location = `/updateUser/${userId}`;
     }
 
@@ -55,9 +55,9 @@ export default class ViewAdministrators extends Component {
                     </nav>
                     <main>
 
-                        <h1>VIEW USERS</h1><br/>
+                        <h1>VIEW USERS</h1><br />
 
-                            <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
+                        <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -86,7 +86,6 @@ export default class ViewAdministrators extends Component {
                                     <th scope="col">USER CONTACT</th>
                                     <th scope="col">USER CATEGORY</th>
                                     <th scope="col">EDIT</th>
-                                    <th scope="col">DELETE</th>
 
                                 </tr>
                             </thead>
@@ -97,20 +96,15 @@ export default class ViewAdministrators extends Component {
                                     } else if (values.userFullName.toLowerCase().includes(this.state.searchUser.toLowerCase())) {
                                         return values;
                                     }
-                                }).map((item, index) =>
+                                }).map((item, index) => 
                                     <tr>
                                         <td>{item.userFullName}</td>
-                                        <td style={{ color: 'blue'}}><u><i>{item.userEmail}</i></u></td>
+                                        <td style={{ color: 'blue' }}><u><i>{item.userEmail}</i></u></td>
                                         <td>{"+94-" + item.userContact}</td>
                                         <td>{item.userCategory}</td>
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
-                                            </li>
-                                        </td>
-                                        <td>
-                                            <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdateUser(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
                                     </tr>

@@ -18,6 +18,7 @@ export default class ViewShoppingcart extends Component {
         super(props);
         this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
         this.navigateToPaymentHistory = this.navigateToPaymentHistory.bind(this);
+        this.navigateToHome = this.navigateToHome.bind(this);
         this.state = initialStates;
     }
 
@@ -31,14 +32,17 @@ export default class ViewShoppingcart extends Component {
         window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.itemtotalamount}`;
     }
 
-
-
     navigateToUpdatePage(e, productId) {
         window.location = `/updateitem/${productId}`;
     }
 
     navigateToDeletePage(e, productId) {
         window.location = `/deleteitem/${productId}`;
+    }
+
+    navigateToHome(e, userId) {
+        userId = this.props.match.params.userId 
+        window.location = `/home/${userId}`;
     }
 
     componentDidMount(e) {
@@ -92,7 +96,7 @@ export default class ViewShoppingcart extends Component {
                 <Header />
                 <main>
                     <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
-
+                    <button type="button" class="btn btn-dark" style={{ marginRight: '2%' }} onClick={this.navigateToHome}>Home</button>
                     <button type="button" class="btn btn-dark" id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
                     <button class="btn btn-dark" type="button" id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>

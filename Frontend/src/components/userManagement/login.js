@@ -56,7 +56,7 @@ export default class Login extends Component {
                             
                         }
                         if (item.userCategory === 'Administrator') {
-                            window.location = "/adminDashboard"
+                            window.location = "/adminDashboard";
                         }
                     } else {
                         alert('Password or Username is Invalid!!');
