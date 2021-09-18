@@ -1,3 +1,7 @@
+// ------------------
+//     HOME PAGE
+// ------------------
+
 import React, { Component } from 'react'
 import Header from './components/header/header';
 import ss from '../src/images/aaa.jpg';
@@ -29,6 +33,11 @@ export default class home extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to get all the product offer and user details
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCTS OFFER & USER DETAILS
+     */
     componentDidMount() {
         Axios.get('http://localhost:3001/productOffer/getAllActiveProductOffers')
             .then(response => {
@@ -49,16 +58,25 @@ export default class home extends Component {
 
     }
 
+    /**
+     * The function to navigate to the add item page
+     */
     navigateToAdditempage(e, productID, userId) {
         userId = this.state.userId;
         window.location = `/addOfferItems/${productID}/${userId}`;
     }
 
+    /**
+     * The function to navigate to the view cart page
+     */
     navigateViewCart(e, userId) {
         userId = this.state.userId;
         window.location = `/viewItems/${userId}`;
     }
 
+    /**
+     * The function to navigate to the update user page
+     */
     navigateToUpdateUser(e, userId) {
         window.location = `/updateUserProfile/${userId}`;
     }

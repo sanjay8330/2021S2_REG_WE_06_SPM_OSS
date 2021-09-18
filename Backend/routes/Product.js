@@ -1,7 +1,19 @@
+// ----------------------------
+//     PRODUCT ROUTE - BACKEND
+// ----------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 const router = require('express').Router();
+
+//Imported Product Model
 const ProductModel = require('../models/Product');
 
-//Add a product - ADMIN TASK
+/**Add a new product - ADMIN TASK
+ * API - http://localhost:3001/product/addProduct
+*/
 router.route('/addProduct').post(async (req, res) => {
     if(req.body){
         const Product = new ProductModel(req.body);
@@ -14,7 +26,9 @@ router.route('/addProduct').post(async (req, res) => {
     }
 });
 
-//Get all products - ADMIN TASK
+/**Get all created products - ADMIN TASK
+ * API - http://localhost:3001/product/getAllProducts
+*/ 
 router.route('/getAllProducts').get(async (req, res) => {
     await ProductModel.find({})
     .populate('product', 'productName')
@@ -25,7 +39,9 @@ router.route('/getAllProducts').get(async (req, res) => {
         })
 });
 
-//Get the product by ID - ADMIN TASK
+/**Get the product by product ID - ADMIN TASK
+ * API - http://localhost:3001/product/getProductById/<productID>
+ * */
 router.route('/getProductById/:id').get(async (req, res) => {
     if(req.params && req.params.id){
         await ProductModel.findById(req.params.id)
@@ -37,7 +53,9 @@ router.route('/getProductById/:id').get(async (req, res) => {
     }
 });
 
-//Update Product  - ADMIN TASK
+/**Update Product details by using product ID - ADMIN TASK
+*  API - http://localhost:3001/product/updateProduct/<productID>
+*/
 router.route("/updateProduct/:id").put(async (req, res) => {
     //Updating the product details
     const productName = req.body.productName;
@@ -71,7 +89,9 @@ router.route("/updateProduct/:id").put(async (req, res) => {
     }
 });
 
-//Delete the product - ADMIN TASK
+/**Delete the product by using product ID - ADMIN TASK
+*  API - http://localhost:3001/product/deleteProduct/<productID>
+*/
 router.route('/deleteProduct/:id').delete(async (req, res) => {
     if(req.params && req.params.id){
         await ProductModel.findByIdAndDelete(req.params.id)
@@ -83,7 +103,9 @@ router.route('/deleteProduct/:id').delete(async (req, res) => {
     }
 });
 
-//Get all products on men category - CUSTOMER TASK
+/**Get all products on men category - CUSTOMER TASK
+*  API - http://localhost:3001/product/getAllMenProducts
+*/
 router.route('/getAllMenProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Men'})
         .then(data => {
@@ -93,7 +115,9 @@ router.route('/getAllMenProducts').get(async (req, res) => {
         })
 });
 
-//Get all products on women category - CUSTOMER TASK
+/**Get all products on women category - CUSTOMER TASK
+*  API - http://localhost:3001/product/getAllWomenProducts
+*/
 router.route('/getAllWomenProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Women'})
         .then(data => {
@@ -103,7 +127,9 @@ router.route('/getAllWomenProducts').get(async (req, res) => {
         })
 });
 
-//Get all products on kids category - CUSTOMER TASK
+/**Get all products on kids category - CUSTOMER TASK
+*  API - http://localhost:3001/product/getAllKidsProducts
+*/
 router.route('/getAllKidsProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Kids'})
         .then(data => {
@@ -113,7 +139,9 @@ router.route('/getAllKidsProducts').get(async (req, res) => {
         })
 });
 
-//Get all products on Babies category - CUSTOMER TASK
+/**Get all products on Babies category - CUSTOMER TASK
+*  API - http://localhost:3001/product/getAllBabiesProducts
+*/
 router.route('/getAllBabiesProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Babies'})
         .then(data => {
@@ -123,7 +151,9 @@ router.route('/getAllBabiesProducts').get(async (req, res) => {
         })
 });
 
-//Get all products on Teenagers category - CUSTOMER TASK
+/**Get all products on Teenagers category - CUSTOMER TASK
+*  API - http://localhost:3001/product/getAllTeenagersProducts
+*/
 router.route('/getAllTeenagersProducts').get(async (req, res) => {
     await ProductModel.find({categoryType: 'Teenagers'})
         .then(data => {

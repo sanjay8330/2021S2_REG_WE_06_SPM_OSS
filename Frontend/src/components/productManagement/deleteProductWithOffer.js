@@ -1,3 +1,11 @@
+// -------------------------------------------
+//     DELETE PRODUCTS WITH OFFERS - FRONTEND
+// -------------------------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -20,6 +28,11 @@ export default class deleteproductWithOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to get product details with offers by path param (id)
+     * Uses - setState()
+     * API CALL - GET PRODUCTS WITH OFFERS BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.productId}`)
             .then(response => {
@@ -49,6 +62,10 @@ export default class deleteproductWithOffer extends Component {
             })
     }
 
+    /**
+     * The function written to delete the product details with offers by path param (id).
+     * API CALL - DELETE PRODUCT WITH OFFERS BY ID
+     */
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/product/deleteProduct/${this.props.match.params.productId}`)
@@ -65,6 +82,9 @@ export default class deleteproductWithOffer extends Component {
             })
     }
 
+    /**
+     * The function to navigate to the product list page
+     */
     navigatetoViewPage(e) {
         window.location = "/viewProducts";
     }

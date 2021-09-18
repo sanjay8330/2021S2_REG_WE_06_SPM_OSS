@@ -1,7 +1,14 @@
+// -------------------------------
+//     UPDATE PRODUCTS - FRONTEND
+// -------------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
-import product from '../../images/product.jpg';
 import firebase from '../../Firebase/firebase';
 
 const initialStates = {
@@ -26,6 +33,7 @@ export default class updateProduct extends Component {
         this.state = initialStates;
     }
 
+    //update product image
     async onImageChange(e) {
         document.getElementById("submitBtn").disabled = true;
         const file = e.target.files[0];
@@ -45,6 +53,11 @@ export default class updateProduct extends Component {
 
     }
 
+    /**
+     * The function written to get product offer details by path param (id)
+     * Uses - setState()
+     * API CALL - GET PRODUCT BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
             .then(response => {
@@ -65,7 +78,7 @@ export default class updateProduct extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    //validation
+    //form validations
     validate = () => {
         let isError = false;
         const errors = {
@@ -73,11 +86,13 @@ export default class updateProduct extends Component {
             productDescriptionError: ''
         };
 
+        //check product name validation
         if (this.state.productName.length < 3) {
             isError = true;
             errors.productNameError = "Needs to be more than 2 characters long";
         }
 
+        //check description validation
         if (this.state.productDescription.length < 5) {
             isError = true;
             errors.productDescriptionError = "Needs to be more than 5 characters long";
@@ -93,6 +108,11 @@ export default class updateProduct extends Component {
         return isError;
     }
 
+    /**
+    * The function written to update the product details.
+    * Uses - setState()
+    * API CALL - UPDATE PRODUCT DETAILS
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -119,6 +139,9 @@ export default class updateProduct extends Component {
         }
     }
 
+    /**
+     * The function to navigate to the product list page
+     */
     navigateViewProductPage(e) {
         window.location = `/viewProducts`;
     }
@@ -214,7 +237,7 @@ export default class updateProduct extends Component {
                                             onChange={this.onImageChange}
                                         /><br />
 
-                                        <button type="submit" className="btn btn-secondary" id="submitBtn" onClick={this.navigateViewProductPage}>Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" className="btn btn-outline-secondary" id="cancelBtn" onClick={this.navigateViewProductPage}>Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
                                 </div>
