@@ -6,7 +6,12 @@ import jsPDF from 'jspdf';
 
 const initialStates = {
     "products": [],
-    "searchProduct": ''
+    "searchProduct": '',
+    "mensProducts": [],
+    "womensProducts": [],
+    "teenagersProducts": [],
+    "kidsProducts": [],
+    "babiesProducts": []
 }
 
 export default class viewProducts extends Component {
@@ -24,6 +29,46 @@ export default class viewProducts extends Component {
         Axios.get('http://localhost:3001/product/getAllProducts')
             .then(response => {
                 this.setState({ products: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all mens products using API - KASUNI */
+        Axios.get('http://localhost:3001/product/getAllMenProducts')
+            .then(response => {
+                this.setState({ mensProducts: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all womens products using API - KASUNI */
+        Axios.get('http://localhost:3001/product/getAllWomenProducts')
+            .then(response => {
+                this.setState({ womensProducts: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all teenagers products using API - KASUNI */
+        Axios.get('http://localhost:3001/product/getAllTeenagersProducts')
+            .then(response => {
+                this.setState({ teenagersProducts: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all kids products using API - KASUNI */
+        Axios.get('http://localhost:3001/product/getAllKidsProducts')
+            .then(response => {
+                this.setState({ kidsProducts: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            })
+
+        /**Get all kids products using API - KASUNI */
+        Axios.get('http://localhost:3001/product/getAllBabiesProducts')
+            .then(response => {
+                this.setState({ babiesProducts: response.data.data });
             }).catch(error => {
                 alert(error.message);
             })
@@ -68,7 +113,7 @@ export default class viewProducts extends Component {
                         </ul>
                     </nav>
                     <main>
-                        <h1>VIEW PRODUCT DETAILS</h1><br/>
+                        <h1>VIEW PRODUCT DETAILS</h1><br />
 
                         <a href="/createProduct"><button type="button" class="btn btn-dark">Add Product</button></a> &nbsp;
                         <button onClick={this.jsPdfGeneratorProduct} type="button" class="btn btn-dark">Download Report</button>
@@ -86,10 +131,20 @@ export default class viewProducts extends Component {
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
+                        </div><br /><br />
+
+                        <div class="info">
+                            <b><h6>
+                                Mens Products: {this.state.mensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
+                                Womens Products: {this.state.womensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
+                                Teenagers Products: {this.state.teenagersProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
+                                Kids Products: {this.state.kidsProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
+                                Babies Products: {this.state.babiesProducts.length} &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
+                                Total Products: {this.state.products.length}</h6></b>
                         </div>
 
-                        <br /><br /><br />
-                        
+                        <br />
+
                         <table class="table border shadow" id="casti_male">
                             <thead class="thead-dark">
                                 <tr>
@@ -118,17 +173,17 @@ export default class viewProducts extends Component {
                                         <td>{item.productDescription}</td>
                                         <td>{item.categoryType}</td>
                                         <td>{"Rs." + item.productPrice}.00</td>
-                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red'}} ><b>{item.productDiscount + "%"}</b></span></td>
+                                        <td><span class="highlight" style={{ backgroundColor: '#f0ec0e', padding: '0.4em 0.6em', color: 'red' }} ><b>{item.productDiscount + "%"}</b></span></td>
 
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)}><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-success btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={e => this.navigateToUpdatePage(e, item._id)}><i class="fa fa-edit"></i></button>
                                             </li>
                                         </td>
 
                                         <td>
                                             <li class="list-inline-item">
-                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black'}} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-danger btn-sm rounded-0" style={{ backgroundColor: 'black' }} type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={e => this.navigateToDeletePage(e, item._id)}><i class="fa fa-trash"></i></button>
                                             </li>
                                         </td>
 
@@ -137,7 +192,7 @@ export default class viewProducts extends Component {
                             </tbody>
                         </table><br />
 
-                        <table style={{ display: 'none'}} id="productReportTable">
+                        <table style={{ display: 'none' }} id="productReportTable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">PRODUCT NAME</th>

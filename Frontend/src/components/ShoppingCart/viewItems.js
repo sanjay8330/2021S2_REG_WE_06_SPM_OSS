@@ -95,8 +95,8 @@ export default class ViewShoppingcart extends Component {
             <div>
                 <Header />
                 <main>
-                    <center><b><p style={{ fontSize: '50px' }}>Shopping Cart</p></b></center><hr /><br />
-                    <button type="button" class="btn btn-dark" style={{ marginRight: '2%' }} onClick={this.navigateToHome}>Home</button>
+                    <center><b><p style={{ fontSize: '50px' }}><i class="fa fa-home fa-lg" onClick={this.navigateToHome} style={{ marginRight: '2%', fontSize: '40px'}}></i>Shopping Cart</p></b></center><hr /><br />
+                    {/* <button type="button" class="btn btn-dark" style={{ marginRight: '2%' }} onClick={this.navigateToHome}>Home</button> */}
                     <button type="button" class="btn btn-dark" id="downloadReportBtn" onClick={this.jsPdfGeneratorProduct} style={{ marginRight: '2%' }}>Download Report</button>
                     <button class="btn btn-dark" type="button" id="checkoutBtn" onClick={this.navigateToCheckOut} style={{ marginRight: '2%' }}>Checkout</button>
                     <button class="btn btn-dark" type="button" onClick={this.navigateToPaymentHistory} style={{ marginRight: '2%' }}>Payment History</button>
