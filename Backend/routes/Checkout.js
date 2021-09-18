@@ -50,4 +50,19 @@ router.route('/getPaymentByID/:id').get(async (req, res) => {
     }
 });
 
+//Delete all payment details
+router.route('/deletePaymentHistory/:id').delete(async (req, res) => {
+    const id = req.params.id;
+    if(req.params && req.params.id){
+        await CheckoutModel.deleteMany({userId : id})
+        .then(data => {
+            res.status(200).send({data: data});
+        }).catch(error => {
+            res.status(500).send({error: error});
+        })
+    }
+
+  
+});
+
 module.exports = router;
