@@ -28,8 +28,9 @@ export default class deliveryDetails extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
+        //this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
         this.state = initialStates;
+        this.navigateViewCart = this.navigateViewCart.bind(this);
     }
 
 
@@ -68,8 +69,9 @@ export default class deliveryDetails extends Component {
     }
     
 
-    navigateToView(e) {
-        window.location = `/deliveryForCustomer/${this.props.match.params.userId}`; 
+    navigateViewCart() {
+        let userId = this.state.userID;
+        window.location = `/viewItems/${this.props.match.params.userId }`;
     }
 
 
@@ -318,11 +320,6 @@ export default class deliveryDetails extends Component {
                                             </td>
                                         </tr>
                                         <br />
-                                        <tr>
-                                            <td>
-                                                <h3>Total Amount : {this.props.match.params.amount}</h3>
-                                            </td>
-                                        </tr>
                                     </table>
                                     <br />
 
@@ -330,16 +327,13 @@ export default class deliveryDetails extends Component {
                                         <tr>
 
                                             <td>
-                                                <button type="reset" className="btn btn-dark" id="resetBtn">Cancel</button>
+                                                <button type="reset" className="btn btn-dark" id="resetBtn" onClick={this.navigateViewCart} >Cancel</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
                                                 <button type="submit" className="btn btn-dark" id="submitBtn">Insert</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
-                                            <td>
-                                                <button type="submit" className="btn btn-dark" onClick={this.navigateToCheckOut}>Checkout</button>
-                                            </td>
 
                                         </tr>
                                     </table>

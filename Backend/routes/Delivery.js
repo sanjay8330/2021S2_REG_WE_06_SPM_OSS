@@ -2,7 +2,7 @@ const router = require('express').Router();
 const DeliveryModel = require('../models/Delivery');
 
 //Add delivery details
-router.route('/deliveryDetails').post(async (req, res) => {
+router.route('/deliveryDetails/:userId').post(async (req, res) => {
     if(req.body){
         const Delivery = new DeliveryModel(req.body);
         await Delivery.save()

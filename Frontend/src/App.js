@@ -99,7 +99,7 @@ function App() {
 
             <Route path="/checkout/:userId/:amount" component={ Checkout } />
             <Route path="/payment-history/:userId" component={ History } />
-            <Route path="/delivery-details/:userId/:amount" component={ DeliveryDetails } />
+            <Route path="/delivery-details/:userId/" component={ DeliveryDetails } />
             <Route path="/deletePayment/:id/:userId" component={ DeletePayment } />
             <Route path="/deliveryForCustomer/:userId" component={ updateDeliveryDetails } />
             <Route path="/updateDeliveryDetail/:userId" component={ updateDeliveryDetails } />
