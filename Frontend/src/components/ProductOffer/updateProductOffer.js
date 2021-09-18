@@ -26,6 +26,11 @@ export default class UpdateProductOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to get product offer details by path param (id)
+     * Uses - setState()
+     * API CALL - GET PRODUCT OFFER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
             .then(response => {
@@ -48,21 +53,37 @@ export default class UpdateProductOffer extends Component {
             })
     }
 
+    /**
+     * The function written to capture the user input and assign it the states
+     * @param e - event
+     * Uses - setState()
+     */
     onChange(e) {
         e.persist();
-
         this.setState({ [e.target.name]: e.target.value });
     }
 
+
+    /**
+    * The function written to validate the function change - Offer price should be less than product price
+    * @param e - event
+    * Uses - setState()
+    * Validation - toFixed()
+    */
     onPriceChange(e) {
         this.setState({ offerAmount: e.target.value });
 
-        //Calculate the discount
+        //Calculate the discount - TO BE SENT TPO THE BACKEND
         let discount = (100 * (this.state.offerInfo.productPrice - e.target.value)) / this.state.offerInfo.productPrice;
         this.setState({ offerDiscount: discount.toFixed(0) });
 
     }
 
+    /**
+    * The function written to update the product offer details.
+    * Uses - setState()
+    * API CALL - UPDATE PRODUCT OFFER DETAILS
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -83,6 +104,11 @@ export default class UpdateProductOffer extends Component {
 
     }
 
+    /**
+    * The function written to change the offer status from active to in-active or vice versa
+    * Uses - setState()
+    * API CALL - CHANGE PRODUCT OFFER STATUS
+    */
     changeOfferStatus(e) {
         e.preventDefault();
 
@@ -128,7 +154,7 @@ export default class UpdateProductOffer extends Component {
                         <h1>UPDATE PRODUCT OFFER</h1>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus} style={{ marginRight: '12%'}}>{this.state.buttonlabel}</button>
+                            <button class="btn btn-primary" type="button" onClick={this.changeOfferStatus} style={{ marginRight: '12%' }}>{this.state.buttonlabel}</button>
                         </div><br />
 
                         <div class="container border rounded" style={{ width: '950px' }}>
@@ -149,7 +175,7 @@ export default class UpdateProductOffer extends Component {
 
                                         <h3><b><i>Edit Product Offer Information</i></b></h3>
                                         <hr style={{ border: "2px solid black" }} />
-                                        
+
                                         <span style={{ color: "grey", fontSize: "14px" }}>Offer Status :</span><br />
                                         <h4 style={{ color: this.state.labelcolor }}><b>{this.state.offerInfo.offerStatus}</b></h4>
 

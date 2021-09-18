@@ -22,22 +22,41 @@ export default class ViewProductOffer extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to capture the user input and assign it the states
+     * @param e - event
+     * Uses - setState()
+     */
     onChange(e) {
         this.setState({ searchProduct: e.target.value });
     }
 
+    /**
+    * The function to navigate to the add product offer page
+    */
     navigateAddProductOffer(e) {
         window.location = '/addProductOffer';
     }
 
+    /**
+     * The function to navigate to the update product offer page
+     */
     navigateToUpdateOffer(e, offerId) {
         window.location = `/updateProductOffer/${offerId}`;
     }
 
+    /**
+     * The function to navigate to the delete product offer page
+     */
     navigateToDeleteOffer(e, offerId) {
         window.location = `/deleteProductOffer/${offerId}`;
     }
 
+    /**
+     * The function written to get all the product offer details
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCT OFFERS
+     */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {
@@ -63,15 +82,18 @@ export default class ViewProductOffer extends Component {
             })
     }
 
+    /**
+     * The function written to generate reports for the product offers
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCT OFFERS
+     */
     jsPdfGeneratorProductOffer() {
         var doc = new jsPDF('p', 'pt');
         doc.text(270, 20, 'SUMMARY OF PRODUCT OFFER DETAILS', 'center')
-
         doc.setFont('courier')
-
         doc.autoTable({ html: '#reportTable' })
 
-        //save PDF
+        //Name used to save the pdf when downloading
         doc.save('productOfferReport.pdf')
     }
 
