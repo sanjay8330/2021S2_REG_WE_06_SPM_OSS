@@ -1,3 +1,11 @@
+// -------------------------------
+//     DELETE PRODUCTS - FRONTEND
+// -------------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -16,6 +24,11 @@ export default class deleteproduct extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to get product details by path param (id)
+     * Uses - setState()
+     * API CALL - GET PRODUCT BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
             .then(response => {
@@ -44,6 +57,10 @@ export default class deleteproduct extends Component {
             })
     }
 
+    /**
+     * The function written to delete the product details by path param (id).
+     * API CALL - DELETE PRODUCT BY ID
+     */
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/product/deleteProduct/${this.props.match.params.id}`)
@@ -55,6 +72,9 @@ export default class deleteproduct extends Component {
             })
     }
 
+    /**
+     * The function to navigate to the product list page
+     */
     navigatetoViewPage(e, item_id ) {
         window.location = "/viewProducts";
     }

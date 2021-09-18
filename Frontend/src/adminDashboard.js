@@ -1,3 +1,7 @@
+// ----------------------
+//     ADMIN DASHBOARD
+// ----------------------
+
 import React, { Component } from 'react'
 import ss from '../src/images/ww.jpg';
 import Axios from 'axios';

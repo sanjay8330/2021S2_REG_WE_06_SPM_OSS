@@ -1,3 +1,11 @@
+// -----------------------------------
+//     GET MEN PRODUCTS - FRONTEND
+// -----------------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 import React, { Component } from 'react'
 import Header from '../header/header';
 import Axios from 'axios';
@@ -14,11 +22,19 @@ export default class displayProducts extends Component {
     this.state = initialStates;
   }
 
+  /**
+     * The function to navigate to the add normal item page
+  */
   navigateToAddNormalitempage(e, productID, userId) {
     userId = this.state.userId;
     window.location = `/insertItem/${productID}/${userId}`;
   }
 
+  /**
+     * The function written to get all the men product details
+     * Uses - setState()
+     * API CALL - GET ALL MEN PRODUCTS
+     */
   componentDidMount() {
     Axios.get('http://localhost:3001/product/getAllMenProducts')
       .then(response => {

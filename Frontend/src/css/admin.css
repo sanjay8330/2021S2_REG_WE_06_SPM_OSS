@@ -304,6 +304,12 @@ h1{
   color: white;
 }
 
+#cancelBtn{
+  background-color: rgb(252, 247, 247);
+  color: black;
+  border: 2px solid black;
+}
+
 
 
 

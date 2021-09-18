@@ -1,3 +1,11 @@
+// ------------------------------
+//     VIEW PRODUCTS - FRONTEND
+// ------------------------------
+
+//Function - Product management
+//Student name - H.M. Kasuni Navodya
+//Student ID - IT19144986
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -21,10 +29,20 @@ export default class viewProducts extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * The function written to capture the user input and assign it the states
+     * @param e - event
+     * Uses - setState()
+     */
     onChange(e) {
         this.setState({ searchProduct: e.target.value });
     }
 
+    /**
+     * The function written to get all the product details
+     * Uses - setState()
+     * API CALL - GET ALL PRODUCTS
+     */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/product/getAllProducts')
             .then(response => {
@@ -74,10 +92,16 @@ export default class viewProducts extends Component {
             })
     }
 
+    /**
+     * The function to navigate to the update product page
+     */
     navigateToUpdatePage(e, productId) {
         window.location = `/updateProduct/${productId}`;
     }
 
+    /**
+     * The function to navigate to the delete product page
+     */
     navigateToDeletePage(e, productId) {
         window.location = `/deleteProduct/${productId}`;
     }
