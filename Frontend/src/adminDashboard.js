@@ -180,7 +180,7 @@ export default class adminDashboard extends Component {
                                                 <center><br />
                                                 <span class="float-left" style={{ color: "black" }}><h6>Mens Products: {this.state.mensProducts.length}</h6></span>
                                                 <span class="float-left" style={{ color: "black" }}><h6>Womens Products: {this.state.womensProducts.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Tennagers Products: {this.state.teenagersProducts.length}</h6></span>
+                                                <span class="float-left" style={{ color: "black" }}><h6>Teenagers Products: {this.state.teenagersProducts.length}</h6></span>
                                                 <span class="float-left" style={{ color: "black" }}><h6>Kids Products: {this.state.kidsProducts.length}</h6></span>
                                                 <span class="float-left" style={{ color: "black" }}><h6>Babies Products: {this.state.babiesProducts.length}</h6></span><br />
                                                 <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white'}}>Total Products: {this.state.allProducts.length}</h4></b></span>

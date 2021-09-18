@@ -63,9 +63,6 @@ export default class paymentHistory extends Component {
                     <table width="100%">
                         <td>
                         <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
-                        </td>
-
-                        <td>
                         <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Clear History</button>
                         </td>
 

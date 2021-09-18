@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
 import product from '../../images/product.jpg';
+import firebase from '../../Firebase/firebase';
 
 const initialStates = {
     productName: '',
@@ -20,7 +21,27 @@ export default class updateProduct extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onImageChange = this.onImageChange.bind(this);
         this.state = initialStates;
+    }
+
+    async onImageChange(e) {
+        document.getElementById("submitBtn").disabled = true;
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(file.name);
+
+        await fileRef.put(file).then(() => {
+        }).catch(error => {
+            alert(error.message);
+        });
+
+        const downloadImage = await fileRef.getDownloadURL();
+        this.setState({ productImage: downloadImage });
+        alert('Image Uploaded Successfully!!', file.name);
+        document.getElementById("submitBtn").disabled = false;
+
+
     }
 
     componentDidMount() {
@@ -178,6 +199,15 @@ export default class updateProduct extends Component {
                                             <option value="Kids">Kids</option>
                                             <option value="Babies">Babies</option>
                                         </select><br />
+
+                                        <span style={{ color: "black" }}>Product Image</span> 
+                                        <input
+                                            type="file"
+                                            className="form-control"
+                                            id="file"
+                                            name="file"
+                                            onChange={this.onImageChange}
+                                        /><br />
 
                                         <button type="submit" className="btn btn-dark" id="submitBtn">Update</button>
                                     </form>
