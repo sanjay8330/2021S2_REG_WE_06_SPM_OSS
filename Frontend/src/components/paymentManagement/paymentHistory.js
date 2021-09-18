@@ -16,6 +16,7 @@ export default class paymentHistory extends Component {
         super(props);
         this.state = initialStates;
         this.onChange = this.onChange.bind(this);
+
     }
 
     onChange(e) {
@@ -39,6 +40,11 @@ export default class paymentHistory extends Component {
         window.location = `/deletePayment/${paymentID}/${UserID}`;
     }
 
+    navigateToDeleteHistory(e, UserID) {
+        // window.location = `/deletePaymentHistory/${UserID}`;
+        window.location = `/deletePaymentHistory/${UserID}`;
+    }
+
     //generate payment Report
     jsPdfGeneratorPayment() {
 
@@ -59,33 +65,36 @@ export default class paymentHistory extends Component {
                 <Header /><br />
                 <center><b><p style={{ fontSize: '50px' }}>Payment History</p></b><hr /></center>
                 <main>
-                
+
                     <table width="100%">
                         <td>
-                        <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
-                        <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Clear History</button>
+                            <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-dark" onClick={this.navigateToDeleteHistory} style={{ marginRight: '2%' }}>Clear History</button>
                         </td>
 
                         <td align="right" width="30%">
-                        
-                        <div class="search">
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                name="searchHistory"
-                                id="searchHistory"
-                                onChange={this.onChange}
-                                class="searchTerm" />
-                            <button type="submit" class="searchButton">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        
-                        </div>
+
+                            <div class="search">
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    name="searchHistory"
+                                    id="searchHistory"
+                                    onChange={this.onChange}
+                                    class="searchTerm" />
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+
+                            </div>
                         </td>
                         <td></td>
                     </table>
 
-                   
+
                     <br /><br /><br />
                     <table class="table border shadow" id="paymentTable" >
                         <thead class="thead-dark">
@@ -123,7 +132,7 @@ export default class paymentHistory extends Component {
                         </tbody>
                     </table>
 
-                    <table class="table border shadow" id="paymentReportTable"  style={{ display: 'none'}}>
+                    <table class="table border shadow" id="paymentReportTable" style={{ display: 'none' }}>
                         <thead class="thead-dark">
                             <tr>
                                 {/* <th scope="col">AMOUNT</th> */}
@@ -157,7 +166,7 @@ export default class paymentHistory extends Component {
                             )}
                         </tbody>
                     </table>
-                    
+
                 </main>
             </div>
 

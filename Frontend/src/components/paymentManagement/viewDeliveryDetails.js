@@ -40,6 +40,7 @@ export default class viewDeliveryDetails extends Component {
                 console.log(this.state.deliveryDetails);
 
                 if (this.state.deliveryDetails.length == 0){
+                    alert('Please insert delivery details');
                     window.location = `/delivery-details/${this.props.match.params.userId}/${this.state.totalamount}`;
                 }
 

@@ -45,6 +45,7 @@ import DeliveryDetails from './components/paymentManagement/deliveryDetails';
 import DeletePayment from './components/paymentManagement/deletePayment';
 import updateDeliveryDetails from "./components/paymentManagement/updateDeliveryDetails";
 import viewDeliveryDetails from "./components/paymentManagement/viewDeliveryDetails";
+import clearHistory from "./components/paymentManagement/clearHistory";
 
 //Insert Item
 import insertItem from "./components/addItems/addItems";
@@ -98,12 +99,13 @@ function App() {
 
             <Route path="/checkout/:userId/:amount" component={ Checkout } />
             <Route path="/payment-history/:userId" component={ History } />
-            <Route path="/delivery-details/:userId/:amount" component={ DeliveryDetails } />
+            <Route path="/delivery-details/:userId/" component={ DeliveryDetails } />
             <Route path="/deletePayment/:id/:userId" component={ DeletePayment } />
             <Route path="/deliveryForCustomer/:userId" component={ updateDeliveryDetails } />
             <Route path="/updateDeliveryDetail/:userId" component={ updateDeliveryDetails } />
             <Route path="/deliveryForCustomer/:userId" component={ updateDeliveryDetails } />
             <Route path="/viewDeliveryDetails/:userId/:amount" component={ viewDeliveryDetails } />
+            <Route path="/deletePaymentHistory/:userId" component={ clearHistory } />
             
             <Route path="/insertItem/:id/:userId" component={ insertItem } />
             <Route path="/addOfferItems/:id/:userId" component = { addOfferItem } />
