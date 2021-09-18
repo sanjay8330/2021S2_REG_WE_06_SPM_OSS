@@ -1,5 +1,20 @@
+/**
+ * Product offer Model created to store the product offer details on the database
+ * 
+ * --scope - Product Offer Management
+ * 
+ * --author S.Sanjay
+ *
+ */ 
+
+//Importing the mongoose from the installed package - mongoose@8.0.2
 const mongoose = require('mongoose');
 
+/**
+ * Schema name (local) - ProductOfferSchema
+ * 
+ * Foreign key reference - product (field) references products (schema)
+ */
 const ProductOfferSchema = new mongoose.Schema({
     product: {
         type: mongoose.Schema.Types.ObjectId,
@@ -62,5 +77,11 @@ const ProductOfferSchema = new mongoose.Schema({
 
 });
 
+
+/**
+ * Schema name on the database - ProductOffers
+ * 
+ * Exported model to be used on the ProductOffer route
+ */
 const ProductOffer = mongoose.model("ProductOffers", ProductOfferSchema);
 module.exports = ProductOffer;

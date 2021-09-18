@@ -1,5 +1,20 @@
+/**
+ * User Model created to store the user details on the database
+ * 
+ * --scope - User Management
+ * 
+ * --author S.Sanjay
+ *
+ */
+
+//Importing the mongoose from the installed package - mongoose@8.0.2
 const mongoose = require('mongoose');
 
+/**
+ * Schema name (local) - UserSchema
+ * 
+ * Foreign key reference - None
+ */
 const UserSchema = new mongoose.Schema({
     userFullName: {
         type: String,
@@ -37,5 +52,10 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
+/**
+ * Schema name on the database - Users
+ * 
+ * Exported model to be used on the User route
+ */
 const User = mongoose.model("Users", UserSchema);
 module.exports = User;

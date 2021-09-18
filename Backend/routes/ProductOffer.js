@@ -1,8 +1,30 @@
+/**
+ * Routes (API) for Products offers created to use API on the front end to perform
+ * all opertaions related to product offers
+ * 
+ * --scope - Product Offer Management
+ * --Implemented APIs'  - ADD PRODUCT OFFER               | GET ALL PRODUCT OFFERS      |  GET PRODUCT OFFER BY ID
+ *                        UPDATE PRODUCT OFFERS           | CHANGE PRODUCT OFFER STATUS | DELETE PRODUCT OFFER
+ *                        GET PRODUCT OFFER BY PRODUCT ID | GET ACTIVE PRODUCT OFFERS   | GET INACTIVE PRODUCT OFFERS
+ *                        CHANGE USER COUNT FOR PRODUCT OFFERS 
+ * 
+ * --author S.Sanjay
+ *
+ */
 const router = require('express').Router();
 const { response } = require('express');
+
+/**
+ * Imported Product Offer Model - ProductOffer.js - MODEL
+ */
 const ProductOfferModel = require('../models/ProductOffer');
 
-//Create a new offer for a product - ADMINISTRATOR/SUPPLIER
+/**
+ * API DESC      - Create a new Product Offer
+ * API           - http://localhost:3001/productOffer/addProductOffer
+ * TARGET IMPACT - Add new product offers page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> addProductOffer.js  
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route('/addProductOffer').post(async (req, res) => {
     if (req.body) {
 
@@ -16,7 +38,13 @@ router.route('/addProductOffer').post(async (req, res) => {
     }
 });
 
-//Get all product offers - ADMINISTRATOR/SUPPLIER
+/**
+ * API DESC      - Get all created Product Offer
+ * API           - http://localhost:3001/productOffer/getAllProductOffers
+ * TARGET IMPACT - View all product offers page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> viewProductOffer.js
+ *                                                FRONTEND -> SRC-> COMPONENTS -> home.js   
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route('/getAllProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({})
         .populate('product', 'productName')
@@ -27,7 +55,13 @@ router.route('/getAllProductOffers').get(async (req, res) => {
         })
 });
 
-//Get the product offer by ID - ADMIN TASK
+/**
+ * API DESC      - Get Product Offer by product offer ID
+ * API           - http://localhost:3001/productOffer/getProductOfferById/<OFFERID>
+ * TARGET IMPACT - View product offer page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> updateProductOffer.js 
+ *                                           FRONTEND -> SRC-> home.js 
+ * TARGET USER   - Administrator (Supplier), Customer (General User)
+ */
 router.route('/getProductOfferById/:id').get(async (req, res) => {
     if (req.params && req.params.id) {
         await ProductOfferModel.findById(req.params.id)
@@ -39,16 +73,21 @@ router.route('/getProductOfferById/:id').get(async (req, res) => {
     }
 });
 
-//Update Product Offer - ADMIN TASK
+/**
+ * API DESC      - Update Product Offer details by product offer ID
+ * API           - http://localhost:3001/productOffer/updateProductOffer/<OFFERID>
+ * TARGET IMPACT - Update product offer page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> updateProductOffer.js 
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route("/updateProductOffer/:id").put(async (req, res) => {
-    //Updating the offer details
+    //Updating the offer details - VALUES FROM FRONTEND
     const offerPrice = req.body.offerPrice;
     const offerDiscount = req.body.offerDiscount;
     const offerDescription = req.body.offerDescription;
     const offerEndDate = req.body.offerEndDate;
     const offerStatus = req.body.offerStatus;
 
-    //Offer ID
+    //Product Offer ID - ROUTE PARAMETER
     const Id = req.params.id;
 
     try {
@@ -71,12 +110,17 @@ router.route("/updateProductOffer/:id").put(async (req, res) => {
     }
 });
 
-//Update Product Offer Status - ADMIN TASK
+/**
+ * API DESC      - Change the Product Offer status by using product offer ID
+ * API           - http://localhost:3001/productOffer/changeProductOfferStatus/<OFFERID>
+ * TARGET IMPACT - Update product offer page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> updateProductOffer.js 
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route("/changeProductOfferStatus/:id").put(async (req, res) => {
-    //Updating the offer status
+    //Updating the offer status - RECIEVED FROM FRONTEND
     const offerStatus = req.body.offerStatus;
 
-    //Offer ID
+    //Product Offer ID - ROUTE PARAMETER
     const Id = req.params.id;
 
     try {
@@ -95,7 +139,12 @@ router.route("/changeProductOfferStatus/:id").put(async (req, res) => {
     }
 });
 
-//Delete product offer - ADMIN TASK
+/**
+ * API DESC      - Delete the Product Offer status by using product offer ID
+ * API           - http://localhost:3001/productOffer/deleteProductOffer/<OFFERID>
+ * TARGET IMPACT - Delete product offer page | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> deleteProductOffer.js 
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route('/deleteProductOffer/:id').delete(async (req, res) => {
     if (req.params && req.params.id) {
         await ProductOfferModel.findByIdAndDelete(req.params.id)
@@ -107,7 +156,14 @@ router.route('/deleteProductOffer/:id').delete(async (req, res) => {
     }
 });
 
-//Get the product offer by product ID - ADMIN TASK - USED IN THE DELETE PRODUCT FUNCTION
+/**
+ * API DESC      - Get the Product Offer status by using product ID
+ * API           - http://localhost:3001/productOffer/getProductOfferByproductId/<PRODUCTID>
+ * TARGET IMPACT - View product offer for a product | FRONTEND -> SRC-> COMPONENTS -> PRODUCTMANAGEMENT -> deleteProduct.js 
+ *                                                    FRONTEND -> SRC-> COMPONENTS -> PRODUCTMANAGEMENT -> deleteProductWithOffer.js 
+ *                                                    FRONTEND -> SRC-> home.js 
+ * TARGET USER   - Administrator (Supplier), Customer (General User)
+ */
 router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
     if (req.params && req.params.id) {
         await ProductOfferModel.find({ product: req.params.id })
@@ -119,7 +175,13 @@ router.route('/getProductOfferByproductId/:id').get(async (req, res) => {
     }
 });
 
-//Get all product active offers - CUSTOMER HOMEPAGE & ADMIN DASHBOARD
+/**
+ * API DESC      - View all active Product Offers
+ * API           - http://localhost:3001/productOffer/getAllActiveProductOffers
+ * TARGET IMPACT - Get all active product offer page | FRONTEND -> SRC-> home.js
+ *                                                     FRONTEND -> SRC-> adminDashboard.js
+ * TARGET USER   - Administrator (Supplier), Customer (General User)
+ */
 router.route('/getAllActiveProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({ offerStatus: 'Active' })
         .populate('product', 'productName')
@@ -130,7 +192,12 @@ router.route('/getAllActiveProductOffers').get(async (req, res) => {
         })
 });
 
-//Get all product in active offers - ADMIN DASHBOARD
+/**
+ * API DESC      - View all in-active Product Offers
+ * API           - http://localhost:3001/productOffer/getAllInActiveProductOffers
+ * TARGET IMPACT - Get all active product offer page | FRONTEND -> SRC-> adminDashboard.js                                                   
+ * TARGET USER   - Administrator (Supplier)
+ */
 router.route('/getAllInActiveProductOffers').get(async (req, res) => {
     await ProductOfferModel.find({ offerStatus: 'In-Active' })
         .then(data => {
@@ -140,12 +207,17 @@ router.route('/getAllInActiveProductOffers').get(async (req, res) => {
         })
 });
 
-//Update the usercount in productOffers - REPORT GENERATION
+/**
+ * API DESC      - Change the user count to track the users purchased product with the product offer
+ * API           - http://localhost:3001/productOffer/changeUserCount/<OFFERID>
+ * TARGET IMPACT - Track the user count | FRONTEND -> SRC-> COMPONENTS -> PRODUCTOFFER -> viewProductOffer.js                                                  
+ * TARGET USER   - Administrator (Supplier) | GENERATE REPORT
+ */
 router.route("/changeUserCount/:id").put(async (req, res) => {
-    //Updating the offer status
+    //ADDING THE USER COUNT BY 1 ONCE PRODUCT WITH PRODUCT OFFER IS PURCHASED
     const userCount = req.body.userCount;
 
-    //Offer ID
+    //Product Offer ID - ROUTE PARAMETER
     const Id = req.params.id;
 
     try {
