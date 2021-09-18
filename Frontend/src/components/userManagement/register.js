@@ -3,6 +3,7 @@ import Axios from 'axios';
 import '../../css/register.css';
 import Header from '../header/header';
 import PasswordChecklist from "react-password-checklist";
+import profilePic from '../../images/profilePic.png';
 
 const initialStates = {
     "fullName": '',
@@ -49,7 +50,8 @@ export default class register extends Component {
                         "userPassword": this.state.password,
                         "userContact": this.state.contactNo,
                         "userCategory": this.state.category,
-                        "resetAnswer": this.state.resetAnswer
+                        "resetAnswer": this.state.resetAnswer,
+                        "imageURL": profilePic
                     }
                     Axios.post('http://localhost:3001/user/addUser', user)
                         .then(response => {
@@ -64,6 +66,7 @@ export default class register extends Component {
                             Axios.post('http://localhost:3001/userreport/addUserReport', userReport)
                                 .then(response => {
                                     alert('User Registration Successfull!!');
+                                    window.location = "/";
                                 }).catch(error => {
                                     alert(error.message);
                                 })
