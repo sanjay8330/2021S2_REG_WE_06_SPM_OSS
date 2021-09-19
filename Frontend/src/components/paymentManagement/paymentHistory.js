@@ -1,3 +1,7 @@
+// --------------------------------------------------
+//     VIEW PAYMENT DETAILS INTERFACE - FRONTEND
+// --------------------------------------------------
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -34,14 +38,28 @@ export default class paymentHistory extends Component {
         window.location = `/home/${userId}`;
     }
 
+    
+    //nagivate to delete history page
+    navigateToDeleteHistory(e, userId) {
+        window.location = `/deletePaymentHistory/${userId}`;
+    }
+
     //reteive payment details according to user ID
     componentDidMount(e) {
         //Set the global state for user ID
         this.setState({ userId: this.props.match.params.userId });
 
+        document.getElementById("historyBtn").disabled = true;
+        document.getElementById("downloadReportBtn").disabled = true;
+
         Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ Checkout: response.data.data });
+
+                if(this.state.Checkout.length > 0){
+                    document.getElementById("historyBtn").disabled = false;
+                    document.getElementById("downloadReportBtn").disabled = false;
+                }
             }).catch(error => {
                 alert(error.message);
             })
@@ -52,10 +70,6 @@ export default class paymentHistory extends Component {
         window.location = `/deletePayment/${paymentID}/${UserID}`;
     }
 
-    //nagivate to delete history page
-    navigateToDeleteHistory(e, UserID) {
-        window.location = `/deletePaymentHistory/${UserID}`;
-    }
 
     //generate payment Report
     jsPdfGeneratorPayment() {
@@ -80,8 +94,8 @@ export default class paymentHistory extends Component {
 
                     <table width="100%">
                         <td>
-                            <button type="button" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
-                            <button type="button" class="btn btn-dark" onClick={this.navigateToDeleteHistory} style={{ marginRight: '2%' }}>Clear History</button>
+                            <button type="button" id="downloadReportBtn" class="btn btn-dark" onClick={this.jsPdfGeneratorPayment} style={{ marginRight: '2%' }}>Download Report</button>
+                            <button type="button" id="historyBtn" class="btn btn-dark" onClick={e => this.navigateToDeleteHistory(e, this.state.userId)} style={{ marginRight: '2%' }}>Clear History</button>
                         </td>
 
                         <td align="right" width="30%">
@@ -89,7 +103,7 @@ export default class paymentHistory extends Component {
                             <div class="search">
                                 <input
                                     type="text"
-                                    placeholder="Search"
+                                    placeholder="Search by Date"
                                     name="searchHistory"
                                     id="searchHistory"
                                     onChange={this.onChange}
@@ -121,7 +135,7 @@ export default class paymentHistory extends Component {
                             {this.state.Checkout.length > 0 && this.state.Checkout.filter((values) => {
                                 if (this.state.searchHistory == "") {
                                     return values;
-                                } else if (values.paymentMethod.toLowerCase().includes(this.state.searchHistory.toLowerCase())) {
+                                } else if (values.date.includes(this.state.searchHistory)) {
                                     return values;
                                 }
                             }).map((item, index) =>

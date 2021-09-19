@@ -1,3 +1,8 @@
+// ----------------------------
+//     Checkout ROUTE - BACKEND
+// ----------------------------
+
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -6,6 +11,7 @@ const router = require('express').Router();
 const CheckoutModel = require('../models/Checkout');
 
 //Add payment details - USER TASK
+//API : http://localhost:3001/checkout/paymentDetails/${this.props.match.params.userId}/${this.props.match.params.amount}
 router.route('/paymentDetails/:userId/:amount').post(async (req, res) => {
     if(req.body){
         const Checkout = new CheckoutModel(req.body);
@@ -19,6 +25,7 @@ router.route('/paymentDetails/:userId/:amount').post(async (req, res) => {
 });  
 
 //Get payment history by userId - USER TASK
+//API : http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}
 router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
     //get user ID
     const currentuserId = req.params.userId;
@@ -32,6 +39,7 @@ router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
 }); 
 
 //Delete payment details -  USER TASK
+//API : http://localhost:3001/checkout/deletePayment/${this.props.match.params.id}
 router.route('/deletePayment/:id').delete(async (req, res) => {
     if(req.params && req.params.id){
         await CheckoutModel.findByIdAndDelete(req.params.id)
@@ -43,7 +51,8 @@ router.route('/deletePayment/:id').delete(async (req, res) => {
     }
 });
 
-//Get payment record by Id - USER TASK
+//Get payment record by Id for delete - USER TASK
+//API : http://localhost:3001/checkout/getPaymentByID/${this.props.match.params.id}
 router.route('/getPaymentByID/:id').get(async (req, res) => {
     if(req.params && req.params.id){
         await CheckoutModel.findById(req.params.id)
@@ -56,6 +65,7 @@ router.route('/getPaymentByID/:id').get(async (req, res) => {
 });
 
 //Delete all payment details - USER TASK
+
 router.route('/deletePaymentHistory/:id').delete(async (req, res) => {
     const id = req.params.id;
     if(req.params && req.params.id){

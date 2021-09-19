@@ -1,3 +1,7 @@
+// --------------------------------------------------
+//     INSERT DELIVERY DETAILS INTERFACE - FRONTEND
+// --------------------------------------------------
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -280,7 +284,8 @@ export default class deliveryDetails extends Component {
                                             <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
-                                                    type="text"
+                                                    type="tel"
+                                                    pattern="[0-9]{5}"
                                                     defaultValue={this.state.postalCode}
                                                     name="postalCode"
                                                     onChange={this.onChange}

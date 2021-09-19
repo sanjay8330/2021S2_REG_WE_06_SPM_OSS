@@ -20,7 +20,7 @@ const initialStates = {
     "userContact": '',
     "userCategory": '',
     "resetAnswer": '',
-    "userImage": ''
+    "userImage": '',
 }
 
 export default class UpdateCustomerProfile extends Component {
