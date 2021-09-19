@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Header from '../header/header';
 
+//variables
 const initialStates = {
     itemColor: '',
     itemColorError:'',
@@ -30,7 +31,7 @@ export default class addItem extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-
+    //Get the products
     componentDidMount() {
         Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
             .then(response => {

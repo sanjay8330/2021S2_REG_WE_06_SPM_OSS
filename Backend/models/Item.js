@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Item schema
 const ItemSchema = new mongoose.Schema({
 
     userID: {

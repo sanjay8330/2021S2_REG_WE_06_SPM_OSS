@@ -27,19 +27,23 @@ export default class ViewShoppingcart extends Component {
         window.location = `/payment-history/${this.props.match.params.userId}`;
     }
 
+    //Navigate to the Checkout Page
     navigateToCheckOut(e) {
         this.state.itemtotalamount = this.state.totalamount / 2;
         window.location = `/viewDeliveryDetails/${this.props.match.params.userId}/${this.state.itemtotalamount}`;
     }
 
+    //Navigate to the update Page
     navigateToUpdatePage(e, productId) {
         window.location = `/updateitem/${productId}`;
     }
 
+    //Navigate to the delete Page
     navigateToDeletePage(e, productId) {
         window.location = `/deleteitem/${productId}`;
     }
 
+    //Navigate to the home Page
     navigateToHome(e, userId) {
         userId = this.props.match.params.userId 
         window.location = `/home/${userId}`;
