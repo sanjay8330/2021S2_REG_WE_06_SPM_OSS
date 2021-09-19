@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -27,7 +26,6 @@ export default class clearHistory extends Component {
         this.setState({ userId: this.props.match.params.userId });
     }
 
-    //
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/checkout/deletePaymentHistory/${this.props.match.params.id}`)

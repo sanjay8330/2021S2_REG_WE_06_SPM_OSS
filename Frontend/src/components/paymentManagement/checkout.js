@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -11,7 +10,6 @@ import Header from '../header/header';
 import check from '../../images/check.jpg';
 
 const initialStates = {
-    //amount: '',
     paymentMethod: '',
     slip: 'No-Image',
     comments: '',

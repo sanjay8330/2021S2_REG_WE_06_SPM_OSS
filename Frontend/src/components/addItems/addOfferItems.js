@@ -1,3 +1,11 @@
+// -----------------------------------------
+//     ADD OFFER ITEMS INTERFACE - FRONTEND
+// -----------------------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Header from '../header/header';

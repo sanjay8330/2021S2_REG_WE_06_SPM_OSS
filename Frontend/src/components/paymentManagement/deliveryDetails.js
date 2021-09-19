@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';

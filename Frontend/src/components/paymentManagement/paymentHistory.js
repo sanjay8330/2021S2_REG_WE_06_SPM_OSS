@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -43,7 +42,6 @@ export default class paymentHistory extends Component {
         Axios.get(`http://localhost:3001/checkout/readHistoryForCustomer/${this.props.match.params.userId}`)
             .then(response => {
                 this.setState({ Checkout: response.data.data });
-                console.log('RESPONSE>>>', this, this.state.Checkout);
             }).catch(error => {
                 alert(error.message);
             })

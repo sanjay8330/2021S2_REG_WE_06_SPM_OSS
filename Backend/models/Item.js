@@ -15,9 +15,6 @@ const ItemSchema = new mongoose.Schema({
         type: String,
         required: false,
         trim: true 
-        /*type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: 'Users'*/
     },
 
     productName: { 
@@ -73,7 +70,7 @@ const ItemSchema = new mongoose.Schema({
 /**
  * Schema name on the database - Items
  * 
- * Exported model to be used on the insertitem route
+ * Exported model to be used on the insert item route
  */
 const Item = mongoose.model("Items", ItemSchema);
 module.exports = Item;
