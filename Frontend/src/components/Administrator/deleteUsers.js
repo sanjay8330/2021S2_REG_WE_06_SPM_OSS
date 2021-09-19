@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   DELETE USER DETAILS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -17,6 +26,11 @@ export default class DeleteUsers extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -       The function written to get user details by user ID
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET USER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
             .then(response => {
@@ -33,6 +47,11 @@ export default class DeleteUsers extends Component {
             })
     }
 
+    /**
+   * DESCRIPTION       -       The function written to delete user.
+   * METHOD CALLS      -       setState()
+   * API CALL          -       DELETE USER
+   */
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/user/deleteUser/${this.props.match.params.id}`)
@@ -44,7 +63,10 @@ export default class DeleteUsers extends Component {
             })
     }
 
-    navigatetoViewUsers(){
+    /**
+    * DESCRIPTION      -       The function to navigate to the view users page
+    */
+    navigatetoViewUsers() {
         window.location = "/viewUsers";
     }
 

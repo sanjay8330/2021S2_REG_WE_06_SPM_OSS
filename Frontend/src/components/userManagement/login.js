@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT
+ * PAGE     -   LOGIN 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react'
 import Header from '../header/header';
 import '../../css/login.css';
@@ -15,13 +24,24 @@ export default class Login extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.navigateToGuestHome = this.navigateToGuestHome.bind(this);
         this.state = initialState;
     }
 
+    /**
+     * DESCRIPTION       -   The function written to capture the user input and assign it the states
+     * PARAMETERS        -   event (e)
+     * METHOD CALLS      -   setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+     /**
+    * DESCRIPTION        -   The function written to authenticate the users.
+    * METHOD CALLS       -   setState()
+    * API CALL           -   VALIDATE USERS | ADD USER REPORT
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -65,6 +85,10 @@ export default class Login extends Component {
             }).catch(error => {
                 alert(error.message);
             })
+    }
+
+    navigateToGuestHome(e){
+        window.location = "/guestHome";
     }
 
     render() {
@@ -128,10 +152,13 @@ export default class Login extends Component {
                                         <a class="signup__link" href="/register">Sigup to Application</a>
                                     </li>
                                 </ul>
+                                <button onClick={this.navigateToGuestHome}>Login as a guest</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
+                
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>

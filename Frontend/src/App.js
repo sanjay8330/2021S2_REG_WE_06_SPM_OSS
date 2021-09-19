@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./home";
+import GuestHome from './guestHome'; 
 import Footer from "./components/footer/footer";
 import React, { Component } from "react";
 
@@ -17,6 +18,7 @@ import UpdateUserPassword from "./components/Administrator/updateUserPassword";
 import UpdateCustomerProfile from './components/userManagement/updateUser';
 import UpdateUserProfilePassword from './components/userManagement/updateUserProfilePassword';
 import DeleteUsers from './components/Administrator/deleteUsers';
+
 
 //Product Offer Management - Routes
 import AddProductOffer from "./components/ProductOffer/addProductOffer";
@@ -79,6 +81,7 @@ function App() {
             <Route path="/updateUserProfile/:id" component={ UpdateCustomerProfile } /> 
             <Route path="/resetUserProfilePassword/:id" component={ UpdateUserProfilePassword } />
             <Route path="/deleteUser/:id" component={ DeleteUsers } />
+            <Route path="/guestHome" component={ GuestHome } />
 
             <Route path="/addProductOffer" component={ AddProductOffer } />
             <Route path="/viewProductOffers" component={ ViewProductOffer } />

@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT
+ * PAGE     -   UPDATE USER DETAILS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -25,6 +34,12 @@ export default class UpdateCustomerProfile extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * FUNCTION TYPE    -   Asynchronous
+     * DESCRIPTION      -   Upload user inserted image to firestore
+     * PARAMETERS       -   event (e)
+     * METHOD CALLS     -   setState() | FIRESTORE METHODS
+     */
     async onImageChange(e) {
         document.getElementById("submitBtn").disabled = true;
         const file = e.target.files[0];
@@ -44,6 +59,11 @@ export default class UpdateCustomerProfile extends Component {
 
     }
 
+     /**
+     * DESCRIPTION      -       The function written to get user details by user ID
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET USER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
             .then(response => {
@@ -62,6 +82,10 @@ export default class UpdateCustomerProfile extends Component {
             })
     }
 
+    /**
+    * DESCRIPTION       -       The function written to update the user details.
+    * API CALL          -       UPDATE USER
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -82,16 +106,27 @@ export default class UpdateCustomerProfile extends Component {
 
     }
 
+     /**
+     * DESCRIPTION      -       The function to navigate to the Reset password page
+     */
     navigatetoResetPassword(e, userId){
         userId = this.props.match.params.id;
         window.location = `/resetUserProfilePassword/${userId}`;
     }
 
+     /**
+     * DESCRIPTION      -       The function to navigate to the delivery details page
+     */
     navigateDeliveryDetail(e, userId){
         userId = this.props.match.params.id;
         window.location = `/deliveryForCustomer/${userId}`;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });

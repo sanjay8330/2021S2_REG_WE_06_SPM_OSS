@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   ADD USER DETAILS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Select from 'react-select';
@@ -26,6 +35,11 @@ export default class AdminAddUser extends Component {
         this.state = initialState;
     }
 
+    
+    /**
+     * DESCRIPTION      -       The function written to add user types to populate in the dropdown
+     * METHOD CALLS     -       setState()
+     */
     componentDidMount() {
         let data = [];
         let userType1 = {
@@ -41,14 +55,30 @@ export default class AdminAddUser extends Component {
         this.setState({ options: data });
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user selection from dropdown
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onSelectedOption(e) {
         this.setState({ category: e.value });
     }
 
+    /**
+    * DESCRIPTION       -   The function written to register user to the application by administrator.
+    * METHOD CALLS      -   setState()
+    * VALIDATION        -   Check if he user already exists in the application
+    * API CALL          -   GET USER BY EMAILID | ADD USER | ADD USER REPORT
+    */
     onSubmit(e) {
         e.preventDefault();
 
