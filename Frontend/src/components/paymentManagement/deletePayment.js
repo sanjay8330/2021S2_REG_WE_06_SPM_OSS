@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -29,7 +28,6 @@ export default class deletePayment extends Component {
         Axios.get(`http://localhost:3001/checkout/getPaymentByID/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({ Checkout: response.data.data });
-                console.log(this.state.Checkout);
             }).catch(error => {
                 console.log(error.message);
             })

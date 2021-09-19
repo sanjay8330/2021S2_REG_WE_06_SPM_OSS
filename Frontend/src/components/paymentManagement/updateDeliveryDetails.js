@@ -2,7 +2,6 @@
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
 
-
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -321,7 +320,7 @@ export default class updateDeliveryDetails extends Component {
                                         <tr>
 
                                             <td>
-                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToView} id="resetBtn">Cancel</button>
+                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToView} id="cancelBtn">Cancel</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>

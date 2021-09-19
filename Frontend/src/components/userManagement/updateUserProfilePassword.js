@@ -30,7 +30,7 @@ export default class UpdateUserProfilePassword extends Component {
     /**
      * DESCRIPTION      -       The function to navigate to the homepage of the application
      */
-    navigateToHome(){
+    navigateToHome() {
         let userID = this.props.match.params.id;
         window.location = `/home/${userID}`;
     }
@@ -44,11 +44,11 @@ export default class UpdateUserProfilePassword extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-     /**
-     * DESCRIPTION      -       The function written to get user details by user ID
-     * METHOD CALLS     -       setState()
-     * API CALL         -       GET USER BY ID
-     */
+    /**
+    * DESCRIPTION      -       The function written to get user details by user ID
+    * METHOD CALLS     -       setState()
+    * API CALL         -       GET USER BY ID
+    */
     componentDidMount() {
         Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
             .then(response => {
@@ -131,10 +131,8 @@ export default class UpdateUserProfilePassword extends Component {
                             <div class="m-t-lg">
                                 <ul class="list-inline">
                                     <li>
+                                        <a class="btn btn-dark" id="cancelBtn" onClick={this.navigateToHome}>Cancel</a> &nbsp; &nbsp;
                                         <input class="btn btn--form" type="submit" value="Reset Password" />
-                                    </li>
-                                    <li><br />
-                                        <a class="signup__link" onClick={this.navigateToHome}>Cancel</a>
                                     </li>
                                 </ul>
                             </div>

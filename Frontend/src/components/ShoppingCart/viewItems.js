@@ -6,7 +6,6 @@
 //Student name - Ekanayake K.L.W
 //Student ID - IT19150758
 
-
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';

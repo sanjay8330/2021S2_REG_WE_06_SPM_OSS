@@ -11,8 +11,6 @@ import '../../css/admin.css';
 import Axios from 'axios';
 import Header from '../header/header';
 
-
-
 const initialStates = {
     itemColor: '',
     itemColorError: '',
@@ -78,19 +76,16 @@ export default class updateItem extends Component {
         if (this.state.itemColor === '') {
             isError = true;
             alert('you need to select the Color of the item')
-            //errors.itemColorError = "you need to select the Color of the item";
         }
 
         if (this.state.itemSize === '') {
             isError = true;
             alert('you need to select the Size of the item')
-            //errors.itemSizeError = "you need to select the Size of the item";
         }
 
         if (this.state.itemQuantity === '') {
             isError = true;
             alert('you need to select the Quantity of the item')
-            //errors.itemQuantityError = "you need to select the Quantity of the item";
         }
 
         if (isError) {

@@ -142,8 +142,8 @@ export default class UpdateCustomerProfile extends Component {
                         <center><h2 class="log" style={{ color: "black" }}><b><i>Update User Details</i></b></h2></center><br />
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }} onClick={this.navigatetoResetPassword}>Change Password</button>
-                            <button class="btn btn-primary" type="button" style={{ marginRight: '2%' }} onClick={this.navigateDeliveryDetail}>Check Delivery Details</button>
+                            <button class="btn btn-dark" type="button" style={{ marginRight: '2%' }} onClick={this.navigatetoResetPassword}>Change Password</button>
+                            <button class="btn btn-dark" type="button" style={{ marginRight: '2%' }} onClick={this.navigateDeliveryDetail}>Check Delivery Details</button>
                         </div><br />
 
                         <form onSubmit={this.onSubmit}>
