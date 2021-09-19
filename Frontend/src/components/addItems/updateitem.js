@@ -31,7 +31,7 @@ export default class updateItem extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-
+    //Get the items by ID
     componentDidMount() {
         Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
@@ -103,6 +103,7 @@ export default class updateItem extends Component {
                 itemColor: this.state.itemColor,
                 itemSize: this.state.itemSize,
             }
+            //Update the items
             Axios.put(`http://localhost:3001/insertitem/updateitem/${this.props.match.params.id}`, updateItem)
                 .then(response => {
                     alert('Item Details Updated Successfully');

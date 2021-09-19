@@ -16,6 +16,7 @@ export default class deleteproduct extends Component {
         this.state = initialStates;
     }
 
+    //Get items by a ID
     componentDidMount() {
         Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
@@ -29,6 +30,7 @@ export default class deleteproduct extends Component {
     onSubmit(e) {
         e.preventDefault();
         //console.log(this.props.match.params.id);
+        //Delete the Items
         Axios.delete(`http://localhost:3001/insertitem/deleteItem/${this.props.match.params.id}`)
             .then(response => {
                 alert('Product Item deleted Successfully');
@@ -39,6 +41,7 @@ export default class deleteproduct extends Component {
             })
     }
 
+    //Navigating to view items page
     navigateViewCart() {
         let userId = this.state.userID;
         window.location = `/viewItems/${userId}`;
