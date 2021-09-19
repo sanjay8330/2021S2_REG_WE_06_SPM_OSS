@@ -35,6 +35,7 @@ export default class checkout extends Component {
         }
     }
 
+    //assign input to state
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
