@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT
+ * PAGE     -   RESET PASSWORD
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from "react";
 import Header from "../header/header";
 import "../../css/resetPassword.css";
@@ -19,10 +28,20 @@ export default class ResetPassword extends Component {
     this.state = initialStates;
   }
 
+  /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+   /**
+     * DESCRIPTION      -       The function written to get user details by user ID
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET USER BY ID
+     */
   componentDidMount() {
     Axios.get(
       `http://localhost:3001/user/getUserById/${this.props.match.params.id}`
@@ -34,6 +53,11 @@ export default class ResetPassword extends Component {
     });
   }
 
+   /**
+    * DESCRIPTION       -       The function written to reset the password.
+    * METHOD CALLS      -       setState()
+    * API CALL          -       RESET PASSWORD | ADD USER REPORT
+    */
   onSubmit(e) {
     e.preventDefault();
 
