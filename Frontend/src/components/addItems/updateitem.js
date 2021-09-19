@@ -1,3 +1,11 @@
+// ----------------------------
+//      UPDATE ITEM INTERFACE - FRONTEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -32,6 +40,11 @@ export default class updateItem extends Component {
     }
 
     //Get the items by ID
+     /**
+         * The function written to get an item for a specific ID
+         * Uses - setState()
+         * API CALL - get an item for a specific ID
+         */
     componentDidMount() {
         Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
@@ -104,6 +117,10 @@ export default class updateItem extends Component {
                 itemSize: this.state.itemSize,
             }
             //Update the items
+                /**
+             * The function written to update an item
+             * API CALL - to update an item
+             */
             Axios.put(`http://localhost:3001/insertitem/updateitem/${this.props.match.params.id}`, updateItem)
                 .then(response => {
                     alert('Item Details Updated Successfully');

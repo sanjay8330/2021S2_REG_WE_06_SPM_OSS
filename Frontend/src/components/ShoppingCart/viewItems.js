@@ -1,3 +1,12 @@
+// ----------------------------
+//     VIEWITEMS INTERFACE - FRONTEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -64,6 +73,12 @@ export default class ViewShoppingcart extends Component {
         var yyyy = this.state.today.getFullYear();
 
         var date = mm + '-' + dd + '-' + yyyy;
+
+            /**
+         * The function written to get all items that relavent to a particular user
+         * Uses - setState()
+         * API CALL - GET ALL ITEMS FOR A USER
+         */
 
         Axios.get(`http://localhost:3001/insertitem/readItemsForCustomer/${this.props.match.params.userId}/${date}`)
             .then(response => {
