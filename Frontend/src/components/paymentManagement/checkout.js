@@ -1,3 +1,7 @@
+// --------------------------------------------------
+//     INSERT PAYMENT DETAILS INTERFACE - FRONTEND
+// --------------------------------------------------
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -59,7 +63,6 @@ export default class checkout extends Component {
             userId: this.state.userId,
         }
 
-        console.log("Data", checkout);
         Axios.post(`http://localhost:3001/checkout/paymentDetails/${this.props.match.params.userId}/${this.props.match.params.amount}`, checkout)
             .then(response => {
                 alert('Checkout Details Added Successfully');

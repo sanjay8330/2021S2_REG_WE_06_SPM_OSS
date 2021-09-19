@@ -1,3 +1,7 @@
+// --------------------------------------------------
+//     UPDATE DELIVERY DETAILS INTERFACE - FRONTEND
+// --------------------------------------------------
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -21,7 +25,7 @@ const initialStates = {
     "userId": '',
     "amount": '',
     "deliveryDetails": [],
-    "deliveryID": ''
+    "deliveryID": '',
 }
 
 
@@ -50,8 +54,6 @@ export default class updateDeliveryDetails extends Component {
             .then(response => {
                 this.setState({ deliveryDetails: response.data.data });
 
-                console.log(this.state.deliveryDetails);
-
                     this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
                         this.setState({ senderName: item.senderName });
                         this.setState({ senderMobile: item.senderMobile });
@@ -73,8 +75,8 @@ export default class updateDeliveryDetails extends Component {
     }
 
     //navigate to view items page
-    navigateToView(e) {
-        window.location = `/viewItems/${this.props.match.params.userId}`;
+    navigateToView(e, Page) {
+            window.location = `/viewItems/${this.props.match.params.userId}`;
     }
 
     //update delivry details according to the user ID
@@ -94,12 +96,14 @@ export default class updateDeliveryDetails extends Component {
                 city: this.state.city,
                 postalCode: this.state.postalCode,
                 userId: this.state.userId,
-                amount: this.state.amount
+                amount: this.state.amount,
+                
             }
             Axios.put(`http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}`, updDeliveryDetails)
                 .then(response => {
                     alert('Delivery details updated successfully!!!');
-                    window.location = `/viewItems/${this.props.match.params.userId}`;
+                        window.location = `/viewItems/${this.state.userId}`;
+                    
                 }).catch(error => {
                     alert(error.message);
                 })
@@ -305,7 +309,8 @@ export default class updateDeliveryDetails extends Component {
                                             <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
-                                                    type="text"
+                                                    type="tel"
+                                                    pattern="[0-9]{5}"
                                                     defaultValue={this.state.postalCode}
                                                     name="postalCode"
                                                     onChange={this.onChange}
@@ -320,7 +325,7 @@ export default class updateDeliveryDetails extends Component {
                                         <tr>
 
                                             <td>
-                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToView} id="cancelBtn">Cancel</button>
+                                                <button type="reset" className="btn btn-dark" onClick={e => this.navigateToView (e, this.state.page)} id="cancelBtn">Cancel</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>

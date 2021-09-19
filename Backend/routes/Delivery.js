@@ -1,3 +1,8 @@
+// ----------------------------
+//     Delivery ROUTE - BACKEND
+// ----------------------------
+
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -7,6 +12,7 @@ const router = require('express').Router();
 const DeliveryModel = require('../models/Delivery');
 
 //Add delivery details - USER TASK  
+//API : http://localhost:3001/delivery/deliveryDetails/${this.props.match.params.userId}
 router.route('/deliveryDetails/:userId').post(async (req, res) => {
     if(req.body){
         const Delivery = new DeliveryModel(req.body);
@@ -20,7 +26,8 @@ router.route('/deliveryDetails/:userId').post(async (req, res) => {
 });
 
 //Update delivery details - USER TASK
-router.route("/updateDeliveryDetail/:id/").put(async (req, res) => {
+//API : http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}
+router.route("/updateDeliveryDetail/:id").put(async (req, res) => {
     //Updating the offer details
     const senderName = req.body.senderName;
     const senderMobile = req.body.senderMobile;
@@ -65,6 +72,7 @@ router.route("/updateDeliveryDetail/:id/").put(async (req, res) => {
 
 
 //Get delivery by userId for update - USER TASK
+//API : http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}
 router.route("/deliveryForCustomer/:userId").get(async (req, res) => {
     const currentuserId = req.params.userId;
 
@@ -77,6 +85,7 @@ router.route("/deliveryForCustomer/:userId").get(async (req, res) => {
 }); 
 
 //View delivery by userId - USER TASK
+//API : http://localhost:3001/delivery/viewDeliveryDetails/${this.props.match.params.userId}/${this.props.match.params.amount}
 router.route("/viewDeliveryDetails/:userId/:amount").get(async (req, res) => {
     const currentuserId = req.params.userId;
 

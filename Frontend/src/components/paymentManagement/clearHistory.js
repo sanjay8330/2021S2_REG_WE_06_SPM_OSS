@@ -1,3 +1,7 @@
+// --------------------------------------------------
+//     CLEAR PAYMENT HISTORY INTERFACE - FRONTEND
+// --------------------------------------------------
+
 // Function : Payment Management
 // Name : D.P. Kavindi Gimshani
 // Student Number : IT19150826
@@ -26,20 +30,20 @@ export default class clearHistory extends Component {
         this.setState({ userId: this.props.match.params.userId });
     }
 
-    onSubmit(e) {
+    onSubmit(e, UserID) {
         e.preventDefault();
-        Axios.delete(`http://localhost:3001/checkout/deletePaymentHistory/${this.props.match.params.id}`)
+        Axios.delete(`http://localhost:3001/checkout/deletePaymentHistory/${this.props.match.params.userId}`)
             .then(response => {
                 alert('Payment Record deleted Successfully');
-                window.location = `/payment-history/${this.state.userId}`;
+                window.location = `/payment-history/${UserID}`;
             }).catch(error => {
                 console.log(error.message);
             })
     }
 
     //nagivate to view items page
-    navigatetoViewPage(e) {
-        window.location = `/payment-history/${this.props.match.params.id}`;
+    navigatetoViewPage(e, UserID) {
+        window.location = `/payment-history/${UserID}`;
     }
 
     render() {
@@ -56,10 +60,10 @@ export default class clearHistory extends Component {
                                     <center><p>Are you sure you want to permanently remove your whole payment history?</p><hr />
                                         By deleting this payment history you can't undo this action.</center>
                                 </div>
-                                <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
+                                <button class="cancel" onClick={e => this.navigatetoViewPage (e, this.state.userId)} style={{ float: "left" }}>
                                     Cancel
                                 </button>
-                                <button class="delete" onClick={this.onSubmit} style={{ float: "right" }}>
+                                <button class="delete" onClick={e => this.onSubmit (e, this.state.userId)} style={{ float: "right" }}>
                                     Delete
                                 </button>
                             </div>
