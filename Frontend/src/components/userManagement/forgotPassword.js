@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT
+ * PAGE     -   FORGOT PASSWORD 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react'
 import Header from '../header/header';
 import '../../css/forgotPassword.css';
@@ -18,10 +27,21 @@ export default class ForgotPassword extends Component {
         this.state = initialState;
     }
 
+    /**
+     * DESCRIPTION      -       The function written to capture the user input and assign it the states
+     * PARAMETER        -       event (e)
+     * METHOD CALLS     -       setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+    * DESCRIPTION       -       The function written to validate the user to reset the password
+    * PARAMETER         -       event (e)
+    * METHOD CALLS      -       setState()
+    * API CALL          -       VALIDATE USER
+    */
     onSubmit(e) {
         e.preventDefault();
 

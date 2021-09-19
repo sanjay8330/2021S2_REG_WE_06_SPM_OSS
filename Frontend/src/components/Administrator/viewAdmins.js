@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   VIEW ALL ADMINISTRATORS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -16,18 +25,34 @@ export default class ViewAdministrators extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         this.setState({ searchUser: e.target.value });
     }
 
+    /**
+     * DESCRIPTION      -       The function to navigate to add users page
+     */
     navigateAddUsersPage(e) {
         window.location = '/adminUserRegister';
     }
 
+    /**
+     * DESCRIPTION      -       The function to navigate to update users page
+     */
     navigateToUpdateUser(e, userId) {
         window.location = `/updateUser/${userId}`;
     }
 
+    /**
+     * DESCRIPTION      -       The function written to get all the administrators
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET ALL ADMINISTRATORS
+     */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/user/getAllAdministrators')
             .then(response => {

@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   VIEW ALL CUSTOMERS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -19,26 +28,48 @@ export default class ViewUsers extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         this.setState({ searchUser: e.target.value });
     }
 
+    /**
+     * DESCRIPTION      -       The function to navigate to add users page
+     */
     navigateAddUsersPage(e) {
         window.location = '/adminUserRegister';
     }
 
+    /**
+     * DESCRIPTION      -       The function to navigate to view administrators
+     */
     navigateViewAdminPage(e) {
         window.location = "/viewAdmin";
     }
 
+     /**
+     * DESCRIPTION      -       The function to navigate to update users page
+     */
     navigateToUpdateUser(e, userId) {
         window.location = `/updateUser/${userId}`;
     }
 
+     /**
+     * DESCRIPTION      -       The function to navigate to delete users page
+     */
     navigateToDeleteUser(e, userId) {
         window.location = `/deleteUser/${userId}`;
     }
 
+    /**
+     * DESCRIPTION      -       The function written to get all the customers
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET ALL CUSTOMERS
+     */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/user/getAllCustomers')
             .then(response => {

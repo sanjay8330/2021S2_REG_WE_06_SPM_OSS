@@ -1,3 +1,11 @@
+/**
+ * SCOPE    -   PRODUCT OFFER MANAGEMENT
+ * PAGE     -   DELETE PRODUCT OFFER 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -15,9 +23,9 @@ export default class DeleteProductOffer extends Component {
     }
 
     /**
-     * The function written to get product offer details by path param (id)
-     * Uses - setState()
-     * API CALL - GET PRODUCT OFFER BY ID
+     * DESCRIPTION      -       The function written to get product offer details by path param (id)
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET PRODUCT OFFER BY ID
      */
     componentDidMount() {
         Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
@@ -30,8 +38,8 @@ export default class DeleteProductOffer extends Component {
     }
 
     /**
-     * The function written to delete the product offer details by path param (id).
-     * API CALL - DELETE PRODUCT OFFER BY ID
+     * DESCRIPTION      -       The function written to delete the product offer details by path param (id).
+     * API CALL         -       DELETE PRODUCT OFFER BY ID
      */
     onSubmit(e) {
         e.preventDefault();
@@ -45,7 +53,7 @@ export default class DeleteProductOffer extends Component {
     }
 
     /**
-     * The function to navigate to the View all offer page
+     * DESCRIPTION      -       The function to navigate to the View all offer page
      */
     navigatetoViewOffer(e) {
         window.location = "/viewProductOffers";

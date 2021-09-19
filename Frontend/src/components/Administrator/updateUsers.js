@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   UPDATE USER DETAILS
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -23,6 +32,11 @@ export default class UpdateUsers extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to update the existing profile picture of the user
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState() | FIRESTORE METHODS
+     */
     async onImageChange(e) {
         document.getElementById("submitBtn").disabled = true;
         const file = e.target.files[0];
@@ -42,6 +56,11 @@ export default class UpdateUsers extends Component {
 
     }
 
+    /**
+     * DESCRIPTION      -       The function written to get the user details by ID
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET USER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
             .then(response => {
@@ -60,6 +79,11 @@ export default class UpdateUsers extends Component {
             })
     }
 
+    /**
+    * DESCRIPTION       -   The function written to rupdate the user details.
+    * METHOD CALLS      -   setState()
+    * API CALL          -   UPDATE USER
+    */
     onSubmit(e) {
         e.preventDefault();
 
@@ -80,11 +104,19 @@ export default class UpdateUsers extends Component {
 
     }
 
-    navigatetoResetPassword(e, userId){
+    /**
+     * DESCRIPTION      -       The function to navigate to the reset password page
+     */
+    navigatetoResetPassword(e, userId) {
         userId = this.props.match.params.id;
         window.location = `/resetUserPassword/${userId}`;
     }
 
+    /**
+    * DESCRIPTION      -   The function written to capture the user input and assign it the states
+    * PARAMETERS       -   event
+    * METHOD CALLS     -   setState()
+    */
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });

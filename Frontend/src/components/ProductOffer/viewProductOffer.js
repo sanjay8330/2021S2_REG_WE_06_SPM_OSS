@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   PRODUCT OFFER MANAGEMENT
+ * PAGE     -   VIEW PRODUCT OFFER 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -23,39 +32,39 @@ export default class ViewProductOffer extends Component {
     }
 
     /**
-     * The function written to capture the user input and assign it the states
-     * @param e - event
-     * Uses - setState()
+     * DESCRIPTION      -       The function written to capture the user input and assign it the states
+     * PARAMETER        -       event (e)
+     * METHOD CALLS     -       setState()
      */
     onChange(e) {
         this.setState({ searchProduct: e.target.value });
     }
 
     /**
-    * The function to navigate to the add product offer page
+    * DESCRIPTION       -       The function to navigate to the add product offer page
     */
     navigateAddProductOffer(e) {
         window.location = '/addProductOffer';
     }
 
     /**
-     * The function to navigate to the update product offer page
+     * DESCRIPTION      -       The function to navigate to the update product offer page
      */
     navigateToUpdateOffer(e, offerId) {
         window.location = `/updateProductOffer/${offerId}`;
     }
 
     /**
-     * The function to navigate to the delete product offer page
+     * DESCRIPTION      -       The function to navigate to the delete product offer page
      */
     navigateToDeleteOffer(e, offerId) {
         window.location = `/deleteProductOffer/${offerId}`;
     }
 
     /**
-     * The function written to get all the product offer details
-     * Uses - setState()
-     * API CALL - GET ALL PRODUCT OFFERS
+     * DESCRIPTION      -       The function written to get all the product offer details
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET ALL PRODUCT OFFERS
      */
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
@@ -83,9 +92,9 @@ export default class ViewProductOffer extends Component {
     }
 
     /**
-     * The function written to generate reports for the product offers
-     * Uses - setState()
-     * API CALL - GET ALL PRODUCT OFFERS
+     * DESCRIPTION      -       The function written to generate reports for the product offers
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET ALL PRODUCT OFFERS
      */
     jsPdfGeneratorProductOffer() {
         var doc = new jsPDF('p', 'pt');
@@ -135,11 +144,11 @@ export default class ViewProductOffer extends Component {
                             </div>
                         </div><br /><br />
 
-                        <div class="info" style={{ width: '58%'}}>
+                        <div class="info" style={{ width: '100%' }}>
                             <b><h6>
-                            Active Product Offers: {this.state.activeProductOffers.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
-                            In-active Product Offers: {this.state.inactiveProductOffers.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
-                            Total Product Offers: {this.state.productOffers.length}</h6></b>
+                                Active Product Offers: {this.state.activeProductOffers.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                In-active Product Offers: {this.state.inactiveProductOffers.length} &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                Total Product Offers: {this.state.productOffers.length}</h6></b>
                         </div>
 
                         <br />

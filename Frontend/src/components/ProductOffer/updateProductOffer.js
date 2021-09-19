@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   PRODUCT OFFER MANAGEMENT
+ * PAGE     -   UPDATE PRODUCT OFFER 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -27,9 +36,9 @@ export default class UpdateProductOffer extends Component {
     }
 
     /**
-     * The function written to get product offer details by path param (id)
-     * Uses - setState()
-     * API CALL - GET PRODUCT OFFER BY ID
+     * DESCRIPTION      -       The function written to get product offer details by path param (id)
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET PRODUCT OFFER BY ID
      */
     componentDidMount() {
         Axios.get(`http://localhost:3001/productOffer/getProductOfferById/${this.props.match.params.id}`)
@@ -54,9 +63,9 @@ export default class UpdateProductOffer extends Component {
     }
 
     /**
-     * The function written to capture the user input and assign it the states
-     * @param e - event
-     * Uses - setState()
+     * DESCRIPTION      -       The function written to capture the user input and assign it the states
+     * PARAMETER        -       event (e)
+     * METHOD CALLS     -       setState()
      */
     onChange(e) {
         e.persist();
@@ -65,10 +74,10 @@ export default class UpdateProductOffer extends Component {
 
 
     /**
-    * The function written to validate the function change - Offer price should be less than product price
-    * @param e - event
-    * Uses - setState()
-    * Validation - toFixed()
+    * DESCRIPTION       -       The function written to validate the function change - Offer price should be less than product price
+    * PARAMETER         -       event (e)
+    * METHOD CALLS      -       setState()
+    * VALIDATION        -       toFixed() - Round off to the whole number
     */
     onPriceChange(e) {
         this.setState({ offerAmount: e.target.value });
@@ -80,9 +89,9 @@ export default class UpdateProductOffer extends Component {
     }
 
     /**
-    * The function written to update the product offer details.
-    * Uses - setState()
-    * API CALL - UPDATE PRODUCT OFFER DETAILS
+    * DESCRIPTION       -       The function written to update the product offer details.
+    * METHOD CALLS      -       setState()
+    * API CALL          -       UPDATE PRODUCT OFFER DETAILS
     */
     onSubmit(e) {
         e.preventDefault();
@@ -105,9 +114,9 @@ export default class UpdateProductOffer extends Component {
     }
 
     /**
-    * The function written to change the offer status from active to in-active or vice versa
-    * Uses - setState()
-    * API CALL - CHANGE PRODUCT OFFER STATUS
+    * DESCRIPTION       -       The function written to change the offer status from active to in-active or vice versa
+    * METHOD CALLS      -       setState()
+    * API CALL          -       CHANGE PRODUCT OFFER STATUS
     */
     changeOfferStatus(e) {
         e.preventDefault();

@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT - ADMINISTRATOR
+ * PAGE     -   UPDATE USER PASSWORD
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */
+
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -16,10 +25,20 @@ export default class UpdateUserPassword extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+     * DESCRIPTION      -       The function written to get the user details by ID
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET USER BY ID
+     */
     componentDidMount() {
         Axios.get(`http://localhost:3001/user/getUserById/${this.props.match.params.id}`)
             .then(response => {
@@ -29,6 +48,12 @@ export default class UpdateUserPassword extends Component {
             })
     }
 
+    /**
+    * DESCRIPTION       -   The function written to reset the user password.
+    * METHOD CALLS      -   setState()
+    * VALIDATION        -   Check if he user already exists in the application
+    * API CALL          -   GET USER BY EMAILID | ADD USER | ADD USER REPORT
+    */
     onSubmit(e) {
         e.preventDefault();
 

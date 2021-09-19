@@ -1,3 +1,12 @@
+/**
+ * SCOPE    -   USER MANAGEMENT
+ * PAGE     -   SIGN UP 
+ * 
+ * =====================================
+ * CREATED BY           :   S.Sanjay
+ * LAST MODIFIED DATE   :   19/09/2021
+ */ 
+
 import React, { Component } from 'react'
 import Axios from 'axios';
 import '../../css/register.css';
@@ -24,10 +33,21 @@ export default class register extends Component {
         this.state = initialStates;
     }
 
+    /**
+     * DESCRIPTION      -   The function written to capture the user input and assign it the states
+     * PARAMETERS       -   event
+     * METHOD CALLS     -   setState()
+     */
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    /**
+    * DESCRIPTION       -   The function written to register user to the application.
+    * METHOD CALLS      -   setState()
+    * VALIDATION        -   Check if he user already exists in the application
+    * API CALL          -   GET USER BY EMAILID | ADD USER | ADD USER REPORT
+    */
     onSubmit(e) {
         e.preventDefault();
 
