@@ -39,25 +39,25 @@ export default class viewDeliveryDetails extends Component {
 
                 console.log(this.state.deliveryDetails);
 
-                if (this.state.deliveryDetails.length == 0){
+                if (this.state.deliveryDetails.length == 0) {
                     alert('Please insert delivery details');
                     window.location = `/delivery-details/${this.props.match.params.userId}/${this.state.totalamount}`;
                 }
 
-                else{
-                this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
-                    this.setState({ senderName: item.senderName });
-                    this.setState({ senderMobile: item.senderMobile });
-                    this.setState({ receiverName: item.receiverName });
-                    this.setState({ receiverMobile: item.receiverMobile });
-                    this.setState({ streetAddress: item.streetAddress });
-                    this.setState({ streetAddress2: item.streetAddress2 });
-                    this.setState({ city: item.city });
-                    this.setState({ province: item.province });
-                    this.setState({ postalCode: item.postalCode });
-                    this.setState({ deliveryID: item._id });
-                })
-            }
+                else {
+                    this.state.deliveryDetails.length > 0 && this.state.deliveryDetails.map((item, index) => {
+                        this.setState({ senderName: item.senderName });
+                        this.setState({ senderMobile: item.senderMobile });
+                        this.setState({ receiverName: item.receiverName });
+                        this.setState({ receiverMobile: item.receiverMobile });
+                        this.setState({ streetAddress: item.streetAddress });
+                        this.setState({ streetAddress2: item.streetAddress2 });
+                        this.setState({ city: item.city });
+                        this.setState({ province: item.province });
+                        this.setState({ postalCode: item.postalCode });
+                        this.setState({ deliveryID: item._id });
+                    })
+                }
 
             }).catch(error => {
                 console.log(error.message);
@@ -70,8 +70,8 @@ export default class viewDeliveryDetails extends Component {
         window.location = `/deliveryForCustomer/${this.props.match.params.userId}`;
     }
 
-      //Navigate to the Update Page
-      navigateToCheckout(e) {
+    //Navigate to the Update Page
+    navigateToCheckout(e) {
         window.location = `/checkout/${this.props.match.params.userId}/${this.props.match.params.amount}`;
     }
 
@@ -102,11 +102,23 @@ export default class viewDeliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
-                                                    <span style={{ color: "black" }}>{this.state.senderName}</span><br /><br />
+                                                    <span style={{
+                                                        color: "black",
+                                                        boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                        paddingRight: '12px',
+                                                        paddingLeft: '15px'
+                                                    }}>
+                                                        {this.state.senderName}</span><br /><br />
                                                 </td>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <td>
-                                                    <span style={{ color: "black" }}>{this.state.senderMobile}</span><br /><br />
+                                                    <span style={{
+                                                        color: "black",
+                                                        boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                        paddingRight: '12px',
+                                                        paddingLeft: '15px'
+                                                    }}>
+                                                        {this.state.senderMobile}</span><br /><br />
                                                 </td>
 
                                             </tr>
@@ -124,11 +136,23 @@ export default class viewDeliveryDetails extends Component {
 
                                             <tr>
                                                 <td>
-                                                    <span style={{ color: "black" }}>{this.state.receiverName}</span><br /><br />
+                                                    <span style={{
+                                                        color: "black",
+                                                        boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                        paddingRight: '12px',
+                                                        paddingLeft: '15px'
+                                                    }}>
+                                                        {this.state.receiverName}</span><br /><br />
                                                 </td>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <td>
-                                                    <span style={{ color: "black" }}>{this.state.receiverMobile}</span><br /><br />
+                                                    <span style={{
+                                                        color: "black",
+                                                        boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                        paddingRight: '12px',
+                                                        paddingLeft: '15px'
+                                                    }}>
+                                                        {this.state.receiverMobile}</span><br /><br />
                                                 </td>
 
                                             </tr>
@@ -139,30 +163,42 @@ export default class viewDeliveryDetails extends Component {
 
                                     </div>
 
-                                    <span style={{ color: "black" }}>Delivery Address </span>
+                                    <span style={{ color: "black", fontSize: '18px' }}>Delivery Address </span>
                                     <br /><br />
                                     <table>
                                         <tr>
                                             <td>
-                                                <span style={{ color: "black", }} >Street Address : </span>
+                                                <span style={{ color: "black" }} >Street Address : </span>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <span style={{ color: "black" }}>{this.state.streetAddress}</span>
+                                                <span style={{
+                                                    color: "black",
+                                                    boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                    paddingRight: '12px',
+                                                    paddingLeft: '15px'
+                                                }}>
+                                                    {this.state.streetAddress}</span>
                                             </td>
 
-                                            <td rowSpan="5">
-                                            <img src={delivery} alt="delivery" style={{ width: '20%', height: '60%;' }} />
+                                            <td rowSpan="20" style={{ textAlign: 'end', marginRight: '10px' }}>
+                                                <img src={delivery} alt="delivery" style={{ width: '80%', height: '80%' }} />
                                             </td>
                                         </tr>
                                         <br />
                                         <tr>
-                                            <td>
+                                            <td style={{ color: "black", width: '150px' }}>
                                                 <span style={{ color: "black" }}>Street Address - 2 : </span>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <span style={{ color: "black" }}>{this.state.streetAddress2}</span>
+                                                <span style={{
+                                                    color: "black",
+                                                    boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                    paddingRight: '12px',
+                                                    paddingLeft: '15px'
+                                                }}>
+                                                    {this.state.streetAddress2}</span>
                                             </td>
                                         </tr>
                                         <br />
@@ -172,7 +208,13 @@ export default class viewDeliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <span style={{ color: "black" }}>{this.state.city}</span>
+                                                <span style={{
+                                                    color: "black",
+                                                    boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                    paddingRight: '12px',
+                                                    paddingLeft: '15px'
+                                                }}>
+                                                    {this.state.city}</span>
                                             </td>
                                         </tr>
                                         <br />
@@ -182,7 +224,13 @@ export default class viewDeliveryDetails extends Component {
                                             </td>
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <span style={{ color: "black" }}>{this.state.province}</span>
+                                                <span style={{
+                                                    color: "black",
+                                                    boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                    paddingRight: '12px',
+                                                    paddingLeft: '15px'
+                                                }}>
+                                                    {this.state.province}</span>
                                             </td>
                                         </tr>
                                         <br />
@@ -192,7 +240,13 @@ export default class viewDeliveryDetails extends Component {
                                             </td>
                                             <br />
                                             <td>
-                                                <span style={{ color: "black" }}>{this.state.postalCode}</span>
+                                                <span style={{
+                                                    color: "black",
+                                                    boxShadow: ' 0 4px 2px -2px #c8cfcb',
+                                                    paddingRight: '12px',
+                                                    paddingLeft: '15px'
+                                                }}>
+                                                    {this.state.postalCode}</span>
                                             </td>
                                         </tr>
                                     </table>
@@ -201,11 +255,11 @@ export default class viewDeliveryDetails extends Component {
                                     <table>
                                         <tr>
                                             <td>
-                                                <button type="reset" className="btn btn-dark" onClick={ this.navigateToUpdatePage} id="resetBtn">Update</button>
+                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToUpdatePage} id="resetBtn">Update</button>
                                             </td>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <td>
-                                                <button type="reset" className="btn btn-dark" onClick={ this.navigateToCheckout} id="resetBtn">Proceed to Checkout</button>
+                                                <button type="reset" className="btn btn-dark" onClick={this.navigateToCheckout} id="resetBtn">Proceed to Checkout</button>
                                             </td>
                                         </tr>
                                     </table>
