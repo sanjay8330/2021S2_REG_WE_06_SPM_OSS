@@ -80,15 +80,14 @@ export default class viewDeliveryDetails extends Component {
             <div>
                 <Header />
                 <main>
-                    <div class="container border rounded" style={{ width: '560px' }}>
+                    <div class="container border rounded" style={{ width: '560px', marginTop: '-35px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <form onSubmit={this.onSubmit}><br />
-                                    <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
-                                    <div class="centered">
-                                        <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
+                                    <div>
+                                        <b><p style={{ fontSize: '31px', top: '-70px', marginBottom: '0', paddingBottom: '0' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
-                                    <div className="form-group"><br />
+                                    <div style={{ top: '-30px' }}><br />
 
                                         <table>
                                             <tr>
@@ -150,6 +149,10 @@ export default class viewDeliveryDetails extends Component {
                                             &nbsp;&nbsp;&nbsp;
                                             <td>
                                                 <span style={{ color: "black" }}>{this.state.streetAddress}</span>
+                                            </td>
+
+                                            <td rowSpan="5">
+                                            <img src={delivery} alt="delivery" style={{ width: '20%', height: '60%;' }} />
                                             </td>
                                         </tr>
                                         <br />
