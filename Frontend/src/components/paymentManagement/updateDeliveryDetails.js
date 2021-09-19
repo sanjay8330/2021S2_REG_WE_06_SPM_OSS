@@ -128,11 +128,11 @@ export default class updateDeliveryDetails extends Component {
             <div>
                 <Header />
                 <main>
-                    <div class="container border rounded" style={{ width: '560px' }}>
+                    <div class="container border rounded delivery-form" style={{ width: '560px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <form onSubmit={this.onSubmit}><br />
-                                    <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
+                                    <img src={delivery} alt="delivery" style={{ width: '20%', height: '20%;' }} />
                                     <div class="centered">
                                         <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
@@ -228,7 +228,7 @@ export default class updateDeliveryDetails extends Component {
                                                 <span style={{ color: "black", }} >Street Address : </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -245,7 +245,7 @@ export default class updateDeliveryDetails extends Component {
                                                 <span style={{ color: "black" }}>Street Address - 2 : </span>
                                             </td>
 
-                                            <td>
+                                            <td  style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -262,7 +262,7 @@ export default class updateDeliveryDetails extends Component {
                                                 <span style={{ color: "black" }}>City : </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -279,7 +279,7 @@ export default class updateDeliveryDetails extends Component {
                                                 <span style={{ color: "black" }}>State/Province : </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -296,7 +296,7 @@ export default class updateDeliveryDetails extends Component {
                                                 <span style={{ color: "black" }}>Postal/Zip Code :  </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -304,7 +304,7 @@ export default class updateDeliveryDetails extends Component {
                                                     name="postalCode"
                                                     onChange={this.onChange}
                                                     required
-                                                    style={{ border: "1px solid #c8cfcb " }} />
+                                                    style={{ border: "1px solid #c8cfcb " ,  width: '250px' }} />
                                             </td>
                                         </tr>
                                     </table>

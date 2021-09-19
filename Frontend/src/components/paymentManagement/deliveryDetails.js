@@ -77,30 +77,7 @@ export default class deliveryDetails extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
-        if (this.state.deliveryDetails.length > 0) {
-            //Create the updObject
-            let updDeliveryDetails = {
-                senderName: this.state.senderName,
-                senderMobile: this.state.senderMobile,
-                receiverName: this.state.receiverName,
-                receiverMobile: this.state.receiverMobile,
-                streetAddress: this.state.streetAddress,
-                streetAddress2: this.state.streetAddress2,
-                province: this.state.province,
-                city: this.state.city,
-                postalCode: this.state.postalCode,
-                userId: this.state.userId,
-                amount: this.state.amount
-            }
-            Axios.put(`http://localhost:3001/delivery/updateDeliveryDetail/${this.state.deliveryID}`, updDeliveryDetails)
-                .then(response => {
-                    alert('Delivery details updated successfully!!!');
-                    window.location = `/updateUser/${this.state.userId}`;
-                }).catch(error => {
-                    alert(error.message);
-                })
-        } else if (this.state.deliveryDetails.length == 0) {
+        if (this.state.deliveryDetails.length == 0) {
             let deliveryDetails = {
                 senderName: this.state.senderName,
                 senderMobile: this.state.senderMobile,
@@ -113,24 +90,16 @@ export default class deliveryDetails extends Component {
                 postalCode: this.state.postalCode,
                 userId: this.state.userId
             }
-            Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
+            Axios.post(`http://localhost:3001/delivery/deliveryDetails/${this.props.match.params.userId}`, deliveryDetails)
                 .then(response => {
                     alert('Delivery details added successfully!!!');
-                    window.location = `/updateUser/${this.state.userId}`;
+                    window.location = `/viewItems/${this.state.userId}`;
                 }).catch(error => {
                     alert(error.message);
                 })
         } else {
             alert('Server is down!!! Will be up in due time!!!');
         }
-
-        Axios.post('http://localhost:3001/delivery/deliveryDetails', deliveryDetails)
-            .then(response => {
-                alert('Delivery Details Added Successfully');
-                window.location = `/viewItems/${this.state.userId}`;
-            }).catch(error => {
-                alert(error.message);
-            })
 
     }
 
@@ -140,13 +109,13 @@ export default class deliveryDetails extends Component {
             <div>
                 <Header />
                 <main>
-                    <div class="container border rounded" style={{ width: '560px' }}>
+                    <div class="container border rounded delivery-form" style={{ width: '580px' }}>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <form onSubmit={this.onSubmit}><br />
-                                    <img src={delivery} alt="delivery" style={{ width: '30%', height: '40%;' }} />
+                                <form  onSubmit={this.onSubmit}><br />
+                                    <img src={delivery} alt="delivery" style={{ width: '20%', height: '20%;' }} />
                                     <div class="centered">
-                                        <b><p style={{ fontSize: '31px', top: '-30px' }}>&nbsp;Delivery Details</p></b><br />
+                                        <b><p style={{ fontSize: '31px' }}>&nbsp;Delivery Details</p></b><br />
                                     </div>
                                     <div className="form-group"><br />
 
@@ -240,7 +209,7 @@ export default class deliveryDetails extends Component {
                                                 <span style={{ color: "black", }} >Street Address : </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -257,7 +226,7 @@ export default class deliveryDetails extends Component {
                                                 <span style={{ color: "black" }}>Street Address - 2 : </span>
                                             </td>
 
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -273,8 +242,7 @@ export default class deliveryDetails extends Component {
                                             <td>
                                                 <span style={{ color: "black" }}>City : </span>
                                             </td>
-
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -290,8 +258,7 @@ export default class deliveryDetails extends Component {
                                             <td>
                                                 <span style={{ color: "black" }}>State/Province : </span>
                                             </td>
-
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -307,8 +274,7 @@ export default class deliveryDetails extends Component {
                                             <td>
                                                 <span style={{ color: "black" }}>Postal/Zip Code :  </span>
                                             </td>
-
-                                            <td>
+                                            <td style={{ paddingLeft: '70px' }}>
                                                 <input
                                                     class="form-control"
                                                     type="text"
@@ -316,12 +282,11 @@ export default class deliveryDetails extends Component {
                                                     name="postalCode"
                                                     onChange={this.onChange}
                                                     required
-                                                    style={{ border: "1px solid #c8cfcb " }} />
+                                                    style={{ border: "1px solid #c8cfcb",  width: '250px'}} />
                                             </td>
                                         </tr>
                                         <br />
                                     </table>
-                                    <br />
 
                                     <table>
                                         <tr>
