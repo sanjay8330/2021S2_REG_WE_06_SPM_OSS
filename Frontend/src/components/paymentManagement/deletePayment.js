@@ -1,3 +1,8 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -16,6 +21,7 @@ export default class deletePayment extends Component {
         this.state = initialStates;
     }
 
+    //retreive payment details
     componentDidMount() {
         //Set the global state for user ID
         this.setState({ userId: this.props.match.params.userId });
@@ -29,6 +35,7 @@ export default class deletePayment extends Component {
             })
     }
 
+    //delete payment details
     onSubmit(e) {
         e.preventDefault();
         Axios.delete(`http://localhost:3001/checkout/deletePayment/${this.props.match.params.id}`)
@@ -40,6 +47,7 @@ export default class deletePayment extends Component {
             })
     }
 
+    //navigate to view items page
     navigatetoViewPage(e) {
         window.location = `/payment-history/${this.state.userId}`;
     }

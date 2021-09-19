@@ -1,3 +1,8 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -31,13 +36,15 @@ export default class updateDeliveryDetails extends Component {
         this.state = initialStates;
     }
 
-
+    //assign inputs to state
     onChange(e) {
         e.persist();
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    //retreive delivery details acoording to the user ID
     componentDidMount() {
+        //get the global state for user ID
         this.setState({ userId: this.props.match.params.userId });
 
         Axios.get(`http://localhost:3001/delivery/deliveryForCustomer/${this.props.match.params.userId}`)
@@ -66,12 +73,12 @@ export default class updateDeliveryDetails extends Component {
 
     }
 
-
+    //navigate to view items page
     navigateToView(e) {
         window.location = `/viewItems/${this.props.match.params.userId}`;
     }
 
-
+    //update delivry details according to the user ID
     onSubmit(e) {
         e.preventDefault();
 

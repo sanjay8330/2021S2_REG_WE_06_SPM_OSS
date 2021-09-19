@@ -1,3 +1,8 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 const mongoose = require('mongoose');
 
 const DeliverySchema = new mongoose.Schema({
@@ -64,5 +69,6 @@ const DeliverySchema = new mongoose.Schema({
 
 });
 
+//export model to route
 const delivery = mongoose.model("Delivery", DeliverySchema);
 module.exports = delivery;

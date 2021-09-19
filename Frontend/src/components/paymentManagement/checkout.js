@@ -1,3 +1,8 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -30,21 +35,22 @@ export default class checkout extends Component {
         }
     }
 
+    //assign input to state
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    //set global states
     componentDidMount(){
+        //set the global state for user ID
         this.setState({ userId: this.props.match.params.userId });
+        //set the global state for amount
         this.setState({ amount: this.props.match.params.amount });
     }
     
+    //insert payment details
     onSubmit(e) {
         e.preventDefault();
-
-        //validate data before submitting to the db 
-        //const err = this.validate();
-        //if (!err) {
 
         let checkout = {
             amount: this.state.amount,
@@ -64,9 +70,9 @@ export default class checkout extends Component {
                 alert(error.message);
             })
 
-        //}
     }
 
+    //upload inserted image to database
     async onImageChange(e) {
         document.getElementById("submitBtn").disabled = true;
         const file = e.target.files[0];

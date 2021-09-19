@@ -1,7 +1,12 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 const router = require('express').Router();
 const DeliveryModel = require('../models/Delivery');
 
-//Add delivery details
+//Add delivery details - USER TASK  
 router.route('/deliveryDetails/:userId').post(async (req, res) => {
     if(req.body){
         const Delivery = new DeliveryModel(req.body);
@@ -14,7 +19,7 @@ router.route('/deliveryDetails/:userId').post(async (req, res) => {
     }
 });
 
-//Update delivery details
+//Update delivery details - USER TASK
 router.route("/updateDeliveryDetail/:id/").put(async (req, res) => {
     //Updating the offer details
     const senderName = req.body.senderName;
@@ -59,7 +64,7 @@ router.route("/updateDeliveryDetail/:id/").put(async (req, res) => {
 });
 
 
-//Get delivery by userId for update
+//Get delivery by userId for update - USER TASK
 router.route("/deliveryForCustomer/:userId").get(async (req, res) => {
     const currentuserId = req.params.userId;
 
@@ -71,7 +76,7 @@ router.route("/deliveryForCustomer/:userId").get(async (req, res) => {
         })
 }); 
 
-//View delivery by userId 
+//View delivery by userId - USER TASK
 router.route("/viewDeliveryDetails/:userId/:amount").get(async (req, res) => {
     const currentuserId = req.params.userId;
 
