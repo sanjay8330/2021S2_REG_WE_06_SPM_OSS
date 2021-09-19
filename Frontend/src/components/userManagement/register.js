@@ -210,7 +210,7 @@ export default class register extends Component {
                             <div class="m-t-lg">
                                 <ul class="list-inline">
                                     <li>
-                                        <input class="btn btn--form" type="submit" value="Register" />
+                                        <input class="btn btn--form" style={{ width: '100%' }}  type="submit" value="Register" />
                                     </li>
                                     <li><br />
                                         <a class="signup__link" href="/">I am already a member</a>
