@@ -1,3 +1,11 @@
+// ----------------------------
+//     ADD ITEMS INTERFACE - FRONTEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Header from '../header/header';
@@ -32,6 +40,11 @@ export default class addItem extends Component {
     }
 
     //Get the products
+        /**
+         * The function written to get an item for a specific ID
+         * Uses - setState()
+         * API CALL - get an item for a specific ID
+         */
     componentDidMount() {
         Axios.get(`http://localhost:3001/product/getProductById/${this.props.match.params.id}`)
             .then(response => {
@@ -113,6 +126,11 @@ export default class addItem extends Component {
                 "productQuantity": this.state.itemQuantity,
                 "date": this.state.currentDate
             }
+
+                /**
+             * The function written to insert a shopping item
+             * API CALL - insert a shopping item
+             */
             Axios.post('http://localhost:3001/insertitem/addItem', item)
                 .then(response => {
                     alert('Item Details Added Successfully');

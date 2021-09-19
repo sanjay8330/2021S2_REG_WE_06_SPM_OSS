@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 //Item schema
+// ----------------------------
+//     ITEM MODEL - BACKEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
+//Schema name (local) - ItemSchema
 const ItemSchema = new mongoose.Schema({
 
     userID: {
@@ -61,5 +70,10 @@ const ItemSchema = new mongoose.Schema({
 
 });
 
+/**
+ * Schema name on the database - Items
+ * 
+ * Exported model to be used on the insertitem route
+ */
 const Item = mongoose.model("Items", ItemSchema);
 module.exports = Item;

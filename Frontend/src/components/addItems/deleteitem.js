@@ -1,3 +1,11 @@
+// ----------------------------
+//     DELETE ITEM INTERFACE - FRONTEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -17,6 +25,11 @@ export default class deleteproduct extends Component {
     }
 
     //Get items by a ID
+    /**
+         * The function written to get an item for a specific ID
+         * Uses - setState()
+         * API CALL - get an item for a specific ID
+         */
     componentDidMount() {
         Axios.get(`http://localhost:3001/insertitem/getItemById/${this.props.match.params.id}`)
             .then(response => {
@@ -27,10 +40,16 @@ export default class deleteproduct extends Component {
             })
     }
 
+    //onsubmit method
     onSubmit(e) {
         e.preventDefault();
         //console.log(this.props.match.params.id);
         //Delete the Items
+        /**
+         * The function written to delete an item
+         * Uses - setState()
+         * API CALL - to delete an item
+         */
         Axios.delete(`http://localhost:3001/insertitem/deleteItem/${this.props.match.params.id}`)
             .then(response => {
                 alert('Product Item deleted Successfully');

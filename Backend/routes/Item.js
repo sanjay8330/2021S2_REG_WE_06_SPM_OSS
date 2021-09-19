@@ -1,7 +1,20 @@
 const router = require('express').Router();
+
+//Imported Item Model
 const ItemModel = require('../models/Item');
 
+// ----------------------------
+//     ITEM ROUTE - BACKEND
+// ----------------------------
+
+//Function - Shopping Cart management
+//Student name - Ekanayake K.L.W
+//Student ID - IT19150758
+
 //Add a Item 
+/**Add a new item - USER TASK
+ * API - http://localhost:3001/insertitem/addItem
+*/
 router.route('/addItem').post(async (req, res) => {
     if (req.body) {
         const Item = new ItemModel(req.body);
@@ -14,7 +27,10 @@ router.route('/addItem').post(async (req, res) => {
     }
 });
 
-//Get item by userId and date - CUSTOMER SHOPPING CART
+
+/**Get item by userId and date - CUSTOMER SHOPPING CART
+ * API - http://localhost:3001/insertitem/readItemsForCustomer/${this.props.match.params.userId}/${date}
+*/
 router.route("/readItemsForCustomer/:userId/:date").get(async (req, res) => {
     const userId = req.params.userId;
     const currentdate = req.params.date;
@@ -28,7 +44,11 @@ router.route("/readItemsForCustomer/:userId/:date").get(async (req, res) => {
 });
 
 
-//Get the item by ID - USER TASK
+
+/**GET AN ITEM - USER TASK
+ * API - http://localhost:3001/insertitem/getItemById/${this.props.match.params.id
+*/
+
 router.route('/getItemById/:id').get(async (req, res) => {
     if(req.params && req.params.id){
         await ItemModel.findById(req.params.id)
@@ -40,7 +60,10 @@ router.route('/getItemById/:id').get(async (req, res) => {
     }
 });
 
+/**
 //Update Item  - USER TASK
+ * API - http://localhost:3001/insertitem/updateitem/${this.props.match.params.id
+*/
 router.route("/updateitem/:id").put(async (req, res) => {
     //Updating the item details
     const itemQuantity = req.body.itemQuantity;
@@ -67,7 +90,11 @@ router.route("/updateitem/:id").put(async (req, res) => {
     }
 });
 
+
+/**
 //Delete the Item - USER TASK
+ * API - http://localhost:3001/insertitem/deleteItem/${this.props.match.params.id
+*/
 router.route('/deleteItem/:id').delete(async (req, res) => {
     if(req.params && req.params.id){
         await ItemModel.findByIdAndDelete(req.params.id)
