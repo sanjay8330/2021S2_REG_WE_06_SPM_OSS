@@ -1,7 +1,11 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
 const router = require('express').Router();
 const CheckoutModel = require('../models/Checkout');
 
-//Add payment details
+//Add payment details - USER TASK
 router.route('/paymentDetails/:userId/:amount').post(async (req, res) => {
     if(req.body){
         const Checkout = new CheckoutModel(req.body);
@@ -14,8 +18,9 @@ router.route('/paymentDetails/:userId/:amount').post(async (req, res) => {
     }
 });  
 
-//Get payment history by userId - CUSTOMER PAYMENT HISTORY
+//Get payment history by userId - USER TASK
 router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
+    //get user ID
     const currentuserId = req.params.userId;
 
     CheckoutModel.find({ userId: currentuserId})
@@ -26,7 +31,7 @@ router.route("/readHistoryForCustomer/:userId").get(async (req, res) => {
         })
 }); 
 
-//Delete payment details
+//Delete payment details -  USER TASK
 router.route('/deletePayment/:id').delete(async (req, res) => {
     if(req.params && req.params.id){
         await CheckoutModel.findByIdAndDelete(req.params.id)
@@ -38,7 +43,7 @@ router.route('/deletePayment/:id').delete(async (req, res) => {
     }
 });
 
-//Get payment record by Id
+//Get payment record by Id - USER TASK
 router.route('/getPaymentByID/:id').get(async (req, res) => {
     if(req.params && req.params.id){
         await CheckoutModel.findById(req.params.id)
@@ -50,7 +55,7 @@ router.route('/getPaymentByID/:id').get(async (req, res) => {
     }
 });
 
-//Delete all payment details
+//Delete all payment details - USER TASK
 router.route('/deletePaymentHistory/:id').delete(async (req, res) => {
     const id = req.params.id;
     if(req.params && req.params.id){

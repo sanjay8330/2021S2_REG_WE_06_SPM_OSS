@@ -1,3 +1,8 @@
+// Function : Payment Management
+// Name : D.P. Kavindi Gimshani
+// Student Number : IT19150826
+
+
 import React, { Component } from 'react'
 import '../../css/admin.css';
 import Axios from 'axios';
@@ -28,7 +33,6 @@ export default class deliveryDetails extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        //this.navigateToCheckOut = this.navigateToCheckOut.bind(this);
         this.state = initialStates;
         this.navigateViewCart = this.navigateViewCart.bind(this);
     }
