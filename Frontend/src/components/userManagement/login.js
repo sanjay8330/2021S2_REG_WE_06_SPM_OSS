@@ -143,16 +143,15 @@ export default class Login extends Component {
                             <div class="m-t-lg">
                                 <ul class="list-inline">
                                     <li>
-                                        <input class="btn btn--form" type="submit" value="Login" />
+                                        <input class="btn btn--form" style={{ width: '100%' }}  type="submit" value="Login" />
                                     </li>
                                     <li><br />
-                                        <a class="forgotPW__link" href="/forgotPassword">Forgot Password</a>
-                                    </li>
-                                    <li><br />
+                                        <a class="forgotPW__link" href="/forgotPassword">Forgot Password</a> &nbsp; &nbsp;  &nbsp;&nbsp;
+                                  
                                         <a class="signup__link" href="/register">Sigup to Application</a>
                                     </li>
                                 </ul>
-                                <button onClick={this.navigateToGuestHome}>Login as a guest</button>
+                                <button class = "btn btn-info btn-sm" onClick={this.navigateToGuestHome}>Login as a guest</button>
                             </div>
                             
                         </form>

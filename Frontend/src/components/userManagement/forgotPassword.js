@@ -131,7 +131,7 @@ export default class ForgotPassword extends Component {
                             <div class="m-t-lg">
                                 <ul class="list-inline">
                                     <li>
-                                        <input class="btn btn--form" type="submit" value="Validate Me" />
+                                        <input class="btn btn--form" style={{ width: '100%' }} type="submit" value="Validate Me" />
                                     </li>
                                     <li><br />
                                         <a class="signup__link" href="/">Remember Password</a>

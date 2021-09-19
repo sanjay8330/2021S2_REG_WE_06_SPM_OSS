@@ -110,11 +110,33 @@ export default class viewProducts extends Component {
     jsPdfGeneratorProduct() {
 
         var doc = new jsPDF('p', 'pt');
-        doc.text(300, 20, 'SUMMARY OF PRODUCT DETAILS', 'center')
+        doc.text(300, 20, 'SUMMARY OF PRODUCT DETAILS', 'center');
+
+        var today = new Date();
+        var curr_date = today.getDate();
+        var curr_month = today.getMonth();
+        var curr_year = today.getFullYear();
+
+        var m_names = new Array("January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September",
+            "October", "November", "December");
+
+        today = m_names[curr_month] + " " + curr_date + ", " + curr_year;
+        var newdat = today;
+
+        doc.setFont("italic");
+        doc.setFontSize(12);
+
+        doc.text(47, 380, newdat);
+        doc.text(47, 400, 'Function: Product Management')
+        doc.text(47, 420, 'Admin: Kasuni Navodya')
 
         doc.setFont('courier')
 
         doc.autoTable({ html: '#productReportTable' })
+
+        doc.addFont('helvetica', 'normal')
 
         //save PDF
         doc.save('productReport.pdf')
@@ -159,11 +181,11 @@ export default class viewProducts extends Component {
 
                         <div class="info">
                             <b><h6><center>
-                                Mens Products: {this.state.mensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
-                                Womens Products: {this.state.womensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
-                                Teenagers Products: {this.state.teenagersProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
-                                Kids Products: {this.state.kidsProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;   
-                                Babies Products: {this.state.babiesProducts.length} &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;  
+                                Mens Products: {this.state.mensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                                Womens Products: {this.state.womensProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                                Teenagers Products: {this.state.teenagersProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                                Kids Products: {this.state.kidsProducts.length}  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
+                                Babies Products: {this.state.babiesProducts.length} &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp;
                                 Total Products: {this.state.products.length}</center></h6></b>
                         </div>
 
@@ -224,6 +246,7 @@ export default class viewProducts extends Component {
                                     <th scope="col">DISCOUNT</th>
                                     <th scope="col">PRODUCT DESCRIPTION</th>
                                     <th scope="col">CATEGORY TYPE</th>
+                                    <th scope="col">PRODUCT AMOUNT WITH DISCOUNT</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -240,6 +263,7 @@ export default class viewProducts extends Component {
                                         <td>{item.productDiscount + "%"}</td>
                                         <td>{item.productDescription}</td>
                                         <td>{item.categoryType}</td>
+                                        <td>{"Rs." + [item.productPrice - (item.productPrice * item.productDiscount/100)] + "/="}</td>
                                     </tr>
                                 )}
                             </tbody>

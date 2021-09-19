@@ -69,7 +69,7 @@ export default class GuestHome extends Component {
                         <img class="d-block w-100" src={ss} alt="First slide" style={{ filter: 'blur(1px)' }} />
                     </div>
 
-                    <div class="carousel-item active" style={{ backgroundColor: 'transparent' }}>
+                    <div class="carousel-item active" style={{ backgroundColor: 'transparent' }}><br/>
                         <a style={{ marginLeft: '90%', color: 'hotpink', textDecorationLine: 'underline', fontSize: '14px'}}>Logged In as a guest</a>
                     </div>
 
@@ -203,10 +203,11 @@ export default class GuestHome extends Component {
                     })}
                 </div>
 
-                <div class="titleNew"><br />
-                    <center><h1>SIGN IN TO VIEW OTHER CATEGORIES</h1></center><br />
-                    <center><button onClick={this.navigateToSignUp}>SIGN UP</button></center><br />
-                </div><br /><br />
+                <center>
+                <div class="titleNew" style={{ color: "white", backgroundColor: "#050978", width: "700px", padding: '1.2em 0.6em' }}><br />
+                    <center><p style={{ fontSize: '200%' }} >SIGN IN TO VIEW OTHER CATEGORIES</p></center><br />
+                    <center><button class="btn btn--form" onClick={this.navigateToSignUp}>SIGN UP</button></center><br />
+                </div></center><br /><br />
 
 
             </div>
