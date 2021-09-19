@@ -47,7 +47,7 @@ export default class clearHistory extends Component {
                             <div class="wrapper-2">
 
                                 <div class="alert alert-danger" role="alert">
-                                    <center><p>Are you sure you want to permanently remove ypur whole payment hostpry?</p><hr />
+                                    <center><p>Are you sure you want to permanently remove your whole payment history?</p><hr />
                                         By deleting this payment history you can't undo this action.</center>
                                 </div>
                                 <button class="cancel" onClick={this.navigatetoViewPage} style={{ float: "left" }}>
