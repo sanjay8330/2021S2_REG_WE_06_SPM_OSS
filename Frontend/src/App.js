@@ -56,7 +56,7 @@ import addOfferItem from "./components/addItems/addOfferItems";
 //Update Item
 import UpdateItem from './components/addItems/updateitem';
 
-//Delete Item - Test
+//Delete Item 
 import DeleteteItem from './components/addItems/deleteitem';
 
 //Shopping - cart
