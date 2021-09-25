@@ -223,8 +223,8 @@ export default class adminDashboard extends Component {
                                                 </div>
                                                 <div class="mr-5"><center>Product Report</center></div>
                                             </div>
-                                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <span class="float-left">View Details</span>
+                                            <a class="card-footer text-white clearfix small z-1" href="/viewProducts">
+                                                <u><span class="float-left">View Details</span></u>
                                                 <span class="float-right">
                                                     <i class="fa fa-angle-right"></i>
                                                 </span>
@@ -239,8 +239,8 @@ export default class adminDashboard extends Component {
                                                 </div>
                                                 <div class="mr-5"><center>Product Offer Report</center></div>
                                             </div>
-                                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <span class="float-left">View Details</span>
+                                            <a class="card-footer text-white clearfix small z-1" href="/viewProductOffers">
+                                                <u><span class="float-left">View Details</span></u>
                                                 <span class="float-right">
                                                     <i class="fa fa-angle-right"></i>
                                                 </span>
@@ -256,7 +256,7 @@ export default class adminDashboard extends Component {
                                                 <div class="mr-5"><center>Cart Report</center></div>
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <span class="float-left">View Details</span>
+                                                <u><span class="float-left">View Details</span></u>
                                                 <span class="float-right">
                                                     <i class="fa fa-angle-right"></i>
                                                 </span>
@@ -272,7 +272,7 @@ export default class adminDashboard extends Component {
                                                 <div class="mr-5"><center>Payment Report</center></div>
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <span class="float-left">View Details</span>
+                                                <u><span class="float-left">View Details</span></u>
                                                 <span class="float-right">
                                                     <i class="fa fa-angle-right"></i>
                                                 </span>
