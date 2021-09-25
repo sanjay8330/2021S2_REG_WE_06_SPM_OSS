@@ -163,10 +163,10 @@ export default class adminDashboard extends Component {
                                                 <div class="mr-5"><center>Product Offers</center></div>
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" >
-                                                <center><br/>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Active Product Offers: {this.state.activeProductOffers.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>In-active Product Offers: {this.state.inactiveProductOffers.length}</h6></span><br/>
-                                                <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white'}}>Total Product Offers: {this.state.allProductOffers.length}</h4></b></span>
+                                                <center><br />
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Active Product Offers: {this.state.activeProductOffers.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>In-active Product Offers: {this.state.inactiveProductOffers.length}</h6></span><br />
+                                                    <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white' }}>Total Product Offers: {this.state.allProductOffers.length}</h4></b></span>
                                                 </center>
                                             </a>
                                         </div>
@@ -182,12 +182,12 @@ export default class adminDashboard extends Component {
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" href="#">
                                                 <center><br />
-                                                <span class="float-left" style={{ color: "black" }}><h6>Mens Products: {this.state.mensProducts.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Womens Products: {this.state.womensProducts.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Teenagers Products: {this.state.teenagersProducts.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Kids Products: {this.state.kidsProducts.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Babies Products: {this.state.babiesProducts.length}</h6></span><br />
-                                                <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white'}}>Total Products: {this.state.allProducts.length}</h4></b></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Mens Products: {this.state.mensProducts.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Womens Products: {this.state.womensProducts.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Teenagers Products: {this.state.teenagersProducts.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Kids Products: {this.state.kidsProducts.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Babies Products: {this.state.babiesProducts.length}</h6></span><br />
+                                                    <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white' }}>Total Products: {this.state.allProducts.length}</h4></b></span>
                                                 </center>
                                             </a>
                                         </div>
@@ -203,9 +203,9 @@ export default class adminDashboard extends Component {
                                             </div>
                                             <a class="card-footer text-white clearfix small z-1" href="#">
                                                 <center><br />
-                                                <span class="float-left" style={{ color: "black" }}><h6>Customers: {this.state.allCustomers.length}</h6></span>
-                                                <span class="float-left" style={{ color: "black" }}><h6>Administrators: {this.state.allAdministrators.length}</h6></span><br />
-                                                <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white'}}>Total Users: {this.state.allUsers.length}</h4></b></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Customers: {this.state.allCustomers.length}</h6></span>
+                                                    <span class="float-left" style={{ color: "black" }}><h6>Administrators: {this.state.allAdministrators.length}</h6></span><br />
+                                                    <span class="float-left" style={{ color: "black" }}><b><h4 style={{ backgroundColor: 'black', padding: '0.4em 0.6em', color: 'white' }}>Total Users: {this.state.allUsers.length}</h4></b></span>
                                                 </center>
                                             </a>
                                         </div>
@@ -215,24 +215,8 @@ export default class adminDashboard extends Component {
 
                                 <img class="d-block w-100" src={ss} alt="First slide" /><br />
                                 <div class="row">
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-primary o-hidden h-100">
-                                            <div class="card-body">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-file-pdf-o"></i>
-                                                </div>
-                                                <div class="mr-5"><center>Product Report</center></div>
-                                            </div>
-                                            <a class="card-footer text-white clearfix small z-1" href="/viewProducts">
-                                                <u><span class="float-left">View Details</span></u>
-                                                <span class="float-right">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card text-white bg-danger o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
                                                     <i class="fa fa-fw fa-file-pdf-o"></i>
@@ -247,7 +231,23 @@ export default class adminDashboard extends Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                    <div class="col-xl-4 col-sm-6 mb-3">
+                                        <div class="card text-white bg-danger o-hidden h-100">
+                                            <div class="card-body">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-fw fa-file-pdf-o"></i>
+                                                </div>
+                                                <div class="mr-5"><center>Product Report</center></div>
+                                            </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="/viewProducts">
+                                                <u><span class="float-left">View Details</span></u>
+                                                <span class="float-right">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-6 mb-3">
                                         <div class="card text-white bg-primary o-hidden h-100">
                                             <div class="card-body">
                                                 <div class="card-body-icon">
