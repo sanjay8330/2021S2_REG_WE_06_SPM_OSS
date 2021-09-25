@@ -10,11 +10,14 @@
 import React, { Component } from 'react';
 import '../../css/admin.css';
 import Axios from 'axios';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 const initialStates = {
     "userlist": [],
     "userInfo": [],
-    "searchUser": ''
+    "searchUser": '',
+    "userreport": []
 }
 
 export default class ViewUsers extends Component {
@@ -51,16 +54,16 @@ export default class ViewUsers extends Component {
         window.location = "/viewAdmin";
     }
 
-     /**
-     * DESCRIPTION      -       The function to navigate to update users page
-     */
+    /**
+    * DESCRIPTION      -       The function to navigate to update users page
+    */
     navigateToUpdateUser(e, userId) {
         window.location = `/updateUser/${userId}`;
     }
 
-     /**
-     * DESCRIPTION      -       The function to navigate to delete users page
-     */
+    /**
+    * DESCRIPTION      -       The function to navigate to delete users page
+    */
     navigateToDeleteUser(e, userId) {
         window.location = `/deleteUser/${userId}`;
     }
@@ -77,6 +80,30 @@ export default class ViewUsers extends Component {
             }).catch(error => {
                 alert(error.message);
             });
+
+        Axios.get('http://localhost:3001/userreport/getAllUserReports')
+            .then(response => {
+                this.setState({ userreport: response.data.data });
+            }).catch(error => {
+                alert(error.message);
+            });
+
+
+    }
+
+    /**
+     * DESCRIPTION      -       The function written to generate reports for the users
+     * METHOD CALLS     -       setState()
+     * API CALL         -       GET ALL USER TRANSACTIONS
+     */
+     jsPdfGeneratorProductOffer() {
+        var doc = new jsPDF('p', 'pt');
+        doc.text(270, 20, 'SUMMARY OF USER LOGS', 'center')
+        doc.setFont('courier')
+        doc.autoTable({ html: '#reportTable' })
+
+        //Name used to save the pdf when downloading
+        doc.save('userlog-FASHIONZ.pdf')
     }
 
     render() {
@@ -101,6 +128,7 @@ export default class ViewUsers extends Component {
 
                         <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
                         <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
+                        <button onClick={this.jsPdfGeneratorProductOffer} class="btn btn-dark" type="button">Generate Report</button>
 
                         <div class="wrap">
                             <div class="search">
@@ -117,9 +145,9 @@ export default class ViewUsers extends Component {
                             </div>
                         </div><br /><br />
 
-                        <div class="info" style={{ width: '16%'}}>
+                        <div class="info" style={{ width: '16%' }}>
                             <b><h6>
-                            Total Customers: {this.state.userlist.length}</h6></b>
+                                Total Customers: {this.state.userlist.length}</h6></b>
                         </div>
                         <br />
 
@@ -162,6 +190,30 @@ export default class ViewUsers extends Component {
                                 )}
                             </tbody>
                         </table>
+
+                        <table class="table border shadow" style={{ display: 'none' }} id="reportTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">USER EMAIL</th>
+                                    <th scope="col">USER CATEGORY</th>
+                                    <th scope="col">DESCRIPTION</th>
+                                    <th scope="col">ACTION</th>
+                                    <th scope="col">DATE TIME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.userreport.length > 0 && this.state.userreport.map((item, index) =>
+                                    <tr>
+                                        <td>{item.userEmail}</td>
+                                        <td>{item.userCategory}</td>
+                                        <td>{item.description}</td>
+                                        <td>{item.action}</td>
+                                        <td>{item.datetime}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+
 
                     </main>
                 </div>
