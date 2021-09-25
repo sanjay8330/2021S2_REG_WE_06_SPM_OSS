@@ -127,7 +127,7 @@ export default class ViewUsers extends Component {
                         <h1>VIEW USERS</h1><br />
 
                         <button onClick={this.navigateViewAdminPage} class="btn btn-dark" type="button">View Administrator</button> &nbsp;
-                        <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button>
+                        <button onClick={this.navigateAddUsersPage} class="btn btn-dark" type="button">Add Users</button> &nbsp;
                         <button onClick={this.jsPdfGeneratorProductOffer} class="btn btn-dark" type="button">Generate Report</button>
 
                         <div class="wrap">
