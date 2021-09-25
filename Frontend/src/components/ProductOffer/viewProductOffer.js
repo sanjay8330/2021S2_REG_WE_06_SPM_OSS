@@ -65,7 +65,7 @@ export default class ViewProductOffer extends Component {
      * DESCRIPTION      -       The function written to get all the product offer details
      * METHOD CALLS     -       setState()
      * API CALL         -       GET ALL PRODUCT OFFERS
-     */
+     */ 
     componentDidMount(e) {
         Axios.get('http://localhost:3001/productOffer/getAllProductOffers')
             .then(response => {

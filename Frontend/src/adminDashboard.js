@@ -253,25 +253,9 @@ export default class adminDashboard extends Component {
                                                 <div class="card-body-icon">
                                                     <i class="fa fa-fw fa-file-pdf-o"></i>
                                                 </div>
-                                                <div class="mr-5"><center>Cart Report</center></div>
+                                                <div class="mr-5"><center>User Report</center></div>
                                             </div>
-                                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                                <u><span class="float-left">View Details</span></u>
-                                                <span class="float-right">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card text-white bg-danger o-hidden h-100">
-                                            <div class="card-body">
-                                                <div class="card-body-icon">
-                                                    <i class="fa fa-fw fa-file-pdf-o"></i>
-                                                </div>
-                                                <div class="mr-5"><center>Payment Report</center></div>
-                                            </div>
-                                            <a class="card-footer text-white clearfix small z-1" href="#">
+                                            <a class="card-footer text-white clearfix small z-1" href="/viewUsers">
                                                 <u><span class="float-left">View Details</span></u>
                                                 <span class="float-right">
                                                     <i class="fa fa-angle-right"></i>
